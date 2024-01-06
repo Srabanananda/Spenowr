@@ -1,0 +1,21 @@
+{
+    "PRICE_RANGES":[
+        {"Name":"Below 500","Value":"(0-500)"},
+        {"Name":"501 To 1000","Value":"(501-1000)"},
+        {"Name":"1001 To 3000","Value":"(1001-3000)"},
+        {"Name":"3001 To 5000","Value":"(3001-5000)"},
+        {"Name":"5000 & More","Value":"(5001-1000000)"}
+    ],
+    "MONTHLY_SHOPS":[
+        {"Name":"Last 30 Days","Value":"last-30-days"},
+        {"Name":"Last 45 Days","Value":"last-45-days"}
+    ],
+    "TYPES":["arrivals","priceRanges","categories","subCategories"],
+    "SORTING":[
+        {"Name":"Relevance","Value":"new"},
+        {"Name":"New","Value":"ranking"},
+        {"Name":"Name","Value":"name"},
+        {"Name":"Rating","Value":"rating"},
+        {"Name":"Price","Value":"price"}
+    ]
+}

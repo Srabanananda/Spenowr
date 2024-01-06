@@ -1,0 +1,101 @@
+{
+    "category":[
+        {
+            "type":{
+                "label": "Sports Player",
+                "value" : "sports",
+                "default_image": "images/default_image/course/sports.jpg",
+                "status": 1,
+                "subcat": [
+                    {"subcatGroup": {
+                        "label": "Athletic",
+                        "value" : "athletic-sports",
+                        "default_image": "images/default_image/course/athletic-sports.jpg",
+                        "status": 1,
+                        "type": [
+                            {"item": {
+                                "label": "Running",
+                                "default_image": "images/default_image/course/running-sports.jpg",
+                                "status": 1,
+                                "value" : "running-sports"
+                            }},
+                            {"item": {
+                                "label": "Jumping",
+                                "default_image": "images/default_image/course/jumping-sports.jpg",
+                                "status": 1,
+                                "value" : "jumping-sports"
+                            }},
+                            {"item": {
+                                "label": "Throwing",
+                                "default_image": "images/default_image/course/throwing-sports.jpg",
+                                "status": 1,
+                                "value" : "throwing-sports"
+                            }}
+                        ]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Combat",
+                        "value" : "combat-sports",
+                        "default_image": "images/default_image/course/combat-sports.jpg",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Mind",
+                        "value" : "mind-sports",
+                        "default_image": "images/default_image/course/mind-sports.jpg",
+                        "status": 1,
+                        "type": [
+                            {"item": {
+                                "label": "Chess",
+                                "value" : "chess-sports",
+                                "default_image": "images/default_image/course/chess-sports.jpg",
+                                "status": 1
+                            }}
+                        ]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Water",
+                        "value" : "water-sports",
+                        "default_image": "images/default_image/course/water-sports.jpg",
+                        "status": 1,
+                        "type": [
+                            {"item": {
+                                "label": "Swimming",
+                                "value" : "swimming-sports",
+                                "default_image": "images/default_image/course/swimming-sports.jpg",
+                                "status": 1
+                            }},
+                            {"item": {
+                                "label": "Diving",
+                                "value" : "diving-sports",
+                                "default_image": "images/default_image/course/diving-sports.jpg",
+                                "status": 1
+                            }}
+                        ]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Team",
+                        "value" : "team-sports",
+                        "default_image": "images/default_image/course/team-sports.jpg",
+                        "status": 1,
+                        "type": [
+                            {"item": {
+                                "label": "Cricket",
+                                "value" : "cricket-sports",
+                                "default_image": "images/default_image/course/cricket-sports.jpg",
+                                "status": 1
+                            }},
+                           { "item": {
+                                "label": "Football",
+                                "value" : "football-sports",
+                                "default_image": "images/default_image/course/football-sports.jpg",
+                                "status": 1
+                            }}
+                        ]
+                    }}
+                ]
+            }
+        }
+    ]
+}

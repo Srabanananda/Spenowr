@@ -1,0 +1,49 @@
+{
+    "category":[
+        {
+            "type":{
+                "label": "Illustrator",
+                "value" : "illustrator",
+                "default_image": "assets/images/default_image/course/illustrator.jpg",
+                "status": 1,
+                "subcat": [
+                    {"subcatGroup": {
+                        "label": "Digital",
+                        "default_image": "assets/images/default_image/course/music/digital.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"digital"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Cartonist",
+                        "default_image": "assets/images/default_image/course/music/cartonist.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"cartonist"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Comics",
+                        "default_image": "assets/images/default_image/course/music/comics.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"comics"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Drawings",
+                        "default_image": "assets/images/default_image/course/music/drawings.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"drawings"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Other",
+                        "default_image": "assets/images/default_image/course/music/dummyimages.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"other"
+                    }}
+                ]
+            }
+        }
+    ]
+}

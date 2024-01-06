@@ -1,0 +1,42 @@
+{
+    "category":[
+        {
+            "type":{
+                "label": "Writer",
+                "value" : "writer-author",
+                "default_image": "assets/images/default_image/course/singing.jpg",
+                "status": 1,
+                "subcat": [
+                    {"subcatGroup": {
+                        "label": "Quotes",
+                        "default_image": "assets/images/default_image/course/music/classical-singing.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"quotes"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Poem",
+                        "default_image": "assets/images/default_image/course/music/bollywood-singing.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"poem"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Stories",
+                        "default_image": "assets/images/default_image/course/music/classical-singing.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"stories"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Memes",
+                        "default_image": "assets/images/default_image/course/music/bollywood-singing.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"memes"
+                    }}
+                ]
+            }
+        }
+    ]
+}

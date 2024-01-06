@@ -1,0 +1,258 @@
+[
+  {
+    "state_id": "1",
+    "country_id": "1",
+    "value": "Andhra Pradesh",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "2",
+    "country_id": "1",
+    "value": "Arunachal Pradesh",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "3",
+    "country_id": "1",
+    "value": "Assam",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "4",
+    "country_id": "1",
+    "value": "Bihar",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "5",
+    "country_id": "1",
+    "value": "Chhattisgarh",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "6",
+    "country_id": "1",
+    "value": "Goa",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "7",
+    "country_id": "1",
+    "value": "Gujarat",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "8",
+    "country_id": "1",
+    "value": "Haryana",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "9",
+    "country_id": "1",
+    "value": "Himachal Pradesh",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "10",
+    "country_id": "1",
+    "value": "Jammu & Kashmir",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "11",
+    "country_id": "1",
+    "value": "Jharkhand",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "12",
+    "country_id": "1",
+    "value": "Karnataka",
+    "label": "karnataka",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "13",
+    "country_id": "1",
+    "value": "Kerala",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "14",
+    "country_id": "1",
+    "value": "Madhya Pradesh",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "15",
+    "country_id": "1",
+    "value": "Maharashtra",
+    "label": "maharastra",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "16",
+    "country_id": "1",
+    "value": "Manipur",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "17",
+    "country_id": "1",
+    "value": "Meghalaya",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "18",
+    "country_id": "1",
+    "value": "Mizoram",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "19",
+    "country_id": "1",
+    "value": "Nagaland",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "20",
+    "country_id": "1",
+    "value": "Odisha",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "21",
+    "country_id": "1",
+    "value": "Punjab",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "22",
+    "country_id": "1",
+    "value": "Rajasthan",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "23",
+    "country_id": "1",
+    "value": "Sikkim",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "24",
+    "country_id": "1",
+    "value": "Tamil Nadu",
+    "label": "tamil-nadu",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "25",
+    "country_id": "1",
+    "value": "Telangana",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "26",
+    "country_id": "1",
+    "value": "Tripura",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "27",
+    "country_id": "1",
+    "value": "Uttar Pradesh",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "28",
+    "country_id": "1",
+    "value": "Uttarakhand",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "29",
+    "country_id": "1",
+    "value": "West Bengal",
+    "label": "west-bengal",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "30",
+    "country_id": "1",
+    "value": "Andaman & Nicobar Islands",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "31",
+    "country_id": "1",
+    "value": "Dadra and Nagar Haveli",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "32",
+    "country_id": "1",
+    "value": "Daman and Diu",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "33",
+    "country_id": "1",
+    "value": "Lakshadweep",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "34",
+    "country_id": "1",
+    "value": "Puducherry",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "35",
+    "country_id": "1",
+    "value": "New Delhi",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "36",
+    "country_id": "1",
+    "value": "Chandigarh",
+    "active": 1,
+    "last_updated_by": 1
+  }
+]

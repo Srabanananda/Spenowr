@@ -1,0 +1,207 @@
+{
+    "category":[
+        {"type": {
+            "label": "Painter",
+            "value":"art",
+            "default_image": "images/default_image/course/art.jpg",
+            "status": 1,
+            "subcat": [
+                {"subcatGroup": {
+                    "label": "Drawing",
+                    "value":"painting-art",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": [
+                        {"item": {
+                            "label": "Mandala",
+                            "value":"mandala",
+                            "default_image": "",
+                            "status": 1,
+                            "type":[]
+                        }},
+                        {"item": {
+                            "label": "Wall Painting",
+                            "default_image": "",
+                            "status": 1,
+                            "type":[],
+                            "value":"wall-painting"
+                        }},
+                        {"item": {
+                            "label": "Zentangle",
+                            "default_image": "assets/images/default_image/course/craft/fabric3D.jpg",
+                            "status": 1,
+                            "type":[],
+                            "value":"zentangle"
+                        }},
+                        {"item": {
+                            "label": "Canvas/Acrylic",
+                            "default_image": "",
+                            "status": 1,
+                            "type":[],
+                            "value":"canvas"
+                        }},
+                        {"item": {
+                            "label": "Dot Painting",
+                            "default_image": "",
+                            "status": 1,
+                            "type":[],
+                            "value":"dot-painting"
+                        }},
+                        {"item": {
+                            "label": "Portrait",
+                            "default_image": "",
+                            "status": 1,
+                            "type":[],
+                            "value":"portrait"
+                        }},
+                        {"item": {
+                            "label": "Charcoal Art",
+                            "default_image": "",
+                            "status": 1,
+                            "type":[],
+                            "value":"charcoal-art"
+                        }},
+                        {"item": {
+                            "label": "Pencil/Pen Art",
+                            "default_image": "",
+                            "status": 1,
+                            "type":[],
+                            "value":"pencil-art"
+                        }},
+                        {"item": {
+                            "label": "Hand portrait",
+                            "default_image": "",
+                            "status": 1,
+                            "type":[],
+                            "value":"hand-portrait"
+                        }},
+                        {"item": {
+                            "label": "Pattachitra",
+                            "default_image": "",
+                            "status": 1,
+                            "type":[],
+                            "value":"pattachitra"
+                        }},
+                        {"item": {
+                            "label": "Madhubani",
+                            "default_image": "",
+                            "status": 1,
+                            "type":[],
+                            "value":"madhubani"
+                        }},
+                        {"item": {
+                            "label": "Bottle Painting",
+                            "default_image": "",
+                            "status": 1,
+                            "type":[],
+                            "value":"bottle-painting"
+                        }},
+                        {"item": {
+                            "label": "Street Art",
+                            "default_image": "",
+                            "status": 1,
+                            "type":[],
+                            "value":"street-art"
+                        }},
+                        {"item": {
+                            "label": "Calligraphy",
+                            "default_image": "",
+                            "status": 1,
+                            "type":[],
+                            "value":"calligraphy-art"
+                        }},
+                        {"item": {
+                            "label": "Rangoli",
+                            "default_image": "",
+                            "status": 1,
+                            "type":[],
+                            "value":"rangoli-art"
+                        }}
+                        
+                    ]
+                }},
+                {"subcatGroup": {
+                    "label": "Sand Art",
+                    "value":"sand-art",
+                    "default_image": "images/default_image/course/sand-art.jpg",
+                    "status": 1,
+                    "type":[
+                        {
+                            "item": {
+                                "label": "Sand Painting",
+                                "default_image": "",
+                                "status": 1,
+                                "value":"sand-painting"
+                            }
+                        },
+                        {
+                            "item": {
+                                "label": "Sand Animation",
+                                "default_image": "",
+                                "status": 1,
+                                "value":"sand-animation"
+                            }
+                        }
+                    ]
+                }}
+            ]
+        }},
+        {"type": {
+            "label": "Crafter",
+            "value":"craft",
+            "default_image": "images/default_image/course/craft.jpg",
+            "status": 1,
+            "subcat": [
+                {"subcatGroup": {
+                    "label": "Paper Craft",
+                    "default_image": "images/default_image/course/papercraft.jpg",
+                    "status": 1,
+                    "type":[],
+                    "value":"paper-work-craft"
+                }},
+                {"subcatGroup": {
+                    "label": "Rangoli",
+                    "default_image": "",
+                    "status": 1,
+                    "type":[],
+                    "value":"rangoli"
+                }},
+               { "subcatGroup": {
+                    "label": "Knotting / Handwoven",
+                    "default_image": "",
+                    "status": 1,
+                    "type":[],
+                    "value":"knotting"
+                }},
+                {"subcatGroup": {
+                    "label": "Handpainted Decor",
+                    "default_image": "",
+                    "status": 1,
+                    "type":[],
+                    "value":"handpainted-decor"
+                }},
+                {"subcatGroup": {
+                    "label": "Handmade Decor",
+                    "default_image": "images/default_image/course/embroidery-craft.jpg",
+                    "status": 1,
+                    "type":[],
+                    "value":"handmade-decor"
+                }},
+                {"subcatGroup": {
+                    "label": "Dreamcatcher",
+                    "default_image": "",
+                    "status": 1,
+                    "type":[],
+                    "value":"dreamcatcher"
+                }},
+                {"subcatGroup": {
+                    "label": "Embroidery Craft",
+                    "default_image": "images/default_image/course/embroidery-craft.jpg",
+                    "status": 1,
+                    "type":[],
+                    "value":"embroidery-craft"
+                }}
+            ]
+        }}
+    ]
+}

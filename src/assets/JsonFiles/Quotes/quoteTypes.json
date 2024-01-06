@@ -1,0 +1,13 @@
+{"types":[
+   {
+        "label": "Quote",
+        "value" : "quote",
+        "status": 1
+    },
+    {
+        "label": "Poem",
+        "value" : "poem",
+        "status": 1
+    }
+]
+}

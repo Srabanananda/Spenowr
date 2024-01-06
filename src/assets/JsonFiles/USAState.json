@@ -1,0 +1,359 @@
+[
+  {
+    "state_id": "51",
+    "country_id": "2",
+    "value": "Alabama",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "52",
+    "country_id": "2",
+    "value": "Alaska",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "53",
+    "country_id": "2",
+    "value": "Arizona",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "54",
+    "country_id": "2",
+    "value": "Arkansas",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "55",
+    "country_id": "2",
+    "value": "California",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "56",
+    "country_id": "2",
+    "value": "Colorado",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "57",
+    "country_id": "2",
+    "value": "Connecticut",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "58",
+    "country_id": "2",
+    "value": "Delaware",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "59",
+    "country_id": "2",
+    "value": "Florida",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "60",
+    "country_id": "2",
+    "value": "Georgia",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "61",
+    "country_id": "2",
+    "value": "Hawaii",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "62",
+    "country_id": "2",
+    "value": "Idaho",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "63",
+    "country_id": "2",
+    "value": "Illinois",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "64",
+    "country_id": "2",
+    "value": "Indiana",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "65",
+    "country_id": "2",
+    "value": "Iowa",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "66",
+    "country_id": "2",
+    "value": "Kansas",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "67",
+    "country_id": "2",
+    "value": "Kentucky",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "68",
+    "country_id": "2",
+    "value": "Louisiana",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "69",
+    "country_id": "2",
+    "value": "Maine",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "70",
+    "country_id": "2",
+    "value": "Maryland",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "71",
+    "country_id": "2",
+    "value": "Massachusetts",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "72",
+    "country_id": "2",
+    "value": "Michigan",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "73",
+    "country_id": "2",
+    "value": "Minnesota",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "74",
+    "country_id": "2",
+    "value": "Mississippi",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "75",
+    "country_id": "2",
+    "value": "Missouri",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "76",
+    "country_id": "2",
+    "value": "Montana",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "77",
+    "country_id": "2",
+    "value": "Nebraska",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "78",
+    "country_id": "2",
+    "value": "Nevada",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "79",
+    "country_id": "2",
+    "value": "New Hampshire",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "80",
+    "country_id": "2",
+    "value": "New Jersey",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "81",
+    "country_id": "2",
+    "value": "New Mexico",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "82",
+    "country_id": "2",
+    "value": "New York",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "83",
+    "country_id": "2",
+    "value": "North Carolina",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "84",
+    "country_id": "2",
+    "value": "North Dakota",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "85",
+    "country_id": "2",
+    "value": "Ohio",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "86",
+    "country_id": "2",
+    "value": "Oklahoma",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "87",
+    "country_id": "2",
+    "value": "Oregon",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "88",
+    "country_id": "2",
+    "value": "Pennsylvania",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "89",
+    "country_id": "2",
+    "value": "Rhode Island",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "90",
+    "country_id": "2",
+    "value": "South Carolina",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "91",
+    "country_id": "2",
+    "value": "South Dakota",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "92",
+    "country_id": "2",
+    "value": "Tennessee",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "93",
+    "country_id": "2",
+    "value": "Texas",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "94",
+    "country_id": "2",
+    "value": "Utah",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "95",
+    "country_id": "2",
+    "value": "Vermont",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "96",
+    "country_id": "2",
+    "value": "Virginia",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "97",
+    "country_id": "2",
+    "value": "Washington",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "98",
+    "country_id": "2",
+    "value": "West Virginia",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "99",
+    "country_id": "2",
+    "value": "Wisconsin",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "100",
+    "country_id": "2",
+    "value": "Wyoming",
+    "active": 1,
+    "last_updated_by": 1
+  },
+  {
+    "state_id": "101",
+    "country_id": "2",
+    "value": "District Of Columbia",
+    "active": 1,
+    "last_updated_by": 1
+  }
+]

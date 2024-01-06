@@ -1,0 +1,141 @@
+[
+    {
+     "name":"adventure-photography",
+     "value": "Adventure",
+     "default_image": "assets/images/default_image/course/adventurephoto.jpg",
+     "status": 1,
+     "type": []
+   },
+    {
+     "name":"events-photography",
+     "value": "Events",
+     "default_image": "assets/images/default_image/course/eventsphoto.jpg",
+     "status": 1,
+     "type": [
+        {
+         "name":"birthday",
+         "value": "Birthday",
+         "default_image": "assets/images/default_image/course/events/birthday_special.jpg",
+         "status": 1
+       },
+        {
+         "name":"marriage",
+         "value": "Marriage",
+         "default_image": "assets/images/default_image/course/events/marriage_photography.jpg",
+         "status": 1
+       }
+     ]
+   },
+    {
+     "name":"animal-pet-photography",
+     "value": "Animal-Pet",
+     "default_image": "assets/images/default_image/course/animal-pet-photography.jpg",
+     "status": 1,
+     "type":[]
+   },
+    {
+     "name":"aerial",
+     "value": "Aerial",
+     "default_image": "assets/images/assignment/Photography_category/aerial.jpg",
+     "status": 1,
+     "type":[]
+   },
+    {
+     "name":"architectural",
+     "value": "Architectural",
+     "default_image": "assets/images/assignment/Photography_category/architectural.jpg",
+     "status": 1,
+     "type":[]
+   },
+    {
+     "name":"candid",
+     "value": "Candid",
+     "default_image": "assets/images/assignment/Photography_category/candid.jpg",
+     "status": 1,
+     "type":[]
+   },
+  {
+     "name":"documentary",
+     "value": "Documentary",
+     "default_image": "assets/images/assignment/Photography_category/documentary.jpg",
+     "status": 1,
+     "type":[]
+   },
+    {
+     "name":"fashion",
+     "value": "Fashion",
+     "default_image": "assets/images/assignment/Photography_category/fashion.jpg",
+     "status": 1,
+     "type":[]
+   },
+    {
+     "name":"landscape",
+     "value": "Landscape",
+     "default_image": "assets/images/assignment/Photography_category/landscape.jpg",
+     "status": 1,
+     "type":[]
+   },
+  {
+     "value": "Portrait",
+     "default_image": "assets/images/assignment/Photography_category/portrait.jpg",
+     "status": 1,
+     "name":"portrait",
+     "type":[]
+   },
+    {
+     "value": "Still-Life",
+     "default_image": "assets/images/assignment/Photography_category/still_life.jpg",
+     "status": 1,
+     "name":"still-Life",
+     "type":[]
+   },
+   {
+     "value": "Nature",
+     "default_image": "assets/images/assignment/Photography_category/nature.jpg",
+     "status": 1,
+     "name":"nature",
+     "type":[]
+   },
+   {
+     "value": "Underwater",
+     "default_image": "assets/images/assignment/Photography_category/underwater.jpg",
+     "status": 1,
+     "name":"underwater",
+     "type":[]
+   },
+   {
+     "value": "Abstract",
+     "default_image": "assets/images/assignment/Photography_category/abstract.jpg",
+     "status": 1,
+     "name":"abstract",
+     "type":[]
+   },
+   {
+     "value": "Macro",
+     "default_image": "assets/images/assignment/Photography_category/macro.jpg",
+     "status": 1,
+     "name":"macro",
+     "type":[]
+   },
+   {
+     "value": "Wildlife",
+     "default_image": "assets/images/assignment/Photography_category/wildlife.jpg",
+     "status": 1,
+     "name":"wildlife",
+     "type":[]
+   },
+   {
+     "value": "Time-Lapse",
+     "default_image": "assets/images/assignment/Photography_category/time_lapse.jpg",
+     "status": 1,
+     "name":"time-Lapse",
+     "type":[]
+   },
+    {
+     "value": "Motion",
+     "default_image": "assets/images/assignment/Photography_category/motion.jpg",
+     "status": 1,
+     "name":"motion",
+     "type":[]
+   }
+  ]

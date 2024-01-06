@@ -1,0 +1,65 @@
+    [
+        { 
+            "value": "Sitar",
+            "default_image": "assets/images/default_image/course/musical_instruments/sitar.jpg",
+            "status": 1,
+            "name":"sitar-music-instrument",
+            "type":[]
+          },
+          {
+            "value": "Tabla",
+            "default_image": "assets/images/default_image/course/musical_instruments/tabla.jpg",
+            "status": 1,
+            "name":"tabla-music-instrument",
+            "type":[]
+          },
+           {
+            "value": "Veena",
+            "default_image": "assets/images/default_image/course/musical_instruments/veena.jpg",
+            "status": 1,
+            "name":"veena-music-instrument",
+            "type":[]
+          },
+          {
+            "value": "Harmonium",
+            "default_image": "assets/images/default_image/course/musical_instruments/harmonium.jpg",
+            "status": 1,
+            "name":"harmonium-music-instrument",
+            "type":[]
+          },
+          {
+            "value": "Violin",
+            "default_image": "assets/images/default_image/course/musical_instruments/violin.jpg",
+            "status": 1,
+            "name":"violin-music-instrument",
+            "type":[]
+          },
+           {
+            "value": "Dhol",
+            "default_image": "assets/images/default_image/course/musical_instruments/dhol.jpg",
+            "status": 1,
+            "name":"dhol-music-instrument",
+            "type":[]
+          },
+           {
+            "value": "Keyboard",
+            "default_image": "assets/images/default_image/course/musical_instruments/keyboard2.jpg",
+            "status": 1,
+            "name":"keyboard-music-instrument",
+            "type":[]
+          },
+         {
+            "value": "Flute",
+            "default_image": "assets/images/default_image/course/musical_instruments/flute.jpg",
+            "status": 1,
+            "name":"flute-music-instrument",
+            "type":[]
+          },
+           {
+            "value": "Piano",
+            "default_image": "assets/images/default_image/course/musical_instruments/piano.jpg",
+            "status": 1,
+            "name":"piano-music-instrument",
+            "type":[]
+          }
+    ]

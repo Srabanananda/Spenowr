@@ -1,0 +1,472 @@
+{
+    "product_category":[
+        {"type": {
+            "label": "Paintings",
+            "value":"painting",
+            "default_image": "images/default_image/course/art.jpg",
+            "status": 1,
+            "subcat": [
+                {"subcatGroup": {
+                    "label": "Non-framed",
+                    "value":"non-framed",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Framed",
+                    "value":"framed",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Printable",
+                    "value":"printable",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Other",
+                    "value":"other",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }}
+            ]
+        }},
+        {"type": {
+            "label": "Home Decor",
+            "value":"home-decor",
+            "default_image": "images/default_image/course/craft.jpg",
+            "status": 1,    
+            "subcat": [
+                {"subcatGroup": {
+                    "label": "Wall Decor",
+                    "value":"wall-decor",
+                    "default_image": "images/default_image/course/papercraft.jpg",
+                    "status": 1,
+                    "type":[]
+                }},
+                {"subcatGroup": {
+                    "label": "Showpieces & Figurines",
+                    "value":"showpieces-figurines",
+                    "default_image": "images/default_image/course/papercraft.jpg",
+                    "status": 1,
+                    "type":[]
+                }},
+                {"subcatGroup": {
+                    "label": "Sculptures",
+                    "value":"sculptures",
+                    "default_image": "images/default_image/course/papercraft.jpg",
+                    "status": 1,
+                    "type":[
+                        {"item": {
+                            "label": "Stone Carvings",
+                            "value":"stone-carvings",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[]
+                        }},
+                        {"item": {
+                            "label": "Clay",
+                            "value":"clay",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[]
+                        }},
+                        {"item": {
+                            "label": "Marble",
+                            "value":"marble",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[]
+                        }},
+                        {"item": {
+                            "label": "Wooden",
+                            "value":"wooden",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[]
+                        }},
+                        {"item": {
+                            "label": "Other",
+                            "value":"other",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[]
+                        }}
+                    ]
+                }},
+                {"subcatGroup": {
+                    "label": "Utility",
+                    "value":"utility",
+                    "default_image": "images/default_image/course/papercraft.jpg",
+                    "status": 1,
+                    "type":[
+                        {"item": {
+                            "label": "Clock",
+                            "value":"clock",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[]
+                        }},
+                        {"item": {
+                            "label": "Mirror",
+                            "value":"mirror",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[]
+                        }},
+                        {"item": {
+                            "label": "Fridge Magnets & Key Chains",
+                            "value":"fridge-magnents-key-chains",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[]
+                        }},
+                        {"item": {
+                            "label": "Photo Frames",
+                            "value":"photo-frames",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[]
+                        }},
+                        {"item": {
+                            "label": "Candle Holder",
+                            "value":"candle-holder",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[]
+                        }},
+                        {"item": {
+                            "label": "Pen Stand & Brush Stand",
+                            "value":"pen-stand-brush-stand",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[]
+                        }},
+                        {"item": {
+                            "label": "vase",
+                            "value":"Vase",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[]
+                        }},
+                        {"item": {
+                            "label": "other",
+                            "value":"Other",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[]
+                        }}
+                    ]
+                }},
+                {"subcatGroup": {
+                    "label": "Pooja Room Decor",
+                    "value":"pooja-room-decor",
+                    "default_image": "images/default_image/course/papercraft.jpg",
+                    "status": 1,
+                    "type":[]
+                }},
+                {"subcatGroup": {
+                    "label": "Other",
+                    "value":"other",
+                    "default_image": "images/default_image/course/papercraft.jpg",
+                    "status": 1,
+                    "type":[]
+                }}
+            ]
+        }},
+        {"type": {
+            "label": "Fashion",
+            "value":"fashion",
+            "default_image": "images/default_image/course/art.jpg",
+            "status": 1,
+            "subcat": [
+                {"subcatGroup": {
+                    "label": "Handmade Jewelry",
+                    "value":"handmade-jewelry",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Handpainted Clothes",
+                    "value":"handpainted-clothes",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Handwoven Clothes",
+                    "value":"handwoven-clothes",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Handmade Wallet",
+                    "value":"handmade-wallet",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Other",
+                    "value":"other",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }}
+            ]
+        }},
+        {"type": {
+            "label": "Kids Wooden Toys",
+            "value":"kids-wooden-toys",
+            "default_image": "images/default_image/course/art.jpg",
+            "status": 1,
+            "subcat": [
+                {"subcatGroup": {
+                    "label": "Stackers",
+                    "value":"stackers",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Rattles",
+                    "value":"rattles",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Pull & Push Toy",
+                    "value":"pull-push-toy",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Pretend Play",
+                    "value":"pretend-play",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Puzzles",
+                    "value":"puzzles",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Other",
+                    "value":"other",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }}
+            ]
+        }},
+        {"type": {
+            "label": "Kids Story Books",
+            "value":"kids-story-book",
+            "default_image": "images/default_image/course/art.jpg",
+            "status": 1,
+            "subcat": [
+                {"subcatGroup": {
+                    "label": "Infant & Toddlers",
+                    "value":"infant-toddlers",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Kids",
+                    "value":"kids",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Other",
+                    "value":"other",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }}
+            ]
+        }},
+        {"type": {
+            "label": "Art Supplies",
+            "value":"art-supplies",
+            "default_image": "images/default_image/course/art.jpg",
+            "status": 1,
+            "subcat": [
+                {"subcatGroup": {
+                    "label": "Colors & Brushes",
+                    "value":"colors-brushes",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Canvas & Painting Sheets",
+                    "value":"canvas-painting-sheets",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Basecoats & Topcoats",
+                    "value":"basecoats-topcoats",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},{
+                    "subcatGroup": {
+                    "label": "Craft Supplies",
+                    "value":"craft-supplies",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Other",
+                    "value":"other",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }}
+            ]
+        }},
+        {"type": {
+            "label": "Music Instruments",
+            "value":"music-instrument",
+            "default_image": "images/default_image/course/art.jpg",
+            "status": 1,
+            "subcat": [
+                {"subcatGroup": {
+                    "label": "Other",
+                    "value":"other",
+                    "default_image": "assets/images/default_image/course/painting-art.jpg",
+                    "status": 1,
+                    "type": []
+                }}
+            ]
+        }},
+        {"type": {
+            "label": "Clothing & Accessories",
+            "value":"clothing_accessories",
+            "default_image": "",
+			"status": 1,
+            "subcat": [
+                {"subcatGroup": {
+                    "label": "Designer Collection",
+                    "value":"design_collection",
+                    "default_image": "",
+					"status": 1,
+                    "type": [
+                        {"item": {
+                            "label": "Saree",
+                            "value":"saree",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[]
+                        }},
+                        {"item": {
+                            "label": "Dupatta",
+                            "value":"dupatta",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[]
+                        }},
+                        {"item": {
+                            "label": "Blouse",
+                            "value":"blouse",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[]
+                        }}
+                    ]
+                }},
+                {"subcatGroup": {
+                    "label": "Weavers Collection",
+                    "value":"weavers_collection",
+                    "default_image": "",
+					"status": 1,
+                    "type": [
+                        {"item": {
+                            "label": "Saree",
+                            "value":"saree",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[
+                                {"subItem": {
+									"label": "Baluchari",
+                                    "value":"baluchari",
+									"default_image": "",
+									"status": 1,
+									"type":{}
+								}},
+								{"subItem": {
+									"label": "Berhampuri",
+                                    "value":"berhampuri",
+									"default_image": "",
+									"status": 1,
+									"type":{}
+								}},
+								{"subItem": {
+									"label": "Ajrak print",
+                                    "value":"ajrak_print",
+									"default_image": "",
+									"status": 1,
+									"type":{}
+								}},
+								{"subItem": {
+									"label": "Kalamkari",
+                                    "value":"kalamkari",
+									"default_image": "",
+									"status": 1,
+									"type":{}
+								}}
+                            ]
+                        }},
+                        {"item": {
+                            "label": "Dupatta",
+                            "value":"dupatta",
+                            "default_image": "",
+                            "status": 1,
+                            "subType":[]
+                        }}
+                    ]
+                }},
+                {"subcatGroup": {
+                    "label": "Bedding Collection",
+                    "value":"bedding_collection",
+                    "default_image": "",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Handmade Handbag",
+                    "value":"handmade_handbag",
+                    "default_image": "",
+                    "status": 1,
+                    "type": []
+                }},
+                {"subcatGroup": {
+                    "label": "Handmade Jewelry",
+                    "value":"handmade_jewelry",
+                    "default_image": "",
+                    "status": 1,
+                    "type": []
+                }}
+            ]
+        }}
+    ]
+}

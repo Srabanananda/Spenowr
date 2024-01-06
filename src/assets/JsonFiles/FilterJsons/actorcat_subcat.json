@@ -1,0 +1,35 @@
+{
+    "category":[
+        {
+            "type":{
+                "label": "Theater",
+                "value" : "actor",
+                "default_image": "assets/images/default_image/course/theater.jpg",
+                "status": 1,
+                "subcat": [
+                    {"subcatGroup": {
+                        "label": "Theater",
+                        "default_image": "assets/images/default_image/course/theater.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"theater-actor"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Movies",
+                        "default_image": "assets/images/default_image/course/theater.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"movie-actor"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Web Series",
+                        "default_image": "assets/images/default_image/course/theater.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"web-series-actor"
+                    }}
+                ]
+            }
+        }
+    ]
+}

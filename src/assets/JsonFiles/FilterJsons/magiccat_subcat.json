@@ -1,0 +1,13 @@
+{
+    "category":[
+        {
+            "type":{
+                "label": "Magician",
+                "value" : "magic",
+                "default_image": "assets/images/default_image/course/magic.jpg",
+                "status": 1,
+                "subcat": []
+            }
+        }
+    ]
+}

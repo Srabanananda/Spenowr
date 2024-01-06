@@ -1,0 +1,29 @@
+{
+    "category":[
+        {
+            "type":{
+                "label": "Singer",
+                "value":"singing",
+                "default_image": "images/default_image/course/singing.jpg",
+                "status": 1,
+                "subcat": [
+                    {"subcatGroup": {
+                        "label": "Classical",
+                        "value":"classical-singing",
+                        "default_image": "images/default_image/course/music/classical-singing.jpg",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Bollywood",
+                        "value":"bollywood-singing",
+                        "default_image": "images/default_image/course/music/bollywood-singing.jpg",
+                        "status": 1,
+                        "type":[]
+                    }}
+                ]
+            }
+
+        }
+    ]
+}

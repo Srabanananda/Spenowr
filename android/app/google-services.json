@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "381838423448",
+    "project_id": "spenowr-353b5",
+    "storage_bucket": "spenowr-353b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381838423448:android:731f989fc9765bb9c067ed",
+        "android_client_info": {
+          "package_name": "com.spenowr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381838423448-s1i4qe9r5gvp46mmkcuqmc9nq0q3gqkg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzaByKZbuBn7zZpo4fjfHj2Y9xp-FMPGQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381838423448-s1i4qe9r5gvp46mmkcuqmc9nq0q3gqkg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

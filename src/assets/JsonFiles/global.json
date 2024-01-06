@@ -1,0 +1,1388 @@
+{
+  "status": "success",
+  "message": "success message",
+  "data": {
+    "country": [
+      {
+        "country_id": "1",
+        "value": "India",
+        "name": "india",
+        "status": "1",
+        "currency": {
+          "currency_id": "1",
+          "value": "INR",
+          "name": "inr",
+          "status": "1"
+        },
+        "state_list": [
+          {
+            "state_id": "1",
+            "country_id": "1",
+            "value": "Andhra Pradesh",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "2",
+            "country_id": "1",
+            "value": "Arunachal Pradesh",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "3",
+            "country_id": "1",
+            "value": "Assam",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "4",
+            "country_id": "1",
+            "value": "Bihar",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "5",
+            "country_id": "1",
+            "value": "Chhattisgarh",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "6",
+            "country_id": "1",
+            "value": "Goa",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "7",
+            "country_id": "1",
+            "value": "Gujarat",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "8",
+            "country_id": "1",
+            "value": "Haryana",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "9",
+            "country_id": "1",
+            "value": "Himachal Pradesh",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "10",
+            "country_id": "1",
+            "value": "Jammu & Kashmir",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "11",
+            "country_id": "1",
+            "value": "Jharkhand",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "12",
+            "country_id": "1",
+            "value": "Karnataka",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "13",
+            "country_id": "1",
+            "value": "Kerala",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "14",
+            "country_id": "1",
+            "value": "Madhya Pradesh",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "15",
+            "country_id": "1",
+            "value": "Maharashtra",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "16",
+            "country_id": "1",
+            "value": "Manipur",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "17",
+            "country_id": "1",
+            "value": "Meghalaya",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "18",
+            "country_id": "1",
+            "value": "Mizoram",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "19",
+            "country_id": "1",
+            "value": "Nagaland",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "20",
+            "country_id": "1",
+            "value": "Odisha",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "21",
+            "country_id": "1",
+            "value": "Punjab",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "22",
+            "country_id": "1",
+            "value": "Rajasthan",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "23",
+            "country_id": "1",
+            "value": "Sikkim",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "24",
+            "country_id": "1",
+            "value": "Tamil Nadu",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "25",
+            "country_id": "1",
+            "value": "Telangana",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "26",
+            "country_id": "1",
+            "value": "Tripura",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "27",
+            "country_id": "1",
+            "value": "Uttar Pradesh",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "28",
+            "country_id": "1",
+            "value": "Uttarakhand",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "29",
+            "country_id": "1",
+            "value": "West Bengal",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "30",
+            "country_id": "1",
+            "value": "Andaman & Nicobar Islands",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "31",
+            "country_id": "1",
+            "value": "Dadra and Nagar Haveli",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "32",
+            "country_id": "1",
+            "value": "Daman and Diu",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "33",
+            "country_id": "1",
+            "value": "Lakshadweep",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "34",
+            "country_id": "1",
+            "value": "Puducherry",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "35",
+            "country_id": "1",
+            "value": "New Delhi",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "36",
+            "country_id": "1",
+            "value": "Chandigarh",
+            "active": 1,
+            "last_updated_by": 1
+          }
+        ]
+      },
+      {
+        "country_id": "2",
+        "value": "USA",
+        "name": "usa",
+        "status": "1",
+        "currency": {
+          "currency_id": "2",
+          "value": "USD",
+          "name": "usd",
+          "status": "1"
+        },
+        "state_list": [
+          {
+            "state_id": "51",
+            "country_id": "2",
+            "value": "Alabama",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "52",
+            "country_id": "2",
+            "value": "Alaska",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "53",
+            "country_id": "2",
+            "value": "Arizona",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "54",
+            "country_id": "2",
+            "value": "Arkansas",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "55",
+            "country_id": "2",
+            "value": "California",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "56",
+            "country_id": "2",
+            "value": "Colorado",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "57",
+            "country_id": "2",
+            "value": "Connecticut",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "58",
+            "country_id": "2",
+            "value": "Delaware",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "59",
+            "country_id": "2",
+            "value": "Florida",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "60",
+            "country_id": "2",
+            "value": "Georgia",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "61",
+            "country_id": "2",
+            "value": "Hawaii",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "62",
+            "country_id": "2",
+            "value": "Idaho",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "63",
+            "country_id": "2",
+            "value": "Illinois",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "64",
+            "country_id": "2",
+            "value": "Indiana",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "65",
+            "country_id": "2",
+            "value": "Iowa",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "66",
+            "country_id": "2",
+            "value": "Kansas",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "67",
+            "country_id": "2",
+            "value": "Kentucky",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "68",
+            "country_id": "2",
+            "value": "Louisiana",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "69",
+            "country_id": "2",
+            "value": "Maine",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "70",
+            "country_id": "2",
+            "value": "Maryland",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "71",
+            "country_id": "2",
+            "value": "Massachusetts",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "72",
+            "country_id": "2",
+            "value": "Michigan",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "73",
+            "country_id": "2",
+            "value": "Minnesota",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "74",
+            "country_id": "2",
+            "value": "Mississippi",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "75",
+            "country_id": "2",
+            "value": "Missouri",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "76",
+            "country_id": "2",
+            "value": "Montana",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "77",
+            "country_id": "2",
+            "value": "Nebraska",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "78",
+            "country_id": "2",
+            "value": "Nevada",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "79",
+            "country_id": "2",
+            "value": "New Hampshire",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "80",
+            "country_id": "2",
+            "value": "New Jersey",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "81",
+            "country_id": "2",
+            "value": "New Mexico",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "82",
+            "country_id": "2",
+            "value": "New York",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "83",
+            "country_id": "2",
+            "value": "North Carolina",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "84",
+            "country_id": "2",
+            "value": "North Dakota",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "85",
+            "country_id": "2",
+            "value": "Ohio",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "86",
+            "country_id": "2",
+            "value": "Oklahoma",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "87",
+            "country_id": "2",
+            "value": "Oregon",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "88",
+            "country_id": "2",
+            "value": "Pennsylvania",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "89",
+            "country_id": "2",
+            "value": "Rhode Island",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "90",
+            "country_id": "2",
+            "value": "South Carolina",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "91",
+            "country_id": "2",
+            "value": "South Dakota",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "92",
+            "country_id": "2",
+            "value": "Tennessee",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "93",
+            "country_id": "2",
+            "value": "Texas",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "94",
+            "country_id": "2",
+            "value": "Utah",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "95",
+            "country_id": "2",
+            "value": "Vermont",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "96",
+            "country_id": "2",
+            "value": "Virginia",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "97",
+            "country_id": "2",
+            "value": "Washington",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "98",
+            "country_id": "2",
+            "value": "West Virginia",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "99",
+            "country_id": "2",
+            "value": "Wisconsin",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "100",
+            "country_id": "2",
+            "value": "Wyoming",
+            "active": 1,
+            "last_updated_by": 1
+          },
+          {
+            "state_id": "101",
+            "country_id": "2",
+            "value": "District Of Columbia",
+            "active": 1,
+            "last_updated_by": 1
+          }
+        ]
+      },
+      {
+        "country_id": "3",
+        "value": "Europe",
+        "name": "europe",
+        "status": "1",
+        "currency": {
+          "currency_id": "3",
+          "value": "EURO",
+          "name": "NA",
+          "status": "1"
+        },
+        "state_list": []
+      }
+    ],
+    "category": [
+      {
+        "value": "Art",
+        "api_val":"art",
+        "default_image": "assets/images/default_image/course/magic.jpg",
+        "status": 1,
+        "subcat": [ 
+                      {
+                      "value": "Painting",
+                      "default_image": "assets/images/default_image/course/classicaldance.jpg",
+                      "status": 1,
+                      "name":"painting-art",
+                      "type": [
+                          {
+                          "name":"mandala",
+                          "value": "Mandala",
+                          "default_image": "assets/images/default_image/course/events/birthday_special.jpg",
+                          "status": 1
+                        },
+                        {
+                          "name":"wall painting",
+                          "value": "Wall Painting",
+                          "default_image": "assets/images/default_image/course/events/birthday_special.jpg",
+                          "status": 1
+                        },
+                        {
+                          "name":"zentangle",
+                          "value": "Zentangle",
+                          "default_image": "assets/images/default_image/course/events/birthday_special.jpg",
+                          "status": 1
+                        },
+                        {
+                          "name":"canvas/acrylic",
+                          "value": "Canvas/Acrylic",
+                          "default_image": "assets/images/default_image/course/events/birthday_special.jpg",
+                          "status": 1
+                        },
+                        {
+                          "name":"dot painting",
+                          "value": "Dot Painting",
+                          "default_image": "assets/images/default_image/course/events/birthday_special.jpg",
+                          "status": 1
+                        },
+                        {
+                          "name":"potrait",
+                          "value": "Potrait",
+                          "default_image": "assets/images/default_image/course/events/birthday_special.jpg",
+                          "status": 1
+                        },
+                        {
+                          "name":"charcoal art",
+                          "value": "Charcoal Art",
+                          "default_image": "assets/images/default_image/course/events/birthday_special.jpg",
+                          "status": 1
+                        },
+                        {
+                          "name":"hand portrait",
+                          "value": "Hand Portrait",
+                          "default_image": "assets/images/default_image/course/events/birthday_special.jpg",
+                          "status": 1
+                        },
+                        {
+                          "name":"charcoal art",
+                          "value": "Charcoal Art",
+                          "default_image": "assets/images/default_image/course/events/birthday_special.jpg",
+                          "status": 1
+                        },
+                        {
+                          "name":"pattachitra",
+                          "value": "Pattachitra",
+                          "default_image": "assets/images/default_image/course/events/birthday_special.jpg",
+                          "status": 1
+                        },
+                        {
+                          "name":"madhubani",
+                          "value": "Madhubani",
+                          "default_image": "assets/images/default_image/course/events/birthday_special.jpg",
+                          "status": 1
+                        },
+                        {
+                          "name":"bottle painting",
+                          "value": "Bottle Painting",
+                          "default_image": "assets/images/default_image/course/events/birthday_special.jpg",
+                          "status": 1
+                        },
+                        {
+                          "name":"pencil/pen art",
+                          "value": "Pencil/Pen Art",
+                          "default_image": "assets/images/default_image/course/events/birthday_special.jpg",
+                          "status": 1
+                        }
+                     ]
+                    },
+                    {
+                      "value": "Sand Art",
+                      "default_image": "assets/images/default_image/course/classicaldance.jpg",
+                      "status": 1,
+                      "name":"sand-art",
+                      "type": []
+                    }
+               ]
+      },
+      {
+        "value": "Craft",
+        "api_val":"craft",
+        "default_image": "assets/images/default_image/course/magic.jpg",
+        "status": 1,
+        "subcat": [
+                      {
+                        "value": "Paper Craft",
+                        "default_image": "assets/images/default_image/course/classicaldance.jpg",
+                        "status": 1,
+                        "name":"paper-work-craft",
+                        "type": []
+                      },
+                      {
+                        "value": "Rangoli",
+                        "default_image": "assets/images/default_image/course/classicaldance.jpg",
+                        "status": 1,
+                        "name":"rangoli",
+                        "type": []
+                      },
+                      {
+                        "value": "Knotting / Handwoven",
+                        "default_image": "assets/images/default_image/course/classicaldance.jpg",
+                        "status": 1,
+                        "name":"knotting",
+                        "type": []
+                      },
+                      {
+                        "value": "Handpainted Decor",
+                        "default_image": "assets/images/default_image/course/classicaldance.jpg",
+                        "status": 1,
+                        "name":"handpainted-decor",
+                        "type": []
+                      },
+                      {
+                        "value": "Handmade Decor",
+                        "default_image": "assets/images/default_image/course/classicaldance.jpg",
+                        "status": 1,
+                        "name":"handmade-decor",
+                        "type": []
+                      },
+                      {
+                        "value": "Dreamcatcher",
+                        "default_image": "assets/images/default_image/course/classicaldance.jpg",
+                        "status": 1,
+                        "name":"dreamcatcher",
+                        "type": []
+                      },
+                      {
+                        "value": "Embroidery Craft",
+                        "default_image": "assets/images/default_image/course/classicaldance.jpg",
+                        "status": 1,
+                        "name":"embroidery-craft",
+                        "type": []
+                      }
+         ]
+      },
+      {
+        "value": "Photography",
+        "api_val":"photography",
+        "default_image": "assets/images/default_image/course/photography.jpg",
+        "status": 1,
+        "subcat": [
+           {
+            "name":"adventure-photography",
+            "value": "Adventure",
+            "default_image": "assets/images/default_image/course/adventurephoto.jpg",
+            "status": 1,
+            "type": []
+          },
+           {
+            "name":"events-photography",
+            "value": "Events",
+            "default_image": "assets/images/default_image/course/eventsphoto.jpg",
+            "status": 1,
+            "type": [
+               {
+                "name":"birthday",
+                "value": "Birthday",
+                "default_image": "assets/images/default_image/course/events/birthday_special.jpg",
+                "status": 1
+              },
+               {
+                "name":"marriage",
+                "value": "Marriage",
+                "default_image": "assets/images/default_image/course/events/marriage_photography.jpg",
+                "status": 1
+              }
+            ]
+          },
+           {
+            "name":"animal-pet-photography",
+            "value": "Animal-Pet",
+            "default_image": "assets/images/default_image/course/animal-pet-photography.jpg",
+            "status": 1,
+            "type":[]
+          },
+           {
+            "name":"aerial",
+            "value": "Aerial",
+            "default_image": "assets/images/assignment/Photography_category/aerial.jpg",
+            "status": 1,
+            "type":[]
+          },
+           {
+            "name":"architectural",
+            "value": "Architectural",
+            "default_image": "assets/images/assignment/Photography_category/architectural.jpg",
+            "status": 1,
+            "type":[]
+          },
+           {
+            "name":"candid",
+            "value": "Candid",
+            "default_image": "assets/images/assignment/Photography_category/candid.jpg",
+            "status": 1,
+            "type":[]
+          },
+         {
+            "name":"documentary",
+            "value": "Documentary",
+            "default_image": "assets/images/assignment/Photography_category/documentary.jpg",
+            "status": 1,
+            "type":[]
+          },
+           {
+            "name":"fashion",
+            "value": "Fashion",
+            "default_image": "assets/images/assignment/Photography_category/fashion.jpg",
+            "status": 1,
+            "type":[]
+          },
+           {
+            "name":"landscape",
+            "value": "Landscape",
+            "default_image": "assets/images/assignment/Photography_category/landscape.jpg",
+            "status": 1,
+            "type":[]
+          },
+         {
+            "value": "Portrait",
+            "default_image": "assets/images/assignment/Photography_category/portrait.jpg",
+            "status": 1,
+            "name":"portrait",
+            "type":[]
+          },
+           {
+            "value": "Still-Life",
+            "default_image": "assets/images/assignment/Photography_category/still_life.jpg",
+            "status": 1,
+            "name":"still-Life",
+            "type":[]
+          },
+          {
+            "value": "Nature",
+            "default_image": "assets/images/assignment/Photography_category/nature.jpg",
+            "status": 1,
+            "name":"nature",
+            "type":[]
+          },
+          {
+            "value": "Underwater",
+            "default_image": "assets/images/assignment/Photography_category/underwater.jpg",
+            "status": 1,
+            "name":"underwater",
+            "type":[]
+          },
+          {
+            "value": "Abstract",
+            "default_image": "assets/images/assignment/Photography_category/abstract.jpg",
+            "status": 1,
+            "name":"abstract",
+            "type":[]
+          },
+          {
+            "value": "Macro",
+            "default_image": "assets/images/assignment/Photography_category/macro.jpg",
+            "status": 1,
+            "name":"macro",
+            "type":[]
+          },
+          {
+            "value": "Wildlife",
+            "default_image": "assets/images/assignment/Photography_category/wildlife.jpg",
+            "status": 1,
+            "name":"wildlife",
+            "type":[]
+          },
+          {
+            "value": "Time-Lapse",
+            "default_image": "assets/images/assignment/Photography_category/time_lapse.jpg",
+            "status": 1,
+            "name":"time-Lapse",
+            "type":[]
+          },
+           {
+            "value": "Motion",
+            "default_image": "assets/images/assignment/Photography_category/motion.jpg",
+            "status": 1,
+            "name":"motion",
+            "type":[]
+          }
+         ]
+      },
+      {
+        "value": "Music Instruments",
+        "api_val":"music-instruments",
+        "default_image": "assets/images/default_image/course/music-instruments.jpg",
+        "status": 1,
+        "subcat": [
+            { 
+            "value": "Sitar",
+            "default_image": "assets/images/default_image/course/musical_instruments/sitar.jpg",
+            "status": 1,
+            "name":"sitar-music-instrument",
+            "type":[]
+          },
+          {
+            "value": "Tabla",
+            "default_image": "assets/images/default_image/course/musical_instruments/tabla.jpg",
+            "status": 1,
+            "name":"tabla-music-instrument",
+            "type":[]
+          },
+           {
+            "value": "Veena",
+            "default_image": "assets/images/default_image/course/musical_instruments/veena.jpg",
+            "status": 1,
+            "name":"veena-music-instrument",
+            "type":[]
+          },
+          {
+            "value": "Harmonium",
+            "default_image": "assets/images/default_image/course/musical_instruments/harmonium.jpg",
+            "status": 1,
+            "name":"harmonium-music-instrument",
+            "type":[]
+          },
+          {
+            "value": "Violin",
+            "default_image": "assets/images/default_image/course/musical_instruments/violin.jpg",
+            "status": 1,
+            "name":"violin-music-instrument",
+            "type":[]
+          },
+           {
+            "value": "Dhol",
+            "default_image": "assets/images/default_image/course/musical_instruments/dhol.jpg",
+            "status": 1,
+            "name":"dhol-music-instrument",
+            "type":[]
+          },
+           {
+            "value": "Keyboard",
+            "default_image": "assets/images/default_image/course/musical_instruments/keyboard2.jpg",
+            "status": 1,
+            "name":"keyboard-music-instrument",
+            "type":[]
+          },
+         {
+            "value": "Flute",
+            "default_image": "assets/images/default_image/course/musical_instruments/flute.jpg",
+            "status": 1,
+            "name":"flute-music-instrument",
+            "type":[]
+          },
+           {
+            "value": "Piano",
+            "default_image": "assets/images/default_image/course/musical_instruments/piano.jpg",
+            "status": 1,
+            "name":"piano-music-instrument",
+            "type":[]
+          }
+    ]
+      },
+      {
+        "value": "Singing",
+        "api_val":"singing",
+        "default_image": "assets/images/default_image/course/singing.jpg",
+        "status": 1,
+        "subcat": [
+           {
+            "value": "Classical",
+            "default_image": "assets/images/default_image/course/music/classical-singing.jpg",
+            "status": 1,
+            "name":"classical-singing",
+            "type": []
+          },
+           {
+            "value": "Bollywood",
+            "default_image": "assets/images/default_image/course/music/bollywood-singing.jpg",
+            "status": 1,
+            "name":"bollywood-singing",
+            "type": []
+          }
+        ]
+      },
+      {
+        "value": "Sports",
+        "api_val":"sports",
+        "default_image": "assets/images/default_image/course/sports.jpg",
+        "status": 1,
+        "subcat": [
+           {
+          
+            "value": "Athletic",
+            "default_image": "assets/images/default_image/course/athletic-sports.jpg",
+            "status": 1,
+            "name":"athletic-sports",
+            "type": [
+              {
+                "name":"running-sports",
+                "value": "Running",
+                "default_image": "assets/images/default_image/course/running-sports.jpg",
+                "status": 1
+              },
+              {
+                "name":"jumping-sports",
+                "value": "Jumping",
+                "default_image": "assets/images/default_image/course/jumping-sports.jpg",
+                "status": 1
+              },
+               {
+                "name":"throwing-sports",
+                "value": "Throwing",
+                "default_image": "assets/images/default_image/course/throwing-sports.jpg",
+                "status": 1
+              }
+         ]
+          },
+          {
+            "value": "Combat",
+            "default_image": "assets/images/default_image/course/combat-sports.jpg",
+            "status": 1,
+            "name":"combat-sports",
+            "type": []
+          },
+          {
+            "value": "Mind",
+            "default_image": "assets/images/default_image/course/chess-sports.jpg",
+            "status": 1,
+            "name":"mind-sports",
+            "type": [
+               {
+                "name":"chess-sports",
+                "value": "Chess",
+                "default_image": "assets/images/default_image/course/chess-sports.jpg",
+                "status": 1
+              }
+            ]
+          },
+
+          {
+            "value": "Water",
+            "default_image": "assets/images/default_image/course/water-sports.jpg",
+            "status": 1,
+            "name":"water-sports",
+            "type": [
+               {
+                "name":"swimming-sports",
+                "value": "Swimming",
+                "default_image": "assets/images/default_image/course/swimmingsports.jpg",
+                "status": 1
+              },
+              {
+                "name":"diving-sports",
+                "value": "Diving",
+                "default_image": "assets/images/default_image/course/diving-sports.jpg",
+                "status": 1
+              }
+            ]
+          },
+          {
+            "value": "Team",
+            "default_image": "assets/images/default_image/course/team-sports.jpg",
+            "status": 1,
+            "name":"team-sports",
+            "type": [
+              {
+                "name":"cricket-sports",
+                "value": "Cricket",
+                "default_image": "assets/images/default_image/course/cricket-sports.jpg",
+                "status": 1
+              },
+             {
+                "name":"football-sports",
+                "value": "Football",
+                "default_image": "assets/images/default_image/course/football-sports.jpg",
+                "status": 1
+              }
+    ]
+          }
+        ]
+      },
+      {
+        "value": "Exercise",
+        "api_val":"exercise",
+        "default_image": "assets/images/default_image/course/exercise.jpg",
+        "status": 1,
+        "subcat": [
+          {
+            "value": "Yoga",
+            "default_image": "assets/images/default_image/course/yoga.jpg",
+            "status": 1,
+            "name":"yoga",
+            "type": []
+          },
+          {
+            "value": "Gymnastics",
+            "default_image": "assets/images/default_image/course/gymnastic.jpg",
+            "status": 1,
+            "name":"gymnastics",
+            "type": []
+          },
+          {
+            "value": "Karate",
+            "default_image": "assets/images/default_image/course/karate.jpg",
+            "status": 1,
+            "name":"karate",
+            "type": []
+          },
+          {
+            "value": "Martial Art",
+            "default_image": "assets/images/default_image/course/martial-art.jpg",
+            "status": 1,
+            "name":"martial-art",
+            "type": []
+          },
+          {
+            "value": "Judo",
+            "default_image": "assets/images/default_image/course/judo.jpg",
+            "status": 1,
+            "name":"judo",
+            "type": []
+          },
+          {
+            "value": "Tae Kwon Do",
+            "default_image": "assets/images/default_image/course/tae-kwon-do.jpg",
+            "status": 1,
+            "name":"tae-kwon-do",
+            "type": []
+          }
+       ]
+      },
+      {
+        "value": "Theater",
+        "api_val":"theater",
+        "default_image": "assets/images/default_image/course/theater.jpg",
+        "status": 1,
+        "subcat": []
+      },
+      {
+        "value": "Magic",
+        "api_val":"magic",
+        "default_image": "assets/images/default_image/course/magic.jpg",
+        "status": 1,
+        "subcat": []
+      },
+      {
+        "value": "Dance",
+        "api_val":"dance",
+        "default_image": "assets/images/default_image/course/dance.jpg",
+        "status": 1,
+        "subcat": [
+          {
+            "value": "Classical",
+            "default_image": "assets/images/default_image/course/classicaldance.jpg",
+            "status": 1,
+            "name":"classical",
+            "type": [
+              {
+                "name":"bharatanatyam",
+                "value": "Bharatanatyam",
+                "default_image": "assets/images/default_image/course/dance/bharatanatyam.jpg",
+                "status": 1
+              },
+              {
+                "name":"bhangada",
+                "value": "Bhangada",
+                "default_image": "assets/images/default_image/course/dance/bhangra.jpg",
+                "status": 1
+              },
+              {
+                "name":"folk dances",
+                "value": "Folk Dances",
+                "default_image": "assets/images/default_image/course/dance/folk-dance.jpg",
+                "status": 1
+              },
+              {
+                "name":"kathak",
+                "value": "Kathak",
+                "default_image": "assets/images/default_image/course/dance/kathak.jpg",
+                "status": 1
+              },
+              {
+                "name":"kathakali",
+                "value": "Kathakali",
+                "default_image": "assets/images/default_image/course/dance/kathakali.jpg",
+                "status": 1
+              },
+              {
+                "name":"kuchipudi dance",
+                "value": "Kuchipudi Dance",
+                "default_image": "assets/images/default_image/course/dance/kuchipudi.jpg",
+                "status": 1
+              },
+              {
+                "name":"odishi",
+                "value": "Odishi",
+                "default_image": "assets/images/default_image/course/dance/odishi.jpg",
+                "status": 1
+              },
+              {
+                "name":"manipuri",
+                "value": "Manipuri",
+                "default_image": "assets/images/default_image/course/dance/manipuri.jpg",
+                "status": 1
+              },
+              {
+                "name":"mohini natyam",
+                "value": "Mohini Natyam",
+                "default_image": "assets/images/default_image/course/dance/mohini_natyam.jpg",
+                "status": 1
+              },
+              {
+                "name":"sattriya",
+                "value": "Sattriya",
+                "default_image": "assets/images/default_image/course/dance/sattriya.jpg",
+                "status": 1
+              }
+            ]
+          },
+          {
+            "name": "bollywood",
+            "value": "Bollywood",
+            "default_image": "assets/images/default_image/course/bollywooddance.jpg",
+            "status": 1,
+            "type": [
+              {
+                "name": "hip hop dance",
+                "value": "Hip Hop Dance",
+                "default_image": "assets/images/default_image/course/dance/hip_hop.jpg",
+                "status": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "serviceType":[
+      {
+        "name":"traning_class",
+        "value": "Training Class",
+        "status": 1
+      },
+       {
+        "name":"custom_art_work",
+        "value": "Custom Artwork",
+        "status": 1
+      }
+  
+    ],
+    "DeliveryMode":[
+      {
+        "name":"0",
+        "value": "-- Select Delivery Mode --",
+        "status": 0
+      },
+       {
+        "name":"1",
+        "value": "Online",
+        "status": 0
+      },
+       {
+        "name":"2",
+        "value": "Face To Face",
+        "status": 0
+      }
+    ],
+     "ReccuringPeriod": [
+      {
+        "name":"NA",
+        "value": "-- Select Frequency --",
+        "status": 1
+      },
+      {
+        "name":"monthly",
+        "value": "Monthly",
+        "status": 1
+      },
+      {
+        "name":"quaterly",
+        "value": "Quaterly",
+        "status": 1
+      },
+      {
+        "name":"half_yearly",
+        "value": "Half Yearly",
+        "status": 1
+      }, 
+       {
+        "name":"yearly",
+        "value": "Yearly",
+        "status": 1
+      }
+    ],
+    "DisplayMode": [
+      {
+        "name":"1",
+        "value": "Image",
+        "status": 1 
+      },
+      {
+        "name":"2",
+        "value": "Video",
+        "status": 1
+      }
+    ],
+    "Currency" : [
+      {"name":"INR" , "value" :1, "country_label" : "India"},
+      {"name":"USD" , "value" :2,"country_label" : "USA"},
+      {"name":"EURO" , "value" :3,"country_label" : "Europe"}
+    ],
+    "Accounts":[
+      {"name":"Artist" , "value" :"artist"},
+      {"name":"Art School" , "value" :"art_school"},
+      {"name":"Art Business" , "value" :"art_business"}
+    ]
+  }
+}

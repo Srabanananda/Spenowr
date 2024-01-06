@@ -1,0 +1,622 @@
+{
+    "category": {
+		"art": {
+			"label": "Painter",
+			"default_image": "/images/default_image/course/art.jpg",
+			"status": 1,
+			"subcat": {
+				"painting-art": {
+					"label": "Drawing",
+					"default_image": "/images/default_image/course/painting-art.jpg",
+					"status": 1,
+					"type": {
+						"mandala": {
+							"label": "Mandala",
+							"default_image": "",
+							"status": 1,
+							"type":{}
+						},
+						"wall-painting": {
+							"label": "Wall Painting",
+							"default_image": "",
+							"status": 1,
+							"type":{}
+						},
+						"zentangle": {
+							"label": "Zentangle",
+							"default_image": "/images/default_image/course/craft/fabric3D.jpg",
+							"status": 1,
+							"type":{}
+						},
+						"canvas": {
+							"label": "Canvas/Acrylic",
+							"default_image": "",
+							"status": 1,
+							"type":{}
+						},
+						
+						"dot-painting": {
+							"label": "Dot Painting",
+							"default_image": "",
+							"status": 1,
+							"type":{}
+						},
+						"portrait": {
+							"label": "Portrait",
+							"default_image": "",
+							"status": 1,
+							"type":{}
+						},
+						"charcoal-art": {
+							"label": "Charcoal Art",
+							"default_image": "",
+							"status": 1,
+							"type":{}
+						},
+						"pencil-art": {
+							"label": "Pencil/Pen Art",
+							"default_image": "",
+							"status": 1,
+							"type":{}
+						},
+						"hand-portrait": {
+							"label": "Hand portrait",
+							"default_image": "",
+							"status": 1,
+							"type":{}
+						},
+						"pattachitra": {
+							"label": "Pattachitra",
+							"default_image": "",
+							"status": 1,
+							"type":{}
+						},
+						"madhubani": {
+							"label": "Madhubani",
+							"default_image": "",
+							"status": 1,
+							"type":{}
+						},
+						"bottle-painting": {
+							"label": "Bottle Painting",
+							"default_image": "",
+							"status": 1,
+							"type":{}
+						},
+						"street-art": {
+							"label": "Street Art",
+							"default_image": "",
+							"status": 1,
+							"type":{}
+						},
+						"calligraphy-art": {
+							"label": "Calligraphy",
+							"default_image": "",
+							"status": 1,
+							"type":{}
+						},
+						"rangoli-art": {
+							"label": "Rangoli",
+							"default_image": "",
+							"status": 1,
+							"type":{}
+						}
+					}
+				},
+				"sand-art": {
+					"label": "Sand Art",
+					"default_image": "/images/default_image/course/sand-art.jpg",
+					"status": 1,
+					"type": {
+						"sand-painting": {
+							"label": "Sand Painting",
+							"default_image": "",
+							"status": 1,
+							"type":{}
+						},
+						"sand-animation": {
+							"label": "Sand Animation",
+							"default_image": "",
+							"status": 1,
+							"type":{}
+						}
+					}
+				}
+				
+			}
+		},
+		"craft": {
+			"label": "Crafter",
+			"default_image": "/images/default_image/course/craft.jpg",
+			"status": 1,
+			"subcat": {
+				"paper-work-craft": {
+					"label": "Paper Craft",
+					"default_image": "/images/default_image/course/papercraft.jpg",
+					"status": 1,
+					"type":{}
+				},
+				"rangoli": {
+					"label": "Rangoli",
+					"default_image": "",
+					"status": 1,
+					"type":{}
+				},
+				"knotting": {
+					"label": "Knotting / Handwoven",
+					"default_image": "",
+					"status": 1,
+					"type":{}
+				},
+				"handpainted-decor": {
+					"label": "Handpainted Decor",
+					"default_image": "",
+					"status": 1,
+					"type":{}
+				},
+				"handmade-decor": {
+					"label": "Handmade Decor",
+					"default_image": "/images/default_image/course/embroidery-craft.jpg",
+					"status": 1,
+					"type":{}
+				},
+				"dreamcatcher": {
+					"label": "Dreamcatcher",
+					"default_image": "",
+					"status": 1,
+					"type":{}
+				},
+				"embroidery-craft": {
+					"label": "Embroidery Craft",
+					"default_image": "/images/default_image/course/embroidery-craft.jpg",
+					"status": 1,
+					"type":{}
+				}
+				
+				
+			}
+		},
+		"music-instruments": {
+			"label": "Musician",
+			"default_image": "/images/default_image/course/music-instruments.jpg",
+			"status": 1,
+			"subcat": {
+				"sitar-music-instrument": {
+					"label": "Sitar",
+					"default_image": "/images/default_image/course/musical_instruments/sitar.jpg",
+					"status": 1,
+					"type":{}
+				},
+				"tabla-music-instrument": {
+					"label": "Tabla",
+					"default_image": "/images/default_image/course/musical_instruments/tabla.jpg",
+					"status": 1,
+					"type":{}
+				},
+				"veena-music-instrument": {
+					"label": "Veena",
+					"default_image": "/images/default_image/course/musical_instruments/veena.jpg",
+					"status": 1,
+					"type":{}
+				},
+				"harmonium-music-instrument": {
+					"label": "Harmonium",
+					"default_image": "/images/default_image/course/musical_instruments/harmonium.jpg",
+					"status": 1,
+					"type":{}
+				},
+				"violin-music-instrument": {
+					"label": "Violin",
+					"default_image": "/images/default_image/course/musical_instruments/violin.jpg",
+					"status": 1,
+					"type":{}
+				},
+				"dhol-music-instrument": {
+					"label": "Dhol",
+					"default_image": "/images/default_image/course/musical_instruments/dhol.jpg",
+					"status": 1,
+					"type":{}
+				},
+				"keyboard-music-instrument": {
+					"label": "Keyboard",
+					"default_image": "/images/default_image/course/musical_instruments/keyboard2.jpg",
+					"status": 1,
+					"type":{}
+				},
+				"flute-music-instrument": {
+					"label": "Flute",
+					"default_image": "/images/default_image/course/musical_instruments/flute.jpg",
+					"status": 1,
+					"type":{}
+				},
+				"piano-music-instrument": {
+					"label": "Piano",
+					"default_image": "/images/default_image/course/musical_instruments/piano.jpg",
+					"status": 1,
+					"type":{}
+				}
+			}
+		},
+		"singing": {
+			"label": "Singer",
+			"default_image": "/images/default_image/course/singing.jpg",
+			"status": 1,
+			"subcat": {
+				"classical-singing": {
+					"label": "Classical",
+					"default_image": "/images/default_image/course/music/classical-singing.jpg",
+					"status": 1,
+					"type":{}
+				},
+				"bollywood-singing": {
+					"label": "Bollywood",
+					"default_image": "/images/default_image/course/music/bollywood-singing.jpg",
+					"status": 1,
+					"type":{}
+				}
+			}
+		},
+		"writer-author": {
+			"label": "Writer",
+			"default_image": "/images/default_image/course/singing.jpg",
+			"status": 1,
+			"subcat": {
+				"quotes": {
+					"label": "Quotes",
+					"default_image": "/images/default_image/course/music/classical-singing.jpg",
+					"status": 1,
+					"type":{}
+				},
+				"poem": {
+					"label": "Poem",
+					"default_image": "/images/default_image/course/music/bollywood-singing.jpg",
+					"status": 1,
+					"type":{}
+				},
+				"stories": {
+					"label": "Stories",
+					"default_image": "/images/default_image/course/music/classical-singing.jpg",
+					"status": 1,
+					"type":{}
+				},
+				"memes": {
+					"label": "Memes",
+					"default_image": "/images/default_image/course/music/bollywood-singing.jpg",
+					"status": 1,
+					"type":{}
+				}
+			}
+		},
+		"dance": {
+			"label": "Dancer",
+			"default_image": "/images/default_image/course/dance.jpg",
+			"status": 1,
+			"subcat": {
+				"classical-dance": {
+					"label": "Classical",
+					"default_image": "/images/default_image/course/classicaldance.jpg",
+					"status": 1,
+					"type":{
+						"bharatanatyam": {
+							"label": "Bharatanatyam",
+							"default_image": "/images/default_image/course/dance/bharatanatyam.jpg",
+							"status": 1
+						},
+						"bhangada": {
+							"label": "Bhangada",
+							"default_image": "/images/default_image/course/dance/bhangra.jpg",
+							"status": 1
+						},
+						"folk-dance": {
+							"label": "Folk Dances",
+							"default_image": "/images/default_image/course/dance/folk-dance.jpg",
+							"status": 1
+						},
+						"kathak": {
+							"label": "Kathak",
+							"default_image": "/images/default_image/course/dance/kathak.jpg",
+							"status": 1
+						},
+						"kathakali": {
+							"label": "Kathakali",
+							"default_image": "/images/default_image/course/dance/kathakali.jpg",
+							"status": 1
+						},
+						"kuchipudi-dance": {
+							"label": "Kuchipudi Dance",
+							"default_image": "/images/default_image/course/dance/kuchipudi.jpg",
+							"status": 1
+						},
+						"odishi": {
+							"label": "Odishi",
+							"default_image": "/images/default_image/course/dance/odishi.jpg",
+							"status": 1
+						},
+						"manipuri": {
+							"label": "Manipuri",
+							"default_image": "/images/default_image/course/dance/manipuri.jpg",
+							"status": 1
+						},
+						"mohini-natyam": {
+							"label": "Mohini Natyam",
+							"default_image": "/images/default_image/course/dance/mohini_natyam.jpg",
+							"status": 1
+						},
+						"sattriya": {
+							"label": "Sattriya",
+							"default_image": "/images/default_image/course/dance/sattriya.jpg",
+							"status": 1
+						}
+					}
+				},
+				"bollywood-dance": {
+					"label": "Bollywood",
+					"default_image": "/images/default_image/course/bollywooddance.jpg",
+					"status": 1,
+					"type":{
+						"hip-hop-dance": {
+							"label": "Hip Hop Dance",
+							"default_image": "/images/default_image/course/dance/hip_hop.jpg",
+							"status": 1
+						}
+					}
+				}
+			}
+		},
+		"photography": {
+			"label": "Photographer",
+			"default_image": "/images/default_image/course/photography.jpg",
+			"status": 1,
+			"subcat": {
+				"adventure-photography": {
+					"label": "Adventure",
+					"default_image": "/images/default_image/course/adventurephoto.jpg",
+					"status": 1,
+					"type":{}
+				},
+				"events-photography": {
+					"label": "Events",
+					"default_image": "/images/default_image/course/eventsphoto.jpg",
+					"status": 1,
+					"type": {}
+				},
+				"animal-pet-photography": {
+					"label": "Animal Pet",
+					"default_image": "/images/default_image/course/animal-pet-photography.jpg",
+					"status": 1
+				},
+				"aerial": {
+					"label": "Aerial",
+					"default_image": "/images/assignment/Photography_category/aerial.jpg",
+					"status": 1
+				},
+				"architectural": {
+					"label": "Architectural",
+					"default_image": "/images/assignment/Photography_category/architectural.jpg",
+					"status": 1
+				},
+				"candid": {
+					"label": "Candid",
+					"default_image": "/images/assignment/Photography_category/candid.jpg",
+					"status": 1
+				},
+				"documentary": {
+					"label": "Documentary",
+					"default_image": "/images/assignment/Photography_category/documentary.jpg",
+					"status": 1
+				},
+				"fashion": {
+					"label": "Fashion",
+					"default_image": "/images/assignment/Photography_category/fashion.jpg",
+					"status": 1
+				},
+				"landscape": {
+					"label": "Landscape",
+					"default_image": "/images/assignment/Photography_category/landscape.jpg",
+					"status": 1
+				},
+				"portrait": {
+					"label": "Portrait",
+					"default_image": "/images/assignment/Photography_category/portrait.jpg",
+					"status": 1
+				},
+				"still-Life": {
+					"label": "Still Life",
+					"default_image": "/images/assignment/Photography_category/still_life.jpg",
+					"status": 1
+				},
+				"nature": {
+					"label": "Nature",
+					"default_image": "/images/assignment/Photography_category/nature.jpg",
+					"status": 1
+				},
+				"underwater": {
+					"label": "Underwater",
+					"default_image": "/images/assignment/Photography_category/underwater.jpg",
+					"status": 1
+				},
+				"abstract": {
+					"label": "Abstract",
+					"default_image": "/images/assignment/Photography_category/abstract.jpg",
+					"status": 1
+				},
+				"macro": {
+					"label": "Macro",
+					"default_image": "/images/assignment/Photography_category/macro.jpg",
+					"status": 1
+				},
+				"wildlife": {
+					"label": "Wildlife",
+					"default_image": "/images/assignment/Photography_category/wildlife.jpg",
+					"status": 1
+				},
+				"time-Lapse": {
+					"label": "Time Lapse",
+					"default_image": "/images/assignment/Photography_category/time_lapse.jpg",
+					"status": 1
+				},
+				"motion": {
+					"label": "Motion",
+					"default_image": "/images/assignment/Photography_category/motion.jpg",
+					"status": 1
+				}
+		}
+			
+		},
+		"magic":{
+			"label": "Magician",
+			"default_image": "/images/default_image/course/magic.jpg",
+			"status": 1,
+			"subcat": {}
+		},
+		"actor":{
+			"label": "Theater",
+			"default_image": "/images/default_image/course/theater.jpg",
+			"status": 1,
+			"subcat": {
+				"theater-actor": {
+					"label": "Theater",
+					"default_image": "/images/default_image/course/theater.jpg",
+					"status": 1,
+					"type":{}
+				},
+				"movie-actor": {
+					"label": "Movies",
+					"default_image": "/images/default_image/course/theater.jpg",
+					"status": 1,
+					"type":{}
+				},
+				"web-series-actor": {
+					"label": "Web Series",
+					"default_image": "/images/default_image/course/theater.jpg",
+					"status": 1,
+					"type":{}
+				}
+			}
+		},
+		"exercise": {
+			"label": "Exercise",
+			"default_image": "/images/default_image/course/exercise.jpg",
+			"status": 1,
+			"subcat": {
+				"yoga": {
+					"label": "Yoga",
+					"default_image": "/images/default_image/course/yoga.jpg",
+					"status": 1,"type":{}
+				},
+				"gymnastics": {
+					"label": "Gymnastics",
+					"default_image": "/images/default_image/course/gymnastic.jpg",
+					"status": 1,"type":{}
+				},
+				"karate": {
+					"label": "Karate",
+					"default_image": "/images/default_image/course/karate.jpg",
+					"status": 1,"type":{}
+				},
+				"martial-art": {
+					"label": "Martial Art",
+					"default_image": "/images/default_image/course/martial-art.jpg",
+					"status": 1,"type":{}
+				},
+				"judo": {
+					"label": "Judo",
+					"default_image": "/images/default_image/course/judo.jpg",
+					"status": 1,"type":{}
+				},
+				"tae-kwon-do": {
+					"label": "Tae Kwon Do",
+					"default_image": "/images/default_image/course/tae-kwon-do.jpg",
+					"status": 1,"type":{}
+				}
+			}
+		},
+		"sports": {
+			"label": "Sports Player",
+			"default_image": "/images/default_image/course/sports.jpg",
+			"status": 1,
+			"subcat": {
+				"athletic-sports": {
+					"label": "Athletic",
+					"default_image": "/images/default_image/course/athletic-sports.jpg",
+					"status": 1,
+					"type": {
+						"running-sports": {
+							"label": "Running",
+							"default_image": "/images/default_image/course/running-sports.jpg",
+							"status": 1
+						},
+						"jumping-sports": {
+							"label": "Jumping",
+							"default_image": "/images/default_image/course/jumping-sports.jpg",
+							"status": 1
+						},
+						"throwing-sports": {
+							"label": "Throwing",
+							"default_image": "/images/default_image/course/throwing-sports.jpg",
+							"status": 1
+						}
+					}
+				},
+				"combat-sports": {
+					"label": "Combat",
+					"default_image": "/images/default_image/course/combat-sports.jpg",
+					"status": 1,"type":{}
+				},
+				"mind-sports": {
+					"label": "Mind",
+					"default_image": "/images/default_image/course/chess-sports.jpg",
+					"status": 1,
+					"type": {
+						"chess-sports": {
+							"label": "Chess",
+							"default_image": "/images/default_image/course/chess-sports.jpg",
+							"status": 1
+						}
+					}
+				},
+				"water-sports": {
+					"label": "Water",
+					"default_image": "/images/default_image/course/water-sports.jpg",
+					"status": 1,
+					"type": {
+						"swimming-sports": {
+							"label": "Swimming",
+							"default_image": "/images/default_image/course/swimmingsports.jpg",
+							"status": 1
+						},
+						"diving-sports": {
+							"label": "Diving",
+							"default_image": "/images/default_image/course/diving-sports.jpg",
+							"status": 1
+						}
+					}
+				},
+				"team-sports": {
+					"label": "Team",
+					"default_image": "/images/default_image/course/team-sports.jpg",
+					"status": 1,
+					"type": {
+						"cricket-sports": {
+							"label": "Cricket",
+							"default_image": "/images/default_image/course/cricket-sports.jpg",
+							"status": 1
+						},
+						"football-sports": {
+							"label": "Football",
+							"default_image": "/images/default_image/course/football-sports.jpg",
+							"status": 1
+						}
+					}
+				}
+			}
+		},
+		"others": {
+			"label": "Others",
+			"default_image": "/images/default_image/course/dummyimages.jpg",
+			"status": 1,
+			"subcat": {
+			}
+		}
+	}
+}

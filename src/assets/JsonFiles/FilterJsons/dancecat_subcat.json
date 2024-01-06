@@ -1,0 +1,95 @@
+{
+    "category":[
+        {"type":{
+            "label": "Dancer",
+            "value": "dance",
+            "default_image": "images/default_image/course/dance.jpg",
+            "status": 1,
+                "subcat": [
+                    { "subcatGroup": {
+                        "label": "Classical",
+                        "value": "classical-dance",
+                        "default_image": "images/default_image/course/classical-dance.jpg",
+                        "status": 1,
+                        "type":[
+                            {"item": {
+                                "label": "Bharatanatyam",
+                                "default_image": "images/default_image/course/dance/bharatanatyam.jpg",
+                                "status": 1,
+                                "value":"bharatanatyam"
+                            }},
+                            {"item": {
+                                "label": "Bhangada",
+                                "default_image": "images/default_image/course/dance/bhangra.jpg",
+                                "status": 1,
+                                "value":"bhangada"
+                            }},
+                            {"item": {
+                                "label": "Folk Dances",
+                                "default_image": "images/default_image/course/dance/folk-dance.jpg",
+                                "status": 1,
+                                "value":"folk-dance"
+                            }},
+                            {"item": {
+                                "label": "Kathak",
+                                "default_image": "images/default_image/course/dance/kathak.jpg",
+                                "status": 1,
+                                "value":"kathak"
+                            }},
+                            {"item": {
+                                "label": "Kathakali",
+                                "default_image": "images/default_image/course/dance/kathakali.jpg",
+                                "status": 1,
+                                "value":"kathakali"
+                            }},
+                            {"item": {
+                                "label": "Kuchipudi Dance",
+                                "default_image": "images/default_image/course/dance/kuchipudi.jpg",
+                                "status": 1,
+                                "value":"kuchipudi-dance"
+                            }},
+                            {"item": {
+                                "label": "Odishi",
+                                "default_image": "images/default_image/course/dance/odishi.jpg",
+                                "status": 1,
+                                "value":"odishi"
+                            }},
+                            {"item": {
+                                "label": "Manipuri",
+                                "default_image": "images/default_image/course/dance/manipuri.jpg",
+                                "status": 1,
+                                "value":"manipuri"
+                            }},
+                            {"item": {
+                                "label": "Mohini Natyam",
+                                "default_image": "images/default_image/course/dance/mohini_natyam.jpg",
+                                "status": 1,
+                                "value":"mohini-natyam"
+                            }},
+                            {"item": {
+                                "label": "Sattriya",
+                                "default_image": "images/default_image/course/dance/sattriya.jpg",
+                                "status": 1,
+                                "value":"sattriya"
+                            }}
+                        ]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Bollywood",
+                        "value":"bollywood-dance",
+                        "default_image": "images/default_image/course/dance/bollywood.jpg",
+                        "status": 1,
+                        "type":[
+                            {"item": {
+                                "label": "Hip Hop Dance",
+                                "value":"hip-hop-dance",
+                                "default_image": "images/default_image/course/dance/hip_hop.jpg",
+                                "status": 1
+                            }}
+                        ]
+                    }}
+                    ]
+                }
+            }
+    ]
+}

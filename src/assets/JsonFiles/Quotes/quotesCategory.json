@@ -1,0 +1,49 @@
+{
+    "categoty":[
+        { "type": {
+             "label": "Inspirational",
+             "value" : "inspirational",
+             "status": 1
+         }},
+         {"type": {
+             "label": "Motivational",
+             "value" : "motivational",
+             "status": 1
+         }},
+        { "type": {
+             "label": "Life",
+             "value" : "life",
+             "status": 1
+         }},
+        { "type": {
+             "label": "Funny",
+             "value" : "funny",
+             "status": 1
+         }},
+         {"type": {
+             "label": "Happiness",
+             "value" : "happiness",
+             "status": 1
+         }},
+         {"type": {
+             "label": "Love",
+             "value" : "love",
+             "status": 1
+         }},
+         {"type": {
+             "label": "Success",
+             "value" : "success",
+             "status": 1
+         }},
+         {"type": {
+             "label": "Thoughtful",
+             "value" : "thoughtful",
+             "status": 1
+         }},
+         {"type": {
+             "label": "Wisdom",
+             "value" : "wisdom",
+             "status": 1
+         }}
+     ]
+}

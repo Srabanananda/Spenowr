@@ -1,0 +1,77 @@
+{
+    "category":[
+        {
+            "type":{
+                "label": "Musician",
+                "value":"music-instruments",
+                "default_image": "images/default_image/course/music-instruments.jpg",
+                "status": 1,
+                "subcat": [
+                    {"subcatGroup": {
+                        "label": "Sitar",
+                        "default_image": "images/default_image/course/musical_instruments/sitar.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"sitar-music-instrument"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Tabla",
+                        "default_image": "images/default_image/course/musical_instruments/tabla.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"tabla-music-instrument"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Veena",
+                        "default_image": "images/default_image/course/musical_instruments/veena.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"veena-music-instrument"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Harmonium",
+                        "default_image": "images/default_image/course/musical_instruments/harmonium.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"harmonium-music-instrument"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Violin",
+                        "default_image": "images/default_image/course/musical_instruments/violin.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"violin-music-instrument"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Dhol",
+                        "default_image": "images/default_image/course/musical_instruments/dhol.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"dhol-music-instrument"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Keyboard",
+                        "default_image": "images/default_image/course/musical_instruments/keyboard2.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"keyboard-music-instrument"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Flute",
+                        "default_image": "images/default_image/course/musical_instruments/flute.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"flute-music-instrument"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Piano",
+                        "default_image": "images/default_image/course/musical_instruments/piano.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"piano-music-instrument"
+                    }}
+                ]
+            }
+        }
+    ]
+}

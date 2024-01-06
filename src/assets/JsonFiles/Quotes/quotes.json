@@ -1,0 +1,142 @@
+{
+    "quotes" : [
+       {
+           "quoteVerticalImage":[
+            {
+                "image_path": "assets/images/quote_images/vertical/original/fence-red-stained-vertical4.jpg",
+                "local_image": "require('../../assets/writing/poem/1.jpg')",
+                "thumbnail_image": "assets/images/quote_images/vertical/thumbnailfence-red-stained-vertical4.jpg",
+                "text_color": "white",
+                "status": 1,
+                "value" : "1"
+            },
+            {
+                "image_path": "assets/images/quote_images/vertical/original/quotes-bg-vertical1.jpg",
+                "thumbnail_image": "assets/images/quote_images/vertical/thumbnail/quotes-bg-vertical1.jpg",
+                "text_color": "black",
+                "local_image": "require('../../assets/writing/poem/2.jpg')",
+                "status": 1,
+                "value" : "2"
+            },
+            {
+                "image_path": "assets/images/quote_images/vertical/original/quotes-bg-vertical5.jpg",
+                "thumbnail_image": "assets/images/quote_images/vertical/thumbnail/quotes-bg-vertical5.jpg",
+                "text_color": "black",
+                "local_image": "require('../../assets/writing/poem/3.jpg')",
+                "status": 1,
+                "value" : "3"
+            },
+            {
+                "image_path": "assets/images/quote_images/vertical/original/quotes-bg-vertical6.jpg",
+                "thumbnail_image": "assets/images/quote_images/vertical/thumbnail/quotes-bg-vertical6.jpg",
+                "text_color": "white",
+                "local_image": "require('../../assets/writing/poem/4.jpg')",
+                "status": 1,
+                "value" : "4"
+            },
+            {
+                "image_path": "assets/images/quote_images/vertical/original/quotes-bg-vertical9.jpg",
+                "thumbnail_image": "assets/images/quote_images/vertical/thumbnail/quotes-bg-vertical9.jpg",
+                "text_color": "black",
+                "local_image": "require('../../assets/writing/poem/5.jpg')",
+                "status": 1,
+                "value" : "5"
+            }
+       ]
+       },
+        {
+            "quoteHorizontalImage":[
+                {
+                    "image_path": "assets/images/quote_images/horizontal/original/quotes-bg-horizontal1.jpg",
+                    "thumbnail_image": "assets/images/quote_images/horizontal/thumbnail/quotes-bg-horizontal1.jpg",
+                    "text_color": "black",
+                    "local_image": "require('../../assets/writing/quote/1.jpg')",
+                    "status": 1,
+                    "value" : "1"
+                },
+                {
+                    "image_path": "assets/images/quote_images/horizontal/original/quotes-bg-horizontal4.jpg",
+                    "thumbnail_image": "assets/images/quote_images/horizontal/thumbnail/quotes-bg-horizontal4.jpg",
+                    "text_color": "white",
+                    "local_image": "require('../../assets/writing/quote/2.jpg')",
+                    "status": 1,
+                    "value" : "2"
+                },
+                {
+                    "image_path": "assets/images/quote_images/horizontal/original/quotes-bg-horizontal5.jpg",
+                    "thumbnail_image": "assets/images/quote_images/horizontal/thumbnail/quotes-bg-horizontal5.jpg",
+                    "text_color": "white",
+                    "local_image": "require('../../assets/writing/quote/3.jpg')",
+                    "status": 1,
+                    "value" : "3"
+                },
+                {
+                    "image_path": "assets/images/quote_images/horizontal/original/quotes-bg-image2.jpg",
+                    "thumbnail_image": "assets/images/quote_images/horizontal/thumbnail/quotes-bg-image2.jpg",
+                    "text_color": "white",
+                    "local_image": "require('../../assets/writing/quote/4.jpg')",
+                    "status": 1,
+                    "value" : "4"
+                },
+                {
+                    "image_path": "assets/images/quote_images/horizontal/original/quotes-bg-image3.jpg",
+                    "thumbnail_image": "assets/images/quote_images/horizontal/thumbnail/quotes-bg-image3.jpg",
+                    "text_color": "black",
+                    "status": 1,
+                    "local_image": "require('../../assets/writing/quote/5.jpg')",
+                    "value" : "5"
+                }
+            ]
+        },
+        {
+            "quotesPoemSubCat":[
+               {
+                    "label": "Inspirational",
+                    "status": 1,
+                    "value" : "inspirational"
+                },
+               {
+                    "label": "Motivational",
+                    "status": 1,
+                    "value" : "motivational"
+                },
+               {
+                    "label": "Life",
+                    "status": 1,
+                    "value" : "life"
+                },
+               {
+                    "label": "Funny",
+                    "status": 1,
+                    "value" : "funny"
+                },
+               {
+                    "label": "Happiness",
+                    "status": 1,
+                    "value" : "happiness"
+                },
+              {
+                    "label": "Love",
+                    "status": 1,
+                    "value" : "love"
+                },
+               {
+                    "label": "Success",
+                    "status": 1,
+                    "value" : "success"
+                },
+               {
+                    "label": "Thoughtful",
+                    "status": 1,
+                    "value" : "thoughtful"
+                },
+                {
+                    "label": "Wisdom",
+                    "status": 1,
+                    "value" : "wisdom"
+                }
+            ]
+        }
+
+    ]
+}

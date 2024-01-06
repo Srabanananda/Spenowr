@@ -1,0 +1,139 @@
+{
+    "category":[
+        {"type":{
+            "label": "Photographer",
+            "value": "photography",
+            "default_image": "images/default_image/course/photography.jpg",
+            "status": 1,
+                "subcat": [
+                    {"subcatGroup": {
+                        "label": "Adventure",
+                        "default_image": "images/default_image/course/adventurephoto.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "adventure-photography"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Events",
+                        "default_image": "images/default_image/course/eventsphoto.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "events-photography"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Animal Pet",
+                        "default_image": "images/default_image/course/animal-pet-photography.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "animal-pet-photography"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Aerial",
+                        "default_image": "images/assignment/photography_category/aerial.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "aerial"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Architectural",
+                        "default_image": "images/assignment/photography_category/architectural.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "architectural"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Candid",
+                        "default_image": "images/assignment/photography_category/candid.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "candid"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Documentary",
+                        "default_image": "images/assignment/photography_category/documentary.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "documentary"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Fashion",
+                        "default_image": "images/assignment/photography_category/fashion.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "fashion"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Landscape",
+                        "default_image": "images/assignment/photography_category/landscape.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "landscape"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Portrait",
+                        "default_image": "images/assignment/photography_category/portrait.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "portrait"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Still Life",
+                        "default_image": "images/assignment/photography_category/still_life.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "still-Life"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Nature",
+                        "default_image": "images/assignment/photography_category/nature.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "nature"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Underwater",
+                        "default_image": "images/assignment/photography_category/underwater.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "underwater"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Abstract",
+                        "default_image": "images/assignment/photography_category/abstract.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "abstract"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Macro",
+                        "default_image": "images/assignment/photography_category/macro.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "macro"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Wildlife",
+                        "default_image": "images/assignment/photography_category/wildlife.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "wildlife"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Time Lapse",
+                        "default_image": "images/assignment/photography_category/time_lapse.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "time-Lapse"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Motion",
+                        "default_image": "images/assignment/photography_category/motion.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value" : "motion"
+                    }}
+                    ]
+                }
+            }
+    ]
+}

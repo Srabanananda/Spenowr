@@ -1,0 +1,118 @@
+{
+    "spenowr_basic":{
+		"label": "Standard - Basic",
+		"price" : "Free",
+		"include" : "",
+		"key" : "spenowr_basic",
+		"popular" : false,
+		"plan_list": {
+
+			"1": {
+				"title": "Showcase Awards, Press Release etc",
+				"status": 1
+			},
+			"2": {
+				"title": "Showcase Art Gallery",
+				"status": 1
+			},
+			"3": {
+				"title": "Write Quotes/Poems",
+				"status": 1
+			},
+			"4": {
+				"title": "Write Stories/Blogs",
+				"status": 1
+			},
+			"5": {
+				"title": "Add products to marketplace",
+				"status": 1
+			},
+			"6": {
+				"title": "List services you offer",
+				"status": 1
+			},
+			"7": {
+				"title": "Grow with virtual points",
+				"status": 1
+			},
+			"8": {
+				"title": "Participate in contests",
+				"status": 1
+			},
+			"9": {
+				"title": "Get Followers / Likes",
+				"status": 1
+			},
+			"10": {
+				"title": "Post jobs",
+				"status": 1
+			},
+			"11": {
+				"title": "Invite Friends",
+				"status": 1
+			},
+			"12": {
+				"title": "Get notified and profile growth insights",
+				"status": 1
+			}
+	}	
+	},
+	"spenowr_bronzePlan":{
+		"label": "Bronze - Plus",
+		"price" : "499",
+		"key" : "spenowr_bronzePlan",
+		"popular" : true,
+		"currency": "INR",
+		"plan_list": {
+			"1": {
+				"title": "No Ads Experience",
+				"status": 1
+			},
+			"2": {
+				"title": "Unlimited Drafts",
+				"status": 1
+			},
+			"3": {
+				"title": "Get discounts in paid contest fees",
+				"status": 1
+			},
+			"4": {
+				"title": "Premium writing design elements",
+				"status": 1
+			},
+			"5": {
+				"title": "Earn through reward redeem program",
+				"status": 1
+			},
+			"6": {
+				"title": "Apply to open jobs / opportunities",
+				"status": 1
+			}
+	}	
+	},
+	"spenowr_goldPlan":{
+			"label": "Gold - Pro",
+			"price" : "999",
+			"key" : "spenowr_goldPlan",
+			"popular" : false,
+			"currency": "INR",
+			"plan_list": {
+				"1": {
+					"title": "Create contests to drive engagement",
+					"status": 1
+				},
+				"2": {
+					"title": "Nominate posts for boost",
+					"status": 1
+				},
+				"3": {
+					"title": "Open your audio podcast channel for quotes/poems/stories",
+					"status": 1
+				},
+				"4": {
+					"title": "Get your artwork featured on rotation basis",
+					"status": 1
+				}
+			}	
+		}
+}

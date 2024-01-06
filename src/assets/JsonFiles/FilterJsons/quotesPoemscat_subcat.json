@@ -1,0 +1,166 @@
+{
+    "category":[
+        {
+            "type":{
+                "label": "Quote",
+                "value":"quote",
+                "default_image": "",
+                "status": 1,
+                "subcat": [
+                    {"subcatGroup": {
+                        "label": "Inspirational",
+                        "value" : "inspirational",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Motivational",
+                        "value" : "motivational",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Life",
+                        "value" : "life",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Inspirational",
+                        "value" : "inspirational",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Funny",
+                        "value" : "funny",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Happiness",
+                        "value" : "happiness",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Love",
+                        "value" : "love",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Success",
+                        "value" : "success",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Thoughtful",
+                        "value" : "thoughtful",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Wisdom",
+                        "value" : "wisdom",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }}
+                ]
+            }
+
+        },
+        {
+            "type":{
+                "label": "Poem",
+                "value":"poem",
+                "default_image": "",
+                "status": 1,
+                "subcat": [
+                    {"subcatGroup": {
+                        "label": "Inspirational",
+                        "value" : "inspirational",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Motivational",
+                        "value" : "motivational",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Life",
+                        "value" : "life",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Inspirational",
+                        "value" : "inspirational",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Funny",
+                        "value" : "funny",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Happiness",
+                        "value" : "happiness",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Love",
+                        "value" : "love",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Success",
+                        "value" : "success",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Thoughtful",
+                        "value" : "thoughtful",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }},
+                    {"subcatGroup": {
+                        "label": "Wisdom",
+                        "value" : "wisdom",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[]
+                    }}
+                ]
+            }
+
+        }
+    ]
+}

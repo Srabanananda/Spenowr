@@ -1,0 +1,13 @@
+{
+    "category":[
+        {
+            "type":{
+                "label": "Others",
+                "value" : "others",
+                "default_image": "assets/images/default_image/course/dummyimages.jpg",
+                "status": 1,
+                "subcat": []
+            }
+        }
+    ]
+}

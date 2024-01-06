@@ -1,0 +1,48 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+
+  desc "Create a build for Tester"
+  lane :testBuild do
+    store_password = "spenowr@2020"
+    keystoreAbsolute = File.expand_path('../../releaseKeystore')
+    gradle(
+      task: 'assemble',
+      build_type: 'Release',
+      print_command: false,
+      properties: {
+        "android.injected.signing.store.file" => keystoreAbsolute,
+        "android.injected.signing.store.password" => store_password,
+        "android.injected.signing.key.alias" => "key0",
+        "android.injected.signing.key.password" => store_password,
+      }
+    )
+    move_apk()
+  end
+
+  desc "Moving Build Files"
+  lane :move_apk do
+    targetDir = File.expand_path('../../_builds_/android')
+    srcDir = File.expand_path('../app/build/outputs/apk/release/app-release.apk')
+    scriptRun = "mkdir -p #{targetDir} && cp #{srcDir} #{targetDir}"
+    sh(scriptRun)
+    echo(message: "APK moved to #{targetDir}/app-release.apk")
+    gradle(task: 'clean')
+  end
+
+end

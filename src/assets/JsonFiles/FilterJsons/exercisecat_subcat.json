@@ -1,0 +1,56 @@
+{
+    "category":[
+        {
+            "type":{
+            "label": "Exercise",
+            "value" : "exercise",
+            "default_image": "images/default_image/course/exercise.jpg",
+            "status": 1,
+                "subcat": [
+                    {"subcatGroup": {
+                        "label": "Yoga",
+                        "default_image": "images/default_image/course/yoga.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"yoga"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Gymnastics",
+                        "default_image": "images/default_image/course/gymnastic.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"gymnastics"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Karate",
+                        "default_image": "images/default_image/course/karate.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"karate"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Martial Art",
+                        "default_image": "images/default_image/course/martial-art.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"martial-art"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Judo",
+                        "default_image": "images/default_image/course/judo.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"judo"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Tae Kwon Do",
+                        "default_image": "images/default_image/course/tae-kwon-do.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"tae-kwon-do"
+                    }}
+                ]
+            }
+        }
+    ]
+}
