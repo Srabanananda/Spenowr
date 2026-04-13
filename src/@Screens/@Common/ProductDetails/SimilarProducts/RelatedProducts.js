@@ -39,6 +39,7 @@ const RelatedProducts = ({productDetails,showHotDeals}) =>{
                 keyExtractor={item=>item.id.toString()}
                 legacyImplementation = {true} 
                 renderItem = {renderPages}
+                removeClippedSubviews={true}
                 scrollEventThrottle={16} 
                 showsHorizontalScrollIndicator={false}
                 style={{backgroundColor:'#FFF',padding:10}}

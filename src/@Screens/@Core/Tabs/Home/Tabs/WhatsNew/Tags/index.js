@@ -73,6 +73,7 @@ const Tags = ({...props}: tagProps) =>{
                 data={hashTagFeed}
                 horizontal={false}
                 initialNumToRender={10}
+                removeClippedSubviews
                 keyExtractor={item=>item.id.toString()}
                 legacyImplementation = {true}
                 // onEndReached={()=> callApi(hashTagFeed.length)}

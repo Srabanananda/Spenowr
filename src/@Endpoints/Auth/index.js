@@ -2,7 +2,6 @@
  * Create By @name Sukumar_Abhijeet
  */
 
-
 import Config from '../../@Config/default';
 import axios from 'axios';
 
@@ -10,13 +9,19 @@ const { BASE_PATH, API_VERSIONING } = Config;
 
 export const getLoginDetails = (body) => {
     const url = `${BASE_PATH + API_VERSIONING}/user/login`;
+    console.log("body : ", JSON.stringify(body));
+    console.log("url : ", url);
+    console.log("headers : ", {
+        'Content-Type': 'multipart/form-data',
+    });
+    // FormData must use multipart; urlencoded + FormData breaks on Android OkHttp (iOS can appear to work).
     return axios
         .post(
             url,
             body,
             {
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                    'Content-Type': 'multipart/form-data',
                 },
             }
         )
@@ -51,7 +56,7 @@ export const getUserDetailsNew = (userID) => {
             body,
             {
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                    'Content-Type': 'multipart/form-data',
                 },
             }
         )
@@ -66,14 +71,12 @@ export const getAccountChanged = (body) => {
             body,
             {
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                    'Content-Type': 'multipart/form-data',
                 },
             }
         )
         .then(response => response.data);
 };
-
-
 
 export const setLikeUnlikeUser = (type, userId) => {
     const data = new FormData();
@@ -86,7 +89,7 @@ export const setLikeUnlikeUser = (type, userId) => {
             data,
             {
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                    'Content-Type': 'multipart/form-data',
                 },
             }
         )
@@ -104,13 +107,12 @@ export const setFollowUnfollowUser = (type, userId) => {
             data,
             {
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                    'Content-Type': 'multipart/form-data',
                 },
             }
         )
         .then(response => response.data);
 };
-
 
 export const getUserRegisterDetails = (userId) => {
     const body = new FormData();
@@ -280,7 +282,7 @@ export const requestUserAccountDeletion = (body) => {
             body,
             {
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                    'Content-Type': 'multipart/form-data',
                 },
             }
         )
@@ -298,7 +300,7 @@ export const requestBlockPublicUser = (institute_id,isBlocked) => {
             body,
             {
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                    'Content-Type': 'multipart/form-data',
                 },
             }
         )
@@ -319,7 +321,7 @@ export const requestProfileVerification = (formikValues) => {
             body,
             {
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                    'Content-Type': 'multipart/form-data',
                 },
             }
         )
@@ -336,13 +338,12 @@ export const requestOpenHowToData = (module) => {
             body,
             {
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                    'Content-Type': 'multipart/form-data',
                 },
             }
         )
         .then(response => response.data);
 };
-
 
 export const registerUser= (data) => {
     const url = `${BASE_PATH + API_VERSIONING}/registration/registration-save`;
@@ -353,6 +354,8 @@ export const registerUser= (data) => {
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Referer': 'https://www.spenowr.com/',
+                    'Origin': 'https://www.spenowr.com'
                 },
             }
         )
@@ -408,6 +411,4 @@ export const resetPassword= (body) => {
         )
         .then(response => response.data);
 };
-
-
 

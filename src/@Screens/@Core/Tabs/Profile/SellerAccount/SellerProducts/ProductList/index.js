@@ -88,7 +88,6 @@ const SellerProductsList = ({ mode, type }) => {
 
     };
 
-
     return (
         <View style={styles.container}>
             {getList()}

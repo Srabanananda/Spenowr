@@ -65,7 +65,6 @@ SocialIcons.propTypes = {
 
 export default SocialIcons;
 
-
 const styles = StyleSheet.create({
     
     socialContainer:{

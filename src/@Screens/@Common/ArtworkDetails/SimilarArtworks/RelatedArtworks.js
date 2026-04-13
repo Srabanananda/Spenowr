@@ -34,7 +34,6 @@ const RelatedArtworks = ({artworkDetails}) =>{
     );
 };
 
-
 RelatedArtworks.propTypes = {
     artworkDetails:PropTypes.object.isRequired
 };

@@ -33,7 +33,7 @@ const Card = ({printData}:any) => {
         >
             <ScaledImage source={{ uri: isAValidImagePath(productInfo?.optimized_front_image_path) ? NEW_IMG_BASE + productInfo?.optimized_front_image_path : DUMMY_IMAGE_URL }} />
             <Text style={styles.productName}>{product_name}</Text>
-            <Text style={styles.price}>{getCurrency(currency)}{ productInfo?.price}</Text>
+            <Text style={styles.price}>{getCurrency(currency)}{ productInfo?.discount_price}</Text>
             <Text style={styles.clothing}>{Capitalize(category)} For {department}</Text>
             <Text style={styles.manufaturer}>Manufactured By : {manufacturer}</Text>
         </TouchableOpacity>
@@ -42,7 +42,6 @@ const Card = ({printData}:any) => {
 };
 
 export default Card;
-
 
 const styles = StyleSheet.create({
     card:{

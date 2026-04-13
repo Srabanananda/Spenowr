@@ -3,13 +3,14 @@
  */
 
 import React from 'react';
-import { SafeAreaView,TouchableOpacity,Text,View } from 'react-native';
+import { TouchableOpacity, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { moderateScale } from 'react-native-size-matters';
 import PropTypes from 'prop-types';
 import DefaultHeader from '../../../../../@GlobalComponents/DefaultHeader';
 import Config from '@Config/default';
 import { WEB_URLS } from '../../../../../constants/WebUrls';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {COLOR:{DARKGRAY,LIGHTGREY,WHITE}} = Config;
 
@@ -25,7 +26,7 @@ const SupportScreen = ({...props}) =>{
     const {navigation} = props;
     
     return(
-        <SafeAreaView style={{flex:1,backgroundColor:WHITE}}>
+        <SafeAreaView edges={['left', 'right']} style={{flex:1,backgroundColor:WHITE}}>
             <DefaultHeader headerText={'Support'} />
             <View style={{padding:moderateScale(20)}}>
                 {

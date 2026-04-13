@@ -18,7 +18,8 @@ const {
 
 export const resendEmailLink = () => {
     getMyEmailVerifyLink()
-        .then(() => {
+        .then((e) => {
+            console.log({e});
             Toast.show('Verification link has been sent to your Email', Toast.LONG);
         })
         .catch(() => {

@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState,useEffect} from 'react';
-import {SafeAreaView,Text,StyleSheet,View} from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
 import { GlobalStyles } from '../../../../../../../@GlobalStyles/index';
 import DefaultHeader from '../../../../../../../@GlobalComponents/DefaultHeader/index';
 import { fetchMyEarnings } from '../../../../../../../@Endpoints/Core/Tabs/EditProfile';
@@ -11,6 +11,7 @@ import Toast from 'react-native-simple-toast';
 import { ScrollView } from 'react-native-gesture-handler';
 import { moderateScale } from 'react-native-size-matters';
 import Config from '@Config/default';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {COLOR:{SUBNAME}} = Config;
 
@@ -60,7 +61,7 @@ const MyEarningsScreen = () =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'My Earnings'} />
             {loading? <ScreenLoader text={'Fetching...'} /> : getData()}
         </SafeAreaView>

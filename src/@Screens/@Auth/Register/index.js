@@ -4,26 +4,19 @@
  */
 
 import React from 'react';
-import {
-    View,
-    Text,
-    Image,
-    SafeAreaView,
-    StatusBar,
-    TouchableOpacity,
-    ScrollView
-} from 'react-native';
+import { View, Text, Image, StatusBar, TouchableOpacity, ScrollView } from 'react-native';
 
 import PropTypes from 'prop-types';
 import SignupForm from './SignupForm';
 import styles from './styles';
 import { moderateScale } from 'react-native-size-matters';
 import { GlobalStyles } from '../../../@GlobalStyles';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const  RegisterScreen = ({...props})=> {
     const {navigation} = props;
     return (
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <StatusBar barStyle="dark-content" />
             <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
                 <View style={styles.logoContainer}>
@@ -49,6 +42,5 @@ const  RegisterScreen = ({...props})=> {
 RegisterScreen.propTypes = {
     navigation:PropTypes.object.isRequired,
 };
-
 
 export default RegisterScreen;

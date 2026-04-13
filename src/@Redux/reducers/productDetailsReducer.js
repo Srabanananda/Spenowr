@@ -9,7 +9,6 @@ import {
     UPDATE_QUOTE_DETAILS
 } from '../constants/productDetails.constant';
 
-
 const initialState = {
     productDetailsData:{},
     artworkDetailsData:{},

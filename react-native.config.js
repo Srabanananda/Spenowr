@@ -1,7 +1,14 @@
 module.exports = {
-    project: {
-        ios: {},
-        android: {},
+  dependencies: {
+    'react-native-datepicker': {
+      platforms: {
+        ios: null,
+      },
     },
-    assets: ['./assets/fonts']
+  },
+  project: {
+    ios: {},
+    android: {},
+  },
+  assets: ['./assets/fonts'],
 };

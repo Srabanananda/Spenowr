@@ -11,35 +11,15 @@ import { GlobalStyles } from '@GlobalStyles';
 import { submitBids } from '../../../@Endpoints/Core/Tabs/More';
 import { connect } from 'react-redux';
 import Toast from 'react-native-simple-toast';
-import { withNavigation } from '@react-navigation/compat';
+import { useNavigation } from '@react-navigation/native';
 import { useStore } from 'react-redux';
 
-type Props = {
-    userId : string,
-    suscriptionStatus : string,
-    assignmentId : string,
-    title : string,
-    refresh? : ()=>void,
-    userObj : {
-        userProfile : {
-            subscription_plan : string,
-            user_id: string,
-        }
-    },
-    navigation:{
-        navigate : ()=>void
-    },
-    creditData:{
-        availCredits : number,
-        minCreditsToApply : number
-    }
-}
+const SubmitToJob = (props) =>{
 
-const SubmitToJob = ({...props}:  Props) =>{
-
+    const navigation = useNavigation();
     const {
         suscriptionStatus,assignmentId,title,
-        refresh,navigation,userObj,
+        refresh,userObj,
         creditData
     } = props;
     const {
@@ -135,7 +115,7 @@ function mapStateToProps(state){
     };
 }
 
-export default (connect)(mapStateToProps)(withNavigation(SubmitToJob));
+export default connect(mapStateToProps)(SubmitToJob);
 const styles = StyleSheet.create({
     buttonStyles:{
         marginTop:moderateScale(5),

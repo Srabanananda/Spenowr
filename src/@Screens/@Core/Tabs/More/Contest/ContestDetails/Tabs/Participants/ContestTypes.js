@@ -85,6 +85,4 @@ const ContestTypes = ({Types,contest_id,contest_type,showVoteOption} : any ) => 
 
 };
 
-
-
 export default ContestTypes;

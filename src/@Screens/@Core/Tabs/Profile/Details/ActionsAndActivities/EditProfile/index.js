@@ -3,17 +3,8 @@
  */
 
 import React, { useState } from 'react';
-import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    ScrollView,
-    SafeAreaView,
-    Image as RNImage,
-    Platform
-} from 'react-native';
-import Image from 'react-native-image-progress';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image as RNImage, Platform } from 'react-native';
+import FastImage from 'react-native-fast-image';
 
 import ProfileInfo from './ProfileInfo';
 import AddressInfo from './AddressInfo';
@@ -25,6 +16,7 @@ import * as userActions from '@Redux/actions/userActions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { pickImage } from '../../../../../../../@Utils/helperFiles/ImagePicker';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {COLOR:{APP_PINK_COLOR,DARK_BLACK,WHITE,APP_THEME_COLOR},NEW_IMG_BASE,DEFAULT_PROFILE} = Config;
 
@@ -75,13 +67,42 @@ const EditProfile = ({...props}) =>{
         return paramaters;
     };
 
-    const chooseFile = () => {
-        pickImage((res)=>{
+    // const chooseFile = () => {
+    //     pickImage((res)=>{
+    //         let response = res;
+    //         if(Platform.OS === 'android'){
+    //             if(res?.assets) response = res.assets[0];
+    //         }
+    //         if(response.didCancel) return;
+    //         setFilePath(response);
+    //     });
+    // };
+
+    const chooseFile = Platform.OS === 'ios' 
+    ? () => {
+        pickImage((res) => {
             let response = res;
-            if(Platform.OS === 'android'){
-                if(res?.assets) response = res.assets[0];
+            if (Platform.OS === 'android') {
+                if (res?.assets) response = res.assets[0];
             }
-            if(response.didCancel) return;
+            if (response.didCancel) return;
+            
+            // Update the state based on the platform
+            if (typeof response === 'string') {
+                // For iOS, response is a string URI directly
+                setFilePath(response);
+            } else {
+                // For Android, response is an object with 'assets' array
+                setFilePath(response.assets[0]);
+            }
+        });
+    }
+    : () => {
+        pickImage((res) => {
+            let response = res;
+            if (res?.assets) response = res.assets[0];
+            if (response.didCancel) return;
+
             setFilePath(response);
         });
     };
@@ -94,7 +115,7 @@ const EditProfile = ({...props}) =>{
         const imagePath = profile_image_thumbnail_path ? NEW_IMG_BASE + profile_image_thumbnail_path : NEW_IMG_BASE +DEFAULT_PROFILE ;
         return (
             <TouchableOpacity onPress={() => chooseFile()} >
-                <Image 
+                <FastImage 
                     source={{ uri: filePath ? 'data:image/jpeg;base64,' + filePath.base64 :   imagePath }} 
                     style={styles.ImageBox}
                 />
@@ -172,7 +193,7 @@ const EditProfile = ({...props}) =>{
     };
 
     return(
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView edges={['left', 'right']} style={styles.container}>
             <DefaultHeader headerText={'Edit Profile'} showBackButton={true} />
             <ScrollView contentContainerStyle={{paddingBottom:moderateScale(50)}} showsVerticalScrollIndicator={false}>
                 {_designUserProfileImage()}

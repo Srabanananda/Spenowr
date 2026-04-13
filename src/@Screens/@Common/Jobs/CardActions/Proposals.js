@@ -43,22 +43,28 @@ const AssignmentProposals = ({...props}:ProposalProps) =>{
         return(
             <View style={styles.filterContainer}>
                 <ModalHeader headerText={'Proposals'} onPress={()=>setModal(false)} />
-                {!proposals.length && <Text style={GlobalStyles.noDataFound}>No Proposals Found</Text>}
-                <ScrollView>
-                    {
-                        proposals.map((item,i)=>(
-                            <View key={i} style={styles.viewWrapper}>
-                                <Text style={styles.Name}>{item.first_name} ({item.message_count})</Text>
-                                <View style={[GlobalStyles.primaryCard,styles.textWrapper]}>
-                                    <Text style={styles.bidPrice}>{item.bid_quote}</Text>
-                                    <Text style={styles.comment}>{item.bid_comment}</Text>
-                                    <Text style={styles.posted}>{moment(item.message_datetime).format('MMMM Do YYYY')}</Text>
-                                    <BidDetails proposal={item} />
+                {(proposals == null  || proposals.length == 0) ? (
+                    <Text style={GlobalStyles.noDataFound}>No Proposals Found</Text>
+                ) : 
+                    (
+                        <ScrollView>
+                        {
+                            proposals.map((item,i)=>(
+                                <View key={i} style={styles.viewWrapper}>
+                                    <Text style={styles.Name}>{item.first_name} ({item.message_count})</Text>
+                                    <View style={[GlobalStyles.primaryCard,styles.textWrapper]}>
+                                        <Text style={styles.bidPrice}>{item.bid_quote}</Text>
+                                        <Text style={styles.comment}>{item.bid_comment}</Text>
+                                        <Text style={styles.posted}>{moment(item.message_datetime).format('MMMM Do YYYY')}</Text>
+                                        <BidDetails proposal={item} />
+                                    </View>
                                 </View>
-                            </View>
-                        ))
-                    }
-                </ScrollView>
+                            ))
+                        }
+                    </ScrollView>
+                    )
+                }
+              
             </View>
         );
     };

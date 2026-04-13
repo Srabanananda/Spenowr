@@ -38,10 +38,10 @@ export default {
     },
 
     APIs_CONSTANT:{
-        ADD_SERVICE:"https://backend.spenowr.com/api/v1/profile/add-course",
-        EDIT_SERVICE:"https://backend.spenowr.com/api/v1/profile/edit-profile-course",
-        DELETE_SERVICE:"https://backend.spenowr.com/api/v1/profile/delete-course",
-        UPDATE_SERVICE:"https://backend.spenowr.com/api/v1/profile/update-course",
+        ADD_SERVICE:"https://backend.spenowr.com/profile/add-course",
+        EDIT_SERVICE:"https://backend.spenowr.com/profile/edit-profile-course",
+        DELETE_SERVICE:"https://backend.spenowr.com/profile/delete-course",
+        UPDATE_SERVICE:"https://backend.spenowr.com/profile/update-course",
     },
 
     STRING_CONSTANT: {
@@ -113,6 +113,5 @@ export default {
     KEY_CONSTANTS: {
         HAS_USER_LOGEDIN: "isUserLoggedIn",
     },
-
 
 };

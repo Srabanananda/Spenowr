@@ -7,7 +7,6 @@ import { moderateScale } from 'react-native-size-matters';
 import Config from '@Config/default';
 const {COLOR:{APP_PINK_COLOR,LIGHTGREY}} = Config;
 
-
 const styles = StyleSheet.create({
     typeWrapper:{
         borderBottomColor:'#ebebeb',

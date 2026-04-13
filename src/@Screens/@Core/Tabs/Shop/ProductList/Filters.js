@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState} from 'react';
-import {View,SafeAreaView,TouchableOpacity, StyleSheet,Text,TextInput,ScrollView} from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Text, TextInput, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Modal from 'react-native-modal';
 import { GlobalStyles } from '../../../../../@GlobalStyles';
@@ -15,6 +15,7 @@ import FILTERS from '@Assets/JsonFiles/ProductsJson/filters.json';
 import CheckBox from '@react-native-community/checkbox';
 import { removeFromArray } from '../../../../../@Utils/helperFiles/helpers';
 import FormHeader  from '@GlobalComponents/FormHeader';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {PRICE_RANGES,MONTHLY_SHOPS,TYPES,SORTING} = FILTERS;
 const {product_category : CATEGORIES} = ALL_CAT;
@@ -215,7 +216,7 @@ const Filters = ({...props}:FilterProps) =>{
 
     const renderFilterBox = () =>{
         return(
-            <SafeAreaView style={GlobalStyles.GlobalContainer} >
+            <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer} >
                 <View  style={styles.filterContainer}>
                     <ModalHeader headerText={'Filters'} onPress={()=>setIsActive()} >
                         <View style={{flexDirection:'row',alignItems:'center'}}>

@@ -49,10 +49,22 @@ const TabIcons = ({...props}) =>{
                     source={
                         focused ? 
                             require('@Assets/tabs/close.svg') : 
-                            require('@Assets/tabs/spenowr.svg')
+                            require('@Assets/tabs/DiscoverSv.svg')
                     }
                     style={imageStyle} />
             );
+
+            case 'Discover' :
+                return(
+                    <Image 
+                        resizeMode={'contain'} 
+                        source={
+                            focused ? 
+                                require('@Assets/tabs/close.svg') : 
+                                require('@Assets/tabs/DiscoverSv.svg')
+                        }
+                        style={imageStyle} />
+                );
 
         case 'Profile' :
             return(

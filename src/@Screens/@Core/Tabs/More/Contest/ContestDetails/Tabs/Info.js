@@ -41,7 +41,6 @@ const Details = ({contestDetails,Status}) =>{
     const [showRules,setShowRules] = useState(false);
     
 
-
     const renderPrize  = (value,text) =>{
         if(value === '') return null;
         return (

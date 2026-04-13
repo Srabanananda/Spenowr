@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React, { useEffect, useState } from 'react';
-import {SafeAreaView,View,ScrollView,Text,RefreshControl} from 'react-native';
+import { View, ScrollView, Text, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 import { getAProductDetails } from '../../../@Endpoints/Core/Tabs/Common';
 import DefaultHeader from '../../../@GlobalComponents/DefaultHeader';
@@ -19,31 +19,46 @@ import AddToCart from '../../../@GlobalComponents/CartItem/AddtoCard';
 import BuyNow from '../../../@GlobalComponents/CartItem/BuyNow';
 import Customize from './Customize';
 import { useCurrency } from '../../../@Context';
+import { useFocusEffect } from '@react-navigation/native';
 
 const ProductDetailsScreen = ({...props}) =>{
     const {
         navigation,updateProductDetails,route,
         productDetails
     } = props;
+    console.log('====================================');
+    console.log('propsprops29',props);
+    console.log('====================================');
     const {productSlug} = route.params;
     const [loader, setLoader] = useState(true);
     const [pDetails, setPDetails] = useState('');
     const { currency, setCurrency } = useCurrency();
 
-    useEffect(()=>{
-        callApi();
-    },[currency]);
+  
+
+    useFocusEffect(
+        React.useCallback(() => {
+            callApi();
+
+            // Cleanup function if needed
+            return () => {
+                // Any cleanup if necessary
+            };
+        }, [currency, productSlug]) // Depend on mediaId and artworkSlug
+    );
     
     const callApi = () => {
         setLoader(true);
         getAProductDetails(currency, productSlug)
             .then(res=>{
+                console.log('====================================');
+                console.log('res55',res);
                 updateProductDetails(res.data);
                 setPDetails(res.data)
                 setLoader(false);
             })
             .catch(()=>{
-                Toast.show('Oops Couldnot get Product Details',Toast.LONG);
+                Toast.show('Oops Could not get Product Details',Toast.LONG);
                 setTimeout(()=>{navigation.goBack();},300);
             });
     };
@@ -59,14 +74,14 @@ const ProductDetailsScreen = ({...props}) =>{
                             titleColor={'#000'} />
                     } showsVerticalScrollIndicator={false}>
                     <View style={styles.container}>
-                        <ImageSlides /> 
-                        <InfoBox pDetails={productDetails} />
-                        <AddReview id={productDetails.singleproduct.id} type={'product'} />
+                        {/* <ImageSlides />  */}
+                        {/* <InfoBox pDetails={productDetails} /> */}
+                        {/* <AddReview id={productDetails.singleproduct.id} type={'product'} /> */}
                     </View>
-                    <View style={styles.lowerContainer}>
+                    {/* <View style={styles.lowerContainer}>
                         <RelatedProducts productDetails={productDetails} />
                         <RelatedProducts productDetails={productDetails} showHotDeals />
-                    </View>
+                    </View> */}
                 </ScrollView>
             );
         return <ScreenLoader text={'Fetching Product Details..'} />;
@@ -74,12 +89,23 @@ const ProductDetailsScreen = ({...props}) =>{
     };
 
     return(
-        <SafeAreaView style={styles.mainContainer}>
+        <View style={{ flex: 1 }}>
+            <ScrollView
+                refreshControl={
+                    <RefreshControl
+                        onRefresh={callApi}
+                        title="Refreshing .."
+                        titleColor={'#000'} />
+                }
+                showsVerticalScrollIndicator={false}
+                nestedScrollEnabled={true}
+            >
             <DefaultHeader headerText={'Product Details'} inCart={true} showCurr={true} getSelectedCurrency={setCurrency}>
                 {!loader &&  <Customize />}
             </DefaultHeader>
-            {getData()}
-            {
+        
+            {/* {getData()} */}
+            {/* {
                 loader ? null : 
                     <View style={styles.buttonContainer}>
                         <BuyNow customStyles={[styles.button,styles.button2]} productId={productDetails.singleproduct.id}>
@@ -95,8 +121,17 @@ const ProductDetailsScreen = ({...props}) =>{
                             />
                         </View>
                     </View>
-            }
-        </SafeAreaView>
+            } */}
+        </ScrollView>
+        {!loader ?
+            
+            <InfoBox pDetails={productDetails} />
+            : 
+            <View style={{position:'absolute', top:100, alignSelf:'center'}}>
+            <ScreenLoader text={'Fetching Product Details..'} />
+            </View>
+        }
+        </View>
     );
 };
 
@@ -119,6 +154,5 @@ ProductDetailsScreen.propTypes = {
     route:PropTypes.object.isRequired,
     updateProductDetails:PropTypes.func.isRequired,
 };
-
 
 export default connect(mapStateToProps,mapDispatchToProps)(ProductDetailsScreen);

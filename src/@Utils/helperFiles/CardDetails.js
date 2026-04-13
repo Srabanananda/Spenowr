@@ -2,7 +2,6 @@
  *  Created By @name Sukumar_Abhijeet
  */
 
-
 import Countries from '../../assets/JsonFiles/country.json';
 import USState from '../../assets/JsonFiles/USAState.json';
 import INDState from '../../assets/JsonFiles/indiaState.json';
@@ -26,6 +25,7 @@ export const getCountry = (country) =>{
 
 export const getCountryId = (country) =>{
     const selectedCountry = Countries.find(x=>x.value === country);
+    console.log('selectedCountry',selectedCountry);
     return selectedCountry.country_id;
 };
 
@@ -54,12 +54,12 @@ export const getStateId = (country,state) =>{
 export const getCurrency = (currency) =>{
     switch (currency) {
     case '1':
-        return ' ₹ ';
+        return ' ₹';
     case '2':
-        return ' $ ';
+        return ' $';
     case '3' :
-        return ' € ';
+        return ' €';
     default:
-        return ' ₹ ';
+        return ' ₹';
     }
 };

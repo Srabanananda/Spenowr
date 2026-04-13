@@ -6,7 +6,6 @@ import {StyleSheet,Platform,Dimensions} from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import Config from '@Config/default';
 
-
 const {scale,width} = Dimensions.get('window');
 const WIDTH = width;
 const EACH_IMAGE_WIDTH = (WIDTH-(scale > 2.8 ? Platform.OS ==='ios' ? 0.3*WIDTH  :  0.25*WIDTH  : 0.3*WIDTH))/3;
@@ -36,11 +35,12 @@ const styles = StyleSheet.create({
     },
     nameText:{
         color:APP_PINK_COLOR,
-        fontSize:moderateScale(12)
+        fontSize:moderateScale(15),
+        fontWeight:'bold'
     },
     descText:{
         color:SUBNAME,
-        fontSize:moderateScale(10)
+        fontSize:moderateScale(13)
     },
     eachActivityWrapper:{
         marginTop:moderateScale(8),
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',alignItems:'center',
     },
     activityBox:{
-        width: moderateScale(WIDTH/2-40),
+        width: Platform.OS === 'android' ? moderateScale(WIDTH/2-40) : moderateScale(WIDTH/2-50),
         height:moderateScale(150),
         margin:moderateScale(4),
         justifyContent:'center',
@@ -167,7 +167,25 @@ const styles = StyleSheet.create({
         fontSize:moderateScale(11),
         marginTop:moderateScale(5),
         color:APP_PINK_COLOR
-    }
+    },
+    tabWrapper: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        flexWrap: "wrap",
+        borderTopWidth: 4,
+        borderTopColor: APP_PINK_COLOR,
+        marginTop: 10,
+      },
+      tabButton: {
+        height: 75,
+        // marginHorizontal:10,
+        width: 70,
+        // backgroundColor:"red",
+        justifyContent: "center",
+        alignItems: "center",
+        marginVertical: 5,
+      },
 });
 
 export default styles;

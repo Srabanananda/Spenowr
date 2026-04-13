@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState,useRef,useEffect} from 'react';
-import {ScrollView,Text,StyleSheet,SafeAreaView,TextInput,TouchableOpacity,View} from 'react-native';
+import { ScrollView, Text, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { GlobalStyles } from '../../../@GlobalStyles';
 import DefaultHeader from '../../../@GlobalComponents/DefaultHeader';
 import { moderateScale } from 'react-native-size-matters';
@@ -22,6 +22,7 @@ import { getAllInstitutesWithFilter } from '../../../@Endpoints/Core/Dialog/Find
 import { HOME_FILTERS } from '../../../assets/JsonFiles/HomeFilters';
 import ContestSearch from './Contests';
 import JobsSearch from './Jobs';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {COLOR:{LIGHTGREY,APP_PINK_COLOR, DARKGRAY}} = Config;
 
@@ -118,7 +119,7 @@ const SearchScreen = ({...props}:searchProps) =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Search'} />
             <TextInput 
                 autoCapitalize='none' 

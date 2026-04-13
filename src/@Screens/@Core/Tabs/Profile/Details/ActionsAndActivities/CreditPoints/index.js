@@ -1,22 +1,17 @@
 /**
  *  Created By @name Sukumar_Abhijeet
  */
-import React, { useState, useEffect } from "react";
-import {
-  SafeAreaView,
-  Text,
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  TextInput,
-} from "react-native";
+import React, { useState, useEffect, useCallback } from "react";
+import { Text, StyleSheet, View, TouchableOpacity, TextInput } from "react-native";
 import { GlobalStyles } from "../../../../../../../@GlobalStyles/index";
 import DefaultHeader from "../../../../../../../@GlobalComponents/DefaultHeader/index";
 import DefaultButton from "../../../../../../../@GlobalComponents/DefaultButton";
+import { SafeAreaView } from "react-native-safe-area-context";
 import {
   fetchMyCreditPoints,
   BuyAIPoints,
-  BuyJOBPoints
+  BuyJOBPoints,
+  buyAnimatePoints
 } from "../../../../../../../@Endpoints/Core/Tabs/EditProfile";
 import ScreenLoader from "../../../../../../../@GlobalComponents/ScreenLoader";
 import ModalHeader from "../../../../../../../@GlobalComponents/ModalHeader";
@@ -29,18 +24,23 @@ import { moderateScale, scale } from "react-native-size-matters";
 import Config from "@Config/default";
 import Capitalize from "@Utils/helperFiles/Capitalize";
 import moment from "moment";
+import { useFocusEffect } from "@react-navigation/native";
 
 const {
   COLOR: { SUBNAME, WHITE, LIGHTGREY },
 } = Config;
 
 const MyCreditPointScreen = ({ ...props }) => {
-  const { navigation, route, userObj:{ userProfile:{ email, mobile=""} } } = props;
+  const { navigation, route, userObj:{ userProfile:{ email, mobile="",first_name,last_name} } } = props;
+  console.log('====================================');
+  console.log('props250',props);
+  console.log('====================================');
   const { type } = route?.params;
   const [loading, setLoading] = useState(true);
   const [buyLoading, setBuyLoading] = useState(false);
   const [credPoints, setCredPoints] = useState([]);
   const [aiPoints, setAIPoints] = useState(0);
+  const [animatePoints, setAnimatePoints] = useState(0);
 
   const [points, setPoints] = useState("");
   const [phone, setPhone] = useState(mobile=="" ? "" : mobile);
@@ -48,15 +48,38 @@ const MyCreditPointScreen = ({ ...props }) => {
 
   useEffect(() => {
     callApi();
-  }, []);
+  
+    // Listen for when the screen loses focus
+    const unsubscribe = navigation.addListener('blur', () => {
+      setIsActive(false);  // Close the modal when navigating away
+    });
+  
+    return () => {
+      unsubscribe();  // Clean up the listener when component unmounts
+    };
+  }, [navigation]);
+
+    // Fetch data when the screen gains focus
+    useFocusEffect(
+      useCallback(() => {
+        console.log("Screen gained focus, fetching data...");
+        setLoading(true);
+        callApi();
+      }, []) // Empty dependencies to ensure this runs on focus
+    );
+  
 
   const callApi = () => {
     fetchMyCreditPoints()
       .then(({ data }) => {
+        console.log('datadatadatadata',data);
         const { point_history = [], institute } = data;
-        const { ai_point } = institute;
-        setCredPoints(point_history);
+        const { ai_point, animate_point, credit_point } = institute;
+        console.log('credit_point',point_history);
+        // setCredPoints(point_history);
+        setCredPoints(credit_point);
         setAIPoints(ai_point);
+        setAnimatePoints(animate_point)
       })
       .catch(() => {
         Toast.show("Oops something went wrong");
@@ -74,20 +97,59 @@ const MyCreditPointScreen = ({ ...props }) => {
       return;
     }
     setBuyLoading(true);
+
     BuyAIPoints(points, phone)
       .then(({ data }) => {
         const { status = "", payment_list } = data;
         if (status == "succes") {
-          console.log("payment_list : ", JSON.stringify(payment_list));
-          navigation.navigate("ProductPay", { payload: payment_list });
+          console.log("payment_list of BuyAiPoints: ", JSON.stringify(payment_list));
+
+          const userData={
+            customer_name:first_name+" "+last_name,
+            customer_phone:phone,
+            customer_email:email
+          }
+          navigation.navigate("RazorPayChatGPTPoints", { payload: {...payment_list,customer_details:userData} });
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log("=====BuyAIPoints error====>",error)
         Toast.show("Oops something went wrong");
       })
       .finally(() => setBuyLoading(false));
   };
 
+  const BuyAnimatePoints = () => {
+    if(phone == ""){
+      Toast.show("Please Enter phone number!");
+      return;
+    }
+    if(points == ""){
+      Toast.show("Please enter points!");
+      return;
+    }
+    setBuyLoading(true);
+
+    buyAnimatePoints(points, phone)
+      .then(({ data }) => {
+        const { status = "", payment_list } = data;
+        if (status == "succes") {
+          console.log("payment_list of buyAnimatePoints : ", JSON.stringify(payment_list));
+
+          const userData={
+            customer_name:first_name+" "+last_name,
+            customer_phone:phone,
+            customer_email:email
+          }
+          navigation.navigate("RazorPayAnimatePoints", { payload: {...payment_list,customer_details:userData} });
+        }
+      })
+      .catch((error) => {
+        console.log("=====BuyAnimatePoints error====>",error)
+        Toast.show("Oops something went wrong");
+      })
+      .finally(() => setBuyLoading(false));
+  };
 
   const BuyJobPoints = () => {
     if(phone == ""){
@@ -103,8 +165,15 @@ const MyCreditPointScreen = ({ ...props }) => {
       .then(({ data }) => {
         const { status = "", payment_list } = data;
         if (status == "succes") {
-          console.log("payment_list : ", JSON.stringify(payment_list));
-          navigation.navigate("ProductPay", { payload: payment_list });
+          console.log("payment_list of BuyJOBPoints : ", JSON.stringify(payment_list));
+          //navigation.navigate("ProductPay", { payload: payment_list });
+          const userData={
+            customer_name:first_name+" "+last_name,
+            customer_phone:phone,
+            customer_email:email
+          }
+          
+          navigation.navigate("RazorPayBuyJobPoints", { payload: {...payment_list,customer_details:userData} });
         }
       })
       .catch(() => {
@@ -135,7 +204,7 @@ const MyCreditPointScreen = ({ ...props }) => {
   const getJobCreditData = () => {
     return (
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        {(!credPoints.length && (
+        {/* {(!credPoints.length && (
           <Text
             style={GlobalStyles.noDataFound}
           >{`You have not applied for any job opportunities yet!`}</Text>
@@ -143,6 +212,16 @@ const MyCreditPointScreen = ({ ...props }) => {
           <>
             {credPoints.map((credit, i) => renderEachCredit(credit, i))}
           </>
+        )} */}
+
+        {(credPoints == 0 && (
+          <Text
+            style={GlobalStyles.noDataFound}
+          >{`You have not applied for any job opportunities yet!`}</Text>
+        )) || (
+          <Text
+            style={GlobalStyles.noDataFound}
+          >{`Your Available Job Credits is : ${credPoints}`}</Text>
         )}
         
         <DefaultButton
@@ -301,18 +380,105 @@ const MyCreditPointScreen = ({ ...props }) => {
     );
   };
 
+  const getAnimatePointData = () => {
+    return (
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        {(animatePoints == 0 && (
+          <Text
+            style={GlobalStyles.noDataFound}
+          >{`You have no Animate points yet, get more!`}</Text>
+        )) || (
+          <Text
+            style={GlobalStyles.noDataFound}
+          >{`Your Available Animate points is : ${animatePoints}`}</Text>
+        )}
+        <DefaultButton
+          buttonStyle={{ paddingVertical: moderateScale(15), marginTop: 25 }}
+          buttonText={"Buy Points"}
+          onPress={() => setIsActive(true)}
+          showLoader={false}
+        />
+        <Modal
+          backdropColor={"#000"}
+          dismissable={true}
+          hasBackdrop={true}
+          isVisible={isActive}
+          onBackButtonPress={() => {
+            setIsActive(false);
+          }}
+          onBackdropPress={() => {
+            setIsActive(false);
+          }}
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            margin: 0,
+            padding: 0,
+          }}
+          useNativeDriver={true}
+        >
+          <View
+            style={{
+              width: "90%",
+              backgroundColor: "#fff",
+              padding: moderateScale(15),
+              borderRadius: moderateScale(4),
+            }}
+          >
+            <ModalHeader headerText={"Buy points to use Animate Artwork AI"}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <TouchableOpacity onPress={() => setIsActive(false)}>
+                  <Text style={styles.closeText}>Cancel</Text>
+                </TouchableOpacity>
+              </View>
+            </ModalHeader>
+            <ScrollView>
+              {mobile == "" && <TextInput
+                keyboardType="numeric"
+                onChangeText={setPhone}
+                maxLength={10}
+                placeholder="Mobile"
+                placeholderTextColor="#414756"
+                style={styles.textInputBox}
+                value={phone}
+              />}
+              <TextInput
+                keyboardType="numeric"
+                onChangeText={(string) => setPoints(string)}
+                placeholder="Points"
+                placeholderTextColor="#414756"
+                style={styles.textInputBox}
+                value={points}
+              />
+
+              <DefaultButton
+                buttonText={"Buy"}
+                onPress={BuyAnimatePoints}
+                showLoader={buyLoading}
+                textStyle={{ fontSize: moderateScale(12) }}
+              />
+            </ScrollView>
+          </View>
+        </Modal>
+      </ScrollView>
+    );
+  };
+
   return (
-    <SafeAreaView style={GlobalStyles.GlobalContainer}>
-      <DefaultHeader
-        headerText={`My ${type == "JobCredits" ? "Credit" : "AI"} Points`}
+    <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
+     <DefaultHeader
+        headerText={`My ${type === "JobCredits" ? "Credit" : (type === "AnimateCredits" ? "Animate" : "AI")} Points`}
       />
-      {loading ? (
+     {loading ? (
         <ScreenLoader text={"Fetching..."} />
-      ) : type == "JobCredits" ? (
+      ) : type === "JobCredits" ? (
         getJobCreditData()
+      ) : type === "AnimateCredits" ? (
+        getAnimatePointData() // Assuming this function exists for AnimatePoints
       ) : (
         getAiPointData()
       )}
+
     </SafeAreaView>
   );
 };

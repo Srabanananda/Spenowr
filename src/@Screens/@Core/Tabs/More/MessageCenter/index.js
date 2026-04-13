@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useEffect, useState} from 'react';
-import {View,ScrollView, SafeAreaView,RefreshControl,Text} from 'react-native';
+import { View, ScrollView, RefreshControl, Text } from 'react-native';
 import DefaultHeader from '../../../../../@GlobalComponents/DefaultHeader';
 import ScreenLoader from '../../../../../@GlobalComponents/ScreenLoader';
 import { GlobalStyles } from '../../../../../@GlobalStyles';
@@ -12,6 +12,7 @@ import { moderateScale } from 'react-native-size-matters';
 import { connect, useDispatch, } from 'react-redux';
 import * as moreActions from '@Redux/actions/moreActions';
 import PropTypes from 'prop-types';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MessageCenterScreen = ({...props}) =>{
     const {
@@ -70,7 +71,7 @@ const MessageCenterScreen = ({...props}) =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Messages'}  />
             <View style={styles.container}>
                 {renderData()}

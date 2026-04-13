@@ -27,7 +27,8 @@ const chartConfig = {
     useShadowColorFromDataset: false, 
     propsForVerticalLabels:{
         fontSize:moderateScale(9)
-    }
+    },
+    formatYLabel: yValue => parseInt(yValue).toString(),
 };
 
  
@@ -46,7 +47,6 @@ const ContributionsGraph = ({...props}) =>{
         legend: ['My Contributions'] 
     };
 
-
     return(
         <View style={{margin:moderateScale(10),backgroundColor:'#fff',padding:moderateScale(10)}}>
             <BarChart
@@ -55,6 +55,7 @@ const ContributionsGraph = ({...props}) =>{
                 height={250}
                 showValuesOnTopOfBars={true}
                 width={moderateScale(320)}
+                formatYLabel={(yValue) => `${Math.round(yValue)}`}
             />
         </View>
     );

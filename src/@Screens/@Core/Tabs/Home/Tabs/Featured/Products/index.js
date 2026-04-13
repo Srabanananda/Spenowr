@@ -73,5 +73,4 @@ FeaturedProducts.propTypes = {
     featuredFeeds:PropTypes.object.isRequired,
 };
 
-
 export default FeaturedProducts;

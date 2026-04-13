@@ -1,0 +1,63 @@
+{
+    "category":[
+        {
+            "type":{
+                "label": "Crafter",
+                "value" : "craft",
+                "default_image": "assets/images/default_image/course/singing.jpg",
+                "status": 1,
+                "subcat": [
+                    {"subcatGroup": {
+                        "label": "Paper Craft",
+                        "default_image": "images/default_image/course/papercraft.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"paper-work-craft"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Rangoli",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[],
+                        "value":"rangoli"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Knotting / Handwoven",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[],
+                        "value":"knotting"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Handpainted Decor",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[],
+                        "value":"handpainted-decor"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Handmade Decor",
+                        "default_image": "images/default_image/course/embroidery-craft.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"handmade-decor"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Dreamcatcher",
+                        "default_image": "",
+                        "status": 1,
+                        "type":[],
+                        "value":"dreamcatcher"
+                    }},
+                    {"subcatGroup": {
+                        "label": "Embroidery Craft",
+                        "default_image": "images/default_image/course/embroidery-craft.jpg",
+                        "status": 1,
+                        "type":[],
+                        "value":"embroidery-craft"
+                    }}
+                ]
+            }
+        }
+    ]
+}

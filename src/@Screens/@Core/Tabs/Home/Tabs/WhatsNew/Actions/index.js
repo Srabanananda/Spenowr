@@ -1,9 +1,6 @@
-/**
- *  Created By @name Sukumar_Abhijeet
- */
-import React,{useState} from 'react';
-import {View} from 'react-native';
-import Icon  from 'react-native-vector-icons/FontAwesome5';
+import React, { useState, useCallback } from 'react';
+import { View, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import {
     Menu,
     MenuOptions,
@@ -13,55 +10,60 @@ import {
 import ReportPost from './ReportPost';
 
 type MoreOptionProps = {
-    reportParams : Object
+    reportParams: Object,
+    VoteforPost: () => void,
+    isVoted: string,
+    postType: string,
 };
 
-const MoreOptions = ({...props}:MoreOptionProps) =>{
-
-    const {reportParams, VoteforPost, isVoted, postType} = props;
-
+const MoreOptions = React.memo(({ reportParams, VoteforPost, isVoted, postType }: MoreOptionProps) => {
     const [show, setShow] = useState(false);
 
-    const options = (isVoted === '0' && (postType == 'gallery' || postType == 'Quote')) ? [{name : 'Report'},{name : 'Vote For the Post'}] : [{name : 'Report'}];
+    // Define options based on conditions
+    const options = useCallback(() => {
+        return (isVoted === '0' && (postType === 'gallery' || postType === 'Quote'))
+            ? [{ name: 'Report' }, { name: 'Vote For the Post' }]
+            : [{ name: 'Report' }];
+    }, [isVoted, postType]);
 
-    const checkSelected = selected => {
+    // Handle menu option selection
+    const checkSelected = useCallback((selected: number) => {
         switch (selected) {
-        case 0:
-            setShow(true);
-            break;
-        case 1:
-            VoteforPost()
-            break;
-        default:
-            break;
+            case 0:
+                setShow(true);
+                break;
+            case 1:
+                VoteforPost();
+                break;
+            default:
+                break;
         }
-    };
+    }, [VoteforPost]);
 
-    const renderOptions = () => {
-        return(
-            <View>
-                <Menu onSelect={checkSelected}>
-                    <MenuTrigger text={ <Icon name={'ellipsis-v'} size={20} />} />
-                    <MenuOptions>
-                        {
-                            options.map(({name},i)=>(
-                                <View style={{height: 40, justifyContent: 'center'}}>
-                                    <MenuOption key={i} text={name} value={i} />
-                                </View>
-                            ))
-                        }
-                    </MenuOptions>
-                </Menu>  
-                <ReportPost reportParams={reportParams} setShow={setShow} show={show} />
-            </View>
-        );
-    };
-
-    return(
+    return (
         <View>
-            {renderOptions()}
+            <Menu onSelect={checkSelected}>
+                <MenuTrigger>
+                    <Icon name={'ellipsis-v'} size={20} />
+                </MenuTrigger>
+                <MenuOptions>
+                    {options().map(({ name }, index) => (
+                        <View style={styles.optionContainer} key={index}>
+                            <MenuOption text={name} value={index} />
+                        </View>
+                    ))}
+                </MenuOptions>
+            </Menu>
+            <ReportPost reportParams={reportParams} setShow={setShow} show={show} />
         </View>
     );
-};
+});
+
+const styles = StyleSheet.create({
+    optionContainer: {
+        height: 40,
+        justifyContent: 'center',
+    },
+});
 
 export default MoreOptions;

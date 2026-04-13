@@ -49,7 +49,7 @@ const DefaultHeader = ({headerText='Loading',showUpgrade = false,onPress,childre
                             </View> : null
                     }
                     
-                    <Image source={require('../../assets/svgs/bell.svg')} />
+                    <Image source={require('../../assets/svgs/bell.svg')} resizeMode={'contain'} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>navigation.navigate('MessageCenter')} style={{padding:moderateScale(10)}}>
                     {
@@ -60,7 +60,7 @@ const DefaultHeader = ({headerText='Loading',showUpgrade = false,onPress,childre
                             : null
                     }
                     
-                    <Image source={require('../../assets/svgs/message.svg')} />
+                    <Image source={require('../../assets/svgs/message.svg')} resizeMode={'contain'} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>navigation.navigate('Cart')} style={{padding:moderateScale(10)}}>
                     {
@@ -73,6 +73,7 @@ const DefaultHeader = ({headerText='Loading',showUpgrade = false,onPress,childre
                     
                     <Image 
                         source={require('../../assets/svgs/cart.jpeg')} 
+                        resizeMode={'contain'}
                         style={{width:moderateScale(16),height:moderateScale(16)}} 
                     />
                 </TouchableOpacity>
@@ -146,7 +147,7 @@ DefaultHeader.propTypes = {
     showUpgrade : PropTypes.bool,
     totalUnreadMessages:PropTypes.number.isRequired,
     showCurr: PropTypes.bool,
-    getCurr: PropTypes.func.isRequired,
+    getCurr: PropTypes.func,
 };
 
 function mapStateToProps(state){

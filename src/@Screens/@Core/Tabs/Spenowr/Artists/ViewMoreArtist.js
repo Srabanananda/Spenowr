@@ -4,7 +4,7 @@
  */
 
 import React, {useEffect, useState} from 'react';
-import {FlatList, RefreshControl, SafeAreaView,Text} from 'react-native';
+import { FlatList, RefreshControl, Text } from 'react-native';
 import DefaultHeader from '../../../../../@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../../../@GlobalStyles';
 import {getAllInstitutesWithFilter} from '../../../../../@Endpoints/Core/Dialog/FindArtiest';
@@ -14,6 +14,7 @@ import { moderateScale } from 'react-native-size-matters';
 import ArtistFilters, { getApiData } from '../Filters';
 import FallBackUI from '../../../../../@GlobalComponents/FallBackUI';
 import ErrorBoundary from 'react-native-error-boundary';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const renderArtistCard = ({ index,item }) =>{
     return(
@@ -26,6 +27,8 @@ export const renderArtistCard = ({ index,item }) =>{
 const ViewMoreArtistScreen = ({...props}) =>{
 
     const {route: {params: {filter}}} = props;
+
+    console.log('propsfilter',props);
 
     const [data, setData] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
@@ -75,7 +78,7 @@ const ViewMoreArtistScreen = ({...props}) =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'All Artists'} />
             {
                 loading && !data.length ?

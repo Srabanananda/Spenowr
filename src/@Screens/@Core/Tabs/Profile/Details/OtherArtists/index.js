@@ -120,7 +120,6 @@ const mapStateToProps = (state) => {
     };
 };
 
-
 export default connect(mapStateToProps)(RecommendedArtist);
 
 const styles = StyleSheet.create({

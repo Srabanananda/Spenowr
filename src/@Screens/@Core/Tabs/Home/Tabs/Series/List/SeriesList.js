@@ -11,6 +11,7 @@ import { moderateScale } from "react-native-size-matters";
 import {useNavigation} from '@react-navigation/native';
 import styles from "../../WhatsNew/styles";
 import Config from "@Config/default";
+import FastImage from "react-native-fast-image";
 
 const { NEW_IMG_BASE, DUMMY_IMAGE_URL, DEFAULT_PROFILE } = Config;
 const PrintList = ({ dataSet, refresh }: any) => {
@@ -37,7 +38,7 @@ const PrintList = ({ dataSet, refresh }: any) => {
     console.log('=> series_id :' ,series_id);
     return (
       <TouchableOpacity style={[styles.cardBox,{borderRadius: moderateScale(10)}]} onPress={()=>navigation.navigate('SeriesDetails', { series_id: series_id})}>
-          <Image
+          <FastImage
             source={{
               uri: image_path
                 ? NEW_IMG_BASE + image_path
@@ -61,7 +62,8 @@ const PrintList = ({ dataSet, refresh }: any) => {
   return (
     <>
       <FlatList
-        contentContainerStyle={{ padding: moderateScale(10) }}
+        style={{ flex: 1 }}
+        contentContainerStyle={{ padding: moderateScale(10), flexGrow: 1 }}
         data={dataSet}
         horizontal={false}
         initialNumToRender={5}

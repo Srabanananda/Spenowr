@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React from 'react';
-import {SafeAreaView, View, Image, Text,ImageBackground} from 'react-native';
+import { View, Image, Text, ImageBackground } from 'react-native';
 import { GlobalStyles } from '../../../@GlobalStyles';
 import SliderIntro from 'react-native-slider-intro';
 import styles from './styles';
@@ -12,10 +12,12 @@ import * as AppActions from '../../../@Redux/actions/appActions';
 import PropTypes from 'prop-types';
 import { DEVICE_WIDTH } from '../../../@Utils/helperFiles/DeviceInfoExtractor';
 import { DEVICE_HEIGHT } from '../../../@Utils/helperFiles/DeviceInfoExtractor';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const AppIntroScreen = ({...props}) =>{
 
     const {updateIntroScreenStatus,navigation} = props;
+    const insets = useSafeAreaInsets();
 
     const slides = [
         {
@@ -76,6 +78,12 @@ const AppIntroScreen = ({...props}) =>{
         );
     };
 
+    const renderSkipButton = (skipLabel) => (
+        <View style={styles.skipButtonWrap}>
+            <Text style={styles.skipLabel}>{skipLabel}</Text>
+        </View>
+    );
+
     const introCompleted = () =>{
         updateIntroScreenStatus(false);
         navigation.replace('Landing');
@@ -109,21 +117,28 @@ const AppIntroScreen = ({...props}) =>{
     };
 
     return(
-        <SafeAreaView style={[GlobalStyles.GlobalContainer,styles.containerWrapper]}>
-            <SliderIntro
-                animatedDotBackgroundColor={'#fff'}
-                data={slides}
-                dotWidth={10}
-                fixDotBackgroundColor={'rgba(0,0,0,0.27)'}
-                fixDotOpacity={1}
-                navContainerMaxSizePercent={0.3}
-                navigationBarHeight={150}
-                onDone={()=>introCompleted()}
-                onSkip={()=>introCompleted()}
-                renderDoneButton={renderDoneButton}
-                renderItem={(item,i)=>getSlide(item,i)}
-                renderNextButton={renderNextButton}
-            />
+        <SafeAreaView  style={[GlobalStyles.GlobalContainer,styles.containerWrapper]}>
+            <View style={GlobalStyles.GlobalContainer}>
+                <SliderIntro
+                    animatedDotBackgroundColor={'#fff'}
+                    data={slides}
+                    dotWidth={10}
+                    fixDotBackgroundColor={'rgba(0,0,0,0.27)'}
+                    fixDotOpacity={1}
+                    navContainerMaxSizePercent={0.3}
+                    navigationBarBottom={insets.bottom}
+                    navigationBarHeight={50}
+                    onDone={()=>introCompleted()}
+                    onSkip={()=>introCompleted()}
+                    renderDoneButton={renderDoneButton}
+                    renderItem={(item,i)=>getSlide(item,i)}
+                    renderNextButton={renderNextButton}
+                    renderSkipButton={renderSkipButton}
+                    showLeftButton
+                    skipLabel={'Skip'}
+                    leftButtonType={'skip'}
+                />
+            </View>
         </SafeAreaView>
     );
 };

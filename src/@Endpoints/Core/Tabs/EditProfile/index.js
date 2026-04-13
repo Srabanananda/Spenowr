@@ -97,12 +97,42 @@ export const getPublicProfileReviews = (institute_id,skip=0,limit=3) =>{
         .then(response => response.data);
 };
 
-
 export const getMyOrdersList = () =>{
     const url = `${BASE_PATH + API_VERSIONING}/profile/get-placed-order-list`;
     return axios
         .post(
             url,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            }
+        )
+        .then(response => response.data);
+};
+
+export const getMyOrderInvoicesList = () =>{
+    const url = `${BASE_PATH + API_VERSIONING}/profile/my-billing-data`;
+    return axios
+        .post(
+            url,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            }
+        )
+        .then(response => response.data);
+};
+
+export const downloadInvoice = (inventory_id) =>{
+    const url = `${BASE_PATH + API_VERSIONING}/profile/download-invoice`;
+    const data = new FormData();
+    data.append('inventory_id',inventory_id);
+    return axios
+        .post(
+            url,
+            data,
             {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -161,13 +191,51 @@ export const fetchMyEarnings = () =>{
         .then(response => response.data);
 };
 
+export const BuyAnimatePoints = (points, mobile) =>{
+    const url = `${BASE_PATH + API_VERSIONING}/profile/animate-points-payments`;
+    const data = new FormData();
+    data.append('points',points);
+    data.append('mobile',mobile);
+    data.append('returnUrl','https://www.spenowr.com/account/animate-points-payments-process/');
+    data.append('notifyUrl','https://www.spenowr.com/account/animate-points-payments-fail/');
+    data.append('application',true);
+    return axios
+        .post(
+            url,
+            data,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            }
+        )
+        .then(response => response.data);
+};
+
 export const BuyAIPoints = (points, mobile) =>{
     const url = `${BASE_PATH + API_VERSIONING}/profile/ai-points-payments`;
     const data = new FormData();
     data.append('points',points);
     data.append('mobile',mobile);
-    data.append('returnUrl','https://www.spenowr.com/account/ai-payment-process/');
-    data.append('notifyUrl','https://www.spenowr.com/account/ai-payment-failure/');
+    data.append('application',true);
+    return axios
+        .post(
+            url,
+            data,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            }
+        )
+        .then(response => response.data);
+};
+
+export const buyAnimatePoints = (points, mobile) =>{
+    const url = `${BASE_PATH + API_VERSIONING}/profile/animate-points-payments`;
+    const data = new FormData();
+    data.append('points',points);
+    data.append('mobile',mobile);
     data.append('application',true);
     return axios
         .post(
@@ -187,8 +255,6 @@ export const BuyJOBPoints = (points, mobile) =>{
     const data = new FormData();
     data.append('points',points);
     data.append('mobile',mobile);
-    data.append('returnUrl','https://www.spenowr.com/account/ai-payment-process/');
-    data.append('notifyUrl','https://www.spenowr.com/account/ai-payment-failure/');
     data.append('application',true);
     return axios
         .post(
@@ -222,5 +288,4 @@ export const fetchMyCreditPoints = () =>{
         )
         .then(response => response.data);
 };
-
 

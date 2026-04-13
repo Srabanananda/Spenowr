@@ -51,7 +51,6 @@ const  profileDataReducer = (state = initialState,action) =>{
     case FETCH_SERIES_FAILURE:
         return { ...state,seriesApiCalled:false};
 
-
     case  FETCH_ARTIST_AWARDS_REQUEST:
         return { ...state,awardApiCalled:true};   
 
@@ -62,7 +61,6 @@ const  profileDataReducer = (state = initialState,action) =>{
     }   
     case FETCH_ARTIST_AWARDS_FAILURE:
         return { ...state,awardApiCalled:false}; 
-
 
     case  FETCH_ARTIST_ARTWORKS_REQUEST:
         return { ...state,artworkApiCalled:true};   
@@ -75,10 +73,6 @@ const  profileDataReducer = (state = initialState,action) =>{
     case FETCH_ARTIST_ARTWORKS_FAILURE:
         return { ...state,artworkApiCalled:false}; 
 
-
-
-
-
     case  FETCH_ARTIST_QUOTEPOEMS_REQUEST:
         return { ...state,writingApiCalled:true};   
         
@@ -89,10 +83,6 @@ const  profileDataReducer = (state = initialState,action) =>{
     }   
     case FETCH_ARTIST_QUOTEPOEMS_FAILURE:
         return { ...state,writingApiCalled:false}; 
-
-
-
-
 
     case  FETCH_ARTIST_STORYBLOGS_REQUEST:
         return { ...state,storyBlogApiCalled:true};   
@@ -105,10 +95,6 @@ const  profileDataReducer = (state = initialState,action) =>{
     case FETCH_ARTIST_STORYBLOGS_FAILURE:
         return { ...state,storyBlogApiCalled:false}; 
 
-
-
-
-
     case  FETCH_ARTIST_PRODUCTS_REQUEST:
         return { ...state,productsApiCalled:true};   
             
@@ -119,8 +105,6 @@ const  profileDataReducer = (state = initialState,action) =>{
     }   
     case FETCH_ARTIST_PRODUCTS_FAILURE:
         return { ...state,productsApiCalled:false}; 
-
-
 
         
     case  FETCH_ARTIST_SERVICES_REQUEST:
@@ -134,8 +118,6 @@ const  profileDataReducer = (state = initialState,action) =>{
     case FETCH_ARTIST_SERVICES_FAILURE:
         return { ...state,productsApiCalled:false}; 
 
-
-
     case  FETCH_ARTIST_PROJECTS_REQUEST:
         return { ...state,projectsApiCalled:true};   
                 
@@ -146,7 +128,6 @@ const  profileDataReducer = (state = initialState,action) =>{
     }   
     case FETCH_ARTIST_PROJECTS_FAILURE:
         return { ...state,projectsApiCalled:false}; 
-
 
         
     case  FETCH_ARTIST_JOBS_REQUEST:
@@ -159,7 +140,6 @@ const  profileDataReducer = (state = initialState,action) =>{
     }   
     case FETCH_ARTIST_JOBS_FAILURE:
         return { ...state,jobsApiCalled:false}; 
-
 
     case  FETCH_ARTIST_WORK_EXP_REQUEST:
         return { ...state,workExpApiCalled:true};   

@@ -2,7 +2,7 @@
  * Create By @name Sukumar_Abhijeet 
  */
 
-import {StyleSheet} from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import Config from '@Config/default';
 import { moderateScale, scale } from 'react-native-size-matters';
 
@@ -17,11 +17,30 @@ export const GlobalStyles  = StyleSheet.create({
     GlobalContainer : {
         flex:1,
     },
+    containerHome: {
+        backgroundColor: '#FFF',  // Default background color for both platforms
+        ...Platform.select({
+          ios: {
+            height: 100,  // Specific style for iOS
+          },
+          android: {
+            position: 'absolute',
+            top: moderateScale(50),
+            left: 0,
+            right: 0,
+            width: '100%',
+            minHeight: 100,
+            zIndex: 1,
+          },
+        }),
+      },
     primaryCard:{
         backgroundColor:WHITE,
         width:'100%',
         borderRadius:moderateScale(4),
         shadowRadius: moderateScale(1), 
+        alignItems:'center',
+        justifyContent:'center',
         elevation: scale(5),
         shadowOffset: {
             height: scale(1),

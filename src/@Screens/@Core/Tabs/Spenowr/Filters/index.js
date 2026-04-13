@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState, useRef} from 'react';
-import {View,TouchableOpacity, SafeAreaView,ScrollView,TextInput,Text} from 'react-native';
+import { View, TouchableOpacity, ScrollView, TextInput, Text } from 'react-native';
 import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import ModalHeader from '../../../../../@GlobalComponents/ModalHeader';
@@ -14,6 +14,7 @@ import ArtistGenre from './Genre';
 import PropTypes from 'prop-types';
 import GLOBALJSON from '@Assets/JsonFiles/global.json';
 import { moderateScale } from 'react-native-size-matters';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {
     data:{
@@ -174,7 +175,7 @@ const ArtistFilters = ({setFilterData,showStates,showServiceType,isCustom}) =>{
 
     const renderFilterBox = () =>{
         return(
-            <SafeAreaView style={GlobalStyles.GlobalContainer} >
+            <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer} >
                 <View  style={styles.filterContainer}>
                     <ModalHeader headerText={'Filters'}>
                         <View style={{flexDirection:'row',alignItems:'center'}}>

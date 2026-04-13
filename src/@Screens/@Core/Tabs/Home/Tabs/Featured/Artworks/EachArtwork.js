@@ -5,7 +5,7 @@ import React from 'react';
 import {View,Text,TouchableOpacity} from 'react-native';
 import styles from '../styles';
 import Config from '@Config/default';
-import Image from 'react-native-image-progress';
+import FastImage from 'react-native-fast-image';
 import {useNavigation} from '@react-navigation/native';
 import PropTypes from 'prop-types';
 
@@ -26,7 +26,7 @@ const EachArtwork = ({artwork}) =>{
                 onPress={()=>navigation.push('ArtworkDetails',{mediaId:module_id,artworkSlug:slgs[0]})} 
                 style={styles.productPicHorizontal}
             >
-                <Image 
+                <FastImage 
                     source={{ uri:NEW_IMG_BASE + module_image_path }} 
                     style={{width:null,height:null,flex:1}} 
                 />
@@ -40,6 +40,5 @@ const EachArtwork = ({artwork}) =>{
 EachArtwork.propTypes = {
     artwork:PropTypes.object.isRequired,
 };
-
 
 export default EachArtwork;

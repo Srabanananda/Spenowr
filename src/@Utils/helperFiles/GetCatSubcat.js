@@ -1,4 +1,3 @@
-
 import ARTNCRAFT from '@Assets/JsonFiles/FilterJsons/productcat_subcat.json';
 import DANCE from '@Assets/JsonFiles/FilterJsons/dancecat_subcat.json';
 import PHOTOGRAPHY from '@Assets/JsonFiles/FilterJsons/photographycat_subcat.json';
@@ -10,13 +9,19 @@ import WRITER from '@Assets/JsonFiles/FilterJsons/writercat_subcat.json';
 import MAGIC from '@Assets/JsonFiles/FilterJsons/magiccat_subcat.json';
 import ACTOR from '@Assets/JsonFiles/FilterJsons/actorcat_subcat.json';
 import QUOTE_POEM from '@Assets/JsonFiles/FilterJsons/quotesPoemscat_subcat.json';
+import SCULPTURE from '@Assets/JsonFiles/FilterJsons/sculpcat_subcat.json';
+import ILLUSTRATOR from '@Assets/JsonFiles/FilterJsons/illucat_subcat.json';
+import CRAFT from '@Assets/JsonFiles/FilterJsons/craftcat_subcat.json';
+import THREEDARTIST from '@Assets/JsonFiles/FilterJsons/3d_artistcat_subcat.json';
+import AIDESIGNER from '@Assets/JsonFiles/FilterJsons/ai_designer_artistcat_subcat.json';
+import OTHERS from '@Assets/JsonFiles/FilterJsons/othercat_subcat.json';
 
 const JsonData =  [{
     'category':[
         ...ARTNCRAFT.category,...MUSICAL.category,...SINGING.category,
         ...DANCE.category,...PHOTOGRAPHY.category,...EXERCISE.category,
         ...SPORTS.category,...WRITER.category,...MAGIC.category,...ACTOR.category,
-        ...QUOTE_POEM.category
+        ...QUOTE_POEM.category,...SCULPTURE.category,...ILLUSTRATOR.category,...CRAFT.category,...THREEDARTIST.category,...AIDESIGNER.category,...OTHERS.category
     ]
 }];
 

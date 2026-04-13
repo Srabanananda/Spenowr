@@ -14,10 +14,10 @@ import { GlobalStyles } from '../../../@GlobalStyles';
 import StarRating from '../../../@GlobalComponents/StarRating/index';
 import { GetCatValue } from '../../../@Utils/helperFiles/GetCatSubcat';
 import Capitalize from '../../../@Utils/helperFiles/Capitalize';
+import { moderateScale } from 'react-native-size-matters';
 const {
     NEW_IMG_BASE,DEFAULT_PROFILE
 } = Config;
-
 
 const ArtistInfo = () =>{
     const navigation = useNavigation();
@@ -50,7 +50,8 @@ const ArtistInfo = () =>{
         if(item.desc === '' || item.desc === null) return null;
         return(
             <TouchableOpacity key={index} onPress={()=>checkAction(item.desc)} style={styles.actionBox}>
-                <Image resizeMode={'contain'} source={item.img} style={styles.images} />
+                {/* {index === 0 && <Text style={{ marginLeft: 20 }}>Share To : </Text>} */}
+                <Image resizeMode={'contain'} source={item.img} style={[styles.images, {marginLeft:5}]} />
             </TouchableOpacity>
         );
     };
@@ -78,12 +79,12 @@ const ArtistInfo = () =>{
         const s2 = getSkill(skill2);
         const s3 = getSkill(skill3);
 
-        const getActions = ()  =>[
-            {name : 'Website',desc :  website ,img : require('@Assets/svgs/website.svg')},
-            {name : 'Instagram',desc :  instagram_url,img : require('@Assets/svgs/insta.svg')},
-            {name : 'Facebook',desc :  facebook_url, img : require('@Assets/svgs/fb.svg')},
-            {name : 'Twitter',desc :  twitter_url,img : require('@Assets/svgs/twitter.svg')},
-        ];
+        const getActions = () => [
+            { name: 'Website', desc: website, img: require('@Assets/svgs/website.svg') },
+            { name: 'Instagram', desc: instagram_url, img: require('@Assets/svgs/insta.svg') },
+            { name: 'Facebook', desc: facebook_url, img: require('@Assets/svgs/fb.svg') },
+            { name: 'Twitter', desc: twitter_url, img: require('@Assets/svgs/twitter.svg') },
+        ].filter(action => action.desc);
 
         const renderSkill = skill =>{
             if(skill) return(
@@ -96,6 +97,8 @@ const ArtistInfo = () =>{
 
         const cat = GetCatValue(category);
         const isBiography = category === 'biography';
+        const actions = getActions();
+
         return(
             <>
                 {isBiography && <FormHeader headerText={'About Artist'} />}
@@ -131,12 +134,15 @@ const ArtistInfo = () =>{
                             {s2 ? renderSkill(s2) : null}
                             {s3 ? renderSkill(s3) : null}
                         </View>
-                        <View style={styles.socialIconWrapper}>
-                            {
-                                getActions().map((item,index)=>(
-                                    renderEachAction(item,index)
-                                ))
-                            }
+                        <View>
+                        {actions.length > 0 && (
+                            <View style={styles.socialIconWrapper}>
+                                <Text style={{marginTop:moderateScale(2)}}>Share To : </Text>
+                                {actions.map((item, index) => (
+                                    renderEachAction(item, index)
+                                ))}
+                            </View>
+                        )}
                         </View>
                     </View>
                 </View>

@@ -6,9 +6,9 @@ import { createStackNavigator, } from '@react-navigation/stack';
 
 import TermsAndConditionsScreen from '../@Screens/@Auth/TermsAndConditions';
 
-
 // COMMON SCREENS
 import WebViewScreen from '../@Screens/@Common/WebView';
+import HowToWebView from '../@Screens/@Core/Tabs/Spenowr/ExploreCard/HowToWebView';
 import ProductDetailsScreen from '../@Screens/@Common/ProductDetails';
 import ArtworkDetailsScreen from '../@Screens/@Common/ArtworkDetails';
 import ArticleDetailScreen from '../@Screens/@Common/ArticleDetails';
@@ -24,16 +24,18 @@ import ReferalsScreen from '../@Screens/@Common/Referals';
 import ShoppingCartCheckoutScreen from '../@Screens/@Common/Cart/Checkout';
 import MyOrdersScreen from '../@Screens/@Common/MyOrders';
 import ProductPaymentScreen from '../@Screens/@Common/Payments/ProductPaymentScreen';
+import RazorPayPayment from '../@Screens/@Common/Payments/RazorPayPayment';
+import RazorPayAnimatePoints from '../@Screens/@Common/Payments/RazorPayAnimatePoints';
 import OrderDetailsScreen from '../@Screens/@Common/MyOrders/Details';
 import SubscriptionScreen from '../@Screens/@Common/Subscription';
 import SearchScreen from '../@Screens/@Common/Search';
 import JobDetailsScreen from '../@Screens/@Common/Jobs/Details';
 import AddJobScreen from '../@Screens/@Common/Jobs/AddJob';
+import AddInfluanceService from '../@Screens/@Core/Tabs/More/InfluencerProfile/AddInfluanceService';
 import MyJobsScreen from '../@Screens/@Core/Tabs/Profile/Details/ActionsAndActivities/Jobs';
 import PackageScreen from '../@Screens/@Common/Service_Package';
 import ServiceDetailsScreen from '../@Screens/@Common/Service_Package/ServiceDetails';
 import MyWorkExperienceScreen from '../@Screens/@Core/Tabs/Profile/Details/ActionsAndActivities/WorkExp';
-
 
 //SPENOWR TAB SCREEN
 import FindArtistScreen from '../@Screens/@Core/Tabs/Spenowr/Artists';
@@ -41,7 +43,6 @@ import FindTrainersScreen from '../@Screens/@Core/Tabs/Spenowr/Trainers';
 import CustomOrdersScreen from '../@Screens/@Core/Tabs/Spenowr/CustomOrders';
 import TrainingClassesScreen from '../@Screens/@Core/Tabs/Spenowr/TrainingClasses';
 import ViewMoreArtistScreen from '../@Screens/@Core/Tabs/Spenowr/Artists/ViewMoreArtist';
-
 
 //PROFILE TAB SCREEN
 import UserProjects from '../@Screens/@Core/Tabs/Profile/Details/ActionsAndActivities/Projects';
@@ -69,10 +70,12 @@ import MyCreditPointScreen from '../@Screens/@Core/Tabs/Profile/Details/ActionsA
 import ProfileVerificationScreen from '../@Screens/@Core/Tabs/Profile/Details/Verification/ProfileVerification';
 import MySeriesScreen from '../@Screens/@Core/Tabs/Profile/Details/ActionsAndActivities/Series';
 import AddSeriesScreen from '../@Screens/@Core/Tabs/Profile/Details/ActionsAndActivities/Series/AddSeries';
+import SocialWebViewScreen from '../@Screens/@Core/Tabs/Profile/Details/ProfileActions/SocialWebViewScreen';
 
 //MORE TABS SCREEN
 import SeriesScreen from '../@Screens/@Core/Tabs/Home/Tabs/Series/index';
 import SeriesPlayerScreen from '../@Screens/@Core/Tabs/Home/Tabs/Series/List/Player';
+import AudioMusic from '../@Screens/@Core/Tabs/More/AudioPodcast/AudioMusic';
 import SeriesDetailsScreen from '../@Screens/@Core/Tabs/Home/Tabs/Series/List';
 import DonateScreen from '../@Screens/@Core/Tabs/More/Donate';
 import ProjectScreen from '../@Screens/@Core/Tabs/More/Projects';
@@ -88,9 +91,13 @@ import ProductListScreen from '../@Screens/@Core/Tabs/Shop/ProductList';
 import SubscriptionPaymentScreen from '../@Screens/@Common/Payments/Subscription';
 import JobsScreen from '../@Screens/@Common/Jobs';
 import AddWorkExpScreen from '../@Screens/@Common/WorkExp/AddWorkExp';
+import AudioPodcast from '../@Screens/@Core/Tabs/More/AudioPodcast';
 import CustomPrintScreen from '../@Screens/@Core/Tabs/More/CustomPrints';
 import CustomPrintDetailsScreen from '../@Screens/@Common/CustomPrintDetails';
 import PrintCustomizationScreen from '../@Screens/@Common/CustomPrintDetails/Customization';
+import InfluencerProfile from '../@Screens/@Core/Tabs/More/InfluencerProfile';
+import RazorPayChatGPTPoints from '../@Screens/@Common/Payments/RazorPayChatGPTPoints';
+import RazorPayBuyJobPoints from '../@Screens/@Common/Payments/RazorPayBuyJobPoints';
 
 const Stack = createStackNavigator();
 
@@ -104,16 +111,22 @@ const MainStack = () => {
             <Stack.Screen component={OrderDetailsScreen} name={'OrderDetails'} />
             <Stack.Screen component={ShoppingCartCheckoutScreen} name={'CartCheckout'} /> 
             <Stack.Screen component={ProductPaymentScreen} name={'ProductPay'} />
+            <Stack.Screen component={RazorPayPayment} name={'RazorPayPayment'} />
+            <Stack.Screen component={RazorPayAnimatePoints} name={'RazorPayAnimatePoints'} />
+            <Stack.Screen component={RazorPayChatGPTPoints} name={'RazorPayChatGPTPoints'} />
+            <Stack.Screen component={RazorPayBuyJobPoints} name={'RazorPayBuyJobPoints'} />
             <Stack.Screen component={ShippingAddressScreen} name = {'ShippingAddress'} />
             <Stack.Screen component={BankAccountScreen} name = {'BankAccount'} />
             <Stack.Screen component={ReferalsScreen} name = {'Referals'} />
             <Stack.Screen component={WebViewScreen} name ='CommonWebView' />
+            <Stack.Screen component={HowToWebView} name ='HowToWebView' />
             <Stack.Screen component={ProductDetailsScreen} name ='ProductDetails' />
             <Stack.Screen component={ArtworkDetailsScreen} name='ArtworkDetails' />
             <Stack.Screen component={ArticleDetailScreen} name={'ArticleDetails'} />
             <Stack.Screen component={NotificationScreen} name='Notifications' />
             <Stack.Screen component={AddSpecializationsScreen} name='Specialization' />
             <Stack.Screen component={AccountInfoScreen} name='AccountInfo' />
+            <Stack.Screen component={AddInfluanceService} name='AddInfluanceService' />
             <Stack.Screen component={QuotesDetailScreen} name={'QuotesDetails'} />
             <Stack.Screen component={PaymentInitiationScreen} name={'PaymentInitiation'} />
             <Stack.Screen component={SubscriptionScreen} name={'Subscription'} />
@@ -126,6 +139,7 @@ const MainStack = () => {
             <Stack.Screen component={AddWorkExpScreen} name={'AddWorkExp'} />
             <Stack.Screen component={PackageScreen} name={'Package'} />
             <Stack.Screen component={ServiceDetailsScreen} name={'ServiceDetails'} />
+            <Stack.Screen component={AudioPodcast} name={'AudioPodcast'} />
 
             {/* SHOP TAB STACK */}
             <Stack.Screen component={ProductListScreen} name='ProductList' />
@@ -140,6 +154,7 @@ const MainStack = () => {
             {/* PROFILE TAB STACK */}
             <Stack.Screen component={MySeriesScreen} name ='MySeries' />
             <Stack.Screen component={AddSeriesScreen} name ='AddSeries' />
+            <Stack.Screen component={SocialWebViewScreen} name ='SocialWebViewScreen' />
             <Stack.Screen component={SellerProfileScreen} name ='SellerProfile' />
             <Stack.Screen component={SellerOrderDetailsScreen} name ='SellerOrderDetails' />
             <Stack.Screen component={AddSellerProductScreen} name ='AddSellerProduct' />
@@ -168,6 +183,7 @@ const MainStack = () => {
             <Stack.Screen component={UserSettingsScreen} name ='UserSettings' />
             <Stack.Screen component={SeriesScreen} name ='Series' />
             <Stack.Screen component={SeriesPlayerScreen} name ='SeriesPlayer' />
+            <Stack.Screen component={AudioMusic} name ='AudioMusic' />
             <Stack.Screen component={SeriesDetailsScreen} name ='SeriesDetails' />
             <Stack.Screen component={AppSettingsScreen} name ='AppSettings' />
             <Stack.Screen component={SupportScreen} name ='Support' />
@@ -182,6 +198,7 @@ const MainStack = () => {
             <Stack.Screen component={DonateScreen} name='Donate' />
             <Stack.Screen component={ProjectScreen} name='Projects' />
             <Stack.Screen component={ProjectDetailScreen} name='ProjectDetails' />
+            <Stack.Screen component={InfluencerProfile} name='InfluencerProfile' />
         </>
     );
 };

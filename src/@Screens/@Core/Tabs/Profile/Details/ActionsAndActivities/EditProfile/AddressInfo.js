@@ -153,7 +153,6 @@ class AddressInfo extends Component {
         return statename;
     }
 
-
     render() {
         return (
             <KeyboardAvoidingView behavior="padding" >

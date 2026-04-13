@@ -19,11 +19,10 @@ import SubscriptionScreen from '../@Screens/@Common/Subscription/index';
 
 const Stack = createStackNavigator();
 
-const AuthNavigator = ({...props}) => {
-    const {navigation} = props;
-    const willLogout = navigation.getParam('logout');
+const AuthNavigator = ({ route }) => {
+    const willLogout = route?.params?.logout;
     return (
-        <Stack.Navigator headerMode="none"  initialRouteName={'Splash'}>
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={'Splash'}>
             <Stack.Screen component={SplashScreen} initialParams={{logout:willLogout? true : false}} name="Splash"  />
             <Stack.Screen component={LandingScreen} name="Landing" />
             <Stack.Screen component={OnboardingScreen} name='Onboarding' />
@@ -41,7 +40,6 @@ const AuthNavigator = ({...props}) => {
 
 export default AuthNavigator;
 
-
 AuthNavigator.propTypes = {
-    navigation: PropTypes.object.isRequired,
+    route: PropTypes.object,
 };

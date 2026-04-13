@@ -46,7 +46,6 @@ const AudioPlayer = ({ Track }) =>{
         await TrackPlayer.reset();
     }
 
-
     return(
         <TouchableOpacity onPress={TogglePlay} style={GlobalStyles.seeMoreButton}>
             <Icon name={isPlay ? "pause" :  "play"} size={15} />

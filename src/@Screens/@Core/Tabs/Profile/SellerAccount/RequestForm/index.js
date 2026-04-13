@@ -96,14 +96,31 @@ const RequestForm = ({setSellerProfile,...props}) =>{
             .catch();
     };
 
-    const chooseFile = () => {
-
-        pickImage((res)=>{
+    const chooseFile = Platform.OS === 'ios' 
+    ? () => {
+        pickImage((res) => {
             let response = res;
-            if(Platform.OS === 'android'){
-                if(res?.assets) response = res.assets[0];
+            if (Platform.OS === 'android') {
+                if (res?.assets) response = res.assets[0];
             }
-            if(response.didCancel) return;
+            if (response.didCancel) return;
+            
+            // Update the state based on the platform
+            if (typeof response === 'string') {
+                // For iOS, response is a string URI directly
+                setSelectedFile(response);
+            } else {
+                // For Android, response is an object with 'assets' array
+                setSelectedFile(response.assets[0]);
+            }
+        });
+    }
+    : () => {
+        pickImage((res) => {
+            let response = res;
+            if (res?.assets) response = res.assets[0];
+            if (response.didCancel) return;
+
             setSelectedFile(response);
         });
     };
@@ -210,6 +227,5 @@ const mapDispatchToProp = (dispatch) => ({
     updateUserDetails:(instituteObj,profileObj) =>
         dispatch(userActions.updateUserDetails(instituteObj,profileObj))
 });
-
 
 export default connect(mapStateToProps,mapDispatchToProp)(RequestForm);

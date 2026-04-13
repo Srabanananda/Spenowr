@@ -19,7 +19,6 @@ const {
     COLOR:{SUBNAME,DARK_VIOLET}
 } = Config;
 
-
 const ArtLovers = ({...props}) =>{
     const {accountData,mode,updateUserDetails,userObj,publicAccountData} = props;
     const{
@@ -70,7 +69,6 @@ const ArtLovers = ({...props}) =>{
         </>
     );
 };
-
 
  
 ArtLovers.propTypes = {

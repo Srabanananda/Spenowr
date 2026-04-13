@@ -107,6 +107,7 @@ const WritingsView = ({...props}:any) =>{
     if(image_type === 'vertical')
     {
         const imgObj =  quotes[0].quoteVerticalImage.find(x=>x.value === theme_image);
+        console.log('theme_imagetheme_image,imgObj',theme_image,imgObj);
         if(imgObj)
             return (
                 <TouchableOpacity 

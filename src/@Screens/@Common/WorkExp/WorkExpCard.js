@@ -44,7 +44,6 @@ const WorkExpCard = ({workExp,showActions,refresh}:any) => {
 
 export default WorkExpCard;
 
-
 const styles = StyleSheet.create({
     card: {
         padding: moderateScale(10),

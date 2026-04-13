@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         margin:moderateScale(5),
         padding:moderateScale(10),
         borderRadius:moderateScale(5),
-        width:moderateScale(180),
+        width:moderateScale(140),
         alignSelf:'center'
     },
     winnerName:{

@@ -16,13 +16,11 @@ import Card from '../WhatsNew/WhatsNewCard';
 import Filters from '../WhatsNew/filters';
 import { TabsFormData } from '../..';
 import useUserData from '../../../../../../@Hooks/useUser';
-import Animated, { useAnimatedScrollHandler } from 'react-native-reanimated';
 import { getUserDetailsNew } from '../../../../../../@Endpoints/Auth';
 
 const  {COLOR:{SUBNAME}} = Config;
-const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
-const BySpenowr = ({yAxisAnimatedValue,...props}:any) =>{
+const BySpenowr = ({...props}:any) =>{
 
     const {
         fetchBySpenowrFeed,bySpenowrFeed,
@@ -59,22 +57,19 @@ const BySpenowr = ({yAxisAnimatedValue,...props}:any) =>{
         setTimeout(()=>{setRefreshing(false);},500);
     };
 
-    const scrollHandler = useAnimatedScrollHandler((event) => {
-        // yAxisAnimatedValue.value = event.contentOffset.y;
-    });
-
+   
     const renderPages = ({ index,item }) =>{
         return (
             <>
                 {index != 0 && (index) % 5 == 0 && subscription == "spenowr_basic" && 
                     <>
-                        {/* <MyAdView
+                        <MyAdView
                             type={managedAds?.type}
                             key={index}
                             buttonTitle={managedAds?.button_text}
                             link={managedAds?.button_link}
                             imagePath={managedAds?.image}
-                        /> */}
+                        />
                         <Card ref={ref => trackPlayerRef = ref} info={item} key={index} />
                     </>
                 || 
@@ -86,19 +81,18 @@ const BySpenowr = ({yAxisAnimatedValue,...props}:any) =>{
     if(bySpenowrFeed.length)
         return(
             <View style={{flex:1,marginTop:moderateScale(5)}}>
-                <AnimatedFlatList
+                 <FlatList
                     ListFooterComponent={()=><ActivityIndicator color={'red'} />} 
                     contentContainerStyle={{paddingTop:moderateScale(6)}}
                     data={bySpenowrFeed}
                     horizontal={false}
                     initialNumToRender={5}
                     keyExtractor={item=>item.id.toString()}
+                    removeClippedSubviews={true}
                     onEndReached={()=>{
-                    //   alert('called')
                         !apiCalled && callApi(bySpenowrFeed.length)
                     }}
                     onEndReachedThreshold={0.3} 
-                    onScroll={scrollHandler}
                     refreshControl={
                         <RefreshControl
                             onRefresh={onRefresh} refreshing={refreshing}

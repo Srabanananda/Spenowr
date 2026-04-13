@@ -39,7 +39,6 @@ const CardActions = ({refresh,workDetails,certificateUrl}:CardProps) =>{
             .finally(()=>setEditLoader(false));
     };
 
-
     const deleteWorkExp = () => {
         setDeleteLoader(true);
         deleteWork(exp_id)

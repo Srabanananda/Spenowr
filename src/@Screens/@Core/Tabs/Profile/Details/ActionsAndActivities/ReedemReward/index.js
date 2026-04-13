@@ -2,13 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React, { useEffect,useState } from 'react';
-import {
-    SafeAreaView,
-    View,
-    StyleSheet,
-    Text,
-    ScrollView
-} from 'react-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { getRewardPoints } from '../../../../../../../@Endpoints/Core/Tabs/Common';
 import DefaultHeader from '../../../../../../../@GlobalComponents/DefaultHeader';
 import ScreenLoader from '../../../../../../../@GlobalComponents/ScreenLoader';
@@ -16,6 +10,7 @@ import { GlobalStyles } from '../../../../../../../@GlobalStyles';
 import { moderateScale } from 'react-native-size-matters';
 import Config from '@Config/default';
 import moment from 'moment';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {COLOR:{SUBNAME,GREEN,RED}} = Config;
 
@@ -79,7 +74,7 @@ const RedeemRewardScreen = () =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Reward Earnings'} />
             {loader ? <ScreenLoader text={'Fetching ...'} /> :  getData()}
         </SafeAreaView>
@@ -120,7 +115,6 @@ const styles = StyleSheet.create({
         color:SUBNAME,
     }
 });
-
 
 {/* <LinearGradient 
         colors={['#1D2671','#200122']} 

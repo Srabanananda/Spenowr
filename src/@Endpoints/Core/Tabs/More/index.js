@@ -176,7 +176,6 @@ export const inviteFriendToVote = (first_name,last_name,email,mediaType,contestM
         .then(response => response.data);
 };
 
-
 export const changePassword = (bodyFormData) => {
     const url = `${BASE_PATH+API_VERSIONING}/profile/update-password`;
     return axios
@@ -252,7 +251,6 @@ export const createAward = (bodyFormData) => {
         .then(response => response.data);
 };
 
-
 export const getSupportCenterMessages = () => {
     const url = `${BASE_PATH + API_VERSIONING}/profile/message-data`;
     return axios
@@ -264,9 +262,11 @@ export const getSupportCenterMessages = () => {
                 },
             }
         )
-        .then(response => response.data);
+        .then(response => {
+            console.log('Response data of more messages:', response.data);
+            return response.data;
+        });
 };
-
 
 export const getMessageDetails = (converstationId) => {
     const formData = new FormData();
@@ -319,6 +319,8 @@ export const getJobDetails = (slug) => {
     const url = `${BASE_PATH + API_VERSIONING}/photography/assignment-detail`;
     const formData = new FormData();
     formData.append('slug_url',slug);
+    console.log('formData 322',formData);
+    console.log('slugslugslug 323',slug);
     return axios
         .post(
             url,
@@ -339,6 +341,7 @@ export const addModuleComment = (user_id,media_id,comment,type) => {
     formData.append('media_id',media_id);
     formData.append('type',type);
     formData.append('comment',comment);
+    console.log('media_id', user_id, media_id, type, comment);
     return axios
         .post(
             url,
@@ -365,7 +368,6 @@ export const getMyJobsList = () => {
         )
         .then(response => response.data);
 };
-
 
 export const getAssignmentBids = (id) => {
     const url = `${BASE_PATH + API_VERSIONING}/profile/photography-assignment-bids-data`;
@@ -455,7 +457,7 @@ export const editWork = (id) => {
 
 export const addWorkExp = (formValues) => {
     const url = `${BASE_PATH + API_VERSIONING}/profile/add-work-experince`;
-    const hasImagePath = formValues?.certificate?.assets?.length ?? false;
+    const hasImagePath = formValues?.certificate.base64 ? true : false;
     const data = new FormData();
     data.append('title',formValues.title);
     data.append('exp_givenby',formValues.orgName);
@@ -463,8 +465,9 @@ export const addWorkExp = (formValues) => {
     data.append('description',formValues.expDescription);
     data.append('start_date',formValues.startDate);
     data.append('end_date',formValues.currentlyWorking ? '' : formValues.endDate);
-    data.append('workexp_image_path', hasImagePath ? formValues?.certificate?.assets[0]?.base64  : null);
+    data.append('workexp_image_path', hasImagePath ? `data:${formValues.certificate.type};base64,` + formValues?.certificate?.base64  : null);
     data.append('image_alt_text',formValues.title);
+    console.log('formdata data', data, hasImagePath, formValues?.certificate);
 
     return axios
         .post(
@@ -476,7 +479,15 @@ export const addWorkExp = (formValues) => {
                 },
             }
         )
-        .then(response => response.data);
+        .then(response => {
+            console.log('responseresponseresponse',response);
+            console.log('response.data',response.data);
+            return response.data; // Return the response data
+        })
+        .catch((error) => {
+            console.log('error 486', error);
+        })
+       
 };
 
 export const updateWorkExp = (formValues,id) => {
@@ -712,7 +723,6 @@ export const getCustomPrintsDetails = (slug) => {
         .then(response => response.data);
 };
 
-
 export const getAudioPodCastList = (limit_from, limit_to) => {
     const url = `${BASE_PATH + API_VERSIONING}/profile/audio-podcast-list`;
     const data = new FormData();
@@ -722,6 +732,30 @@ export const getAudioPodCastList = (limit_from, limit_to) => {
     data.append("pageRange", 20);
     data.append("offset", 0);
     data.append("language", "");
+    return axios
+        .post(url, data, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+    })
+    .then((response) => response.data);
+};
+
+export const submitInfluencerProfileNew = (data) => {
+    const url = `${BASE_PATH + API_VERSIONING}/profile/influencer-submit`;
+    
+    return axios
+        .post(url, data, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+    })
+    .then((response) => response.data);
+};
+
+export const featuredSeriesData = (data) => {
+    const url = `${BASE_PATH + API_VERSIONING}/profile/featured-series-data`;
+    
     return axios
         .post(url, data, {
         headers: {
@@ -743,6 +777,4 @@ export const getSeriesDetails = (series_id) => {
     })
     .then((response) => response.data);
 };
-
-
 

@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState,useEffect} from 'react';
-import {SafeAreaView,StyleSheet,View,RefreshControl,FlatList,Text} from 'react-native';
+import { StyleSheet, View, RefreshControl, FlatList, Text } from 'react-native';
 import DefaultHeader  from '@GlobalComponents/DefaultHeader';
 import { getJobList } from '../../../@Endpoints/Core/Tabs/More';
 import ScreenLoader from '@GlobalComponents/ScreenLoader';
@@ -11,6 +11,7 @@ import ErrorBoundary from 'react-native-error-boundary';
 import JobCard from './JobCard';
 import { GlobalStyles } from '../../../@GlobalStyles';
 import { moderateScale } from 'react-native-size-matters';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const JobsScreen = () =>{
 
@@ -57,6 +58,7 @@ const JobsScreen = () =>{
                         horizontal={false}
                         initialNumToRender={10}
                         keyExtractor={item=>item.assignment_id.toString()}
+                        removeClippedSubviews={true}
                         legacyImplementation = {true}
                         onEndReached={()=> !loading && callApi(jobs.length)}
                         onEndReachedThreshold={0.5} 
@@ -76,7 +78,7 @@ const JobsScreen = () =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Job Opportunities'} />
             {getData()}
         </SafeAreaView>

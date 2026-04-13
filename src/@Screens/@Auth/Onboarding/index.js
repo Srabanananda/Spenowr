@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState} from 'react';
-import {SafeAreaView,ScrollView,View,StyleSheet,Text} from 'react-native';
+import { ScrollView, View, StyleSheet, Text } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import DefaultButton from '../../../@GlobalComponents/DefaultButton';
 import { GlobalStyles } from '../../../@GlobalStyles';
@@ -10,6 +10,7 @@ import Card from './Card';
 import Config from '@Config/default';
 import { setUserUse } from '../../../@Endpoints/Auth';
 import Toast from 'react-native-simple-toast';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {COLOR:{APP_PINK_COLOR,WHITE}} = Config;
 
@@ -65,7 +66,7 @@ const OnboardingScreen = ({...props}) =>{
     };
 
     return(
-        <SafeAreaView style={[GlobalStyles.GlobalContainer,{backgroundColor:WHITE}]}>
+        <SafeAreaView edges={['left', 'right']} style={[GlobalStyles.GlobalContainer,{backgroundColor:WHITE}]}>
             <View style={styles.headerBox}>
                 <Text style={styles.headerText}>What you want to use Spenowr for?</Text>
             </View>

@@ -39,11 +39,10 @@ DefaultButton.propTypes = {
     buttonText:PropTypes.string.isRequired,
     isDeactivated:PropTypes.bool,
     onPress:PropTypes.func.isRequired,
-    showLoader:PropTypes.bool.isRequired,
+    showLoader:PropTypes.bool,
     textStyle:PropTypes.object,
     type: PropTypes.string
 };
-
 
 export default DefaultButton;
 

@@ -19,6 +19,7 @@ const Details = ({userObj,profileData}) =>{
             email,
         }
     } = userObj;
+    
 
     if(account_type === '4')
         return(
@@ -38,7 +39,8 @@ const Details = ({userObj,profileData}) =>{
                 <InfoCard data={profileData} mode={'PRIVATE'} />
             </ErrorBoundary>
             <ErrorBoundary FallbackComponent={FallBackUI}>
-                <ProfileActions mode={'PRIVATE'} />
+                {/* <ProfileActions mode={'PRIVATE'} typeTo={"Profile"} /> */}
+                <ProfileActions mode={'PRIVATE'}  />
             </ErrorBoundary>
             <ErrorBoundary FallbackComponent={FallBackUI}>
                 <ContactInfo mode={'PRIVATE'} />
@@ -49,7 +51,6 @@ const Details = ({userObj,profileData}) =>{
         </>
     );
 };
-
 
 Details.propTypes = {
     profileData: PropTypes.object,

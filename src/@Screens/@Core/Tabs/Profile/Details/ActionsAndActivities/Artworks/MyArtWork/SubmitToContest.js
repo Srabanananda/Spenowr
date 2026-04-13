@@ -2,17 +2,16 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useEffect, useState} from 'react';
-import {
-    View,StyleSheet, SafeAreaView,Text, ScrollView
-} from 'react-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import DefaultButton from '../../../../../../../../@GlobalComponents/DefaultButton';
 import Modal from 'react-native-modal';
 import Config from '@Config/default';
 import ModalHeader from '../../../../../../../../@GlobalComponents/ModalHeader';
-import { 
-    applyForContest, fetchOpenContests, 
-    removeFromContest,fetchContestRemoveData, applyForChangeOfArtworkInAContest 
+import { SafeAreaView } from 'react-native-safe-area-context';
+import {
+    applyForContest, fetchOpenContests,
+    removeFromContest, fetchContestRemoveData, applyForChangeOfArtworkInAContest
 } from '../../../../../../../../@Endpoints/Core/Tabs/MyAccount';
 import CheckBox from '@react-native-community/checkbox';
 import Toast from 'react-native-simple-toast';
@@ -306,7 +305,7 @@ const SubmitToContest = ({...props}:submitContestProps) =>{
         const currentSelected = getSelectedContest();
         const {contest_fee,payment_contest,currency,status} = currentSelected;
         return(
-            <SafeAreaView style={styles.contestModal}>  
+            <SafeAreaView edges={['left', 'right']} style={styles.contestModal}>  
                 <View style={styles.wrapper}>
                     <ModalHeader 
                         headerText={ contest_payment_status === '1' ? 'Retry Submit' :contestExist <=0  ? 'Select A Contest' : 'Remove From Contest'} 

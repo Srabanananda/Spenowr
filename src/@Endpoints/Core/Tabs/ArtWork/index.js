@@ -67,6 +67,25 @@ export const requestCustomPrint = (media_id) => {
         .then(response => response.data);
 };
 
+export const makeAnimateArtwork = (media_id, promptImage, promptText) => {
+    const body = new FormData();
+    body.append('promptImage',promptImage);
+    body.append('promptText',promptText);
+    body.append('media_id',media_id);
+    const url = `${BASE_PATH + API_VERSIONING}/profile/animate-2d-to-3d/generate-taskId`;
+    return axios
+        .post(
+            url,
+            body,
+            {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+            }
+        )
+        .then(response => response.data);
+};
+
 export const updateArtWork = (body) => {
     const url = `${BASE_PATH + API_VERSIONING}/profile/update-gallery`;
     return axios
@@ -98,7 +117,6 @@ export const getImageFromChatGPT = (searchText) => {
         )
         .then(response => response.data);
 };
-
 
 export const deleteArtWork = (media_id) => {
     const body = new FormData();

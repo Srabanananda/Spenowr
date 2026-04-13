@@ -6,7 +6,7 @@
 import Config from '@Config/default';
 import {StyleSheet} from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
-const {COLOR : {WHITE}} = Config;
+const {COLOR : {WHITE, SUBNAME}} = Config;
 
 const styles = StyleSheet.create({
     containerWrapper:{
@@ -19,6 +19,18 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         borderRadius:moderateScale(80),
+    },
+    skipButtonWrap:{
+        justifyContent:'center',
+        alignItems:'center',
+        paddingHorizontal:moderateScale(12),
+        paddingVertical:moderateScale(8),
+    },
+    skipLabel:{
+        textTransform:'uppercase',
+        fontWeight:'bold',
+        color:SUBNAME,
+        fontSize:moderateScale(14),
     },
     slideContainer:{
         flex:1,

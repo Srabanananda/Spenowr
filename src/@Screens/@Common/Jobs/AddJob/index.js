@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState,useEffect} from 'react';
-import {SafeAreaView,ScrollView,Text,View,TextInput,Keyboard,TouchableOpacity} from 'react-native';
+import { ScrollView, Text, View, TextInput, Keyboard, TouchableOpacity } from 'react-native';
 import DefaultHeader from '@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../../@GlobalStyles';
 import { moderateScale } from 'react-native-size-matters';
@@ -17,6 +17,7 @@ import DefaultButton from '../../../../@GlobalComponents/DefaultButton';
 import Toast from 'react-native-simple-toast';
 import moment from 'moment';
 import CheckBox from '@react-native-community/checkbox';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {data:{country,Currency,Accounts}} = GLOBALJSON;
 
@@ -189,7 +190,10 @@ const AddJobScreen = ({...props}: JobScreenProps) =>{
                 Toast.show(EditData ? 'Assignment Edited Successfully'  : 'Assignment Added Successfully');
                 navigation.goBack();
             })
-            .catch(()=>Toast.show('Oops Something went wrong'))
+            .catch((err)=>{
+                console.log('console error in 193',err);
+                Toast.show('Something went wrong',Toast.LONG);
+            })
             .finally(()=>{
                 setLoader(false);
             });
@@ -269,8 +273,6 @@ const AddJobScreen = ({...props}: JobScreenProps) =>{
                     />
                     <Text style={GlobalStyles.inputHeaderName}>IS A TRAINER</Text>
                 </View>
-
-
 
                 <Text style={GlobalStyles.inputHeaderName}>TITLE
                     <Text style={GlobalStyles.starColor}>*</Text>
@@ -453,7 +455,7 @@ const AddJobScreen = ({...props}: JobScreenProps) =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={EditData ? 'Edit Job' : 'Add Job'} />
             <ScrollView 
                 contentContainerStyle={{padding:moderateScale(5),paddingBottom:moderateScale(100)}} 

@@ -32,6 +32,7 @@ const chartConfig = {
 const VisitCountGraph = ({...props}) =>{
 
     const {visitData} = props;
+    console.log('Visit Count Data: ', visitData);
     
     const data = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec'],
@@ -56,6 +57,7 @@ const VisitCountGraph = ({...props}) =>{
                         data={data}
                         height={256}
                         width={moderateScale(325)}
+                        formatYLabel={yValue => `${Math.round(yValue)}`}
                     />
                     : <Text>No Insights Available</Text>
             }

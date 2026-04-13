@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 import Config from '@Config/default';
 import {useNavigation} from '@react-navigation/native';
-import Image from 'react-native-image-progress';
+import FastImage from 'react-native-fast-image';
 import Comments from '../Comments';
 
 const {NEW_IMG_BASE} = Config;
@@ -28,7 +28,7 @@ const Winners = ({winnerList,contestDetails,Status}) =>{
                 style={styles.eachWinner}
             >
                 <View style={styles.imageCircle}>
-                    <Image resizeMode={'cover'} source={{uri: NEW_IMG_BASE + eachWinner.image_path}} style={{width:null,height:null,flex:1}} />
+                    <FastImage resizeMode={'cover'} source={{uri: NEW_IMG_BASE + eachWinner.image_path}} style={{width:null,height:null,flex:1}} />
                     <View style={styles.imageOverlayBlack} />
                     <Text 
                         numberOfLines={1}

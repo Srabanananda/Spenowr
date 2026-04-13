@@ -3,7 +3,7 @@
  */
 import React,{useState} from 'react';
 import {View,TouchableOpacity,StyleSheet,Text, ActivityIndicator,Platform} from 'react-native';
-import Image from 'react-native-image-progress';
+import FastImage from 'react-native-fast-image';
 import Toast from 'react-native-simple-toast';
 import Config from '@Config/default';
 import { moderateScale } from 'react-native-size-matters';
@@ -33,13 +33,31 @@ const EditProfileImage = ({mode = 'PRIVATE',userObj,updateUserDetails}) =>{
             .catch();
     };
 
-    const chooseFile = () => {
-        pickImage((res)=>{
+  const chooseFile = Platform.OS === 'ios' 
+    ? () => {
+        pickImage((res) => {
             let response = res;
-            if(Platform.OS === 'android'){
-                if(res?.assets) response = res.assets[0];
+            if (Platform.OS === 'android') {
+                if (res?.assets) response = res.assets[0];
             }
-            if(response.didCancel) return;
+            if (response.didCancel) return;
+            
+            // Update the state based on the platform
+            if (typeof response === 'string') {
+                // For iOS, response is a string URI directly
+                setFilePath(response);
+            } else {
+                // For Android, response is an object with 'assets' array
+                setFilePath(response.assets[0]);
+            }
+        });
+    }
+    : () => {
+        pickImage((res) => {
+            let response = res;
+            if (res?.assets) response = res.assets[0];
+            if (response.didCancel) return;
+
             setFilePath(response);
         });
     };
@@ -75,7 +93,7 @@ const EditProfileImage = ({mode = 'PRIVATE',userObj,updateUserDetails}) =>{
     return(
         <View>
             <TouchableOpacity disabled={mode!=='PRIVATE'} onPress={() => chooseFile()}  style={styles.profilePic}>
-                <Image 
+                <FastImage 
                     source={{ uri: filePath ? 'data:image/jpeg;base64,' + filePath.base64 :   imagePath }} 
                     style={{width:null,height:null,flex:1}} 
                 />

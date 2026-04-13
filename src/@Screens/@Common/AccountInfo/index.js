@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React, { useEffect, useState } from 'react';
-import {SafeAreaView,View,Text,ScrollView,TouchableOpacity,TextInput, ActivityIndicator} from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import DefaultHeader from '../../../@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../@GlobalStyles';
@@ -20,6 +20,7 @@ import {updateProfileAccountDetails} from '../../../@Endpoints/Core/Tabs/EditPro
 import { getUserDetails } from '../../../@Endpoints/Auth';
 import * as userActions from '@Redux/actions/userActions';
 import usePlan from '../../../@Utils/customHooks/usePlans';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {
     data:{
@@ -278,7 +279,7 @@ const AccountInfoScreen = ({...props}) =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Account Info'}>
                 <View style={{flexDirection:'row',alignItems:'center'}}>
                     <TouchableOpacity onPress={()=> navigation.navigate('Subscription',{current:subscription_plan,selected:subscription_plan})} style={[GlobalStyles.seeMoreButton,{marginRight:10}]}>

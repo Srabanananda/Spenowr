@@ -42,7 +42,6 @@ const FeaturedArtworks = ({...props}) =>{
     );
 };
 
-
 FeaturedArtworks.propTypes = {
     gallery_featured:PropTypes.array.isRequired,
 };

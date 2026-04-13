@@ -36,6 +36,8 @@ const OrderCard = ({ ...props }) => {
                 return { color: '#cd2121' };
             case 'PAID':
                 return { color: '#4CAF50' };
+            case 'paid':
+                return { color: '#4CAF50' };
             case 'Payment Pending':
                 return { color: '#FFC107' };
             default:
@@ -45,7 +47,7 @@ const OrderCard = ({ ...props }) => {
 
     return (
         <View style={[GlobalStyles.primaryCard, styles.container]}>
-            <FormHeader headerText={`Order Id :  ${orderid}`} />
+            <FormHeader headerText={`Order ID :  ${orderid}`} />
             <View style={styles.containerWrapper}>
                 <Text style={styles.headerText}>
                     Order Status : <Text style={styles.dataText}>{product_order_status}</Text>
@@ -63,7 +65,7 @@ const OrderCard = ({ ...props }) => {
                     Payment Mode : <Text style={styles.dataText}>{paymentMode}</Text>
                 </Text>
                 <Text style={styles.headerText}>
-                    Payment Status : <Text style={[styles.dataText, getColorCode()]}>{orderStatus}</Text>
+                    Payment Status : <Text style={[styles.dataText, getColorCode()]}>{orderStatus.toUpperCase()}</Text>
                 </Text>
                 <View style={styles.buttonWrapper}>
                     <BuyAgain orderId={orderid} />
@@ -81,7 +83,6 @@ OrderCard.propTypes = {
 };
 
 export default OrderCard;
-
 
 const styles = StyleSheet.create({
     container: {

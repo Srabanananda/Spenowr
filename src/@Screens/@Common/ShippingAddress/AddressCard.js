@@ -26,6 +26,10 @@ const AddressCard = ({...props}) =>{
         userObj
     } = props;
 
+    console.log('====================================');
+    console.log('selectedI 30',selectedI);
+    console.log('====================================');
+
     const {
         delivery_type='',
         address='',
@@ -38,14 +42,17 @@ const AddressCard = ({...props}) =>{
     } = Address;
 
     const {default_address} = userObj;
+    // console.log('AddressAddressAddressdefault_address',Address.default_address);
+    // console.log('shipping_id 41',shipping_id);
 
-    const isDefault = shipping_id === default_address;
+    // const isDefault = shipping_id === default_address;
 
     const {name:countryName=''} = getCountry(country);
     const {value:stateName=''} = getState(country,state);
     const [deleteLoader, setDeleteLoader] = useState(false);
     const [defaultLoader, setDefaultLoader] = useState(false);
     const [editLoader, setEditLoader] = useState(false);
+    const [defaultAdd, setDefaultAdd] = useState('');
     const location = `${countryName}, ${stateName} - ${pin}`;
 
     const refreshProfile = () =>{
@@ -76,7 +83,12 @@ const AddressCard = ({...props}) =>{
         setEditLoader(true);
         editShippingAddress(shipping_id)
             .then((res)=>{
-                onEditComplete?.(res.data.shipping_address);
+                let newState = {...res.data.shipping_address, "default_address":res.data.default_address}
+                console.log('newState',newState);
+                console.log('edit address response',res);
+                // setDefaultAdd(res.data.default_address)
+                console.log('res.data.default_address',res.data.default_address);
+                onEditComplete?.(newState);
                 onDeleteComplete?.();
             })
             .catch(()=>{
@@ -90,9 +102,12 @@ const AddressCard = ({...props}) =>{
     const setAddressAsDefault = () => {
         setDefaultLoader(true);
         setDefaultShippingAddress(shipping_id)
-            .then(()=>{
+            .then((res)=>{
+                console.log('res 101 res.data.shipping_id',res.data.shipping_id);
+                setDefaultAdd(res.data.shipping_id)
+                
                 Toast.show('Address set as default');
-                refreshProfile();
+                refreshProfile?.();
                 onDeleteComplete?.();
             })
             .catch(()=>{
@@ -139,8 +154,8 @@ const AddressCard = ({...props}) =>{
             <Text style={styles.address}>{address}</Text>
             <Text>{location}</Text>
             <View style={styles.buttonWrapper}>
-                <TouchableOpacity disabled={isDefault} onPress={()=>setAddressAsDefault()} style={ isDefault ? GlobalStyles.seeMoreButtonRev :  GlobalStyles.seeMoreButton}>
-                    {defaultLoader ?  <ActivityIndicator color={APP_PINK_COLOR} /> : <Text style={ isDefault ? GlobalStyles.seeMoreButtonTextRev : GlobalStyles.seeMoreButtonText}>{isDefault ? 'Default' :  'Set Default'}</Text>}
+                <TouchableOpacity disabled={Address.default_address == true} onPress={()=>setAddressAsDefault()} style={ Address.default_address == true ? GlobalStyles.seeMoreButtonRev :  GlobalStyles.seeMoreButton}>
+                    {defaultLoader ?  <ActivityIndicator color={APP_PINK_COLOR} /> : <Text style={ Address.default_address == true ? GlobalStyles.seeMoreButtonTextRev : GlobalStyles.seeMoreButtonText}>{Address.default_address == true ? 'Default' :  'Set Default'}</Text>}
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>editAddress()} style={GlobalStyles.seeMoreButton}>
                     {editLoader ?  <ActivityIndicator color={APP_PINK_COLOR} /> : <Text style={GlobalStyles.seeMoreButtonText}>Edit</Text>}
@@ -165,8 +180,6 @@ AddressCard.propTypes = {
     userObj : PropTypes.object.isRequired,
     variant:PropTypes.string,
 };
-
-
 
 const mapStateToProps = (state) => {
     return {

@@ -33,7 +33,6 @@ const BlockUser = ({userObj,isUserBlocked,refreshData}:any) => {
             .finally(()=>setLoader(false));
     };
 
-
     const renderBlockConfirmation = () =>{
         return(
             <View style={styles.adminModal}>

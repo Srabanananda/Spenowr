@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useEffect, useState} from 'react';
-import {SafeAreaView,View,StyleSheet,Text} from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { GlobalStyles } from '../../../@GlobalStyles';
 import SUBSCRIPTIONS from '../../../assets/JsonFiles/Subscription/plans.json';
 import DefaultHeader from '../../../@GlobalComponents/DefaultHeader/index';
@@ -17,6 +17,7 @@ import { Toast } from 'react-native-simple-toast';
 import { useDispatch } from 'react-redux';
 import * as moreActions from '@Redux/actions/moreActions';
 import InAppPurchaseIOS from './InApp_IOS/comingSoon';
+import { SafeAreaView } from 'react-native-safe-area-context';
 // import InAppPurchaseIOS from './InApp_IOS';
 interface SubscriptionPlanProps{
     route : Object
@@ -77,7 +78,7 @@ const SubscriptionScreen = ({...props}: SubscriptionPlanProps) =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={ isIOS &&!isFromReg ? 'Coming Soon' : 'Select A Plan'} />
             {
                 

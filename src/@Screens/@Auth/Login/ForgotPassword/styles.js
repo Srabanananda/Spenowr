@@ -6,7 +6,6 @@ import Config from '@Config/default';
 import {StyleSheet} from 'react-native';
 const {COLOR : {WHITE}} = Config;
 
-
 const styles = StyleSheet.create({
     container: {
         backgroundColor: WHITE,

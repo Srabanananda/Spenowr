@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView,ScrollView, StyleSheet, Text, View,TouchableOpacity } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import SimpleToast from 'react-native-simple-toast';
 import { moderateScale } from 'react-native-size-matters';
 import { getCustomPrintsDetails } from '../../../@Endpoints/Core/Tabs/More';
@@ -13,7 +13,7 @@ import DefaultButton from '../../../@GlobalComponents/DefaultButton';
 import Toast from 'react-native-simple-toast';
 import { addPrintingItemToCart } from '../../../@Endpoints/Core/Tabs/Shop';
 import CustomImageView from './CustomImageView';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {COLOR:{APP_PINK_COLOR,LIGHTGREY,DARKGRAY},NEW_IMG_BASE} = Config;
 
@@ -113,7 +113,7 @@ const CustomPrintDetailsScreen = ({...props}:any) => {
                     <Text style={styles.productName}>{printDetails?.product_name}</Text>
                     <Text style={styles.clothing}>{Capitalize(printDetails.category)} For {printDetails.department}</Text>
                     <Text style={styles.reference}>Reference {printDetails?.product_sku}</Text>
-                    <Text style={styles.prize}>{currency} {extraInfo.price}</Text>
+                    <Text style={styles.prize}>{currency} {extraInfo.discount_price}</Text>
                     <Text style={styles.shippingFee}>{(printDetails.shipping_cost === '0' || printDetails.shipping_cost === '0.00') ? 'Free Shipping' :  `${currency+printDetails.shipping_cost} shipping fee is Applicable`}</Text>
                     <Text style={styles.size}>Select Size </Text>
                     <View style={{flexDirection:'row'}}>
@@ -138,7 +138,7 @@ const CustomPrintDetailsScreen = ({...props}:any) => {
 
     if(loader) return <ScreenLoader text={'Fetching Print Details ..'} />;
     return(
-        <SafeAreaView style={{flex:1}}>
+        <SafeAreaView edges={['left', 'right']} style={{flex:1}}>
             <DefaultHeader headerText={'Print Details'} />
             {printDetails && renderDetails()}
         </SafeAreaView>

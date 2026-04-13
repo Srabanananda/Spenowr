@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, View, Text } from 'react-native';
+import { ScrollView, StyleSheet, View, Text } from 'react-native';
 import DefaultHeader from '../../../../@GlobalComponents/DefaultHeader';
 import ScreenLoader from '../../../../@GlobalComponents/ScreenLoader';
 import { GlobalStyles } from '../../../../@GlobalStyles';
@@ -17,6 +17,7 @@ import Config from '@Config/default';
 import ErrorBoundary from 'react-native-error-boundary';
 import FallBackUI from '@GlobalComponents/FallBackUI';
 import WebView from 'react-native-webview';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const { COLOR: { LIGHTGREY, SUBNAME } } = Config;
 
@@ -112,7 +113,7 @@ const OrderDetailsScreen = ({ ...props }) => {
         );
     };
     return (
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={`Order - ${orderid}`} />
             {loading ? <ScreenLoader text={'Fetching details'} /> : getData()}
         </SafeAreaView>
@@ -123,7 +124,6 @@ OrderDetailsScreen.propTypes = {
     navigation: PropTypes.object.isRequired,
     route: PropTypes.object.isRequired,
 };
-
 
 export default OrderDetailsScreen;
 

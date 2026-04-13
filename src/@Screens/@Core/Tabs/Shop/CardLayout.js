@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React from 'react';
-import {View,Text,StyleSheet,Dimensions} from 'react-native';
+import { View, Text, StyleSheet, Platform } from 'react-native';
 import  LinearGradient  from 'react-native-linear-gradient';
 import Config from '@Config/default';
 import { moderateScale } from 'react-native-size-matters';
@@ -13,9 +13,7 @@ import EachProduct from './EachProduct';
 import FallBackUI from '../../../../@GlobalComponents/FallBackUI';
 import ErrorBoundary from 'react-native-error-boundary';
 
-const {GRADIENT_COLORS:{PIGGY},COLOR:{ORANGE,WHITE}} = Config;
-const {width : SCREEN_WIDTH} = Dimensions.get('window');
-
+const { GRADIENT_COLORS: { PIGGY }, COLOR: { ORANGE, WHITE } } = Config;
 
 const CardLayout = ({...props}) =>{
     const { headerStyle, layoutContainerStyles,product} = props;
@@ -66,15 +64,18 @@ CardLayout.propTypes = {
 
 export const styles = StyleSheet.create({
     layoutContainer:{
-        width : SCREEN_WIDTH,
-        minHeight:moderateScale(300),
-        padding:moderateScale(10)
+        width: '100%',
+        alignSelf: 'stretch',
+        minHeight: moderateScale(300),
+        padding: moderateScale(10),
+        borderRadius: moderateScale(10),
     },
     headerContainer:{
+        width: '94%',
         flexDirection:'row',
         justifyContent:'space-between',
         alignItems:'center',
-        marginVertical:moderateScale(15)
+        marginVertical:moderateScale(10)
     },
     viewAllTextStyle:{
         fontSize:moderateScale(10)
@@ -86,32 +87,43 @@ export const styles = StyleSheet.create({
         fontWeight:'bold',fontSize:moderateScale(16)
     },
     productWrapper:{
-        flexDirection:'row',
-        flexWrap:'wrap',
-        justifyContent:'space-between'
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        alignContent: 'flex-start',
+        marginHorizontal: Platform.OS === 'ios' ? moderateScale(2) : moderateScale(1)
+    },
+    productCell: {
+        width: '48%',
+        maxWidth: '48%',
+        marginVertical: moderateScale(10)
     },
     productCardWrapper:{
-        width:moderateScale(160),
-        height:moderateScale(160),
-        backgroundColor:'#fff',
-        borderRadius:moderateScale(6),
-        overflow:'hidden',
-        marginBottom:moderateScale(2),
-        justifyContent:'center',
-        alignItems:'center',
-        padding:moderateScale(4)
+        width: '88%',
+        aspectRatio: 1,
+        backgroundColor: '#fff',
+        borderRadius: moderateScale(6),
+        overflow: 'hidden',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    productImage: {
+        width: '100%',
+        height: '100%'
     },
     textWrapper:{
-        width:moderateScale(160),
-        position:'absolute',
-        bottom:0,
-        backgroundColor:'#000',
-        padding:moderateScale(6)
+        width: '100%',
+        position: 'absolute',
+        bottom: 0,
+        backgroundColor: '#000',
+        padding: moderateScale(6)
     },
     titleHead:{
         fontWeight:'bold',
         color:'#000',
-        maxWidth:moderateScale(140),
+        marginTop:moderateScale(5),
+        maxWidth: '93%',
+        alignSelf: 'stretch'
     },
     catSubcat:{
         flexDirection:'row'

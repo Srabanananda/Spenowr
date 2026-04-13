@@ -13,7 +13,6 @@ import { GlobalStyles } from '../../../../@GlobalStyles';
 import Config from '@Config/default';
 import moment from 'moment';
 
-
 const {COLOR:{DARKGRAY,SUBNAME}} = Config;
 
 type DetailsProps = {
@@ -83,7 +82,6 @@ const BidDetails = ({...props}:DetailsProps) =>{
             .catch(()=>Toast.show('Oops Something went wrong'))
             .finally(()=>setLoader(false));
     };
-
 
     return(
         <View>

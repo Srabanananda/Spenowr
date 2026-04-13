@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  SafeAreaView,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  Image,
-  View,
-  ActivityIndicator,
-  RefreshControl
-} from "react-native";
+import { Text, FlatList, TouchableOpacity, Image, View, ActivityIndicator, RefreshControl } from "react-native";
 import SimpleToast from "react-native-simple-toast";
 import { fetchSeriesData, deleteSeries, editSeries } from "../../../../../../../../@Endpoints/Core/Tabs/MyAccount";
 import ScreenLoader from "../../../../../../../../@GlobalComponents/ScreenLoader";
@@ -16,6 +7,7 @@ import { GlobalStyles } from "../../../../../../../../@GlobalStyles";
 import { moderateScale } from "react-native-size-matters";
 import styles from "../../../../../Home/Tabs/WhatsNew/styles";
 import Config from "@Config/default";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const { COLOR: { SUBNAME,WHITE,APP_PINK_COLOR,APP_THEME_COLOR }, NEW_IMG_BASE, DUMMY_IMAGE_URL, DEFAULT_PROFILE } = Config;
 // import MySeriesList from './List/SeriesList';
@@ -40,6 +32,9 @@ const MySeriesScreen = (props) => {
     fetchSeriesData()
       .then((res) => {
         const { seriesdata } = res?.data;
+        console.log('====================================');
+        console.log('resresresresresres',res);
+        console.log('====================================');
         setSeriesList(seriesdata);
         setLoader(false)
       })
@@ -76,7 +71,7 @@ const MySeriesScreen = (props) => {
     };
     
     const renderPages = ({ item, index }) => {
-      const { series_title, series_image, series_id } = item;
+      const { series_title, series_image, series_id, play_count } = item;
 
       return (
         <TouchableOpacity
@@ -107,6 +102,8 @@ const MySeriesScreen = (props) => {
             <TouchableOpacity disabled={editLoader} onPress={()=>getEditData(series_id)} style={GlobalStyles.seeMoreButton} >
                 {editLoader ? <ActivityIndicator color={APP_PINK_COLOR} /> : <Text  style={GlobalStyles.seeMoreButtonText}>Edit</Text>}
             </TouchableOpacity>
+
+            <Text>View Count : {play_count}</Text>
 
             <TouchableOpacity disabled={deleteLoader} onPress={()=>callDeleteService(series_id)} >
                 {deleteLoader ? <ActivityIndicator color={APP_PINK_COLOR} /> : <Text  style={styles.buttonText}>Delete</Text>}
@@ -144,7 +141,7 @@ const MySeriesScreen = (props) => {
   if (loader) return <ScreenLoader text={"Fetching Series Details .."} />;
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView edges={['left', 'right']} style={{ flex: 1 }}>
       {seriesList?.length ? (
         <MySeriesList dataSet={seriesList} refresh={callApi} />
       ) : (

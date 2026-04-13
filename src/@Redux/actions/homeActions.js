@@ -22,10 +22,15 @@ export const fetchManagedAds =(data,length) =>{
     };
 };
 
-export const fetchWhatsNewFeed =(data,length) =>{
-    return{
+export const fetchWhatsNewFeed = (data, length) => {
+    console.log("Fetching WhatsNew Feed with Data:", data, "Length:", length);
+
+    return {
         type: FETCH_WHATS_NEW_FEED,
-        promise:getWhatsNewFeed(data),
+        promise: getWhatsNewFeed(data).then(response => {
+            console.log("WhatsNew Feed Response:", response);
+            return response;
+        }),
         length
     };
 };
@@ -61,7 +66,6 @@ export const fetchMyFollowingFeed =(data,length) =>{
         length
     };
 };
-
 
 export const updateFeed =(feedData) =>{
     return{

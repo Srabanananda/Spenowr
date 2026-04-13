@@ -2,10 +2,11 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React, { useEffect, useState } from 'react';
-import {SafeAreaView,Text,View} from 'react-native';
+import { Text, View } from 'react-native';
 import { GetTokenFromCashFree, initiateContestPayment } from '../../../@Endpoints/Core/Payments';
 import Toast from 'react-native-simple-toast';
-import RNPgReactNativeSDK from 'react-native-pg-react-native-sdk';
+import { SafeAreaView } from 'react-native-safe-area-context';
+// import RNPgReactNativeSDK from 'react-native-pg-react-native-sdk';
 import Config from '@Config/default';
 import PropTypes from 'prop-types';
 import { isObjectEmpty } from '../../../@Utils/helperFiles/isObjectEmpty';
@@ -48,6 +49,7 @@ const PaymentInitiationScreen = ({...props}) =>{
 
     const initiatePayment = () =>{
         payload.application = true;
+        console.log("intiate Payment",payload);
         initiateContestPayment(payload)
             .then(res=>{
                 const {data:{payment_list={},response_msg=''}} = res;
@@ -62,6 +64,7 @@ const PaymentInitiationScreen = ({...props}) =>{
     };
 
     const generateCashFreeToken = (orderData)=>{
+        console.log({orderData});
         GetTokenFromCashFree(orderData)
             .then(res=>{
                 const {cftoken = ''} =res;
@@ -82,9 +85,9 @@ const PaymentInitiationScreen = ({...props}) =>{
         processObj.appId = CASHFREE_APPID;
         processObj.tokenData = cashFreeToken;
         if (mode === 'UPI') {
-            RNPgReactNativeSDK.startPaymentUPI(processObj, CASHFREE_ENV, responseHandler);
+            // RNPgReactNativeSDK.startPaymentUPI(processObj, CASHFREE_ENV, responseHandler);
         } else {
-            RNPgReactNativeSDK.startPaymentWEB(processObj, CASHFREE_ENV, responseHandler);
+            // RNPgReactNativeSDK.startPaymentWEB(processObj, CASHFREE_ENV, responseHandler);
         }
     }
 
@@ -103,7 +106,7 @@ const PaymentInitiationScreen = ({...props}) =>{
     if(loader) return<ScreenLoader text={loadingText} />;
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Payment Mode Selection'} showBackButton={false} >
                 <Text> </Text>
             </DefaultHeader>

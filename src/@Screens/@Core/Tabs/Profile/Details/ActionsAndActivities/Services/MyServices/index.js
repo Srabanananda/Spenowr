@@ -87,5 +87,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-
 export default connect(mapStateToProps)(MyServices);

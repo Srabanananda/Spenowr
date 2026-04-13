@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState} from 'react';
-import {SafeAreaView,ScrollView,Text,View,TextInput,TouchableOpacity, Image, Platform} from 'react-native';
+import { ScrollView, Text, View, TextInput, TouchableOpacity, Image, Platform } from 'react-native';
 import DefaultHeader from '@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../../@GlobalStyles';
 import { moderateScale } from 'react-native-size-matters';
@@ -17,6 +17,7 @@ import { useFormik} from 'formik';
 import { pickImage } from '../../../../@Utils/helperFiles/ImagePicker';
 import { addWorkExp, updateWorkExp } from '../../../../@Endpoints/Core/Tabs/More';
 import Config from '@Config/default';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {NEW_IMG_BASE } = Config;
  
@@ -52,7 +53,8 @@ const AddWorkExpScreen = ({...props}: WorkExpScreenProps) =>{
 
     const AddApi = () => {
         addWorkExp(formik.values)
-            .then(()=>{
+            .then((res)=>{
+                console.log('res 56',res.status);
                 Toast.show('Added Successfully');
                 navigation.goBack();
             })
@@ -89,6 +91,7 @@ const AddWorkExpScreen = ({...props}: WorkExpScreenProps) =>{
             startDate: EditData?.start_date??'',
             endDate:EditData?.endDate ?? '',
             certificate : {assets:[]},
+            image_alt_text: EditData?.title ?? '',
             expDescription : EditData?.description ?? ''
         },
         onSubmit: _handleOnSubmit,
@@ -96,31 +99,90 @@ const AddWorkExpScreen = ({...props}: WorkExpScreenProps) =>{
     });
 
     const chooseFile = () => {
-        pickImage((res)=>{
-            let response = res;
-            if(Platform.OS === 'android'){
-                if(res?.assets) response = res?.assets[0];
-            }
-            if(response.didCancel) return;
-            if(response) formik.handleChange({ target: { name: 'certificate', value: response }});
-        });
+        {Platform.OS === 'android' ?
+            pickImage((res)=>{
+                let response = res;
+                if(Platform.OS === 'android'){
+                    if(res?.assets) response = res?.assets[0];
+                }
+                if(response.didCancel) return;
+                if(response) formik.handleChange({ target: { name: 'certificate', value: response }});
+            })
+            :
+            pickImage((res) => {
+                if (res.didCancel) return;
+                let response = res;
+                if (Platform.OS === 'android') {
+                    if (res.assets) response = res.assets[0];
+                    formik.setFieldValue('certificate', response);
+                } else if (Platform.OS === 'ios') {
+                    if (res.uri) {
+                        formik.setFieldValue('certificate', { uri: res.uri });
+                    } else if (res.assets) {
+                        formik.setFieldValue('certificate', res.assets[0]);
+                    }
+                }
+            });
+        }
+        
     };
 
-    const RenderSelectedFile = () =>{
-        if(formik.values?.certificate?.assets?.length)
+   
+    
+
+    const RenderSelectedFile = () => {
+        if (formik.values?.certificate?.uri) {
             return (
                 <TouchableOpacity onPress={chooseFile}>
-                    <Image resizeMode={'contain'} source={{ uri: 'data:image/jpeg;base64,' + formik?.values?.certificate?.assets[0]?.base64 ?? '' }} style={GlobalStyles.selectedImageStyle} />
+                    <Image
+                        resizeMode="contain"
+                        source={{ uri: formik.values.certificate.uri }}
+                        style={GlobalStyles.selectedImageStyle}
+                    />
                 </TouchableOpacity>
             );
-        if(EditData?.workexp_image_path?.length)
+        } else if (EditData?.workexp_image_path?.length) {
             return (
                 <TouchableOpacity onPress={chooseFile}>
-                    <Image resizeMode={'contain'} source={{uri :  NEW_IMG_BASE +EditData?.workexp_image_path}} style={GlobalStyles.selectedImageStyle} />
+                    <Image
+                        resizeMode="contain"
+                        source={{ uri: NEW_IMG_BASE + EditData.workexp_image_path }}
+                        style={GlobalStyles.selectedImageStyle}
+                    />
                 </TouchableOpacity>
             );
-        return <SelectImage onPress={chooseFile} />;
+        } else {
+            return <SelectImage onPress={chooseFile} />;
+        }
     };
+
+      // const chooseFile = () => {
+    //     pickImage((res) => {
+    //         if (res.didCancel) return;
+    //         let response = res;
+    //         if (Platform.OS === 'android') {
+    //             if (res.assets) response = res.assets[0];
+    //         }
+    //         console.log('response:', response);
+    //         formik.handleChange({ target: { name: 'certificate', value: response }});
+    //     });
+    // };
+
+    // const RenderSelectedFile = () =>{
+    //     if(formik.values?.certificate?.assets?.length)
+    //         return (
+    //             <TouchableOpacity onPress={chooseFile}>
+    //                 <Image resizeMode={'contain'} source={{ uri: 'data:image/jpeg;base64,' + formik?.values?.certificate?.assets[0]?.base64 ?? '' }} style={GlobalStyles.selectedImageStyle} />
+    //             </TouchableOpacity>
+    //         );
+    //     if(EditData?.workexp_image_path?.length)
+    //         return (
+    //             <TouchableOpacity onPress={chooseFile}>
+    //                 <Image resizeMode={'contain'} source={{uri :  NEW_IMG_BASE +EditData?.workexp_image_path}} style={GlobalStyles.selectedImageStyle} />
+    //             </TouchableOpacity>
+    //         );
+    //     return <SelectImage onPress={chooseFile} />;
+    // };
  
     const renderForm =()=> {
         return(
@@ -237,7 +299,7 @@ const AddWorkExpScreen = ({...props}: WorkExpScreenProps) =>{
     };
  
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={EditData ? 'Edit Work Experience' : 'Add Work Experience'} />
             <ScrollView 
                 contentContainerStyle={{padding:moderateScale(5),paddingBottom:moderateScale(100)}} 

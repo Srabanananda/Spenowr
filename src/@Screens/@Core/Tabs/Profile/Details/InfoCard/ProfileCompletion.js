@@ -22,7 +22,6 @@ const ProfileCompletion = ({data,mode}) =>{
     const [step3, setStep3] = useState(false);
     const [step4, setStep4] = useState(false);
 
-
     const [loading, setLoading] = useState(true);
     const [visible, setVisible] = useState(false);
     const [percentage, setPercentage] = useState(0);
@@ -117,7 +116,8 @@ const ProfileCompletion = ({data,mode}) =>{
                     <TouchableRipple onPress={() => {
                         if(!step4){
                             setVisible(false);
-                            navigation.navigate('AddArtWork');
+                           // navigation.navigate('AddArtWork');
+                            navigation.navigate('AddArtWork',{EditData:[],subscription: '',points: ''});
                         }
                     }}>
                         <List.Item

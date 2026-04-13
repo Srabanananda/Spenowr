@@ -38,7 +38,6 @@ const Speakers = ({ selectedSpeaker, visible, setVisiblity, speaker }) =>{
         return () => PauseMusic()
     },[speaker]);
 
-
     const configure = async () => {
         await TrackPlayer.setupPlayer();
     };

@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState,useEffect} from 'react';
-import {SafeAreaView,ScrollView,View} from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { getArtworkDetails } from '../../../@Endpoints/Core/Tabs/Common';
 import DefaultHeader from '../../../@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../@GlobalStyles';
@@ -19,6 +19,8 @@ import CardActions from '../../@Core/Tabs/Home/Tabs/WhatsNew/CardActions';
 import InfoBox from './InfoBox';
 import VoteOptions from './VoteOptions';
 import InviteFriendToVote from './InviteFriendToVote';
+import { useFocusEffect } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ArtworkDetailsScreen = ({...props}) =>{
 
@@ -31,10 +33,16 @@ const ArtworkDetailsScreen = ({...props}) =>{
         heart_count = 0,comment_count = 0,login_heart_count=0
     } = artworkDetails;
 
+    useFocusEffect(
+        React.useCallback(() => {
+            callApi();
 
-    useEffect(()=>{
-        callApi();
-    },[]);
+            // Cleanup function if needed
+            return () => {
+                // Any cleanup if necessary
+            };
+        }, [mediaId, artworkSlug]) // Depend on mediaId and artworkSlug
+    );
 
     const callApi = () => {
         setLoader(true);
@@ -47,13 +55,13 @@ const ArtworkDetailsScreen = ({...props}) =>{
                 }
                 else
                 {
-                    Toast.show('Oops Couldnot get Artwork Details',Toast.LONG);
+                    Toast.show('Oops Could not get Artwork Details',Toast.LONG);
                     setTimeout(()=>{navigation.goBack();},300);
                 }
                 
             })
             .catch(()=>{
-                Toast.show('Oops Couldnot get Artwork Details',Toast.LONG);
+                Toast.show('Oops Could not get Artwork Details',Toast.LONG);
                 setTimeout(()=>{navigation.goBack();},300);
             })
             .finally(()=>setLoader(false));
@@ -86,7 +94,7 @@ const ArtworkDetailsScreen = ({...props}) =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Artwork Details'}>
                 {!loader && <InviteFriendToVote details={artworkDetails} />}
             </DefaultHeader>
@@ -115,6 +123,5 @@ ArtworkDetailsScreen.propTypes = {
     route:PropTypes.object.isRequired,
     updateArtworkDetails:PropTypes.func.isRequired
 };
-
 
 export default connect(mapStateToProps,mapDispatchToProps)(ArtworkDetailsScreen);

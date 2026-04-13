@@ -107,7 +107,6 @@ const JobCard = ({ ...props }: CardProps) => {
 
     const navigateArtist = () => navigation.navigate('PublicProfile', { slug: slug_url });
 
-
     if (category) {
         const { label, subcat } = category;
         const subCat = subcat[assignment_subcategory];

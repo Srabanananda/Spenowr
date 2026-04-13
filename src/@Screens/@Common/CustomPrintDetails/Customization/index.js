@@ -1,5 +1,5 @@
 import React, { useEffect ,useState, useRef } from 'react';
-import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View, Animated, PanResponder, Switch, Image } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Animated, PanResponder, Switch, Image } from 'react-native';
 import Config from '@Config/default';
 import DefaultHeader from '../../../../@GlobalComponents/DefaultHeader';
 import ScaledImage from '../../../../@GlobalComponents/ScalableImage';
@@ -12,17 +12,27 @@ import { pickImage } from '../../../../@Utils/helperFiles/ImagePicker';
 import Toast from 'react-native-simple-toast';
 import { addPrintingItemToCart, UpdatePrintItemFromCart } from '../../../../@Endpoints/Core/Tabs/Shop';
 import CustomImageView from '../CustomImageView';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {COLOR:{APP_PINK_COLOR,LIGHTGREY,DARKGRAY,DARK_BLACK},NEW_IMG_BASE} = Config;
 
 const PrintCustomizationScreen = ({...props}:any) => {
 
-    const {route:{params:{details,selectedSize,productInfo,cartID,refresh}},navigation} = props;
+    const {route:{params:{details,selectedSize: initialSelectedSize,productInfo,cartID,refresh}},navigation} = props;
+    console.log('====================================');
+    console.log('selectedSize',selectedSize);
+    console.log('props',props);
+    console.log('====================================');
 
     const printDetails = details?.printProductDetail;
     const artWorks = details?.artworkImages;
     console.log("productInfo : ", productInfo);
     const extraInfo = JSON.parse(printDetails?.product_info??'{}')?.[0];
+    const sizes = extraInfo?.size?.split(',');
+    console.log('====================================');
+    console.log('extraInfo31',extraInfo);
+    console.log('extraInfo31extraInfo.size',extraInfo.size);
+    console.log('====================================');
     const frontImage = NEW_IMG_BASE + extraInfo?.thumbnail_front_image_path;
     const BackImage = NEW_IMG_BASE + extraInfo?.thumbnail_back_image_path;
     const [isCustomImage, setIsCustomImage]  = useState(false);
@@ -41,6 +51,10 @@ const PrintCustomizationScreen = ({...props}:any) => {
     const [backTextPositionUp, setBackTextPositionUp]  = useState(false);
     const [addedBackText, setAddedBackText] = useState('');
     const [currentBackColor, setCurrentBackColor]  = useState('#000000');
+    const [selectedSize, setSelectedSize] = useState(initialSelectedSize);
+    console.log('====================================');
+    console.log('selectedSizeselectedSize',selectedSize);
+    console.log('====================================');
 
     useEffect(()=>{
         const {
@@ -87,6 +101,30 @@ const PrintCustomizationScreen = ({...props}:any) => {
 
     },[productInfo]);
 
+    const chooseFile = () => {
+
+        pickImage((res)=>{
+            let response = res;
+            if(Platform.OS === 'android'){
+                if(res?.assets) {
+                    var imageData = res?.assets[0];
+                    if(isFrontSelected){
+                        setIsCustomImage(true)
+                        setSelectedArtwork(imageData.base64 ? 'data:image/jpeg;base64,' + imageData.base64 :  imageData) 
+                    }else{
+                        setIsBackCustomImage(true)
+                        setSelectedBackArtwork(imageData.base64 ? 'data:image/jpeg;base64,' + imageData.base64 :  imageData)
+                    }
+                } 
+            }
+            if(response.didCancel) return;
+        });
+    };
+
+    const onSizeSelect = (size) => {
+        setSelectedSize(size);
+    };
+
     const handleOrderNow = (extraInfo) => {
         if(!selectedSize?.length){
             Toast.show('Please Select a Size');
@@ -120,6 +158,9 @@ const PrintCustomizationScreen = ({...props}:any) => {
         }
         const formData = createFormData(formValues, isEdit, cartID);
         console.log("Form values : ", JSON.stringify(formData));
+        console.log('====================================');
+        console.log('formValues',formValues);
+        console.log('====================================');
         if(isEdit){
             UpdatePrintItemFromCart(formData)
             .then((res)=>{
@@ -300,59 +341,55 @@ const PrintCustomizationScreen = ({...props}:any) => {
                         artWorks.map(({reduced_media_path},idx)=>{
                             const artworkImg = NEW_IMG_BASE + reduced_media_path; 
                             return(
+                              
                                 <TouchableOpacity key={idx} onPress={()=>{
                                     isFrontSelected ? setIsCustomImage(false) : setIsBackCustomImage(false)
                                     isFrontSelected ? setSelectedArtwork(reduced_media_path) : setSelectedBackArtwork(reduced_media_path)
                                 }} style={[styles.eachArtwork,{marginRight:moderateScale(10)}]}>
                                     <ScaledImage  source={{ uri: NEW_IMG_BASE + reduced_media_path }} />
                                 </TouchableOpacity>
+                                
+                           
                             );
                         })
                     }
+                    
                 </ScrollView>
+                {/* <View style={[GlobalStyles.primaryCard,{padding:moderateScale(10)}]}> */}
+                <View style={{flexDirection:'row', alignItems:'center', width:'100%'}}>
+                    <Text style={{fontWeight:'bold'}}>Select Custom Image</Text>
+                    <TouchableOpacity onPress={() => chooseFile()} style={{backgroundColor:'#EF2D56', padding:10, borderRadius:7, marginLeft:15, width:'50%', alignItems:'center'}}>
+                        <Text style={{fontWeight:'bold', color:'#fff', fontSize:15}}>Add Image</Text>
+                    </TouchableOpacity>
+                    {/* <DefaultButton buttonText='Add Image' onPress={chooseFile}/> */}
+                </View>
             </View>
         );
     };
 
-    const renderCustomImage = () => {
-        const chooseFile = () => {
-
-            pickImage((res)=>{
-                let response = res;
-                if(Platform.OS === 'android'){
-                    if(res?.assets) {
-                        var imageData = res?.assets[0];
-                        if(isFrontSelected){
-                            setIsCustomImage(true)
-                            setSelectedArtwork(imageData.base64 ? 'data:image/jpeg;base64,' + imageData.base64 :  imageData) 
-                        }else{
-                            setIsBackCustomImage(true)
-                            setSelectedBackArtwork(imageData.base64 ? 'data:image/jpeg;base64,' + imageData.base64 :  imageData)
-                        }
-                    } 
-                }
-                if(response.didCancel) return;
-            });
-        };
-        return(
-            <View style={[GlobalStyles.primaryCard,{padding:moderateScale(10),marginTop:moderateScale(10),}]}>
-                <Text style={[styles.selectionText,{textAlign: 'center'}]}>Select Custom Image</Text>
-                <DefaultButton buttonText='Add Image' onPress={chooseFile}/>
-            </View>
-        );
-    };
+    
 useEffect(()=>{
 console.log(selectedBackArtwork,selectedArtwork)
 },[selectedBackArtwork,selectedArtwork])
     return(
-        <SafeAreaView style={{flex:1}}>
+        <SafeAreaView edges={['left', 'right']} style={{flex:1}}>
             <DefaultHeader headerText={`${isEdit ? 'Edit' : 'Add'} Customization`} />
             <View style={{padding:moderateScale(10),flex:1}}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     {renderPreview()}
+
+                    <Text style={{   marginTop:moderateScale(8),marginBottom:moderateScale(5),fontWeight:'bold', fontSize:moderateScale(12)}}>Select Size </Text>
+                    <View style={{flexDirection:'row'}}>
+                    {sizes && sizes.map((size, index) => (
+                                    <TouchableOpacity key={index}       onPress={() => onSizeSelect(size)} style={[size !== selectedSize ? GlobalStyles.seeMoreButton : GlobalStyles.seeMoreButtonRev,{marginRight:moderateScale(8)}]} >
+                                        <Text style={size !== selectedSize ? GlobalStyles.seeMoreButtonText : GlobalStyles.seeMoreButtonTextRev}>{size}</Text>
+                                    </TouchableOpacity>
+                         ))}
+                    </View>
+
                     {renderText()}
                     {renderArtworks()}
-                    {renderCustomImage()}
+                    {/* {renderCustomImage()} */}
                 </ScrollView>
                 <DefaultButton buttonText={isEdit ? 'Update Order' : 'Order Now'} onPress={()=>handleOrderNow(extraInfo)} showLoader={orderLoader} />
             </View>
@@ -395,7 +432,6 @@ const styles = StyleSheet.create({
     },
     customText:{maxWidth:moderateScale(100), fontWeight:'600',textAlign:'center',marginTop:moderateScale(5)},
 });
-
 
 export const createFormData = ({
     price = '',

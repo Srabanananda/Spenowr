@@ -1,8 +1,8 @@
 /**
  *  Created By @name Sukumar_Abhijeet
  */
-import React,{useState,useEffect, createRef} from 'react';
-import {Image, SafeAreaView, ScrollView, Text, View} from 'react-native';
+import React,{useState,useEffect, useCallback } from 'react';
+import { Image, ScrollView, Text, View } from 'react-native';
 import DefaultHeader from '../../../@GlobalComponents/DefaultHeader';
 import ScreenLoader from '../../../@GlobalComponents/ScreenLoader';
 import { GlobalStyles } from '../../../@GlobalStyles';
@@ -19,6 +19,9 @@ import FallBackUI from '../../../@GlobalComponents/FallBackUI';
 import ArtistInfo from './ArtistInfo';
 import Config from '@Config/default';
 import {TouchableRipple} from 'react-native-paper';
+import { useFocusEffect } from '@react-navigation/native';
+import TrackPlayer from 'react-native-track-player';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const { NEW_IMG_BASE, DUMMY_IMAGE_URL } = Config;
 
@@ -31,13 +34,32 @@ const ArticleDetailScreen = ({...props}) =>{
 
     const [recommendedArticles, setRecommendedArticles] = useState([]);
     const [rest, setRest] = useState([]);
-
-    useEffect(()=>{
-        callApi();
+    const [topfeature, setTopFeature] = useState([]);
+    const [otherSeries, setOtherSeries] = useState([]);
+    
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            if (articleSlug) {
+                callApi(); // Re-fetch the data when the screen gains focus
+            }
+        });
+    
         return () => {
+            unsubscribe();
+            TrackPlayer.pause(); // Pause the player on unmount
+            TrackPlayer.reset(); // Reset the player on unmount
+        };
+    }, [navigation, articleSlug]); // Track changes to `navigation` and `articleSlug`
+    
 
-        }
-    },[]); 
+    useFocusEffect(
+        useCallback(() => {
+            return () => {
+                TrackPlayer.pause(); // Pause the player when screen loses focus
+                TrackPlayer.reset(); // Reset the player when screen loses focus
+            };
+        }, [])
+    );
 
     // useEffect(()=>{
     //     if(recommendedArticles.length > 0 && rest.length === 0){
@@ -45,85 +67,212 @@ const ArticleDetailScreen = ({...props}) =>{
     //     }
     // },[recommendedArticles]);
 
-
     const callApi = () => {
         getArticleDetails(articleSlug)
             .then(res=>{
+                console.log('====================================');
+                console.log('resresresgetArticleDetails',res);
+                console.log('====================================');
                 if(res.data != null && res.data.article){
                     setArticleId(res.data.article.article_id);
                     updateArticleDetails(res.data);
-                    let recentlyCategoryViewed = res?.data?.recentlyCategoryViewed
-                    setRecommendedArticles(recentlyCategoryViewed);
-                    setRest(recentlyCategoryViewed.length > 0 ? recentlyCategoryViewed.splice(1,3) : []);
+                    let topCategoryArticle = res?.data?.topCategoryArticle
+                    setRecommendedArticles(topCategoryArticle);
+                    setRest(topCategoryArticle.length > 0 ? topCategoryArticle : []);
+                    setTopFeature(res?.data?.topFeaturedArticles);
+                    setOtherSeries(res?.data?.otherSeriesDetails);
                     setLoader(false);
                 } else {
                     setTimeout(()=>{navigation.goBack();},300);
-                    Toast.show('Oops Couldnot get Article Details',Toast.LONG);
+                    Toast.show('Oops Could not get Article Details',Toast.LONG);
                 }
             }).catch(()=>{
-                Toast.show('Oops Couldnot get Article Details',Toast.LONG);
+                Toast.show('Oops Could not get Article Details',Toast.LONG);
                 setTimeout(()=>{navigation.goBack();},300);
             });
+    };
+
+    const truncateText = (text, limit) => {
+        if (text.length > limit) {
+            return text.substring(0, limit) + '...';
+        }
+        return text;
     };
 
     const renderRecommendedArticles = () => {
         return (
             <>
-                <Text style={{fontSize: 21, fontWeight: 'bold', marginBottom: 20, marginTop: 20}}>
-                Recommended Articles
-                </Text>
-                {
-                    rest && rest.map((each, position)=>{
-                        return(
+            <Text style={{fontSize: 21, fontWeight: 'bold', marginBottom: 10, marginTop: 20}}>
+            Other Episodes Of the Series
+            </Text>
+
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                {rest && rest.map((each, position) => {
+                    return (
+                        <TouchableRipple 
+                            key={position+'Element'}
+                            onPress={() => {
+                                navigation.push('ArticleDetails', { articleSlug: each.slug_url });
+                            }}
+                            style={{
+                                width: 100, // Set a width for each item
+                                marginRight: 16, // Spacing between items
+                            }}
+                        >
                             <View
-                                key={position+'Element'}
                                 style={{
                                     display: 'flex',
-                                    flexDirection: 'row',
+                                    flexDirection: 'column', // Stack image and text vertically
                                     width: '100%',
-                                    height: 80,
-                                    marginBottom: 16,
+                                    alignItems: 'center',
                                 }}
                             >
-                                <TouchableRipple onPress={()=> {
-                                    navigation.push('ArticleDetails', {articleSlug: each.slug_url});
+                                <View style={{
+                                    width: '100%',
+                                    height: 80, // Set a fixed height for the image
                                 }}>
-                                    <View
-                                        key={position+'Element'}
+                                    <Image
+                                        resizeMode={'stretch'}
+                                        source={{uri: each.article_image_thumbnail_path !== "" ? NEW_IMG_BASE + each.article_image_thumbnail_path : DUMMY_IMAGE_URL}}
                                         style={{
-                                            display: 'flex',
-                                            flexDirection: 'row',
                                             width: '100%',
-                                            height: 80,
-                                            alignItems:'center'
-                                        }}
-                                    >
-                                        <View style={{
-                                            width: '27%',
                                             height: '100%',
-                                        }}>
-                                            <Image
-                                                resizeMode={'stretch'}
-                                                source={{uri: each.article_image_thumbnail_path != "" ? NEW_IMG_BASE + each.article_image_thumbnail_path : DUMMY_IMAGE_URL}}
-                                                style={{
-                                                    width: null,
-                                                    height: null,
-                                                    flex: 1
-                                                }}
-                                            />
-                                        </View>
-                                        <View style={{display: 'flex', flexDirection: 'column', width: '73%'}}>
-                                            <Text style={{fontSize: 17, marginLeft: 8}}>
-                                                {each.article_title}
-                                            </Text>
-                                        </View>
-                                    </View>
-                                </TouchableRipple>
+                                        }}
+                                    />
+                                </View>
+                                <View style={{
+                                    width: '100%',
+                                    alignItems: 'center',
+                                    marginTop: 8,
+                                }}>
+                                    <Text style={{fontSize: 14, textAlign: 'center'}}>
+                                        {truncateText(each.article_title, 20)}
+                                    </Text>
+                                </View>
                             </View>
-                        );
-                    })
-                }
-            </>
+                        </TouchableRipple>
+                    );
+                })}
+            </ScrollView>
+        </>
+        );
+    };
+
+    // const renderTopFeatured = () => {
+    //     return (
+    //         <>
+    //         <Text style={{fontSize: 21, fontWeight: 'bold', marginBottom: 10, marginTop: 20}}>
+    //         Related Articles
+    //         </Text>
+
+    //         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+    //             {topfeature && topfeature.map((each, position) => {
+    //                 return (
+    //                     <TouchableRipple 
+    //                         key={position+'Element'}
+    //                         onPress={() => {
+    //                             navigation.push('ArticleDetails', { articleSlug: each.slug_url });
+    //                         }}
+    //                         style={{
+    //                             width: 100, // Set a width for each item
+    //                             marginRight: 16, // Spacing between items
+    //                         }}
+    //                     >
+    //                         <View
+    //                             style={{
+    //                                 display: 'flex',
+    //                                 flexDirection: 'column', // Stack image and text vertically
+    //                                 width: '100%',
+    //                                 alignItems: 'center',
+    //                             }}
+    //                         >
+    //                             <View style={{
+    //                                 width: '100%',
+    //                                 height: 80, // Set a fixed height for the image
+    //                             }}>
+    //                                 <Image
+    //                                     resizeMode={'stretch'}
+    //                                     source={{uri: each.article_image_thumbnail_path !== "" ? NEW_IMG_BASE + each.article_image_thumbnail_path : DUMMY_IMAGE_URL}}
+    //                                     style={{
+    //                                         width: '100%',
+    //                                         height: '100%',
+    //                                     }}
+    //                                 />
+    //                             </View>
+    //                             <View style={{
+    //                                 width: '100%',
+    //                                 alignItems: 'center',
+    //                                 marginTop: 8,
+    //                             }}>
+    //                                 <Text style={{fontSize: 14, textAlign: 'center'}}>
+    //                                     {truncateText(each.article_title, 20)}
+    //                                 </Text>
+    //                             </View>
+    //                         </View>
+    //                     </TouchableRipple>
+    //                 );
+    //             })}
+    //         </ScrollView>
+    //     </>
+    //     );
+    // };
+
+    const renderOtherSeries = () => {
+        return (
+            <>
+            <Text style={{fontSize: 21, fontWeight: 'bold', marginBottom: 10, marginTop: 20}}>
+            Other Popular Series
+            </Text>
+
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                {otherSeries && otherSeries.map((each, position) => {
+                    return (
+                        <TouchableRipple 
+                            key={position+'Element'}
+                            onPress={() => {
+                                navigation.push('SeriesDetails', { series_id: each.series_id });
+                            }}
+                            style={{
+                                width: 100, // Set a width for each item
+                                marginRight: 16, // Spacing between items
+                            }}
+                        >
+                            <View
+                                style={{
+                                    display: 'flex',
+                                    flexDirection: 'column', // Stack image and text vertically
+                                    width: '100%',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <View style={{
+                                    width: '100%',
+                                    height: 80, // Set a fixed height for the image
+                                }}>
+                                    <Image
+                                        resizeMode={'stretch'}
+                                        source={{uri: each.series_image !== "" ? NEW_IMG_BASE + each.series_image : DUMMY_IMAGE_URL}}
+                                        style={{
+                                            width: '100%',
+                                            height: '100%',
+                                        }}
+                                    />
+                                </View>
+                                <View style={{
+                                    width: '100%',
+                                    alignItems: 'center',
+                                    marginTop: 8,
+                                }}>
+                                    <Text style={{fontSize: 14, textAlign: 'center'}}>
+                                        {truncateText(each.series_title, 20)}
+                                    </Text>
+                                </View>
+                            </View>
+                        </TouchableRipple>
+                    );
+                })}
+            </ScrollView>
+        </>
         );
     };
 
@@ -141,7 +290,9 @@ const ArticleDetailScreen = ({...props}) =>{
                         <ErrorBoundary FallbackComponent={FallBackUI} >
                             <AddReview id={articleId} type={'article'} />
                         </ErrorBoundary>
+                        {/* {renderTopFeatured()} */}
                         {renderRecommendedArticles()}
+                        {renderOtherSeries()}
                     </View>
                 </ScrollView>
             );
@@ -149,7 +300,7 @@ const ArticleDetailScreen = ({...props}) =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Article Details'} />
             {getData()}
         </SafeAreaView>

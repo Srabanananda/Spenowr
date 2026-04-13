@@ -9,7 +9,6 @@ import { moderateScale, scale } from 'react-native-size-matters';
 
 const {COLOR:{WHITE,APP_PINK_COLOR,APP_THEME_COLOR,SUBNAME,BLACK}} = Config;
 
-
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: moderateScale(2),

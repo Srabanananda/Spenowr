@@ -44,7 +44,6 @@ const CommentBox = ({moduleId=''}) =>{
             });
     };
 
-
     const checkComment = () =>{
         if(comment.length)
         {

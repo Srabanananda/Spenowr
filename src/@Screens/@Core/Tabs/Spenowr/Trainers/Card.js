@@ -13,7 +13,7 @@ import Toast from 'react-native-simple-toast';
 import ReviewForm from '../TrainingClasses/ReviewForm';
 import USState from '../../../../../assets/JsonFiles/USAState.json';
 import INDState from '../../../../../assets/JsonFiles/indiaState.json';
-import Image from 'react-native-image-progress';
+import FastImage from 'react-native-fast-image';
 import StarRating from '../../../../../@GlobalComponents/StarRating';
 import Capitalize from '../../../../../@Utils/helperFiles/Capitalize';
 import ImageOverlay from 'react-native-image-overlay';
@@ -88,7 +88,7 @@ export default function EachCard({artist = false, each, largeCard = false}){
                             </View>
                         </View>
                         <ReviewForm id={artist ? each.artist_id : each.institute_id} type={'trainer'} width={80} />
-                        <Image source={require('../../../../../assets/svgs/arrow-right.svg')} style={styles.arrow} />
+                        <FastImage source={require('../../../../../assets/svgs/arrow-right.svg')} style={styles.arrow} />
                     </View>
                 </View>
             </ImageOverlay>

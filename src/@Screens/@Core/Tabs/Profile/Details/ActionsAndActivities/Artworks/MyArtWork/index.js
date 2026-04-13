@@ -23,7 +23,7 @@ import { getGalleryPhotography } from '../../../../../../../../@Endpoints/Core/T
 const MyArtWorkScreen = ({...props}) =>{
 
     const isFocused = useIsFocused();
-    const {publicUserData,mode,isContestActive,subscription,points} = props;
+    const {publicUserData,mode,isContestActive,subscription,points, animate_point} = props;
 
     const [loading, setLoading] = useState(false);
     const [artworkList, setArtWorkList] = useState([]);
@@ -81,7 +81,7 @@ const MyArtWorkScreen = ({...props}) =>{
     };
 
     const renderPages = ({ item }) =>{
-        return   <DefaultCard cardData={item} isContestActive={isContestActive} mode={mode} refreshData = {()=>callApi()} subscription={subscription} points={points} />;
+        return   <DefaultCard cardData={item} isContestActive={isContestActive} mode={mode} refreshData = {()=>callApi()} subscription={subscription} points={points} animate_point={animate_point} />;
     };
 
     if (loading)

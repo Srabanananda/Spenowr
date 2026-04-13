@@ -15,20 +15,43 @@ const AllContestsList = ({extraFunc}:any) =>{
     const [activeSlide, setActiveSlide] = useState(0);
     const [loading, setLoading] = useState(false);
 
-    useEffect(()=>{
-        callApi();
-    },[]);
+    useEffect(() => {
+        let isMounted = true; // Track whether the component is mounted
 
-    const callApi = () =>{
-        setLoading(true);
-        getFeaturedContest()
-            .then(res=>{
-                const {data:{openContestList = []}} = res;
-                if(openContestList.length) extraFunc(true);
-                setContestList(openContestList);
-            })
-            .finally(()=>setLoading(false));
-    };
+        const callApi = async () => {
+            setLoading(true);
+            try {
+                const res = await getFeaturedContest();
+                const { data: { openContestList = [] } } = res;
+                if (isMounted) {
+                    if (openContestList.length) extraFunc(true);
+                    setContestList(openContestList);
+                }
+            } catch (error) {
+                console.error('Error fetching contests:', error);
+            } finally {
+                if (isMounted) setLoading(false);
+            }
+        };
+
+        callApi();
+
+        // Cleanup function to update isMounted flag
+        return () => {
+            isMounted = false;
+        };
+    }, [extraFunc]);
+
+    // const callApi = () =>{
+    //     setLoading(true);
+    //     getFeaturedContest()
+    //         .then(res=>{
+    //             const {data:{openContestList = []}} = res;
+    //             if(openContestList.length) extraFunc(true);
+    //             setContestList(openContestList);
+    //         })
+    //         .finally(()=>setLoading(false));
+    // };
 
     const getContest = ({item, i}) =>{
         item.tagstatus = item.status;

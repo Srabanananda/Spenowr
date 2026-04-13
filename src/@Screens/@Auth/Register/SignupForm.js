@@ -8,7 +8,8 @@ import {
     TextInput,
     TouchableOpacity,
     Modal,
-    Alert
+    Alert,
+    Platform
 } from 'react-native';
 import CheckBox from 'react-native-check-box';
 import Toast from 'react-native-simple-toast';
@@ -19,18 +20,21 @@ import { moderateScale } from 'react-native-size-matters';
 import { GlobalStyles } from '../../../@GlobalStyles';
 import styles from './styles';
 import InitiateAuthentication from '../../../@Utils/helperFiles/Authentication';
-import { withNavigation } from '@react-navigation/compat';
 import { connect, useStore } from 'react-redux';
 import * as userActions from '../../../@Redux/actions/userActions';
 import APP_CONSTANT from '../../../constants/Constant';
 import { isEmailValid,getKeysFromObj } from '../../../@Utils/helperFiles/helpers';
 import { Keyboard } from 'react-native';
 import { useNavigation,useIsFocused } from '@react-navigation/native';
-import CountryPicker from 'react-native-country-picker-modal';
 import {version} from '../../../../package.json';
 import { registerUser, requestOtp } from '../../../@Endpoints/Auth';
 import OtpVerify from './OtpVerify';
 import Phone from '../../@Common/Phone';
+import CryptoJS from 'crypto-js';
+import Config from "@Config/default";
+import DeviceInfo from 'react-native-device-info';
+
+const {SPENOWR_SECRET} = Config;
 
 const {
     INDIVIDUAL_ARTIST,
@@ -78,8 +82,18 @@ const SignupForm = ({...props}:SingupFormProps) =>{
         if(isFocused && props.route.params) setSelectedPlan(props.route?.params?.newPlan);
     },[isFocused]);
 
-    const  callUserRegistration = (account) => {
+    function generateHash() {
+        const timestamp = Math.floor(Date.now() / 1000);
+        const dataToHash = `${pass}:${timestamp}:${SPENOWR_SECRET}`;
+        const md5Hash = CryptoJS.MD5(dataToHash).toString();
+        const combinedHash = `${md5Hash}:${timestamp}`;
+        console.log('combinedHash key',combinedHash)
+        return combinedHash;
+      }
+
+    const  callUserRegistration = async (account) => {
         setLoading(true);
+        const deviceId = await DeviceInfo.getUniqueId(); 
         const data =  new FormData();
         data.append('first_name',fName);
         data.append('last_name',lName);
@@ -103,11 +117,18 @@ const SignupForm = ({...props}:SingupFormProps) =>{
         data.append('google_profile_url','');
         data.append('institute_name',instName);
         data.append('recaptchaReactive','');
+        data.append('confirm_password',generateHash());
+        data.append('device_type','mobile-app');
+        data.append('device_platform',Platform.OS);
+        data.append('device_id',deviceId);
         data.append('application',true);
         data.append('plan', selectedPlan);
         data.append('app_version',version);
+
+        console.log('register user data',data);
         registerUser(data)
             .then((resp)=>{
+                console.log('resp register 110', resp);
                 const {data:{
                     status='failed',
                     response_msg='Something went wrong',
@@ -281,7 +302,6 @@ const SignupForm = ({...props}:SingupFormProps) =>{
                     : null
             }
 
-
             {/* {
                 showCountry &&
                 <TouchableOpacity onPress={()=>setOpenCountry(true)} style={[GlobalStyles.textInput,{justifyContent:'center'}]}>
@@ -374,8 +394,6 @@ const SignupForm = ({...props}:SingupFormProps) =>{
     );
 };
 
-
-
 const mapStateToProps =() =>{
     return {
     };
@@ -387,5 +405,4 @@ const  mapDispatchToProp =(dispatch)=>({
         dispatch(userActions.updateUserDetails(instituteObj,profileObj))
 });
 
-
-export default connect(mapStateToProps,mapDispatchToProp)(withNavigation(SignupForm));
+export default connect(mapStateToProps,mapDispatchToProp)(SignupForm);

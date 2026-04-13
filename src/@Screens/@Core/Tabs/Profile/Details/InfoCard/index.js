@@ -3,7 +3,7 @@
  */
 import React, { useState } from 'react';
 import {View,Text, ImageBackground,Share,ScrollView} from 'react-native';
-import Image from 'react-native-image-progress';
+import FastImage from 'react-native-fast-image';
 import { moderateScale } from 'react-native-size-matters';
 import { GlobalStyles } from '../../../../../../@GlobalStyles';
 import Config from '@Config/default';
@@ -19,6 +19,18 @@ import EXERCISE from '../../../../../../assets/JsonFiles/FilterJsons/exercisecat
 import SPORTS from '../../../../../../assets/JsonFiles/FilterJsons/sportscat_subcat.json';
 import MUSICAL from '../../../../../../assets/JsonFiles/FilterJsons/musicalcat_subcat.json';
 import SINGING from '../../../../../../assets/JsonFiles/FilterJsons/singingcat_subcat.json';
+
+import QUOTE_POEM from '../../../../../../assets/JsonFiles/FilterJsons/quotesPoemscat_subcat.json'
+import ACTOR from '../../../../../../assets/JsonFiles/FilterJsons/actorcat_subcat.json';
+import MAGIC from '../../../../../../assets/JsonFiles/FilterJsons/magiccat_subcat.json';
+import WRITER from '../../../../../../assets/JsonFiles/FilterJsons/writercat_subcat.json';
+import SCULPTURE from '../../../../../../assets/JsonFiles/FilterJsons/sculpcat_subcat.json'
+import ILLUSTRATOR from '../../../../../../assets/JsonFiles/FilterJsons/illucat_subcat.json';
+import CRAFT from '../../../../../../assets/JsonFiles/FilterJsons/craftcat_subcat.json';
+import THREEDARTIST from '../../../../../../assets/JsonFiles/FilterJsons/3d_artistcat_subcat.json';
+import AIDESIGNER from '../../../../../../assets/JsonFiles/FilterJsons/ai_designer_artistcat_subcat.json';
+import OTHERS from '../../../../../../assets/JsonFiles/FilterJsons/othercat_subcat.json';
+
 import { GetSubCatValue } from '../../../../../../@Utils/helperFiles/GetCatSubcat';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { setLikeUnlikeUser,setFollowUnfollowUser, getUserDetails } from '../../../../../../@Endpoints/Auth';
@@ -40,7 +52,7 @@ const AllCategories =  [{
     'category':[
         ...ARTNCRAFT.category,...MUSICAL.category,...SINGING.category,
         ...DANCE.category,...PHOTOGRAPHY.category,...EXERCISE.category,
-        ...SPORTS.category
+        ...SPORTS.category, ...ACTOR.category, ...MAGIC.category, ...WRITER.category, ...SCULPTURE.category, ...ILLUSTRATOR.category, ...CRAFT.category, ...THREEDARTIST.category, ...AIDESIGNER.category, ...OTHERS.category, ...QUOTE_POEM.category
     ]
 }];
  
@@ -101,6 +113,10 @@ const InfoCard = ({mode='PRIVATE',isUserBlocked=false,...props}) =>{
         biography_article_id='',
         badges = '{}'
     } = userData;
+
+    console.log('skill1',skill1);
+    console.log('skill2',skill2);
+    console.log('skill3',skill3);
 
     const {contest_winner = false,top_contributor=false,verified_profile=false,verified_seller=false} = JSON.parse(badges.length?badges : '{}');
  
@@ -259,7 +275,7 @@ const InfoCard = ({mode='PRIVATE',isUserBlocked=false,...props}) =>{
             <View style={{flexDirection:'row',marginVertical:moderateScale(10)}}>
                 {
                     top_contributor && 
-                                    <Image 
+                                    <FastImage 
                                         resizeMode={'contain'} 
                                         source={require('@Assets/svgs/TopContributorBadge.svg')} 
                                         style={styles.badgeStyles}
@@ -267,7 +283,7 @@ const InfoCard = ({mode='PRIVATE',isUserBlocked=false,...props}) =>{
                 }
                 {
                     contest_winner && 
-                                    <Image 
+                                    <FastImage 
                                         resizeMode={'contain'} 
                                         source={require('@Assets/svgs/WinnerBadge.svg')} 
                                         style={styles.badgeStyles}
@@ -275,7 +291,7 @@ const InfoCard = ({mode='PRIVATE',isUserBlocked=false,...props}) =>{
                 }
                 {
                     verified_seller && 
-                                    <Image 
+                                    <FastImage 
                                         resizeMode={'contain'} 
                                         source={require('@Assets/svgs/VerifiedSellerBadge.svg')} 
                                         style={styles.badgeStyles}
@@ -283,7 +299,7 @@ const InfoCard = ({mode='PRIVATE',isUserBlocked=false,...props}) =>{
                 }
                 {
                     verified_profile && 
-                                    <Image 
+                                    <FastImage 
                                         resizeMode={'contain'} 
                                         source={require('@Assets/svgs/VerifiedUserBadge.svg')} 
                                         style={styles.badgeStyles}
@@ -292,7 +308,6 @@ const InfoCard = ({mode='PRIVATE',isUserBlocked=false,...props}) =>{
             </View>
         );
     };
-
 
     const renderPublicActions = () =>{
         if(isUserBlocked) return <></>;
@@ -352,7 +367,7 @@ const InfoCard = ({mode='PRIVATE',isUserBlocked=false,...props}) =>{
                         {
                             hasAnyBadge &&
                             <View>
-                                <Text style={styles.aboutMeText}>Badges</Text>
+                                <Text style={[styles.aboutMeText, {marginTop: 5}]}>Badges</Text>
                                 {renderBadges()}
                             </View>
                         }
@@ -373,10 +388,10 @@ const InfoCard = ({mode='PRIVATE',isUserBlocked=false,...props}) =>{
                     <View style={styles.rowContainer}>
                         <EditProfileImage mode={mode} updateUserDetails={updateUserDetails} userObj={userObj} />
                         <View style={{marginLeft:moderateScale(20),justifyContent:'center'}}>
-                            <Text numberOfLines={1} style={styles.name}>{institute_name}</Text>
+                            <Text numberOfLines={2} style={styles.name}>{institute_name}</Text>
                             <Text style={styles.subName}>{getAccountType(account_type_id)}</Text>
                             <View style={{...styles.rowContainer,alignItems:'center'}}>
-                                {hasCountry && <Image resizeMode={'contain'} source ={require('../../../../../../assets/svgs/location.svg')} style={styles.locationImg} />}
+                                {hasCountry && <FastImage resizeMode={'contain'} source ={require('../../../../../../assets/svgs/location.svg')} style={styles.locationImg} />}
                                 <Text numberOfLines={2} style={styles.locationText}>{address}</Text>
                             </View>
                         </View>

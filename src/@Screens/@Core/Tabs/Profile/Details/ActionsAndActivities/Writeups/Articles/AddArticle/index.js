@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState,useEffect, useCallback} from 'react';
-import {View,Text,SafeAreaView,ScrollView,TextInput,Image,TouchableOpacity,Platform,Alert, ViewComponent} from 'react-native';
+import { View, Text, ScrollView, TextInput, Image, TouchableOpacity, Platform, Alert, ViewComponent } from 'react-native';
 import PropTypes from 'prop-types';
 import DefaultHeader from '../../../../../../../../../@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../../../../../../../@GlobalStyles';
@@ -17,7 +17,7 @@ import SelectImage from '../../../../../../../../../@GlobalComponents/SelectImag
 import EditorScreen from '../../../../../../../../../@GlobalComponents/TextEditor';
 import DefaultButton from '../../../../../../../../../@GlobalComponents/DefaultButton';
 
-import DocumentPicker from 'react-native-document-picker';
+import DocumentPicker from '@react-native-documents/picker';
 
 import ARTNCRAFT from '@Assets/JsonFiles/FilterJsons/productcat_subcat.json';
 import DANCE from '@Assets/JsonFiles/FilterJsons/dancecat_subcat.json';
@@ -37,6 +37,7 @@ import Speakers from '@Common/Speakers'
 import ModalHeader from "../../../../../../../../../@GlobalComponents/ModalHeader";
 import Modal from "react-native-modal";
 import { forEach } from 'lodash';
+import { SafeAreaView } from 'react-native-safe-area-context';
 const {NEW_IMG_BASE, LANGUAGES, COLOR:{ APP_PINK_COLOR }} = Config;
 
 const AllCategories =  [{
@@ -210,16 +211,35 @@ const AddArticleScreen = ({...props}) =>{
         }).catch()
     }
 
-    const chooseFile = () => {
-        pickImage((res)=>{
+    const chooseFile = Platform.OS === 'ios' 
+    ? () => {
+        pickImage((res) => {
             let response = res;
-            if(Platform.OS === 'android'){
-                if(res?.assets) response = res.assets[0];
+            if (Platform.OS === 'android') {
+                if (res?.assets) response = res.assets[0];
             }
-            if(response.didCancel) return;
+            if (response.didCancel) return;
+            
+            // Update the state based on the platform
+            if (typeof response === 'string') {
+                // For iOS, response is a string URI directly
+                setSelectedFile(response);
+            } else {
+                // For Android, response is an object with 'assets' array
+                setSelectedFile(response.assets[0]);
+            }
+        });
+    }
+    : () => {
+        pickImage((res) => {
+            let response = res;
+            if (res?.assets) response = res.assets[0];
+            if (response.didCancel) return;
+
             setSelectedFile(response);
         });
     };
+    
 
     const checkSubCategory =  (selected) =>{
         setSelectedCategory(selected);
@@ -491,8 +511,12 @@ const AddArticleScreen = ({...props}) =>{
         );
     }
 
+    const isButtonDisabled = (selectedPodCast == "Auto generate using Spenowr AI" &&
+        (selectedLanguage == "English" || selectedLanguage == "Hindi") &&
+        authorName == '');
+        
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={EditData ? 'Edit Article' : 'Add Article'} />   
             <ScrollView 
                 contentContainerStyle={{padding:moderateScale(10),paddingBottom:moderateScale(100)}} 
@@ -649,13 +673,12 @@ const AddArticleScreen = ({...props}) =>{
                         (selectedPodCast == "Upload my recorded audio") && 
                         <DefaultButton buttonText={'Pick Audio File'} onPress={singleFilePicker} />
                     }
-                    <DefaultButton buttonText={EditData ? 'Update' : 'Add'} onPress={()=>validateData()} showLoader={loader} />
+                    <DefaultButton isDeactivated={isButtonDisabled} buttonText={EditData ? 'Update' : 'Add'} onPress={()=>validateData()} showLoader={loader} />
                 </View>
             </ScrollView>
         </SafeAreaView>
     );
 };
-
 
 AddArticleScreen.propTypes = {
     navigation:PropTypes.object.isRequired,

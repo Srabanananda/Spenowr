@@ -25,6 +25,7 @@ const ContestSearch = ({...props}:screenProps) =>{
                 keyExtractor={item=>item.id.toString()}
                 legacyImplementation = {true}
                 renderItem = {renderWhatsNewCards} 
+                removeClippedSubviews={true}
                 scrollEventThrottle={16}
                 showsVerticalScrollIndicator={false}
                 style={{flex:1}}

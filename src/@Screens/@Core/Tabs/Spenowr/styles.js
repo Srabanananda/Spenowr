@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     },
     wrapper:{
         justifyContent:'center',alignItems:'center',
-        width: 60, margin: 5, marginTop: 25,
+        width: '19%', margin: 5, marginTop: 25,
     },
     text:{
         maxWidth:moderateScale(50),

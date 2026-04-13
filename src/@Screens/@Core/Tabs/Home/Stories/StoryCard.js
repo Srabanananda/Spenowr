@@ -6,7 +6,7 @@ import {TouchableOpacity,Text,View} from 'react-native';
 import Config from '@Config/default';
 import styles from './styles';
 import PropTypes from 'prop-types';
-import Image from 'react-native-image-progress';
+import FastImage from 'react-native-fast-image';
 import { useNavigation } from '@react-navigation/native';
 import Capitalize from '../../../../../@Utils/helperFiles/Capitalize';
 import Animated,{interpolate,Extrapolation, useAnimatedStyle} from 'react-native-reanimated';
@@ -62,7 +62,7 @@ const StoryCard = ({story, yAxisAnimatedValue, HEADER_HEIGHT}) =>{
         <TouchableOpacity onPress={()=>checkModule()} style={styles.upperWrapper}>
             <Animated.View style={[styles.square,animatedStyles]}>
                 <View style={styles.storyCard}>
-                    <Image 
+                    <FastImage 
                         source={{ uri:NEW_IMG_BASE + module_image_path }} 
                         style={{width:null,height:null,flex:1}} 
                     />
@@ -72,7 +72,6 @@ const StoryCard = ({story, yAxisAnimatedValue, HEADER_HEIGHT}) =>{
         </TouchableOpacity>
     );
 };
-
 
 StoryCard.propTypes = {
     story:PropTypes.object.isRequired,

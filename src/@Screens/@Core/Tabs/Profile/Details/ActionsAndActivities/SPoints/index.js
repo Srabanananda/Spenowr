@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useEffect,useState} from 'react';
-import {View,ScrollView, SafeAreaView,Text} from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import { getVirtualPoints } from '../../../../../../../@Endpoints/Core/Tabs/Common';
 import DefaultHeader from '../../../../../../../@GlobalComponents/DefaultHeader';
 import FormHeader from '../../../../../../../@GlobalComponents/FormHeader';
@@ -13,6 +13,7 @@ import { useStore } from 'react-redux';
 import moment from 'moment';
 import EarnMore from './EarnMore';
 import Capitalize from '../../../../../../../@Utils/helperFiles/Capitalize';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const SPointsLogScreen = () =>{
 
@@ -77,7 +78,7 @@ const SPointsLogScreen = () =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Spenowr Points'} >
                 <Text style={styles.earnedPoints}>{earned_point} Points</Text>
             </DefaultHeader>

@@ -3,15 +3,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import {
-    View,
-    Text,
-    StyleSheet,
-    ScrollView,
-    SafeAreaView,
-    KeyboardAvoidingView,
-    TextInput, Keyboard
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, KeyboardAvoidingView, TextInput, Keyboard } from 'react-native';
 import { Dropdown } from 'react-native-material-dropdown';
 import Toast from 'react-native-simple-toast';
 import { GlobalStyles } from '../../../../../@GlobalStyles';
@@ -23,6 +15,7 @@ import * as userActions from '@Redux/actions/userActions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import DefaultButton from '../../../../../@GlobalComponents/DefaultButton';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {COLOR:{WHITE,BLACK}} = Config;
 const CurrencyTypes = [
@@ -61,7 +54,6 @@ const Donate = ({...props}) =>{
         Donate();
     }
 
-
     const Donate = () =>{
         setLoading(true);
         let formData = new FormData();
@@ -76,6 +68,7 @@ const Donate = ({...props}) =>{
         formData.append('notifyUrl','https://www.spenowr.com/account/my-profile');
         getDonateMoney(formData)
             .then(res=>{
+                console.log("===========>",res)
                 setLoading(false);
                 const {status,data:{paymentLink=""}} = res;
                 let arr = paymentLink.split('/')
@@ -83,7 +76,13 @@ const Donate = ({...props}) =>{
                 const { data: { payment_list } } = res;
                 console.log('Donate payment_list : ', JSON.stringify(payment_list));
                 if(status == "success"){
-                    navigation.navigate('ProductPay',{ payload: payment_list })
+                    const userData={
+                        customer_name:name,
+                        customer_phone:phone,
+                        customer_email:email
+                      }
+                      navigation.navigate("RazorPayPayment", { payload: {...payment_list,customer_details:userData} });
+                 // navigation.navigate("RazorPayPayment", { payload: {...payment_list,amount:payment_list.order_amount.parseInt(),currency:currency,customer_details:{...payment_list.customer_details,customer_email:email}} });
                 }
             })
             .catch(()=>{
@@ -94,7 +93,7 @@ const Donate = ({...props}) =>{
     };
 
     return(
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView edges={['left', 'right']} style={styles.container}>
             <DefaultHeader headerText={'Donate'} showBackButton={true} />
             <ScrollView contentContainerStyle={{paddingBottom:moderateScale(50)}} showsVerticalScrollIndicator={false}>
                 <View style={styles.ComponentView}>

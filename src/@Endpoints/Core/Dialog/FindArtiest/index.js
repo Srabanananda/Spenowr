@@ -110,7 +110,6 @@ export const getAllCustomArtWorks = (limit=0) => {
         .then(response => response.data);
 };
 
-
 export const addCourseReview = (body) => {
     const url = `${BASE_PATH + API_VERSIONING}/courses/add-course-review`;
     return axios
@@ -126,7 +125,6 @@ export const addCourseReview = (body) => {
         .then(response => response.data);
 };
 
-
 export const addInstituteReview = (body) => {
     const url = `${BASE_PATH + API_VERSIONING}/institute/review-institute`;
     return axios
@@ -141,8 +139,6 @@ export const addInstituteReview = (body) => {
         )
         .then(response => response.data);
 };
-
-
 
 export const addRemoveHeart = (heart_status, module_id) => {
     const url = `${BASE_PATH + API_VERSIONING}/institute/add-remove-heart`;

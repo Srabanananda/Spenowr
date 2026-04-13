@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React, { useEffect, useState } from 'react';
-import {SafeAreaView,ScrollView,StyleSheet,Text, TouchableOpacity,View, ActivityIndicator} from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
 import DefaultHeader from '../../../@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../@GlobalStyles';
 import Config from '@Config/default';
@@ -30,6 +30,7 @@ import THEATER from '../../../assets/JsonFiles/FilterJsons/actorcat_subcat.json'
 import SCULPTURE from '../../../assets/JsonFiles/FilterJsons/sculpcat_subcat.json';
 import ILLUSTRATOR from '../../../assets/JsonFiles/FilterJsons/illucat_subcat.json';
 import OTHERS from '../../../assets/JsonFiles/FilterJsons/othercat_subcat.json';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 //Illustrator
 import { connect } from 'react-redux';
@@ -184,7 +185,17 @@ const AddSpecializationsScreen = ({...props}:any) =>{
             setLoader(true);
             const body = prepareData();
             setUserSpecialization(body,specializationNum === 1 ? '' : specializationNum === 2  ? '-one' : '-two')
-                .then(()=>{
+                .then((res)=>{
+                    console.log('====================================');
+                    console.log('resresres189',res);
+                    console.log('====================================');
+
+                    if (res.status === 'error' && res.data === null && res.error === false) {
+                        Toast.show('This sub-category already exists within the selected category', Toast.LONG);
+                        setLoader(false);
+                        return;
+                    }
+
                     if(currentSkill){
                         if(createNew) Toast.show('Specialization Added successfully',Toast.LONG);
                         else Toast.show('Specialization updated successfully',Toast.LONG);
@@ -248,7 +259,7 @@ const AddSpecializationsScreen = ({...props}:any) =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={currentSkill && !createNew ? 'Edit Your Specialization'  : `Choose Your ${getNumber()} Specialization`} showBackButton={false} >
                 <TouchableOpacity 
                     onPress={()=>checkActions()}

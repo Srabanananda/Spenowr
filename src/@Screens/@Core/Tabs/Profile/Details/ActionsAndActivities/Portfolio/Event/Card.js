@@ -95,7 +95,6 @@ const Card = ({refreshData,cardItem,mode='PRIVATE'}) =>{
     );
 };
 
-
 Card.propTypes = {
     cardItem:PropTypes.object.isRequired,
     mode: PropTypes.string,

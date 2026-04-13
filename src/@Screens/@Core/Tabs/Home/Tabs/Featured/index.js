@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useEffect,useState} from 'react';
-import {View,RefreshControl,Text} from 'react-native';
+import {View,RefreshControl,Text, ScrollView} from 'react-native';
 import { connect } from 'react-redux';
 import { GlobalStyles } from '@GlobalStyles';
 import * as homeActions from '@Redux/actions/homeActions';
@@ -15,10 +15,9 @@ import AllContestsList from './Contests/AllContestsList';
 import FeaturedProducts from './Products';
 import FeaturedArtists from './Artists';
 import FeaturedArtworks from './Artworks';
-import Animated, { useAnimatedScrollHandler } from 'react-native-reanimated';
 import { moderateScale } from 'react-native-size-matters';
 
-const Featured = ({yAxisAnimatedValue,...props}) =>{
+const Featured = ({...props}) =>{
     const {
         fetchFeaturedFeed,
         featuredFeeds,
@@ -47,10 +46,7 @@ const Featured = ({yAxisAnimatedValue,...props}) =>{
         fetchFeaturedFeed();
     };
 
-    const scrollHandler = useAnimatedScrollHandler((event) => {
-        // yAxisAnimatedValue.value = event.contentOffset.y;
-    });
-
+  
 
     if(isObjectEmpty(featuredFeeds) && apiCalled)
         return(
@@ -66,9 +62,8 @@ const Featured = ({yAxisAnimatedValue,...props}) =>{
     
     return(
         <View style={GlobalStyles.GlobalContainer}>
-            <Animated.ScrollView 
+            <ScrollView 
                 contentContainerStyle={{paddingTop:moderateScale(contestAvailable ? 0: 12)}}
-                onScroll={scrollHandler} 
                 refreshControl={
                     <RefreshControl
                         onRefresh={onRefresh} refreshing={refreshing}
@@ -83,7 +78,7 @@ const Featured = ({yAxisAnimatedValue,...props}) =>{
                 <FeaturedArtworks {...{gallery_featured}} />
                 <FeaturedProducts {...{featuredFeeds}} />
                 
-            </Animated.ScrollView>
+            </ScrollView>
         </View>
     );
 };

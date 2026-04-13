@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState} from 'react';
-import {View,StyleSheet,Text,ActivityIndicator} from 'react-native';
+import {View,StyleSheet,Text,ActivityIndicator, TouchableOpacity} from 'react-native';
 import { moderateScale, scale } from 'react-native-size-matters';
 import { deletArtistPressRelease } from '../../../../../../../../@Endpoints/Core/Tabs/MyAccount';
 import Config from '@Config/default';
@@ -22,8 +22,12 @@ const Card = ({refreshData,cardItem,mode='PRIVATE'}) =>{
         description,
         press_date,
         press_name,
-        press_id
+        press_id,
+        prs_file_name
     } = cardItem;
+
+    console.log('prs_file_name',prs_file_name);
+    console.log('cardItem 28',cardItem);
 
     const [loader, setLoader] = useState(false); 
 
@@ -51,7 +55,7 @@ const Card = ({refreshData,cardItem,mode='PRIVATE'}) =>{
                     <Text numberOfLines={1} style={styles.titleText}>{press_name}</Text>
                     <Text style={styles.date}> { press_date}</Text>
                 </View>
-            </View>
+            </View> 
             <View style={styles.bottomCard}>
                 <Text style={styles.desc}>{Capitalize(description)}</Text>
                 {(mode === 'PRIVATE') && 

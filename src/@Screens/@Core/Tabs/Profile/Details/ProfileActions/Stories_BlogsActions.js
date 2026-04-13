@@ -8,15 +8,19 @@ import styles from './styles';
 import Config from '@Config/default';
 import { moderateScale } from 'react-native-size-matters';
 
-
 const {NEW_IMG_BASE,DUMMY_IMAGE_URL} = Config;
 
 const StoryBlogCard = ({storyBlog}) =>{
 
     const {
         article_image_thumbnail_path,
-        article_title
+        article_title,
+        play_count
     } = storyBlog;
+
+    console.log('====================================');
+    console.log('play_countplay_count',play_count);
+    console.log('====================================');
 
     return(
         <View style={styles.serviceBoxWrapper}>
@@ -26,6 +30,10 @@ const StoryBlogCard = ({storyBlog}) =>{
             />
             <View style={{marginLeft:moderateScale(5)}}>
                 <Text style={styles.serviceDescription}> {article_title}</Text>
+                {play_count &&
+                    <Text style={[styles.serviceDescription, {marginTop:5}]}>View/Play Count : <Text>{play_count}</Text></Text>
+                }
+                
             </View>
         </View>
     );

@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState} from 'react';
-import {SafeAreaView,View,TouchableOpacity,Text, ScrollView} from 'react-native';
+import { View, TouchableOpacity, Text, ScrollView } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import DefaultHeader from '../../../../../../../@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../../../../../@GlobalStyles';
@@ -13,7 +13,7 @@ import Awards from './Awards';
 import MeetTheTeam from './MeetTheTeam';
 import Event from './Event';
 import PressRelease from './PressRelease';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {COLOR:{DARK_BLACK,DARKGRAY,APP_PINK_COLOR}} = Config;
 
@@ -58,7 +58,7 @@ const PortfolioScreen = ({...props}) =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={mode === 'PRIVATE '? 'My Portfolio' : 'Portfolio'} />
             <View style={{flex:1}}>
                 <View style={{justifyContent:'center',alignItems:'center'}}>

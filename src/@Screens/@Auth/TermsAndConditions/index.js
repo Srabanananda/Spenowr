@@ -3,14 +3,11 @@
  */
 
 import React, {useState } from 'react';
-import {
-    SafeAreaView,
-} from 'react-native';
 
 import { WebView } from 'react-native-webview';
 import ScreenLoader from '../../../@GlobalComponents/ScreenLoader';
 import DefaultHeader from '../../../@GlobalComponents/DefaultHeader';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const TermsAndConditionsScreen =()=> {
   
@@ -18,7 +15,7 @@ const TermsAndConditionsScreen =()=> {
     const uri = 'https://www.spenowr.com/terms-conditions?source=mobileapp&pwd=390b89dbbdf3171a31bfad90ab9b54db';
 
     return(
-        <SafeAreaView style={{flex:1}}>
+        <SafeAreaView edges={['left', 'right']} style={{flex:1}}>
             <DefaultHeader headerText={'Terms and Cond'} />
             <WebView
                 onLoad={()=>{setLoading(false);}} 

@@ -25,7 +25,6 @@ import Config from "@Config/default";
 import { TabsFormData } from "../..";
 import FallBackUI from "../../../../../../@GlobalComponents/FallBackUI";
 import ErrorBoundary from "react-native-error-boundary";
-import Animated, { useAnimatedScrollHandler } from "react-native-reanimated";
 import AllContestsList from "../Featured/Contests/AllContestsList";
 import EachArtist from "../Featured/Artists/EachArtist";
 import HorizontalSlider from "@GlobalComponents/HorizontalSlider";
@@ -38,20 +37,23 @@ import useUserData from "../../../../../../@Hooks/useUser";
 import SpotLight from "./Spotlight";
 import { getUserDetailsNew } from "../../../../../../@Endpoints/Auth";
 import MyAdView from "../../../../../@Common/AdView";
+import CrossIcon from 'react-native-vector-icons/Feather';
+import { HOME_FILTERS } from "../../../../../../assets/JsonFiles/HomeFilters";
 const {
   COLOR: { SUBNAME },
   NEW_IMG_BASE,
 } = Config;
+const _ = require("lodash");
+let FILTER_MOCK = _.cloneDeep(HOME_FILTERS);
 
-const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-
-const WhatsNew = ({ yAxisAnimatedValue, filterType, ...props }: any) => {
+const WhatsNew = ({ filterType, ...props }: any) => {
   const {
     fetchWhatsNewFeed,
     whatsNewFeed,
     votesofday,
     fetchManagedAds,
     managedAds,
+    updateFilters,
     featuredFeeds,
     apiCalled,
     updateFeed,
@@ -60,13 +62,17 @@ const WhatsNew = ({ yAxisAnimatedValue, filterType, ...props }: any) => {
     fetchInAppNotifications,
   } = props;
 
+  // console.log('whatsNewFeed',whatsNewFeed[0]);
+
   const [refreshing, setRefreshing] = useState(false);
   const [contestAvailable, setContestAvailable] = useState(false);
   const [fromLimit, setFromLimit] = useState(0);
   const [winnersList, setWinnersList] = useState([]);
   const [trendingList, setTrendingList] = useState([]);
   const [subscription, setSubscription] = useState();
+  const [isActive, setIsActive] = useState(false);
   const winnerContestListRef = useRef(0);
+  const [filterTypeData, setFilterTypeData] = useState([])
   const { UserProfileData } = useUserData();
 
   var counter = 0
@@ -81,7 +87,33 @@ const WhatsNew = ({ yAxisAnimatedValue, filterType, ...props }: any) => {
     callWinnerListApi();
     TrendingOfTheDay();
   }, []);
-  
+
+  // useEffect(() => {
+   
+  //   filterFunc()
+  // }, [whatsNewFeed])
+
+//   const filterFunc=()=>{
+
+//     let tempArr=[]
+//     if(whatsNewFeed.length>0){
+//       whatsNewFeed.filter((item,index)=>{
+       
+// tempArr.push(item.feed_type.toLowerCase())
+
+// let filteredArr=removeDuplicates(tempArr)
+// setTypeData(filteredArr)
+//       })
+
+//     }
+//   }
+//   function removeDuplicates(arr) {
+//     return arr.filter((item,
+//       index) => arr.indexOf(item) === index);
+// }
+  // console.log('typeData',typeData);
+  console.log('filterTypeData',filterTypeData);
+
   const callWinnerListApi = () => {
     getWinnerList(fromLimit)
       .then((res) => {
@@ -125,20 +157,36 @@ const WhatsNew = ({ yAxisAnimatedValue, filterType, ...props }: any) => {
     }, 500);
   };
 
+  const renderPages = ({ index,item }) =>{
+    return (
+        <>
+            {index != 0 && (index) % 5 == 0 && subscription == "spenowr_basic" && 
+                <>
+                    <MyAdView
+                        type={managedAds?.type}
+                        key={`ad-${index}`}
+                        buttonTitle={managedAds?.button_text}
+                        link={managedAds?.button_link}
+                        imagePath={managedAds?.image}
+                    />
+                    <Card info={item} key={`card-${item.id}`} />
+                </>
+            || 
+            <Card info={item} key={`card-${item.id}`}  refresh={onRefresh}
+            isVoted={votesofday} />}
+        </>
+    );
+};
+
   const renderWhatsNewCards = (index, item) => {
+
+   
     
     return (
       <ErrorBoundary FallbackComponent={FallBackUI} key={index}>
         {(index != 0 && (index) % 5 == 0 && subscription == "spenowr_basic" && (
           <>
-            {/* <MyAdView
-              obj={managedAds}
-              type={managedAds?.type}
-              key={index}
-              buttonTitle={managedAds?.button_text}
-              link={managedAds?.button_link}
-              imagePath={managedAds?.image}
-            /> */}
+            
             <Card
               info={item}
               key={index}
@@ -161,14 +209,14 @@ const WhatsNew = ({ yAxisAnimatedValue, filterType, ...props }: any) => {
   const renderListHeader = () => {
     return (
       <>
-        <View style={{ marginBottom: contestAvailable ? 0 : 8 }}>
+        <View style={{ marginBottom: contestAvailable ? 0 : 3 }}>
           <SpotLight announcements={featuredFeeds?.AnnouncementData ?? []} />
         </View>
-        <View style={{ marginBottom: contestAvailable ? 0 : 8 }}>
+        <View style={{ marginBottom: contestAvailable ? 0 : 3 }}>
           <SpotLight Stories={trendingList ?? []} />
         </View>
         {winnersList.length && winnerContestListRef.current ? (
-          <View style={{ marginBottom: contestAvailable ? 0 : 8 }}>
+          <View style={{ marginBottom: contestAvailable ? 0 : 3 }}>
             <FormHeader
               containerStyle={{ marginVertical: 8 }}
               headerText={"CONTEST WINNERS"}
@@ -178,7 +226,7 @@ const WhatsNew = ({ yAxisAnimatedValue, filterType, ...props }: any) => {
                 item.slug_url = item.artist_slug_url;
                 item.module_image_path = item.image_path;
                 item.module_title = item.institute_name;
-                return <EachArtist artist={item} key={index} />;
+                return <EachArtist artist={item} key={`artist-${item.id}`} />;
               })}
             </HorizontalSlider>
           </View>
@@ -188,24 +236,104 @@ const WhatsNew = ({ yAxisAnimatedValue, filterType, ...props }: any) => {
     );
   };
 
-  const scrollHandler = useAnimatedScrollHandler((event) => {
-    // yAxisAnimatedValue.value = event.contentOffset.y;
-  });
+  const selectedFilterTypes = useMemo(() => {
+    return filterTypeData.filter(item => item.selected);
+  }, [filterTypeData]);
+
+  const setSelected = (each) => {
+    const obj = (each.selected = !each.selected);
+    const tempArr = [...filterTypeData];
+    const index = tempArr.findIndex((x) => x.value === each.value);
+    tempArr[index] === obj;
+    setFilterTypeData(tempArr);
+    let arr = tempArr.filter((x) => x.selected == true)
+    console.log('tempArr',tempArr);
+    console.log('arr.length check',arr);
+    if (arr.length == 0) {
+      clearFilters(); // Call clearFilters if length is 0
+    } else {
+      applyFilters(); // Otherwise, apply the selected filters
+    }
+  };
+
+  const clearFilters = () => {
+    setIsActive(false);
+    updateFeed("whatsnew");
+    setIsActive(false);
+    const filterData = {
+      searchText: "",
+      appliedModules: FILTER_MOCK,
+    };
+    console.log("filterData clear => ", JSON.stringify(filterData));
+    updateFilters(filterData);
+    let formData = new FormData();
+    formData.append("query", "");
+    formData.append("feed_type", "");
+    formData.append("page", "FIRST");
+    formData.append("sort", "name");
+    formData.append("offset", 0);
+    formData.append("pageRange", 25);
+    formData.append("category", "");
+    formData.append("limit_from", 0);
+    formData.append("limit_to", 20);
+    formData.append("user_id", "");
+    formData.append("tag", "");
+    fetchWhatsNewFeed(formData);
+  };
+
+  const applyFilters = () => {
+    const selectedModules = filterTypeData.filter((x) => x.selected === true);
+
+    if (selectedModules.length) {
+      const values = selectedModules.map((x) => x.value);
+      updateFeed("whatsnew");
+    setIsActive(false);
+      const filterData = {
+        searchText: '',
+        appliedModules: filterTypeData,
+      };
+      console.log("filterData => ", JSON.stringify(filterData));
+      updateFilters(filterData);
+      // updateFilters(filterData);
+      const apiData = TabsFormData(
+        filterData,
+        0,
+        ''
+      );
+      apiData.append("feed_type", values.toString());
+      console.log('values.toString()',values.toString());
+
+       fetchWhatsNewFeed(apiData);
+    } 
+  };
 
   if (whatsNewFeed.length)
     return (
-      <View style={{ marginTop: moderateScale(5),flex:1 }}>
-        <AnimatedFlatList
+
+      <View style={{ marginTop: moderateScale(5), flex: 1, minHeight: 0 }}>
+        <View
+        style={{flexDirection:'row', maxWidth: '100%' , flexWrap: 'wrap', marginTop:0, marginBottom:2}}>
+        {selectedFilterTypes.map((filterItem, index) => (
+          <TouchableOpacity key={`filter-${filterItem.value}`} style={{backgroundColor:'#EF2D56', padding:5, marginLeft:7, borderRadius:5, marginTop:10, flexDirection:'row', alignItems:'center'}} onPress={() => {setSelected(filterItem)}}>
+             
+          <Text style={{color:'#fff', fontSize:12, fontWeight:'bold'}} >{filterItem.name}</Text>
+          <CrossIcon style={{marginLeft:10}} name="x-circle" size={18} color="#fff" />
+          </TouchableOpacity>
+        ))}
+        </View>
+        <FlatList
           ListFooterComponent={()=><ActivityIndicator color={'red'} />}
           contentContainerStyle={{
             paddingTop: moderateScale(contestAvailable ? 0 : 8),
+            flexGrow: 1,
+            paddingBottom: moderateScale(8),
           }}
           data={whatsNewFeed}
           ListHeaderComponent={renderListHeader}
           horizontal={false}
           initialNumToRender={5}
+          removeClippedSubviews
           keyExtractor={(item) => item.id.toString()}
-          bounces={false}
           onEndReached={()=>{
             if (!apiCalled) {
               callApi(fromLimit + 10);
@@ -213,7 +341,6 @@ const WhatsNew = ({ yAxisAnimatedValue, filterType, ...props }: any) => {
             }
           }}
           onEndReachedThreshold={0.3} 
-          onScroll={scrollHandler}
           refreshControl={
             <RefreshControl
             onRefresh={onRefresh}
@@ -222,14 +349,11 @@ const WhatsNew = ({ yAxisAnimatedValue, filterType, ...props }: any) => {
             titleColor={"#000"}
             />
           }
-          renderItem={({ item, index }) => renderWhatsNewCards(index, item)}
-          scrollEventThrottle={16}
+          renderItem = {renderPages} 
           showsVerticalScrollIndicator={false}
           style={{ flex: 1 }}
-          legacyImplementation={true}
-          windowSize={30}
         />
-        <Filters type={"whatsnew"} filterwith={filterType}/>
+       <Filters type={"whatsnew"} setFilterTypeData={setFilterTypeData} filterwith={filterType}/>
       </View>
     );
   if (!whatsNewFeed.length && apiCalled)
@@ -248,7 +372,7 @@ const WhatsNew = ({ yAxisAnimatedValue, filterType, ...props }: any) => {
           {" "}
           No Feed Found !!
         </Text>
-        <Filters type={"whatsnew"} />
+        <Filters type={"whatsnew"} setFilterTypeData={setFilterTypeData} />
       </>
     );
 };
@@ -260,6 +384,7 @@ WhatsNew.propTypes = {
   updateFeed: PropTypes.func.isRequired,
   whatsNewFeed: PropTypes.array.isRequired,
   votesofday: PropTypes.string.isRequired,
+  updateFilters: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -283,6 +408,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(moreActions.fetchMessageCenterMessages()),
     fetchInAppNotifications: (skip) =>
       dispatch(homeActions.fetchInAppNotifications(skip)),
+    updateFilters: (data) => dispatch(homeActions.updateFilters(data)),
   };
 }
 

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import Capitalize from '../../../@Utils/helperFiles/Capitalize';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
-import Image from 'react-native-image-progress';
+import FastImage from 'react-native-fast-image';
 import Config from '@Config/default';
 import { changeNotificationReadStatus } from '../../../@Endpoints/Core/Tabs/Home';
 import { InAppNotificationService } from '../../../@Utils/PushNotifications/InAppNotificationService';
@@ -33,6 +33,7 @@ const Card = ({notification,refreshList}) =>{
 
     let sender = Capitalize(sender_name);
     const read = parseInt(read_status);
+    console.log('notification 36',notification);
 
     const checkActivity = (openPublicProfile = false) =>{
         if(read) {
@@ -52,7 +53,7 @@ const Card = ({notification,refreshList}) =>{
     return(
         <TouchableOpacity onPress={()=>checkActivity()}  style={read ? styles.containerUnread :  styles.containerRead }>
             <View  style={styles.imageCircle}>
-                <Image 
+                <FastImage 
                     source={{ uri: sender_profile_image ? NEW_IMG_BASE+ sender_profile_image :  NEW_IMG_BASE +DEFAULT_PROFILE }} 
                     style={{width:null,height:null,flex:1}} 
                 />

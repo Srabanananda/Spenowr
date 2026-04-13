@@ -2,10 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React, { useEffect, useState } from 'react';
-import {
-    TouchableOpacity,StyleSheet,View,ScrollView,
-    Text,TextInput,Image, Platform,StatusBar, SafeAreaView
-} from 'react-native';
+import { TouchableOpacity, StyleSheet, View, ScrollView, Text, TextInput, Image, Platform, StatusBar } from 'react-native';
 import { moderateScale, scale } from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import PropTypes from 'prop-types';
@@ -21,6 +18,7 @@ import DatePicker from 'react-native-datepicker';
 import * as ProfileDataActions from '@Redux/actions/profileActions';
 import { connect } from 'react-redux';
 import { pickImage } from '../../../../../../../../@Utils/helperFiles/ImagePicker';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {COLOR:{RED,APP_PINK_COLOR,DARK_BLACK,LIGHTGREY},NEW_IMG_BASE} = Config;
 
@@ -73,13 +71,31 @@ const AddAwards = ({refreshData,showEdit=false,cardItem,...props}) =>{
         return <SelectImage onPress={()=>chooseFile()} />;
     };
 
-    const chooseFile = () => {
-        pickImage((res)=>{
+    const chooseFile = Platform.OS === 'ios' 
+    ? () => {
+        pickImage((res) => {
             let response = res;
-            if(Platform.OS === 'android'){
-                if(res?.assets) response = res.assets[0];
+            if (Platform.OS === 'android') {
+                if (res?.assets) response = res.assets[0];
             }
-            if(response.didCancel) return;
+            if (response.didCancel) return;
+            
+            // Update the state based on the platform
+            if (typeof response === 'string') {
+                // For iOS, response is a string URI directly
+                setSelectedFile(response);
+            } else {
+                // For Android, response is an object with 'assets' array
+                setSelectedFile(response.assets[0]);
+            }
+        });
+    }
+    : () => {
+        pickImage((res) => {
+            let response = res;
+            if (res?.assets) response = res.assets[0];
+            if (response.didCancel) return;
+
             setSelectedFile(response);
         });
     };
@@ -136,9 +152,11 @@ const AddAwards = ({refreshData,showEdit=false,cardItem,...props}) =>{
 
     const renderAddAwardForm = () =>{
         return(
-            <SafeAreaView style={styles.container}>
+            <SafeAreaView edges={['left', 'right']} style={styles.container}>
                 {Platform.OS === 'ios' ? null : <StatusBar hidden />}
+                <View style={{marginLeft:15}}>
                 <ModalHeader headerText={showEdit ? 'Edit Your Award' :  'Add Your Award'} onPress = {()=>{setIsActive(false);}} />
+                </View>
                 <ScrollView showsVerticalScrollIndicator={false} >
                     <View style={styles.formWrapper}>
                         <Text style={styles.inputHeaderName}>AWARD NAME 
@@ -238,7 +256,6 @@ const AddAwards = ({refreshData,showEdit=false,cardItem,...props}) =>{
         </>
     );
 };
-
 
 AddAwards.propTypes = {
     

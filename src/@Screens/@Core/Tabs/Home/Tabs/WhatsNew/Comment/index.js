@@ -33,7 +33,7 @@ const Comments = ({ info, refreshCommentCount, refreshCount }) => {
     const store = useStore();
     const { userObj: { userProfile: { user_id } } } = store.getState();
 
-    const { type, module_id } = info;
+    const { type, module_id, article_id } = info;
 
     const [isActive, setIsActive] = useState(false);
     const [commentList, setCommentList] = useState([]);
@@ -62,34 +62,42 @@ const Comments = ({ info, refreshCommentCount, refreshCount }) => {
             switch (type) {
                 case 'Quote':
                     quoteComment();
+                    console.log('One 1 Quote')
                     break;
 
                 case 'gallery':
                     galleryComment();
+                    console.log('Two 2 gallery')
                     break;
 
                 case 'article':
                     articleComment();
+                    console.log('Three 3 article')
                     break;
 
                 case 'service':
                     serviceComments();
+                    console.log('Four 4 service')
                     break;
 
                 case 'product':
                     productComment();
+                    console.log('Five 5 product')
                     break;
 
                 case 'contest':
                     contestComment();
+                    console.log('six 6 contest')
                     break;
 
                 case 'jobs':
                     jobComment();
+                    console.log('seven 7 jobs');
                     break;
 
                 default:
                     galleryComment();
+                    console.log('eight 8 jobs');
                     break;
             }
         }
@@ -97,7 +105,8 @@ const Comments = ({ info, refreshCommentCount, refreshCount }) => {
 
     const galleryComment = () => {
         addGalleryComments(module_id, user_id, liveComment)
-            .then(() => {
+            .then((res) => {
+                console.log('res 101',res);
                 setCommentLoader(false);
                 setLiveComment('');
                 loadComments();
@@ -174,8 +183,11 @@ const Comments = ({ info, refreshCommentCount, refreshCount }) => {
     };
 
     const articleComment = () => {
-        addArticleComments(module_id, user_id, liveComment)
-            .then(() => {
+        addArticleComments(article_id, user_id, liveComment)
+            .then((res) => {
+                console.log('==================================== 192', res);
+                console.log('module_id, user_id, liveComment 193',article_id, user_id, liveComment);
+                console.log('====================================');
                 setCommentLoader(false);
                 setLiveComment('');
                 loadComments();

@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React from 'react';
-import { SafeAreaView, View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import DefaultHeader from '../../../../../../@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../../../../@GlobalStyles';
 import ChangePassword from './ChangePassword';
@@ -12,6 +12,7 @@ import Config from '@Config/default';
 import { moderateScale } from 'react-native-size-matters';
 import PropTypes from 'prop-types';
 import DeleteAccount from './DeleteAccount';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const { COLOR: { LIGHTGREY } } = Config;
 
@@ -51,7 +52,7 @@ const UserSettingsScreen = ({ ...props }) => {
     };
 
     return (
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'User Settings'} />
             <View style={styles.container}>
                 {options.map((eachOption, i) => (renderOptions(eachOption, i)))}

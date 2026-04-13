@@ -10,7 +10,6 @@ import {
     FETCH_SHIPPING_ADDRESS_LIST_FAILURE,FETCH_SHIPPING_ADDRESS_LIST_REQUEST,FETCH_SHIPPING_ADDRESS_LIST_SUCCESS
 } from '../constants/more.constant';
 
-
 const initialState = {
     messageList:[],
     totalUnreadMessages:0,

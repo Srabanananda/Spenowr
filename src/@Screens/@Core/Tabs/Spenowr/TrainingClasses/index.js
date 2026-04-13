@@ -2,7 +2,7 @@
  *  Created By @name Ramakanta
  */
 import React, {useEffect, useState} from 'react';
-import {FlatList, RefreshControl, SafeAreaView,Text} from 'react-native';
+import { FlatList, RefreshControl, Text } from 'react-native';
 import DefaultHeader from '../../../../../@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../../../@GlobalStyles';
 import {getAllCourses} from '../../../../../@Endpoints/Core/Dialog/FindArtiest';
@@ -10,6 +10,7 @@ import EachCard from './Card';
 import { moderateScale } from 'react-native-size-matters';
 import ScreenLoader from '../../../../../@GlobalComponents/ScreenLoader';
 import ArtistFilters, { getApiData } from '../Filters';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const TrainingClassesScreen = () =>{
 
@@ -63,7 +64,7 @@ const TrainingClassesScreen = () =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Training Classes'} />
             {
                 loading && !data.length ?

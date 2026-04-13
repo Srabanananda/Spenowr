@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React from 'react';
-import {View, SafeAreaView, Platform,Text} from 'react-native';
+import { View, Platform, Text } from 'react-native';
 import DefaultButton from '../../../@GlobalComponents/DefaultButton';
 import { GlobalStyles } from '../../../@GlobalStyles';
 import PropTypes from 'prop-types';
@@ -10,14 +10,16 @@ import Config from '@Config/default';
 import UpgradeApp from '../../../@Utils/helperFiles/UpgradeApp';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import styles from './styles';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 
 const {APPSTORE_LINK,PLAYSTORE_LINK} = Config;
 
 const ForceUpgradeScreen = () =>{
     const redirectUrl = Platform.OS === 'ios' ? APPSTORE_LINK : PLAYSTORE_LINK;
-
+    const navigation = useNavigation();
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <View style={styles.container}>
                 <View style={{height:'88%'}}>
                     <Text style={styles.headerText} >Upgrade Your App</Text>
@@ -30,7 +32,10 @@ const ForceUpgradeScreen = () =>{
                         <Text style={styles.description}>Please upgrade to continue seemeless interaction with the app.</Text>
                     </View>
                 </View>
-                <DefaultButton buttonText={'UPGRADE NOW'} onPress={()=>UpgradeApp(redirectUrl)} showLoader={false} />
+                <DefaultButton buttonText={'UPGRADE NOW'} onPress={()=>{
+                    // UpgradeApp(redirectUrl);
+                    navigation.navigate('Home');
+                }} showLoader={false} />
             </View>
         </SafeAreaView>
     );

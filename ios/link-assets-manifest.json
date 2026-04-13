@@ -1,0 +1,65 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Algerian.ttf",
+      "sha1": "0f297993751d7709e60a9de21445a0b12030cdba"
+    },
+    {
+      "path": "assets/fonts/Arial-BoldItalicMT.ttf",
+      "sha1": "22ea421746ab5f3a3625b07539fe3a93d84e670e"
+    },
+    {
+      "path": "assets/fonts/Arial-BoldMT.ttf",
+      "sha1": "fe7e8d7a5f8131c38fbe7dcb3c44a45c4730ad0f"
+    },
+    {
+      "path": "assets/fonts/Arial-ItalicMT.ttf",
+      "sha1": "01d5651814c6a7f72e3c1ed405426cf1b74c96ee"
+    },
+    {
+      "path": "assets/fonts/Arial.ttf",
+      "sha1": "056d20ac56be76d076480c2cab53811fefb91b73"
+    },
+    {
+      "path": "assets/fonts/Audiowide.ttf",
+      "sha1": "c78238f19d250c8ce9d5ec80d33b2b3b8ba6f28e"
+    },
+    {
+      "path": "assets/fonts/Roboto.ttf",
+      "sha1": "56c5c0d38bde4c1f1549dda43db37b09c608aad3"
+    },
+    {
+      "path": "assets/fonts/Sofia.ttf",
+      "sha1": "20a7c7708c1876f0d3151461e8e6d7b6676ab93b"
+    },
+    {
+      "path": "assets/fonts/SofiaPro-Bold.ttf",
+      "sha1": "7d55e3da2c2d60110218a56f7019142a7a6db598"
+    },
+    {
+      "path": "assets/fonts/SofiaPro-RegularItalic.ttf",
+      "sha1": "13761963a97ffd40323b1b95e567da279c172400"
+    },
+    {
+      "path": "assets/fonts/TimesNewRoman.ttf",
+      "sha1": "0d11afd08c9ddd9ed7cea7c4e678601a63b4e97c"
+    },
+    {
+      "path": "assets/fonts/Trirong-Bold.ttf",
+      "sha1": "50e64bf43b1e0dab86218f403a7fcc7c4828a169"
+    },
+    {
+      "path": "assets/fonts/Trirong-BoldItalic.ttf",
+      "sha1": "4a4b9a856cd0ef76b6db0560e11fc4843b4635e0"
+    },
+    {
+      "path": "assets/fonts/Trirong-Italic.ttf",
+      "sha1": "16f20be806a07da618fcac060eb55d26c8cf3b9d"
+    },
+    {
+      "path": "assets/fonts/Trirong.ttf",
+      "sha1": "000c544bcfb1b79ec040a6e0e878679ad0b48429"
+    }
+  ]
+}

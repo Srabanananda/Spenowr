@@ -4,7 +4,7 @@
 import React from 'react';
 import {View,Text,TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
-import Image from 'react-native-image-progress';
+import FastImage from 'react-native-fast-image';
 import styles from '../styles';
 import Config from '@Config/default';
 import {useNavigation} from '@react-navigation/native';
@@ -24,7 +24,7 @@ const EachProduct = ({product,large = false}) =>{
             <TouchableOpacity 
                 onPress={()=>navigation.navigate('ProductDetails',{productSlug:slug_url})} 
                 style={ product_type === 'horizontal' ? styles.productPicHorizontal : large ? styles.productPicVerticalLarge :styles.productPicVertical}>
-                <Image 
+                <FastImage 
                     source={{ uri:NEW_IMG_BASE + module_image_path }} 
                     style={{width:null,height:null,flex:1}} 
                 />

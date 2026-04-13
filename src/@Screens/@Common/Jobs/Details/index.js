@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, ScrollView, View, Text, RefreshControl } from 'react-native';
+import { StyleSheet, ScrollView, View, Text, RefreshControl } from 'react-native';
 import DefaultHeader from '@GlobalComponents/DefaultHeader';
 import { getJobDetails } from '../../../../@Endpoints/Core/Tabs/More';
 import ScreenLoader from '@GlobalComponents/ScreenLoader';
@@ -19,6 +19,7 @@ import CardActions from '../../../@Core/Tabs/Home/Tabs/WhatsNew/CardActions';
 import moment from 'moment';
 import { isAValidImagePath } from '../../../../@Utils/helperFiles/helpers';
 import TopDealProducts from './TopDealProducts';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const { COLOR: { SUBNAME, GREEN , WHITE , DARKGRAY }, NEW_IMG_BASE, DUMMY_IMAGE_URL } = Config;
 
@@ -167,7 +168,7 @@ const JobDetailsScreen = ({ ...props }: DetailProps) => {
     };
 
     return (
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Job Details'} />
             {getData()}
         </SafeAreaView>

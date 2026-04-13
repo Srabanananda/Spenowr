@@ -1,31 +1,175 @@
-require_relative '../node_modules/react-native/scripts/react_native_pods'
-require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+# Resolve react_native_pods.rb with node to allow for hoisting
+require Pod::Executable.execute_command('node', ['-p',
+  'require.resolve(
+    "react-native/scripts/react_native_pods.rb",
+    {paths: [process.argv[1]]},
+  )', __dir__]).strip
 
-platform :ios, '14.4.2'
-install! 'cocoapods', :deterministic_uuids => false
+platform :ios, min_ios_version_supported
+prepare_react_native_project!
 
-target 'spenowr' do
+# Firebase: must pair with static frameworks so Swift pods get proper .modulemap output
+# https://rnfirebase.io/#altering-cocoapods-to-use-frameworks
+$RNFirebaseAsStaticFramework = true
+
+linkage = ENV.fetch('USE_FRAMEWORKS', 'static')
+Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
+use_frameworks! :linkage => linkage.to_sym
+
+target 'Spenowrv2' do
   config = use_native_modules!
-  # pod 'RNFirebase', :path => '../node_modules/react-native-firebase/ios'
-  # pod ‘RNFBAdMob’, :path => ‘../node_modules/@react-native-firebase/admob’
-  # pod 'Google-Mobile-Ads-SDK', '~> 11.5.0'
-  use_react_native!( 
-    :path => config[:reactNativePath],
-    # to enable hermes on iOS, change `false` to `true` and then install pods
-    :hermes_enabled => true
-  )
-  # $RNFirebaseAnalyticsWithoutAdIdSupport=true
 
-  # Enables Flipper.
-  #
-  # Note that if you have use_frameworks! enabled, Flipper will not work and
-  # you should disable these next few lines.
-  use_flipper!({'Flipper' => '0.110.0' , 'Flipper-Folly' => '2.6.9' , 'Flipper-RSocket' => '1.4.3' })
+  use_react_native!(
+    :path => config[:reactNativePath],
+    # An absolute path to your application root.
+    :app_path => "#{Pod::Config.instance.installation_root}/.."
+  )
+
   post_install do |installer|
-    react_native_post_install(installer)
-    __apply_Xcode_12_5_M1_post_install_workaround(installer)
-    installer.pods_project.build_configurations.each do |config|
-      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+    react_native_post_install(
+      installer,
+      config[:reactNativePath],
+      :mac_catalyst_enabled => false,
+      # :ccache_enabled => true
+    )
+
+    # Map <React/*.h> to react-native/React/Base so AppDelegate compiles before React-Core.framework exists.
+    require 'fileutils'
+    shim_parent = File.expand_path(File.join(__dir__, 'build', 'ReactHeaderShim'))
+    shim_react = File.join(shim_parent, 'React')
+    react_base = File.expand_path(File.join(__dir__, '..', 'node_modules', 'react-native', 'React', 'Base'))
+    react_devsupport = File.expand_path(File.join(__dir__, '..', 'node_modules', 'react-native', 'React', 'DevSupport'))
+    react_views = File.expand_path(File.join(__dir__, '..', 'node_modules', 'react-native', 'React', 'Views'))
+    rct_deprecation_h = File.expand_path(File.join(__dir__, '..', 'node_modules', 'react-native', 'ReactApple', 'Libraries', 'RCTFoundation', 'RCTDeprecation', 'Exported', 'RCTDeprecation.h'))
+    FileUtils.rm_rf(shim_parent)
+    if Dir.exist?(react_base)
+      FileUtils.mkdir_p(shim_react)
+      Dir.glob(File.join(react_base, '*.h')).each do |src|
+        FileUtils.ln_sf(File.expand_path(src), File.join(shim_react, File.basename(src)))
+      end
+    end
+    # RCTDefines.h uses __has_include(<React/RCTInspectorDevServerHelper.h>); without DevSupport, DEBUG + RCT_REMOTE_PROFILE hits #error.
+    if Dir.exist?(react_devsupport)
+      FileUtils.mkdir_p(shim_react)
+      Dir.glob(File.join(react_devsupport, '*.h')).each do |src|
+        FileUtils.ln_sf(File.expand_path(src), File.join(shim_react, File.basename(src)))
+      end
+    end
+    # RCTConvert and friends import <React/RCTAnimationType.h> from React/Views (not only Base).
+    if Dir.exist?(react_views)
+      FileUtils.mkdir_p(shim_react)
+      Dir.glob(File.join(react_views, '**', '*.h')).each do |src|
+        FileUtils.ln_sf(File.expand_path(src), File.join(shim_react, File.basename(src)))
+      end
+    end
+    # RCTBridgeModule.h imports <RCTDeprecation/RCTDeprecation.h>; shim until RCTDeprecation.framework Headers are on the path.
+    if File.exist?(rct_deprecation_h)
+      shim_rct_dep = File.join(shim_parent, 'RCTDeprecation')
+      FileUtils.mkdir_p(shim_rct_dep)
+      FileUtils.ln_sf(rct_deprecation_h, File.join(shim_rct_dep, 'RCTDeprecation.h'))
+    end
+    # RCTConvert imports <yoga/Yoga.h>, which includes many yoga/*.h — symlink the whole public tree.
+    yoga_public = File.expand_path(File.join(__dir__, '..', 'node_modules', 'react-native', 'ReactCommon', 'yoga', 'yoga'))
+    if Dir.exist?(yoga_public)
+      FileUtils.mkdir_p(shim_parent)
+      shim_yoga = File.join(shim_parent, 'yoga')
+      FileUtils.rm_f(shim_yoga)
+      FileUtils.ln_sf(yoga_public, shim_yoga)
+    end
+
+    # AppDelegate uses <React_RCTAppDelegate/*.h>; map to Libraries/AppDelegate until React_RCTAppDelegate.framework exists.
+    rct_app_delegate_src = File.expand_path(File.join(__dir__, '..', 'node_modules', 'react-native', 'Libraries', 'AppDelegate'))
+    shim_rct_app_delegate = File.join(shim_parent, 'React_RCTAppDelegate')
+    if Dir.exist?(rct_app_delegate_src)
+      FileUtils.mkdir_p(shim_rct_app_delegate)
+      Dir.glob(File.join(rct_app_delegate_src, '*.h')).each do |src|
+        FileUtils.ln_sf(File.expand_path(src), File.join(shim_rct_app_delegate, File.basename(src)))
+      end
+    end
+    # Codegen: <ReactAppDependencyProvider/RCTAppDependencyProvider.h> before that framework is built.
+    gen_dep_provider = File.expand_path(File.join(__dir__, 'build', 'generated', 'ios', 'RCTAppDependencyProvider.h'))
+    if File.exist?(gen_dep_provider)
+      shim_rad = File.join(shim_parent, 'ReactAppDependencyProvider')
+      FileUtils.mkdir_p(shim_rad)
+      FileUtils.ln_sf(gen_dep_provider, File.join(shim_rad, 'RCTAppDependencyProvider.h'))
+    end
+
+    # Xcode 16+: explicit modules break Swift `import React` / `import React_RCTAppDelegate` with
+    # use_frameworks :linkage => :static unless RN is on prebuilt RNCore (see react_native_pods.rb).
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |bc|
+        bc.build_settings['SWIFT_ENABLE_EXPLICIT_MODULES'] = 'NO'
+      end
+    end
+    # RCTConvert.mm (React-Core) needs <React/RCTAnimationType.h> from Views; static frameworks
+    # sometimes omit that path until headers are staged. Append shim only for React-Core — adding it
+    # to every pod makes <React/...> resolve via symlinks and breaks module precompile (-Wnon-modular-include).
+    shim_inc = '$(PODS_ROOT)/../build/ReactHeaderShim'
+    yoga_inc = '$(PODS_TARGET_SRCROOT)/ReactCommon/yoga'
+    installer.pods_project.targets.each do |target|
+      next unless target.name == 'React-Core'
+      target.build_configurations.each do |bc|
+        hsp = bc.build_settings['HEADER_SEARCH_PATHS']
+        extras = []
+        extras << shim_inc unless hsp.to_s.include?('ReactHeaderShim')
+        extras << yoga_inc unless hsp.to_s.include?('ReactCommon/yoga')
+        next if extras.empty?
+        bc.build_settings['HEADER_SEARCH_PATHS'] = if hsp.is_a?(Array)
+          hsp + extras
+        elsif hsp.is_a?(String) && !hsp.empty?
+          "#{hsp} #{extras.join(' ')}"
+        else
+          ['$(inherited)'] + extras
+        end
+      end
+    end
+    installer.aggregate_targets.each do |aggregate_target|
+      user_project = aggregate_target.user_project
+      next unless user_project
+      user_project.build_configurations.each do |bc|
+        bc.build_settings['SWIFT_ENABLE_EXPLICIT_MODULES'] = 'NO'
+      end
+      user_project.native_targets.each do |t|
+        t.build_configurations.each do |bc|
+          bc.build_settings['SWIFT_ENABLE_EXPLICIT_MODULES'] = 'NO'
+        end
+      end
+      user_project.save
+    end
+
+    # AppDelegate.mm + Pods headers use <React/...>: ensure app *target* search paths (not only project).
+    rc_headers = '${PODS_CONFIGURATION_BUILD_DIR}/React-Core/React.framework/Headers'
+    rc_private = '${PODS_ROOT}/Headers/Private/React-Core'
+    installer.aggregate_targets.each do |aggregate_target|
+      need_save = false
+      aggregate_target.user_project.build_configurations.each do |cfg|
+        next if cfg.build_settings['HEADER_SEARCH_PATHS'].to_s.include?('React-Core/React.framework/Headers')
+        h = cfg.build_settings['HEADER_SEARCH_PATHS']
+        cfg.build_settings['HEADER_SEARCH_PATHS'] = if h.is_a?(Array)
+          h + [rc_headers]
+        elsif h.is_a?(String) && !h.empty?
+          "#{h} #{rc_headers}"
+        else
+          ["$(inherited)", rc_headers]
+        end
+        need_save = true
+      end
+      aggregate_target.user_project.native_targets.each do |t|
+        t.build_configurations.each do |cfg|
+          next if cfg.build_settings['HEADER_SEARCH_PATHS'].to_s.include?('React-Core/React.framework/Headers')
+          h = cfg.build_settings['HEADER_SEARCH_PATHS']
+          extra = ['$(inherited)', rc_headers, rc_private]
+          cfg.build_settings['HEADER_SEARCH_PATHS'] = if h.is_a?(Array)
+            (extra + h).uniq
+          elsif h.is_a?(String) && !h.empty?
+            "#{extra.join(' ')} #{h}"
+          else
+            extra
+          end
+          need_save = true
+        end
+      end
+      aggregate_target.user_project.save if need_save
     end
   end
 end

@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React, { useEffect, useState } from 'react';
-import {SafeAreaView,View,StyleSheet,Text,ScrollView} from 'react-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import DefaultHeader from '../../../@GlobalComponents/DefaultHeader';
 import ScreenLoader from '../../../@GlobalComponents/ScreenLoader';
@@ -11,6 +11,7 @@ import AddAddressForm from './AddAddress';
 import AddressCard from './AddressCard';
 import * as moreActions from '@Redux/actions/moreActions';
 import { connect } from 'react-redux';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type Props = {
     fetchShippingAddressList : () => void,
@@ -52,7 +53,7 @@ const ShippingAddressScreen = ({...props} : Props) =>{
     };
     
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Shipping Address'} />
             {loading ? renderLoading() : renderData()}
             <View style={styles.addButtonWrapper}>

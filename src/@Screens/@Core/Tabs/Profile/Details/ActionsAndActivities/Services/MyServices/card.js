@@ -11,7 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 import {deleteService,editService} from '../../../../../../../../@Endpoints/Core/Tabs/Service';
 import Toast from 'react-native-simple-toast';
 import { getCurrency } from '../../../../../../../../@Utils/helperFiles/CardDetails';
-import Image from 'react-native-image-progress';
+import FastImage from 'react-native-fast-image';
 import { GlobalStyles } from '../../../../../../../../@GlobalStyles';
 import YouTubePlayer from '../../../../../../../../@GlobalComponents/YoutubePlayer';
 import DefaultButton  from '@GlobalComponents/DefaultButton';
@@ -76,7 +76,7 @@ const DefaultCard = ({cardData,mode,refreshData}) =>{
             return<YouTubePlayer playerContainerStyles={styles.upperCard} videoId={media_url_path} />;
         return(
             <View style={styles.upperCard}>
-                <Image
+                <FastImage
                     source={{uri: (service_image_path === '/' || service_image_path === '' || service_image_path === null) ? DUMMY_IMAGE_URL : NEW_IMG_BASE + service_image_path }}
                     style={styles.tinyLogo}
                 />

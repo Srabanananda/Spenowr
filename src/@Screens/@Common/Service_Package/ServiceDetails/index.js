@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState,useEffect} from 'react';
-import {Text,SafeAreaView,StyleSheet,View,ScrollView,TouchableOpacity,RefreshControl} from 'react-native';
+import { Text, StyleSheet, View, ScrollView, TouchableOpacity, RefreshControl } from 'react-native';
 import { GlobalStyles } from '../../../../@GlobalStyles/index';
 import DefaultHeader from '../../../../@GlobalComponents/DefaultHeader/index';
 import { getServiceDetails } from '../../../../@Endpoints/Core/Tabs/MyAccount/index';
@@ -15,6 +15,7 @@ import PackageCard from '../packageCard';
 import Config from '@Config/default';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import RatingsAndReviews from './RatingAndReviews';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {COLOR:{SUBNAME,APP_PINK_COLOR}} = Config;
 
@@ -116,7 +117,7 @@ const ServiceDetailsScreen = ({...props}:DetailScreenProps) =>{
         return <ScreenLoader text={'Fetching Service Details..'} />;
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Service Details'} />
             {details ? renderDetails() : <Text>Oops Couldnot load details</Text>}
         </SafeAreaView>

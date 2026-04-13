@@ -2,7 +2,7 @@
  *  Created By @name Ramakanta
  */
 import React, {useEffect, useState} from 'react';
-import {FlatList, RefreshControl, SafeAreaView,Text} from 'react-native';
+import { FlatList, RefreshControl, Text } from 'react-native';
 import DefaultHeader from '../../../../../@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../../../@GlobalStyles';
 import EachCard from './Card';
@@ -12,6 +12,7 @@ import { moderateScale } from 'react-native-size-matters';
 import ArtistFilters, { getApiData } from '../Filters';
 import FallBackUI from '../../../../../@GlobalComponents/FallBackUI/index';
 import ErrorBoundary  from 'react-native-error-boundary';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const FindTrainersScreen = () =>{
 
@@ -71,7 +72,7 @@ const FindTrainersScreen = () =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Find Trainers'} />
             {
                 loading && !data.length ?

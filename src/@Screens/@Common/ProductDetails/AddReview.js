@@ -102,7 +102,6 @@ const AddReview = ({type,id}) =>{
        
     };
 
-
     const reviewsList = type === 'article' ? articleReviews : productReviewsArr;
 
     const renderReviewBox = ()=>{
@@ -228,6 +227,5 @@ AddReview.propTypes = {
     id:PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
 };
-
 
 export default AddReview;

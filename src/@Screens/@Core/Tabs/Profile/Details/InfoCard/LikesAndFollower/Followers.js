@@ -41,7 +41,7 @@ const Followers = ({...props}) =>{
  
     const renderFollowers = () =>{
         return(
-            <SafeAreaView style={styles.modalContainer}>
+            <SafeAreaView edges={['left', 'right']} style={styles.modalContainer}>
                 <ModalHeader 
                     headerStyle={{paddingHorizontal:10}} 
                     headerText={'Your Followers'} 

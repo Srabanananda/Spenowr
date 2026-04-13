@@ -7,5 +7,6 @@ export const HOME_FILTERS = [
     {'name' : 'Products', value : 'product',selected:false,feedType:'product'},
     {'name' : 'Services', value : 'service',selected:false,feedType:'service'},
     {'name' : 'Contests', value : 'contest',selected:false,feedType:'contest'},
+    // {'name' : 'Animation', value : 'animate',selected:false,feedType:'animate'},
     {'name' : 'Job Opportunity', value : 'jobs',selected:false,feedType:'jobs'}
 ];

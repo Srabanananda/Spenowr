@@ -24,7 +24,6 @@ const InfoBox = ({artworkDetails}) =>{
         },
     } = artworkDetails;
 
-
     return(
         <View style={{marginVertical:moderateScale(10)}}>
             <View>

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import { Text } from 'react-native';
 import SimpleToast from 'react-native-simple-toast';
 import { getCustomPrintsList } from '../../../../../@Endpoints/Core/Tabs/More';
 import DefaultHeader from '../../../../../@GlobalComponents/DefaultHeader';
 import ScreenLoader from '../../../../../@GlobalComponents/ScreenLoader';
 import { GlobalStyles } from '../../../../../@GlobalStyles';
 import PrintList from './List/PrintList';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const CustomPrintScreen = () => {
 
@@ -28,7 +29,7 @@ const CustomPrintScreen = () => {
     if(loader) return <ScreenLoader text={'Fetching Prints ..'} />;
     
     return(
-        <SafeAreaView style={{flex:1}}>
+        <SafeAreaView edges={['left', 'right']} style={{flex:1}}>
             <DefaultHeader headerText={'Custom Prints'} />
             {
                 (printsData?.list?.length) ? <PrintList dataSet={printsData} refresh={callApi} />  : <Text style={GlobalStyles.noDataFound}> No Data Found</Text>

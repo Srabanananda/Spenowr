@@ -64,12 +64,13 @@ const styles = StyleSheet.create({
         backgroundColor:LIGHTGREY,
         borderRadius:moderateScale(6),
     },
-    smallCard:{
-        borderRadius:moderateScale(10),
-        margin:moderateScale(5),
-        width:moderateScale(DEVICE_WIDTH/2-20),
-        marginVertical:moderateScale(5),
-    }
+    smallCard: {
+        borderRadius: moderateScale(10),
+        margin: moderateScale(5),
+        width: DEVICE_WIDTH * 0.45,  // Set width to 45% of the device's width
+        marginVertical: moderateScale(5),
+        overflow: 'hidden', // Ensure content inside doesn't overflow the rounded edges
+    },
 });
 
 export default styles;

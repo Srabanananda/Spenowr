@@ -35,10 +35,8 @@ const UserArtworks = ({artworkDetails}) =>{
     );
 };
 
-
 UserArtworks.propTypes = {
     artworkDetails:PropTypes.object.isRequired
 };
-
 
 export default UserArtworks;

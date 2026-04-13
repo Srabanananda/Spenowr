@@ -93,7 +93,6 @@ const PushNotifications = ({...props}) =>{
     );
 };
 
-
 const mapStateToProps = (state) => {
     return {
         userObj: state.userObj,
@@ -103,7 +102,6 @@ const mapDispatchToProp = (dispatch) => ({
     updateUserDetails:(instituteObj,profileObj) =>
         dispatch(userActions.updateUserDetails(instituteObj,profileObj))
 });
-
 
 PushNotifications.propTypes = {
     updateUserDetails:PropTypes.func.isRequired,

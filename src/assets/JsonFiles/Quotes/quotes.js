@@ -287,5 +287,4 @@ const QuoteImageJSON = {
     ]
 };
 
-
 export default QuoteImageJSON;

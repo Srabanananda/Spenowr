@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React, { useEffect,useState } from 'react';
-import {SafeAreaView,View,Text, StyleSheet,ScrollView} from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { getReferalsList } from '../../../@Endpoints/Core/Tabs/Common';
 import DefaultHeader from '../../../@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../@GlobalStyles';
@@ -12,6 +12,7 @@ import { moderateScale } from 'react-native-size-matters';
 import { capitalize } from 'lodash';
 import Config from '@Config/default';
 import InviteFriends from './InviteFriend';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {COLOR:{SUBNAME,APP_PINK_COLOR}} = Config;
 
@@ -68,7 +69,7 @@ const ReferalsScreen = ({...props}) =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Your Referals'} >
                 <InviteFriends onInviteComplete={callApi} />
             </DefaultHeader>

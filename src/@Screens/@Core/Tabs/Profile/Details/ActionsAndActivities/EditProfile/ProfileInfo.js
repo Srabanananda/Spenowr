@@ -43,7 +43,6 @@ class ProfileInfo extends Component {
         this.setState({ contactEmail: userDetails.contact_email });
     }
 
-
     update= () =>{
         const {artistName,contactEmail} = this.state;
         if(!artistName.length)

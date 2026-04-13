@@ -4,7 +4,7 @@
 
 import { USER_LOGOUT } from '../constants';
 import Config from '../../@Config/default';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persistCombineReducers } from 'redux-persist';
 import userReducer from './userReducer';
 import internetReducer from './internetReducer';

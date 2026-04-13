@@ -90,7 +90,6 @@ const Articles = ({mode,subscription,points,...props}) =>{
             
         );
 
-
     if(!loading && !articlesList.length)
         return(
             <View style={{flex:1}}>
@@ -120,6 +119,5 @@ Articles.propTypes = {
     mode:PropTypes.string.isRequired,
     publicUserData:PropTypes.object.isRequired,
 };
-
 
 export default connect(mapStateToProps)(Articles);

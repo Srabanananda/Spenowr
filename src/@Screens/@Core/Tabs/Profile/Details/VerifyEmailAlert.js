@@ -55,5 +55,4 @@ VerifyEmailAlert.propTypes = {
     verifyText:PropTypes.string,
 };
 
-
 export default connect(mapStateToProps)(VerifyEmailAlert);

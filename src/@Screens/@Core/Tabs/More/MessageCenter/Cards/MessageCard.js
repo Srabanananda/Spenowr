@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import Capitalize from '../../../../../../@Utils/helperFiles/Capitalize';
 import { moderateScale } from 'react-native-size-matters';
 import Config from '@Config/default';
-import Image from 'react-native-image-progress';
+import FastImage from 'react-native-fast-image';
 import { connect } from 'react-redux';
 import * as moreActions from '../../../../../../@Redux/actions/moreActions';
 import HTML from 'react-native-render-html';
@@ -58,7 +58,7 @@ const Card = ({eachUserMsg,notificationConversationId,loggedInUserId,...props}) 
             <View style={ isRead !== 1   ? styles.messageBoxUnread : styles.messageBoxRead }>
                 <View style={styles.contentBox}>
                     <View style={styles.userImg}>
-                        <Image 
+                        <FastImage 
                             source={{ uri: image_path ? NEW_IMG_BASE+ image_path :  NEW_IMG_BASE + DEFAULT_PROFILE }} 
                             style={{width:null,height:null,flex:1}} 
                         />
@@ -81,7 +81,6 @@ const Card = ({eachUserMsg,notificationConversationId,loggedInUserId,...props}) 
         </ViewChat>
     );
 };
-
 
 Card.propTypes = {
     eachUserMsg:PropTypes.object.isRequired,

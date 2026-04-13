@@ -9,7 +9,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Toast from 'react-native-simple-toast';
-import Image from 'react-native-image-progress';
+import FastImage from 'react-native-fast-image';  
 import { useNavigation } from '@react-navigation/native';
 import { connect } from 'react-redux';
 import HTML from 'react-native-render-html';
@@ -62,7 +62,7 @@ const Commenters = ({
             return;
         }
         setActionLoader(true);
-        editComment(media_id, commentID, type, commentText)
+        editComment(media_id, commentID, type === 'gallery' ? 'artwork' : type, commentText)
             .then(() => refresh?.(type))
             .catch(() => Toast.show('Something went wrong'))
             .finally(() => {
@@ -73,7 +73,7 @@ const Commenters = ({
 
     const deleteC = () => {
         setActionLoader(true);
-        deleteComment(media_id, commentID, type)
+        deleteComment(media_id, commentID, type === 'gallery' ? 'artwork' : type)
             .then(() => refresh?.(type),refreshCount())
             .catch(() => Toast.show('Something went wrong'))
             .finally(() => setActionLoader(false)
@@ -138,7 +138,7 @@ const Commenters = ({
             <View style={styles.commentViewWrapper}>
                 <TouchableOpacity disabled={sender_slug === '' || sender_slug === null || sender_slug === undefined} onPress={() => checkNavigation()} style={styles.leftBox}>
                     <View style={styles.imageCircle}>
-                        <Image
+                        <FastImage
                             source={{ uri: image_path ? NEW_IMG_BASE + image_path : NEW_IMG_BASE + DEFAULT_PROFILE }}
                             style={{ width: null, height: null, flex: 1 }}
                         />
@@ -179,7 +179,6 @@ const Commenters = ({
         </View>
     );
 };
-
 
 Commenters.propTypes = {
     comments: PropTypes.object.isRequired,

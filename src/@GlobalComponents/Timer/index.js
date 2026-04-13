@@ -4,10 +4,11 @@
 
 import React, {useState, useEffect} from 'react';
 
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import CountDown from 'react-native-countdown-component';
 import PropTypes from 'prop-types';
 import Config from '@Config/default';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {COLOR:{APP_PINK_COLOR}} = Config;
 
@@ -35,7 +36,7 @@ const CountDownTimer = ({showText = 'Counting Down' , startDate , endDate}) => {
     }, []);
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView edges={['left', 'right']} style={styles.container}>
             <View style={styles.container}>
                 <Text style={styles.title}>
                     {showText}
@@ -58,7 +59,6 @@ const CountDownTimer = ({showText = 'Counting Down' , startDate , endDate}) => {
 };
 
 export default CountDownTimer;
-
 
 CountDownTimer.propTypes = {
     endDate : PropTypes.string.isRequired,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, View,Text,TextInput, Platform, Image, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, TextInput, Platform, Image, TouchableOpacity } from 'react-native';
 import DefaultHeader from '../../../../../../@GlobalComponents/DefaultHeader';
 import FormHeader from '../../../../../../@GlobalComponents/FormHeader';
 import { GlobalStyles } from '../../../../../../@GlobalStyles';
@@ -12,6 +12,7 @@ import { pickImage } from '../../../../../../@Utils/helperFiles/ImagePicker';
 import Toast from 'react-native-simple-toast';
 import { requestProfileVerification } from '../../../../../../@Endpoints/Auth';
 import useUserData from '../../../../../../@Hooks/useUser';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ProfileVerificationScreen = ({...props}:any) => {
     const {navigation} = props;
@@ -81,7 +82,7 @@ const ProfileVerificationScreen = ({...props}:any) => {
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Verification'} />
             <View style={styles.container}>
                 <FormHeader headerText={'VERIFY PROFILE FORM'}  />

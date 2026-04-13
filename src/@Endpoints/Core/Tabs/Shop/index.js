@@ -180,12 +180,30 @@ export const deleteCartItem = (body) => {
         .then(response => response.data)
 };
 
-export const addItemToCart = (productId,prod_type='product',course_id='') => {
+export const addItemToCart = (productId, selectedVariant, variance_enable, prod_type='product',course_id='') => {
     const url = `${BASE_PATH+API_VERSIONING}/shop/add-to-cart`;
     const data = new FormData();
-    data.append('product_id',productId);
-    data.append('course_id',course_id);
-    data.append('product_type',prod_type);
+
+    console.log('selectedVariantselectedVariantselectedVariant',selectedVariant);
+
+    // const vss = '{"varianceId":"9988f982a719943c0e40947d4ecd4af2","varianceTitle":"Black","varianceQuantity":"7","variancePrice":"400","varianceImage":"/images/variant_images/2024-07-22/original/0-5e115d8c27f6738f781b0607f36f1edb.png"}'
+   
+    // data.append('product_id','fe7e331e784561128d8d1686e72bb582');
+    // data.append('product_type','product');
+    // data.append('variantData', vss)
+    // data.append('variance_enable', true)
+   
+    if (selectedVariant) {
+        data.append('product_id', productId );
+        data.append('product_type','product');
+        data.append('variantData', JSON.stringify(selectedVariant))
+        data.append('variance_enable', true)
+    }
+    else {
+        data.append('product_id',productId);
+        data.append('product_type','product');
+    }
+    console.log('response.data 206 cart',data._parts);
     return axios
         .post(
             url,
@@ -197,7 +215,8 @@ export const addItemToCart = (productId,prod_type='product',course_id='') => {
             }
         )
         .then(response => {
-            return response.data
+            console.log('response.data cart',response.data);
+            return response.data;
         })
 };
 
@@ -279,7 +298,7 @@ export const getCheckoutDetails = (coupon,reward,country, currency) => {
 export const getPaymentLink = (payObj) => {
     const url = `${BASE_PATH+API_VERSIONING}/payment/get-payment-link`;
     const data = new FormData();
-    for ( var key in payObj ) {
+    for (var key in payObj) {
         data.append(key, payObj[key]);
     }
     return axios
@@ -313,6 +332,194 @@ export const verifyPaymentWithServer = (orderId) => {
         .then(response => response.data);
 };
 
+export const processVerifyPayment = (orderId) => {
+    const url = `${BASE_PATH+API_VERSIONING}/profile/animate-points-payments-process`;
+    const data = new FormData();
+    // data.append('application',true);
+    data.append('order_id',orderId);
+    return axios
+        .post(
+            url,
+            data,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            }
+        )
+        .then(response => response.data);
+};
+
+export const processVerifyPaymentChatGPT = (orderId) => {
+    const url = `${BASE_PATH+API_VERSIONING}/profile/ai-points-payments-process`;
+    const data = new FormData();
+    // data.append('application',true);
+    data.append('order_id',orderId);
+    return axios
+        .post(
+            url,
+            data,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            }
+        )
+        .then(response => response.data);
+};
+
+export const processVerifyPaymentBuyJobPoints = (orderId) => {
+    const url = `${BASE_PATH+API_VERSIONING}/profile/jobs-points-payments-process`;
+    const data = new FormData();
+    // data.append('application',true);
+    data.append('orderid',orderId);
+    return axios
+        .post(
+            url,
+            data,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            }
+        )
+        .then(response => response.data);
+};
+
+export const razorPayPaymentError=(orderId)=>{
+    
+    const url = `${BASE_PATH+API_VERSIONING}/payment/get-failed-order-info`
+    const data = new FormData();
+    data.append('application',true);
+    data.append('orderid',orderId);
+    return axios
+        .post(
+            url,
+            data,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            }
+        )
+        .then(response => response.data);
+
+}
+
+export const razorpayFailedAnimate=(orderId)=>{
+    
+    const url = `${BASE_PATH+API_VERSIONING}/profile/animate-points-payments-fail`
+    const data = new FormData();
+    data.append('orderid',orderId);
+    return axios
+        .post(
+            url,
+            data,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            }
+        )
+        .then(response => response.data);
+
+}
+
+export const razorpayFailedChatGPT=(orderId)=>{
+    
+    const url = `${BASE_PATH+API_VERSIONING}/profile/ai-points-payments-fail`
+    const data = new FormData();
+    data.append('orderid',orderId);
+    return axios
+        .post(
+            url,
+            data,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            }
+        )
+        .then(response => response.data);
+
+}
+
+export const razorpayFailedBuyJobPoints=(orderId)=>{
+    
+    const url = `${BASE_PATH+API_VERSIONING}/profile/jobs-points-payments-fail`
+    const data = new FormData();
+    data.append('orderid',orderId);
+    return axios
+        .post(
+            url,
+            data,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            }
+        )
+        .then(response => response.data);
+
+}
+
+export const razorpaySuccessAnimate=(orderId)=>{
+    
+    const url = `${BASE_PATH+API_VERSIONING}/profile/animate-points-payments-success`
+    const data = new FormData();
+    data.append('orderid',orderId);
+    return axios
+        .post(
+            url,
+            data,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            }
+        )
+        .then(response => response.data);
+
+}
+
+export const razorpaySuccessChatGPT=(orderid)=>{
+    
+    const url = `${BASE_PATH+API_VERSIONING}/profile/ai-points-payments-success`
+    const data = new FormData();
+    data.append('orderid',orderid);
+    return axios
+        .post(
+            url,
+            data,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            }
+        )
+        .then(response => response.data);
+
+}
+
+export const razorpaySuccessBuyJobPoints=(orderid)=>{
+    
+    const url = `${BASE_PATH+API_VERSIONING}/profile/jobs-points-payments-success`
+    const data = new FormData();
+    data.append('orderid',orderid);
+    return axios
+        .post(
+            url,
+            data,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            }
+        )
+        .then(response => response.data);
+
+}
+
 export const getBuyAgainDetails = (orderId) => {
     const url = `${BASE_PATH+API_VERSIONING}/shop/buy-again`;
     const data = new FormData();
@@ -330,11 +537,21 @@ export const getBuyAgainDetails = (orderId) => {
         .then(response => response.data);
 };
 
-export const getBuyNowDetails = (product_id,type='product') => {
+export const getBuyNowDetails = (product_id,selectedVariant, variance_enable) => {
     const url = `${BASE_PATH+API_VERSIONING}/shop/add-buy-now`;
     const data = new FormData();
-    data.append('product_id',product_id);
-    data.append('product_type',type);
+   
+    if (selectedVariant) {
+        data.append('product_id',product_id);
+        data.append('product_type','product');
+        data.append('variantData', JSON.stringify(selectedVariant))
+        data.append('variance_enable', true)
+    }
+    else {
+        data.append('product_id',product_id);
+        data.append('product_type','product');
+    }
+    console.log('response.data 455',data._parts);
     return axios
         .post(
             url,
@@ -345,13 +562,10 @@ export const getBuyNowDetails = (product_id,type='product') => {
                 },
             }
         )
-        .then(response => response.data);
+        .then(response => {
+            console.log('response.data payment',response.status); // Add this line for logging
+            console.log('response.data payment',response.data);
+            return response.data;
+        })
 };
-
-
-
-
-
-
-
 

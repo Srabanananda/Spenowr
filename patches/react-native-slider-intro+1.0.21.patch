@@ -1,0 +1,48 @@
+diff --git a/node_modules/react-native-slider-intro/src/components/SliderIntro.tsx b/node_modules/react-native-slider-intro/src/components/SliderIntro.tsx
+index a3c2b52..003ea59 100644
+--- a/node_modules/react-native-slider-intro/src/components/SliderIntro.tsx
++++ b/node_modules/react-native-slider-intro/src/components/SliderIntro.tsx
+@@ -503,21 +503,9 @@ export function SliderIntro({
+     );
+   } else {
+     useEffect(() => {
+-      BackHandler.addEventListener('hardwareBackPress', () =>
+-        onBackPress(
+-          backHandlerBehaviour,
+-          slide,
+-          setSlide,
+-          numberOfSlide,
+-          onDone,
+-          navContainerMaxSize,
+-          dotWidth,
+-          deviceMaxWidth
+-        )
+-      );
+-
+-      return () =>
+-        BackHandler.removeEventListener('hardwareBackPress', () =>
++      const subscription = BackHandler.addEventListener(
++        'hardwareBackPress',
++        () =>
+           onBackPress(
+             backHandlerBehaviour,
+             slide,
+@@ -528,7 +516,9 @@ export function SliderIntro({
+             dotWidth,
+             deviceMaxWidth
+           )
+-        );
++      );
++
++      return () => subscription.remove();
+     }, [active]);
+   }
+ 
+@@ -682,7 +672,6 @@ const styles = StyleSheet.create({
+     position: 'absolute',
+     width: '100%',
+     maxWidth: '100%',
+-    flex: 1,
+     flexDirection: 'column',
+     justifyContent: 'flex-end',
+     alignItems: 'center',

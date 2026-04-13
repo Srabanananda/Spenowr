@@ -7,15 +7,17 @@ import Config from '@Config/default';
 import axios from 'axios';
 
 const { CASHFREE_APPID, CASHFREE_SECRETKEY, CASHFREE_API, BASE_PATH, API_VERSIONING } = Config;
-
+console.log({Config});
 export const GetTokenFromCashFree = (body) => {
+    
     return CashFreeAxios
         .post(CASHFREE_API, body,
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'x-client-id': CASHFREE_APPID,
-                    'x-client-secret': CASHFREE_SECRETKEY
+                    'x-client-id': "148350132124a6b84295715f353841",
+                    'x-client-secret': "9b746ada70bf201049d8ff5f435d5a9505d5ab1a",
+                    'x-api-version':"2022-09-01"
                 },
             })
         .then(response => response.data).catch((e)=>console.log('GetTokenFromCashFree error : ', e));
@@ -47,6 +49,8 @@ export const initiateContestPayment = (payload) => {
 export const initiateSubscriptionPayment = (payload) => {
     var body = new FormData();
     for (var key in payload) {
+
+        
         body.append(key, payload[key]);
     }
     const url = `${BASE_PATH + API_VERSIONING}/subscription/subscription-payment`;

@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
     },
     socialIconWrapper:{
         flexDirection:'row',
-        marginTop:moderateScale(2)
+        marginTop:moderateScale(2),
+        flexWrap:'wrap'
     },
     profilePic:{
         width:moderateScale(90),

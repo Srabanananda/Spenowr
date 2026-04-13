@@ -15,15 +15,12 @@ import MyAdView from '../../../../../@Common/AdView'
 import Card from '../WhatsNew/WhatsNewCard';
 import Filters from '../WhatsNew/filters';
 import { TabsFormData } from '../..';
-import Animated, { useAnimatedScrollHandler } from 'react-native-reanimated';
 import useUserData from '../../../../../../@Hooks/useUser';
 import { getUserDetailsNew } from '../../../../../../@Endpoints/Auth';
 
 const  {COLOR:{SUBNAME}} = Config;
 
-const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-
-const MyFollowings = ({yAxisAnimatedValue,...props}:any) =>{
+const MyFollowings = ({...props}:any) =>{
 
     const {
         fetchMyFollowingFeed,myFollowingFeed,
@@ -37,13 +34,26 @@ const MyFollowings = ({yAxisAnimatedValue,...props}:any) =>{
     const [subscription, setSubscription] = useState();
     const {UserProfileData} = useUserData();
 
-    useEffect(()=>{
-        if(UserProfileData?.subscription_plan == "spenowr_basic"){
-            fetchManagedAds();
-            setSubscription(UserProfileData?.subscription_plan);
-          }
-        callApi();
-    },[]);
+    // useEffect(()=>{
+    //     if(UserProfileData?.subscription_plan == "spenowr_basic"){
+    //         fetchManagedAds();
+    //         setSubscription(UserProfileData?.subscription_plan);
+    //       }
+    //     callApi();
+    // },[]);
+
+    useEffect(() => {
+        async function initialize() {
+            if (UserProfileData?.subscription_plan === "spenowr_basic") {
+                await fetchManagedAds();  // Assuming fetchManagedAds is an async function
+                setSubscription(UserProfileData?.subscription_plan);
+            }
+            callApi();
+        }
+        
+        initialize();
+    }, []);
+    
 
     const callApi = (length=0) =>{
         const apiData =  TabsFormData(appliedFilters,length,UserProfileData?.user_id??'','',true);
@@ -57,26 +67,26 @@ const MyFollowings = ({yAxisAnimatedValue,...props}:any) =>{
         setTimeout(()=>{setRefreshing(false);},500);
     };
 
-    const scrollHandler = useAnimatedScrollHandler((event) => {
-        // yAxisAnimatedValue.value = event.contentOffset.y;
-    });
+    
 
-    const renderPages = ({ index,item }) =>{
+    const renderPages = ({ index, item }) => {
+        const uniqueKey = `${item.id}-${index}`;
         return (
             <>
-                {index != 0 && (index) % 5 == 0 && subscription == "spenowr_basic" && 
+                {index !== 0 && index % 5 === 0 && subscription === "spenowr_basic" ? (
                     <>
-                        {/* <MyAdView
+                        <MyAdView
                             type={managedAds?.type}
-                            key={index}
+                            key={`ad-${uniqueKey}`}
                             buttonTitle={managedAds?.button_text}
                             link={managedAds?.button_link}
                             imagePath={managedAds?.image}
-                        /> */}
-                        <Card info={item} key={index} />
+                        />
+                        <Card info={item} key={`card-${uniqueKey}`} />
                     </>
-                || 
-                <Card info={item} key={index} />}
+                ) : (
+                    <Card info={item} key={`card-${uniqueKey}`} />
+                )}
             </>
         );
     };
@@ -84,25 +94,27 @@ const MyFollowings = ({yAxisAnimatedValue,...props}:any) =>{
     if(myFollowingFeed.length)
         return(
             <View style={{flex:1,marginTop:moderateScale(5)}}>
-                <AnimatedFlatList
-                    contentContainerStyle={{paddingTop:moderateScale(6)}}
+                <FlatList
+                    contentContainerStyle={{ paddingTop: moderateScale(6) }}
                     data={myFollowingFeed}
                     horizontal={false}
                     initialNumToRender={5}
-                    keyExtractor={item=>item.id.toString()}
-                    onEndReached={()=>!apiCalled && callApi(myFollowingFeed.length)}
+                    keyExtractor={(item, index) => `${item.id}-${index}`}
+                    removeClippedSubviews={true}
+                    onEndReached={() => !apiCalled && callApi(myFollowingFeed.length)}
                     onEndReachedThreshold={0.3}
-                    onScroll={scrollHandler}
                     refreshControl={
                         <RefreshControl
-                            onRefresh={onRefresh} refreshing={refreshing}
+                            onRefresh={onRefresh}
+                            refreshing={refreshing}
                             title="Refreshing .."
-                            titleColor={'#000'} />
+                            titleColor={'#000'}
+                        />
                     }
-                    renderItem = {renderPages} 
-                    scrollEventThrottle={16}  
+                    renderItem={renderPages}
+                    scrollEventThrottle={16}
                     showsVerticalScrollIndicator={false}
-                    style={{flex:1}}
+                    style={{ flex: 1 }}
                 />
                 <Filters type={'following'} />
             </View>

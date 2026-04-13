@@ -2,10 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React, { useEffect, useState } from 'react';
-import {
-    View,TouchableOpacity, StyleSheet,SafeAreaView, 
-    Text, TextInput, ScrollView,Keyboard
-} from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Text, TextInput, ScrollView, Keyboard } from 'react-native';
 import { GlobalStyles } from '../../../@GlobalStyles';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Modal from 'react-native-modal';
@@ -20,6 +17,7 @@ import { addShippingAddress, updateShippingAddress } from '../../../@Endpoints/C
 import CheckBox from '@react-native-community/checkbox';
 import PropTypes from 'prop-types';
 import { getCountryId } from '../../../@Utils/helperFiles/CardDetails';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {data:{country : COUNTRY_LIST}} = GLOBALJSON;
 
@@ -50,19 +48,23 @@ const AddAddressForm = ({...props}) =>{
     useEffect(()=>{
         if(EDIT_DATA)
         {
-            const {address,alt_contact_number,city,contact_number,delivery_type,country:countryId,landmark,name,pin,state,} = EDIT_DATA;
+            const {address,alt_contact_number,city,contact_number,delivery_type,country:countryId,landmark,name,pin,state, default_address} = EDIT_DATA;
             const {value : countryName} = getCountry(countryId);
             const {value:stateName} = getState(countryId,state);
-            resetData(address,alt_contact_number,city,contact_number,countryName,delivery_type.toUpperCase(),landmark,name,pin,stateName);
+            resetData(address,alt_contact_number,city,contact_number,countryName,delivery_type.toUpperCase(),landmark,name,pin,stateName,default_address);
             setEditData(EDIT_DATA);
+            setIsDefault(EDIT_DATA.default_address)
             setIsActive(true);
+            console.log('default_address',default_address);
+            console.log('EDIT_DATAEDIT_DATA',EDIT_DATA);
+            console.log('EDIT_DATA.default_addressEDIT_DATA.default_address',EDIT_DATA.default_address);
         }
     },[EDIT_DATA]);
 
     const onModalClose = () =>{
         setIsActive(false);
         resetData(); 
-        onClose(getCountryId(slectedCountry))
+        // onClose(getCountryId(slectedCountry))
     };
 
     const getFormData = () =>{
@@ -79,18 +81,20 @@ const AddAddressForm = ({...props}) =>{
         data.append('delivery_type',addressType.toLocaleLowerCase());
         data.append('address',address);
         data.append('default_address',isDefault);
+        console.log('data 82',data);
         return data;
     };
 
     const callAddApi = (data) =>{
         addShippingAddress(data)
-            .then(()=>{
+            .then((res)=>{
+                console.log('res addshipping 88', res);
                 Toast.show('Address Added Successfully');
                 onAddComplete?.();
                 setTimeout(()=>{
                     resetData();
                     setIsActive(false);
-                    onClose(getCountryId(slectedCountry))
+                    // onClose(getCountryId(slectedCountry))
                 },600);
             })
             .catch(()=>{
@@ -110,7 +114,7 @@ const AddAddressForm = ({...props}) =>{
                 setTimeout(()=>{
                     resetData();
                     setIsActive(false);
-                    onClose(getCountryId(slectedCountry))
+                    // onClose(getCountryId(slectedCountry))
                 },600);
             })
             .catch(()=>{
@@ -168,7 +172,7 @@ const AddAddressForm = ({...props}) =>{
 
     const renderAddAddress = () =>{
         return(
-            <SafeAreaView style={styles.modalContainer}>
+            <SafeAreaView edges={['left', 'right']} style={styles.modalContainer}>
                 <ModalHeader headerStyle={{paddingHorizontal:10}} headerText={EditData ? 'Update Address' :'Add Address'} onPress={()=>onModalClose()}  />
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.container}>
@@ -270,7 +274,7 @@ const AddAddressForm = ({...props}) =>{
                         <View style={{flexDirection:'row',marginTop:moderateScale(8),alignItems:'center'}}>
                             <CheckBox
                                 onValueChange={(newValue) => {
-                                    setIsDefault(newValue);
+                                    setIsDefault(!isDefault);
                                 }}
                                 value={isDefault}
                             />

@@ -3,16 +3,17 @@
  */
 
 import React from 'react';
-import { SafeAreaView,View,Image, StatusBar} from 'react-native';
+import { View, Image, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import ForgotPasswordForm from './ForgotPasswordForm';
 import DefaultHeader from '../../../../@GlobalComponents/DefaultHeader';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ForgotPasswordScreen = ({...props}) =>{
     const {navigation} =props;
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView edges={['left', 'right']} style={styles.container}>
             <StatusBar barStyle="dark-content" />
             <DefaultHeader headerText={'ForgotPassword'} />
             <View style={styles.container}>

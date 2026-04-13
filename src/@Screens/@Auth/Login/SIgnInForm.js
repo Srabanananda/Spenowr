@@ -9,7 +9,7 @@ import * as userActions from '../../../@Redux/actions/userActions';
 import DefaultButton from '../../../@GlobalComponents/DefaultButton';
 import styles from './styles';
 import { GlobalStyles } from '../../../@GlobalStyles';
-import { withNavigation } from '@react-navigation/compat';
+import { useNavigation } from '@react-navigation/native';
 import Toast from 'react-native-simple-toast';
 import { isEmailValid } from '../../../@Utils/helperFiles/helpers';
 import InitiateAuthentication, { checkUserDetails } from '../../../@Utils/helperFiles/Authentication';
@@ -17,9 +17,9 @@ import OtpVerify from '../Register/OtpVerify';
 import { connect } from 'react-redux';
 import Phone from '../../@Common/Phone';
 
-const SignInForm  = ({...props}: any) => {
+const SignInForm  = (props) => {
 
-    const {navigation} = props;
+    const navigation = useNavigation();
 
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -102,5 +102,4 @@ const mapDispatchToProp = (dispatch) => ({
         dispatch(userActions.updateUserDetails(instituteObj, profileObj))
 });
 
-
-export default connect(mapStateToProps, mapDispatchToProp)(withNavigation(SignInForm));
+export default connect(mapStateToProps, mapDispatchToProp)(SignInForm);

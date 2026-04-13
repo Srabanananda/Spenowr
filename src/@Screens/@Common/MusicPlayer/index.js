@@ -16,13 +16,15 @@ const events = [
   Event.PlaybackTrackChanged,
   Event.PlaybackQueueEnded,
 ];
-const MusicPlayer = ({ ...props }) => {
+const MusicPlayer = ({ onPresses, ...props }) => {
   const { name, track } = props;
   const [playerState, setPlayerState] = useState(null);
   const [iActive, setActive] = useState("");
   const [updatedQueue, changeQueue] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(track);
   const [isPlay, setIsPlay] = useState(false);
+  const [apiCalled, setApiCalled] = useState(false);
+
   useEffect(async () => {
     // await TrackPlayer.setupPlayer();
     TrackPlayer.reset();
@@ -64,6 +66,7 @@ const MusicPlayer = ({ ...props }) => {
       await TrackPlayer.reset();
       await TrackPlayer.pause();
       setIsPlay(false)
+      setApiCalled(false); // Reset API call status on reset
   }
 
   const getStateOfPlayer = async () => {
@@ -103,12 +106,20 @@ const MusicPlayer = ({ ...props }) => {
       await TrackPlayer.play();
       setActive(currentTrack)
       setIsPlay(true)
+      if (!apiCalled) { // Check if API has not been called
+        if (onPresses) onPresses();  // Call the onPress function here
+        setApiCalled(true); // Set API called status to true
+      }
     }else{
       await TrackPlayer.reset();
       await TrackPlayer.add([{url:track}]);
       await TrackPlayer.play();
       console.log('get reset');
       setIsPlay(true)
+      if (!apiCalled) { // Check if API has not been called
+        if (onPresses) onPresses();  // Call the onPress function here
+        setApiCalled(true); // Set API called status to true
+      }
       // togglePlayback(currentTrack);
     }
   }

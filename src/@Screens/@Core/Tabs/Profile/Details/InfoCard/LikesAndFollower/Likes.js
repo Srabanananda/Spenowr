@@ -41,7 +41,7 @@ const Likes = ({...props}) =>{
 
     const renderLikes = () =>{
         return(
-            <SafeAreaView style={styles.modalContainer}>
+            <SafeAreaView edges={['left', 'right']} style={styles.modalContainer}>
                 <ModalHeader 
                     headerStyle={{paddingHorizontal:10}} 
                     headerText={'Users Who liked you'} 

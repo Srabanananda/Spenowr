@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import {
-    SafeAreaView,
-} from 'react-native';
 
 import { WebView } from 'react-native-webview';
 import DefaultHeader from '../../../@GlobalComponents/DefaultHeader';
 import ScreenLoader from '../../../@GlobalComponents/ScreenLoader';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 class WebViewScreen extends Component {
     constructor(props) {
@@ -20,7 +18,7 @@ class WebViewScreen extends Component {
         const {URI,ScreenTitle} = route.params;
 
         return (
-            <SafeAreaView style={{ flex: 1 }}>
+            <SafeAreaView edges={['left', 'right']} style={{ flex: 1 }}>
                 <DefaultHeader headerText={ScreenTitle} />
                 <WebView
                     onLoad={() => { this.setState({ loading: false }); }}

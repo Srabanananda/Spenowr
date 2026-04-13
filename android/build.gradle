@@ -1,50 +1,42 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     ext {
-        buildToolsVersion = "30.0.2"
+        buildToolsVersion = "36.0.0"
         minSdkVersion = 24
-        compileSdkVersion = 33
-        targetSdkVersion = 31
-        androidXAnnotation = "1.1.0"
-        androidXBrowser = "1.0.0"
-        kotlinVersion = '1.6.0'
-        ndkVersion = "21.4.7075529"
+        compileSdkVersion = 36
+        targetSdkVersion = 36
+        ndkVersion = "27.1.12297006"
+        kotlinVersion = "2.1.20"
     }
     repositories {
         google()
         mavenCentral()
+    }
+    configurations.classpath {
+        resolutionStrategy {
+            force("com.android.tools.build:gradle:8.11.0")
+        }
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.2.2")
-        classpath 'com.google.gms:google-services:4.3.4'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-    }
-
-}
-
-allprojects {
-    def REACT_NATIVE_VERSION = new File(['node', '--print', "JSON.parse(require('fs').readFileSync(require.resolve('react-native/package.json'), 'utf-8')).version"].execute(null, rootDir).text.trim())
-    configurations.all {
-        resolutionStrategy {
-            force "com.facebook.react:react-native:" + REACT_NATIVE_VERSION
-        }
-    }
-    repositories {
-        mavenCentral()
-        mavenLocal()
-        maven {
-            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
-            url("$rootDir/../node_modules/react-native/android")
-        }
-        maven {
-            // Android JSC is installed from npm
-            url("$rootDir/../node_modules/jsc-android/dist")
-        }
-
-        google()
-        
-        maven { url 'https://www.jitpack.io' }
+        classpath("com.android.tools.build:gradle:8.11.0")
+        classpath("com.facebook.react:react-native-gradle-plugin")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+        classpath("com.google.gms:google-services:4.4.2")
     }
 }
 
+apply plugin: "com.facebook.react.rootproject"
+
+// Align androidx.activity artifacts (activity / activity-ktx / activity-compose). Mixed graphs plus
+// Gradle's -ktx "mirror" resolution can otherwise produce duplicate androidx.activity.ktx.R in dex merge.
+def androidXActivityVersion = "1.9.3"
+subprojects { subproject ->
+    subproject.plugins.withId("com.android.base") {
+        subproject.configurations.configureEach { configuration ->
+            configuration.resolutionStrategy.eachDependency { details ->
+                if (details.requested.group == "androidx.activity") {
+                    details.useVersion(androidXActivityVersion)
+                }
+            }
+        }
+    }
+}

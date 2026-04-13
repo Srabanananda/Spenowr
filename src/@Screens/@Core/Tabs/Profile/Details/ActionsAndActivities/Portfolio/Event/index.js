@@ -78,9 +78,7 @@ Event.propTypes = {
     mode: PropTypes.string.isRequired,
 };
 
-
 export default Event;
-
 
 const styles = StyleSheet.create({
     container: {

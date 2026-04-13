@@ -1,8 +1,8 @@
 /**
  *  Created By @name Sukumar_Abhijeet
  */
-import React, { useEffect, useState, useContext } from 'react';
-import {SafeAreaView,StyleSheet,Text} from 'react-native';
+import React, { useEffect, useMemo, useState } from 'react';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import DefaultHeader from '../../../../@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../../@GlobalStyles';
@@ -11,153 +11,237 @@ import * as ShopActions from '../../../../@Redux/actions/shopActions';
 import PropTypes from 'prop-types';
 import { isObjectEmpty } from '../../../../@Utils/helperFiles/isObjectEmpty';
 import ScreenLoader from '../../../../@GlobalComponents/ScreenLoader';
-import { ScrollView } from 'react-native-gesture-handler';
-import  LinearGradient  from 'react-native-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient';
 import Config from '@Config/default';
 import { moderateScale } from 'react-native-size-matters';
 import NoInternet from '../../../../@GlobalComponents/NoInternet';
 import DefaultButton from '../../../../@GlobalComponents/DefaultButton';
 import { useIsFocused } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const {GRADIENT_COLORS:{PIGGY,SKY,NETFLIX,OCEAN,ORANGE,VISION,INSTA},COLOR:{WHITE}} = Config;
+const {
+  GRADIENT_COLORS: { PIGGY, SKY, NETFLIX, OCEAN, ORANGE, VISION, INSTA },
+  COLOR: { WHITE },
+} = Config;
 
-const COLOR_SHADES = [NETFLIX,OCEAN,ORANGE,PIGGY,SKY,VISION,INSTA];
+const COLOR_SHADES = [NETFLIX, OCEAN, ORANGE, PIGGY, SKY, VISION, INSTA];
+
 
 const prodParams = new FormData();
-prodParams.append('sort','rating');
-prodParams.append('currency','USD');
+prodParams.append('sort', 'rating');
+prodParams.append('currency', 'USD');
 
-const ShopScreen = ({...props}) =>{
-    const isFocused =  useIsFocused();
-    const {
-        fetchShopProducts,isInternetAvailable, 
-        shopData:{shopProducts,shopProductApiCalled},
-        navigation,
-        route
-    } = props;
-    
-    const {
-        top_deals_product=[],
-        product_list=[],
-        featured=[]
-    } = shopProducts;
+const ShopScreen = ({ ...props }) => {
+  const isFocused = useIsFocused();
+  const [bodyHeight, setBodyHeight] = useState(0);
+  const {
+    fetchShopProducts,
+    isInternetAvailable,
+    shopData: { shopProducts, shopProductApiCalled },
+    navigation,
+    route,
+  } = props;
 
-    const willExploreAll = route?.params?.exploreAll || false;
-    
-    const dataSet = [
-        {element:'card'},
-        {headerText : 'Top Deals', products  : top_deals_product,colors:PIGGY,type:'today-deals',subcat:'' },
-        {headerText : 'Featured Products', products  : featured,colors:SKY,type:'featured',subcat:''},
-    ];
+  const {
+    top_deals_product = [],
+    product_list = [],
+    featured = [],
+  } = shopProducts;
 
-    const showLoader = isObjectEmpty(shopProducts) && shopProductApiCalled === true;
+  const willExploreAll = route?.params?.exploreAll || false;
 
-    useEffect(()=>{
-        isFocused && fetchShopProducts(prodParams);
-    },[isFocused]);
-
-    useEffect(()=>{
-        if(willExploreAll)exploreAllProd();
-    },[willExploreAll]);
-
-    const exploreAllProd = () => navigation.navigate('ProductList',{productDetails:{type:'',subcat:'',cat:'',sort:'ranking'}});
-    const dynamicProd = product_list.filter(x=>x.type  === 'product-data');
-
-
-    const renderData = () =>(
-        <ScrollView showsVerticalScrollIndicator={false}>
+  const dataSet = useMemo(
+    () => [
+      { element: 'card' },
+      ...(top_deals_product.length
+        ? [
             {
-                dataSet.map((product,i)=>{
-                    // console.log(product)
-
-                    if(product.element)
-                        return(
-                            <LinearGradient colors={VISION} end={{x: 1, y: 0}} start={{x: 0, y: 0}} style={[GlobalStyles.primaryCard,styles.gradientBox]}>
-                                <Text style={styles.textProd}>We have a wide variety of Products for you to explore.</Text>
-                                <DefaultButton buttonStyle={styles.btnTextStyles} buttonText={'Explore All Products'} onPress={exploreAllProd} showLoader={false} textStyle={styles.btnTextStyles} type={'outline'}  />
-                            </LinearGradient>
-                        );
-                    return(
-                        <CardLayout 
-                            key={i} 
-                            layoutContainerStyles={{marginBottom:moderateScale(10)}} 
-                            product={product}
-                        />
-                    );
-                })
-            }
+              headerText: 'Top Deals',
+              products: top_deals_product,
+              colors: PIGGY,
+              type: 'today-deals',
+              subcat: '',
+            },
+          ]
+        : []),
+      ...(featured.length
+        ? [
             {
-                dynamicProd.map((product,i)=>{
-                    const {see_more_button : {type = product?.type},products=product?.products,header_title=product?.headerText,category =product?.cat,subcategory=product?.subcat} = product;
-                    
-                    product.headerText=header_title;
-                    product.products=products;
-                    product.type=type;
-                    product.subcat=category=='sculptures'?category:subcategory ;
-                    product.cat=category=='sculptures'?'':category;
-                    product.colors = COLOR_SHADES[Math.floor(Math.random() * COLOR_SHADES.length)];
-                    return(
-                        <CardLayout 
-                            key={i} 
-                            layoutContainerStyles={{marginBottom:moderateScale(10)}} 
-                            product={product}
-                        />
-                    );
-                })
-            }
-        </ScrollView>
-    );
+              headerText: 'Featured Products',
+              products: featured,
+              colors: SKY,
+              type: 'featured',
+              subcat: '',
+            },
+          ]
+        : []),
+    ],
+    [top_deals_product, featured]
+  );
 
-    const renderLoader = () =>(
-        <ScreenLoader text={'Fetching Products'} />
-    );
+  const showLoader = isObjectEmpty(shopProducts) && shopProductApiCalled === true;
 
-    if (!isInternetAvailable)
-        return <NoInternet />;
-    return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
-            <DefaultHeader headerText={'My Shop'} showBackButton={false} />
-            {showLoader ? renderLoader() : renderData() }
-        </SafeAreaView>
-    );
+  useEffect(() => {
+    isFocused && fetchShopProducts(prodParams);
+  }, [isFocused]);
+
+  useEffect(() => {
+    if (willExploreAll) exploreAllProd();
+  }, [willExploreAll]);
+
+  const exploreAllProd = () =>
+    navigation.navigate('ProductList', {
+      productDetails: { type: '', subcat: '', cat: '', sort: 'ranking' },
+    });
+  const dynamicProd = product_list.filter((x) => x.type === 'product-data');
+
+  const renderData = () => (
+    <ScrollView
+      style={styles.scroll}
+      contentContainerStyle={[
+        styles.scrollContent,
+        bodyHeight > 0 && { minHeight: bodyHeight },
+      ]}
+      showsVerticalScrollIndicator={false}
+      bounces
+    >
+      {dataSet.map((product, i) => {
+        if (product.element) {
+          return (
+            <LinearGradient
+              key="shop-banner"
+              colors={VISION}
+              end={{ x: 1, y: 0 }}
+              start={{ x: 0, y: 0 }}
+              style={[GlobalStyles.primaryCard, styles.gradientBox]}
+            >
+              <Text style={styles.textProd}>
+                We have a wide variety of Products for you to explore.
+              </Text>
+              <DefaultButton
+                buttonStyle={styles.btnTextStyles}
+                buttonText={'Explore All Products'}
+                onPress={exploreAllProd}
+                showLoader={false}
+                textStyle={styles.btnTextStyles}
+                type={'outline'}
+              />
+            </LinearGradient>
+          );
+        }
+        return (
+          <CardLayout
+            key={`card-${product.headerText}-${i}`}
+            layoutContainerStyles={{ marginBottom: moderateScale(10) }}
+            product={product}
+          />
+        );
+      })}
+      {dynamicProd.map((row, i) => {
+        const seeMore = row.see_more_button || {};
+        const btnType = seeMore.type ?? row?.type;
+        const products = row?.products;
+        const header_title = row?.header_title ?? row?.headerText;
+        const category = row?.cat;
+        const subcategory = row?.subcat;
+        const cardProduct = {
+          ...row,
+          headerText: header_title,
+          products,
+          type: btnType,
+          subcat: category === 'sculptures' ? category : subcategory,
+          cat: category === 'sculptures' ? '' : category,
+          colors:
+            COLOR_SHADES[Math.floor(Math.random() * COLOR_SHADES.length)],
+        };
+        return (
+          <CardLayout
+            key={`dynamic-${row.type}-${i}-${header_title}`}
+            layoutContainerStyles={{ marginBottom: moderateScale(10) }}
+            product={cardProduct}
+          />
+        );
+      })}
+    </ScrollView>
+  );
+
+  const renderLoader = () => <ScreenLoader text={'Fetching Products'} />;
+
+  if (!isInternetAvailable) return <NoInternet />;
+  return (
+    <SafeAreaView
+      edges={['left', 'right']}
+      style={[GlobalStyles.GlobalContainer, { backgroundColor: '#fff' }]}
+    >
+      <DefaultHeader headerText={'My Shop'} showBackButton={false} />
+      <View
+        style={styles.body}
+        onLayout={(e) => setBodyHeight(e.nativeEvent.layout.height)}
+      >
+        {showLoader ? (
+          <View style={styles.loaderWrap}>
+            {renderLoader()}
+          </View>
+        ) : (
+          renderData()
+        )}
+      </View>
+    </SafeAreaView>
+  );
 };
 
 const mapStateToProps = (state) => {
-    return {
-        shopData: state.shop,
-        isInternetAvailable: state.InternetConnectivity.isConnected
-    };
+  return {
+    shopData: state.shop,
+    isInternetAvailable: state.InternetConnectivity.isConnected,
+  };
 };
 const mapDispatchToProp = (dispatch) => ({
-    fetchShopProducts:(data)=>
-        dispatch(ShopActions.fetchShopProducts(data)),
+  fetchShopProducts: (data) => dispatch(ShopActions.fetchShopProducts(data)),
 });
 
 ShopScreen.propTypes = {
-    fetchShopProducts:PropTypes.func.isRequired,
-    isInternetAvailable: PropTypes.bool.isRequired,
-    navigation:PropTypes.object.isRequired,
-    route: PropTypes.object,
-    shopData:PropTypes.object.isRequired,
+  fetchShopProducts: PropTypes.func.isRequired,
+  isInternetAvailable: PropTypes.bool.isRequired,
+  navigation: PropTypes.object.isRequired,
+  route: PropTypes.object,
+  shopData: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps,mapDispatchToProp)(ShopScreen);
+export default connect(mapStateToProps, mapDispatchToProp)(ShopScreen);
 
 export const styles = StyleSheet.create({
-    textProd:{
-        maxWidth:'55%'
-    },
-    gradientBox:{
-        borderRadius:0,
-        padding:moderateScale(10),
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center',
-        marginBottom:moderateScale(8)
-    },
-    btnTextStyles:{
-        color:WHITE,
-        borderColor:WHITE,
-        fontWeight:'bold'
-    }
+  body: {
+    flex: 1,
+    minHeight: 0,
+    width: '100%',
+  },
+  scroll: {
+    flex: 1,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    width: '100%',
+    paddingBottom: moderateScale(12),
+  },
+  loaderWrap: {
+    flex: 1,
+    minHeight: 0,
+    width: '100%',
+    justifyContent: 'center',
+  },
+  textProd: {
+    maxWidth: '55%',
+  },
+  gradientBox: {
+    borderRadius: 0,
+    paddingHorizontal: moderateScale(10),
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  btnTextStyles: {
+    color: WHITE,
+    borderColor: WHITE,
+    fontWeight: 'bold',
+  },
 });

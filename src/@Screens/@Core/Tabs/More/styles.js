@@ -1,7 +1,5 @@
 import {StyleSheet,Dimensions} from 'react-native';
 
-
-
 import Config from '@Config/default';
 import { moderateScale } from 'react-native-size-matters';
 

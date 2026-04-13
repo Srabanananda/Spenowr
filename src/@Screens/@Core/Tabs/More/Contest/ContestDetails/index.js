@@ -3,7 +3,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView,View,ScrollView,Text,TouchableOpacity } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import Config from '@Config/default';
 import DefaultHeader from '../../../../../../@GlobalComponents/DefaultHeader';
@@ -20,6 +20,7 @@ import FallBackUI from '../../../../../../@GlobalComponents/FallBackUI';
 
 import moment from 'moment';
 import ScaledImage from '../../../../../../@GlobalComponents/ScalableImage';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {COLOR:{WHITE,DARK_BLACK,APP_PINK_COLOR},NEW_IMG_BASE} = Config;
 const Tabs = [
@@ -110,7 +111,7 @@ const ContestDetailsScreen = ({...props}) =>{
     if(loading)
         return <ScreenLoader text={'Loading Contest Details..'} />;
     return(
-        <SafeAreaView style={{flex:1}}>
+        <SafeAreaView edges={['left', 'right']} style={{flex:1}}>
             <DefaultHeader headerText={'Contest Info'} />
             <ScrollView contentContainerStyle={{padding:moderateScale(10)}} showsVerticalScrollIndicator={false}>
                 <View style={styles.contestInfo}>

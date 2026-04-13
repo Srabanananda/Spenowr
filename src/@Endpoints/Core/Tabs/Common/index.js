@@ -60,8 +60,6 @@ export const getQuotesDetails = (slug) => {
         .then(response => response.data);
 };
 
-
-
 export const getArticleDetails = (slug) => {
     const url = `${BASE_PATH+API_VERSIONING}/article/article-detail`;
     const body = new FormData();
@@ -79,8 +77,6 @@ export const getArticleDetails = (slug) => {
         .then(response => response.data);
 };
 
-
-
 export const getVirtualPoints = () => {
     const url = `${BASE_PATH+API_VERSIONING}/profile/virtual-points-data`;
     return axios
@@ -94,7 +90,6 @@ export const getVirtualPoints = () => {
         )
         .then(response => response.data);
 };
-
 
 export const getRewardPoints = () => {
     const data = new FormData();

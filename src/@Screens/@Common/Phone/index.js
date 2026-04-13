@@ -8,8 +8,7 @@ import {
 import { GlobalStyles } from '../../../@GlobalStyles';
 import CountryPicker from 'react-native-country-picker-modal';
 
-
-const Phone = ({ countryCode, phone, email, placeholder='Email or Phone Number' }) => {
+const Phone = ({ countryCode, phone, email="", placeholder='Email or Phone Number' }) => {
 
     // const [email, setEmailOrPhone] = useState('');
     // const [email, setEmailOrPhone] = useState('');

@@ -25,5 +25,4 @@ SelectImage.propTypes = {
     style:PropTypes.object,
 };
 
-
 export default SelectImage;

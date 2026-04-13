@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {SafeAreaView, Text, FlatList, TouchableOpacity, Image, View, RefreshControl} from 'react-native';
+import { Text, FlatList, TouchableOpacity, Image, View, RefreshControl } from 'react-native';
 import SimpleToast from 'react-native-simple-toast';
 import { getAudioPodCastList } from '../../../../../../@Endpoints/Core/Tabs/More';
 import DefaultHeader from '../../../../../../@GlobalComponents/DefaultHeader';
@@ -8,6 +8,8 @@ import { GlobalStyles } from '../../../../../../@GlobalStyles';
 import { moderateScale } from "react-native-size-matters";
 import styles from "../WhatsNew/styles";
 import Config from "@Config/default";
+import FastImage from 'react-native-fast-image';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const { NEW_IMG_BASE, DUMMY_IMAGE_URL, DEFAULT_PROFILE } = Config;
 
@@ -25,6 +27,7 @@ const SeriesScreen = (props) => {
     const callApi = (fromLimit = 0,toLimit = 20) => {
         getAudioPodCastList(fromLimit,toLimit)
             .then(res=>{
+              console.log('getAudioPodCastList', res);
                 const { poddata } = res?.data
                 setSeriesList(poddata);
             })
@@ -50,7 +53,7 @@ const SeriesScreen = (props) => {
             <TouchableOpacity style={[styles.cardBox,{borderRadius: moderateScale(10)}]} onPress={()=>{
               props.navigation.navigate('SeriesDetails', { series_id: series_id})
             }}>
-                <Image
+                <FastImage
                   source={{
                     uri: image_path
                       ? NEW_IMG_BASE + image_path
@@ -74,7 +77,8 @@ const SeriesScreen = (props) => {
         return (
           <>
             <FlatList
-              contentContainerStyle={{ padding: moderateScale(10) }}
+              style={{ flex: 1 }}
+              contentContainerStyle={{ padding: moderateScale(10), flexGrow: 1 }}
               data={dataSet}
               horizontal={false}
               initialNumToRender={5}
@@ -99,11 +103,13 @@ const SeriesScreen = (props) => {
     if(loader) return <ScreenLoader text={'Fetching Series Details ..'} />;
     
     return(
-        <SafeAreaView style={{flex:1}}>
-            <DefaultHeader headerText={'Series Detail'} />
-            {
-                (seriesList?.length) ? <MySeriesList dataSet={seriesList} refresh={callApi} />  : <Text style={GlobalStyles.noDataFound}> No Data Found</Text>
-            }
+        <SafeAreaView edges={['left', 'right']} style={{ flex: 1 }}>
+            <DefaultHeader headerText={'Series'} />
+            <View style={{ flex: 1, minHeight: 0 }}>
+                {(seriesList?.length)
+                    ? <MySeriesList dataSet={seriesList} refresh={callApi} />
+                    : <Text style={GlobalStyles.noDataFound}> No Data Found</Text>}
+            </View>
         </SafeAreaView>
     );
 

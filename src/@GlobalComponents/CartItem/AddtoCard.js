@@ -15,65 +15,81 @@ import * as shopActions from '@Redux/actions/shopActions';
 
 const {COLOR:{APP_PINK_COLOR}} = Config;
 
-const AddToCart = ({...props}) =>{
-
+const AddToCart = ({...props}) => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
     const {
-        productId,isAddedToCart,onAddCallback,cartItemsNumber,
-        textStyles,buttonStyles,indicatorColor,currency
+        productId, selectedVariant, variance_enable, isAddedToCart, onAddCallback,
+        cartItemsNumber, textStyles, buttonStyles, indicatorColor, currency, disabled
     } = props;
 
-    const [added , setAdded] = useState(isAddedToCart>0 ? true : false);
+    const [added, setAdded] = useState(isAddedToCart > 0 ? true : false);
+    const [loader, setLoader] = useState(false);
 
-    const [loader, setLoader]  = useState(false);
-    const add = () =>added ? navigation.navigate('Cart', { selectedCurency: currency}) : callApi();
+    const add = () => {
+        if (disabled) return; // Prevent action if disabled
+        added ? navigation.navigate('Cart', { selectedCurency: currency }) : callApi();
+    };
 
-    const callApi = () =>{
+    const callApi = () => {
         setLoader(true);
-      addItemToCart(productId)
-            .then((r)=>{
-       
-                if(r?.data?.response_msg=='Product NOt Available.'){
-                    setAdded(false)
+        addItemToCart(productId, selectedVariant, variance_enable)
+            .then((r) => {
+                if (r?.data?.response_msg == 'Product NOt Available.') {
+                    setAdded(false);
                     Toast.show('Product Not Available.');
-                }else{
+                } else {
                     setAdded(true);
-                    dispatch(shopActions.updateCartItemNumber(cartItemsNumber+1));
+                    dispatch(shopActions.updateCartItemNumber(cartItemsNumber + 1));
                     onAddCallback?.();
                 }
             })
-            .catch((e)=>{
-                console.log(e)
+            .catch((error) => {
                 Toast.show('Oops something went wrong');
+                if (error.response) {
+                    console.log('response error===>', error.response.data);
+                } else if (error.request) {
+                    console.log('Request Error==>', error.request);
+                } else {
+                    console.log('Error', error.message);
+                }
             })
-            .finally(()=>{
+            .finally(() => {
                 setLoader(false);
             });
     };
 
     const buttonText = added ? 'Go To Cart' : 'Add To Cart';
 
-    return(
-        <TouchableOpacity disabled={loader} onPress={()=>add()}  style={buttonStyles ? buttonStyles :  GlobalStyles.seeMoreButton}>
-            {
-                loader ? 
-                    <ActivityIndicator color={indicatorColor? indicatorColor : APP_PINK_COLOR} size={'small'}  /> : 
-                    <Text style={textStyles ? textStyles : GlobalStyles.seeMoreButtonText}>{buttonText}</Text>
-            }
+    return (
+        <TouchableOpacity
+            disabled={loader || disabled}
+            onPress={() => add()}
+            style={[buttonStyles ? buttonStyles : GlobalStyles.seeMoreButton, disabled && { opacity: 0.5 }]}
+        >
+            {loader ? (
+                <ActivityIndicator color={indicatorColor ? indicatorColor : APP_PINK_COLOR} size={'small'} />
+            ) : (
+                <Text style={textStyles ? textStyles : GlobalStyles.seeMoreButtonText}>{buttonText}</Text>
+            )}
         </TouchableOpacity>
     );
 };
 
 AddToCart.propTypes = {
-    buttonStyles:PropTypes.object,
-    cartItemsNumber:PropTypes.number.isRequired,
-    indicatorColor:PropTypes.string,
-    isAddedToCart:PropTypes.number.isRequired,
-    onAddCallback:PropTypes.func,
-    productId:PropTypes.string.isRequired,
-    textStyles:PropTypes.object,
+    buttonStyles: PropTypes.object,
+    cartItemsNumber: PropTypes.number.isRequired,
+    indicatorColor: PropTypes.string,
+    isAddedToCart: PropTypes.number,
+    onAddCallback: PropTypes.func,
+    productId: PropTypes.string.isRequired,
+    textStyles: PropTypes.object,
+    selectedVariant: PropTypes.object,
+    variance_enable: PropTypes.bool,
+    currency: PropTypes.any,
+    disabled: PropTypes.bool,
 };
+
 function mapStateToProps(state){
     return{
         cartItemsNumber : state.shop.cartItemsNumber

@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useEffect,useState} from 'react';
-import {SafeAreaView,RefreshControl,FlatList,Text} from 'react-native';
+import { RefreshControl, FlatList, Text } from 'react-native';
 import ErrorBoundary from 'react-native-error-boundary';
 import { moderateScale } from 'react-native-size-matters';
 import { getAllCourses } from '../../../../../@Endpoints/Core/Dialog/FindArtiest';
@@ -12,6 +12,7 @@ import ScreenLoader from '../../../../../@GlobalComponents/ScreenLoader';
 import { GlobalStyles } from '../../../../../@GlobalStyles';
 import ArtistFilters, { getApiData } from '../Filters';
 import EachCard from './Card';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const CustomOrdersScreen = () =>{
     const [data, setData] = useState([]);
@@ -70,7 +71,7 @@ const CustomOrdersScreen = () =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Custom Artworks'} />
             {
                 loading && !data.length ?

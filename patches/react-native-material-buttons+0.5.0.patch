@@ -1,0 +1,52 @@
+diff --git a/node_modules/react-native-material-buttons/src/components/raised-text-button/index.js b/node_modules/react-native-material-buttons/src/components/raised-text-button/index.js
+index 54cf4b9..32de0bc 100644
+--- a/node_modules/react-native-material-buttons/src/components/raised-text-button/index.js
++++ b/node_modules/react-native-material-buttons/src/components/raised-text-button/index.js
+@@ -5,6 +5,12 @@ import { Text } from 'react-native';
+ import RaisedButton from '../raised-button';
+ import { styles } from './styles';
+ 
++const stylePropType = PropTypes.oneOfType([
++  PropTypes.object,
++  PropTypes.array,
++  PropTypes.number,
++]);
++
+ export default class RaisedTextButton extends PureComponent {
+   static defaultProps = {
+     titleColor: 'rgb(66, 66, 66)',
+@@ -16,7 +22,7 @@ export default class RaisedTextButton extends PureComponent {
+ 
+     title: PropTypes.string.isRequired,
+     titleColor: PropTypes.string,
+-    titleStyle: Text.propTypes.style,
++    titleStyle: stylePropType,
+     disabledTitleColor: PropTypes.string,
+   };
+ 
+diff --git a/node_modules/react-native-material-buttons/src/components/text-button/index.js b/node_modules/react-native-material-buttons/src/components/text-button/index.js
+index 8b26f47..bd040b1 100644
+--- a/node_modules/react-native-material-buttons/src/components/text-button/index.js
++++ b/node_modules/react-native-material-buttons/src/components/text-button/index.js
+@@ -5,6 +5,12 @@ import { Text } from 'react-native';
+ import Button from '../button';
+ import { styles } from './styles';
+ 
++const stylePropType = PropTypes.oneOfType([
++  PropTypes.object,
++  PropTypes.array,
++  PropTypes.number,
++]);
++
+ export default class TextButton extends PureComponent {
+   static defaultProps = {
+     color: 'transparent',
+@@ -21,7 +27,7 @@ export default class TextButton extends PureComponent {
+ 
+     title: PropTypes.string.isRequired,
+     titleColor: PropTypes.string,
+-    titleStyle: Text.propTypes.style,
++    titleStyle: stylePropType,
+     disabledTitleColor: PropTypes.string,
+   };
+ 

@@ -11,7 +11,6 @@ import { FlatList, RefreshControl, Text } from 'react-native';
 import WorkExpCard from '../../../../../../@Common/WorkExp/WorkExpCard';
 import { connect } from 'react-redux';
 
-
 const WorkExpListing = ({...props} : any) => {
 
     const {mode,publicUserData} = props;

@@ -3,13 +3,7 @@
  */
 import React,{useEffect, useState } from 'react';
 
-import {
-    View,Text,
-    SafeAreaView,ScrollView,
-    TextInput,TouchableOpacity,
-    Image,
-    Platform
-} from 'react-native';
+import { View, Text, ScrollView, TextInput, TouchableOpacity, Image, Platform } from 'react-native';
 
 import { moderateScale } from 'react-native-size-matters';
 import DefaultHeader from '../../../../../../../../@GlobalComponents/DefaultHeader';
@@ -29,6 +23,7 @@ import DatePicker from 'react-native-datepicker';
 import Card from './SelectType/Card';
 import { tagValidator } from '../../../../../../../../@Utils/helperFiles/helpers';
 import { pickImage } from '../../../../../../../../@Utils/helperFiles/ImagePicker';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {
     data:{
@@ -211,7 +206,7 @@ const AddServiceScreen = ({...props}) =>{
     },[EditData]);
 
     const validateData = () =>{
-        if(serviceName === '' || selectedCategory === 'Select Category' || serviceDescription === '' || selectedCountry === '-- Select Country --')
+        if(serviceName === '' || selectedCategory === 'Select Category' || serviceDescription === '' || selectedCountry === '-- Select Country --' || fee === '')
             Toast.show('Please Fill all mandatory fields',Toast.LONG);
         else
         {
@@ -292,12 +287,14 @@ const AddServiceScreen = ({...props}) =>{
     const callAdd = (body) =>{
         addServices(body)
             .then((res)=>{
+                console.log('res earnedPoint',res);
                 const {data:{servicesPoint:{earnedPoint=0,totalPoint=0}}} = res;
                 setEarned(earnedPoint);
                 setTotal(totalPoint);
                 Toast.show('Course Added Successfully',Toast.LONG);
             })
-            .catch(()=>{
+            .catch((err)=>{
+                console.log('console error in 301',err);
                 Toast.show('Something went wrong',Toast.LONG);
             })
             .finally(()=>{
@@ -582,7 +579,7 @@ const AddServiceScreen = ({...props}) =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={EditData ? 'Edit Services' : 'Add Services'} />
             <ScrollView 
                 contentContainerStyle={{padding:moderateScale(10),paddingBottom:moderateScale(100)}} 
@@ -706,7 +703,9 @@ const AddServiceScreen = ({...props}) =>{
                         value={serviceDuration}
                     />
 
-                    <Text style={GlobalStyles.inputHeaderName}>SERVICE FEE</Text>
+                    <Text style={GlobalStyles.inputHeaderName}>SERVICE FEE
+                        <Text style={GlobalStyles.starColor}> *</Text>
+                    </Text>
                     <TextInput 
                         keyboardType={'number-pad'}
                         onChangeText = {(value)=>setFee(value)}

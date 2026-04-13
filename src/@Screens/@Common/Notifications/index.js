@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState} from 'react';
-import {Text,View, SafeAreaView,FlatList,RefreshControl, TouchableOpacity,ActivityIndicator} from 'react-native';
+import { Text, View, FlatList, RefreshControl, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import DefaultHeader from '../../../@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../@GlobalStyles';
@@ -14,6 +14,7 @@ import * as homeActions from '@Redux/actions/homeActions';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { markNotificationRead } from '../../../@Endpoints/Core/Tabs/Home';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const NotificationScreen = ({...props}) =>{
 
@@ -78,7 +79,7 @@ const NotificationScreen = ({...props}) =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={[GlobalStyles.GlobalContainer, {backgroundColor: '#fff'}]}>
             <DefaultHeader headerText={'Notifications'}> 
                 <TouchableOpacity onPress={markAllRead} style={GlobalStyles.seeMoreButtonRev}>
                     {loader ? <ActivityIndicator color={'#FFF'} /> : <Text style={GlobalStyles.seeMoreButtonTextRev}>Mark all read</Text> }

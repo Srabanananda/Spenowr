@@ -32,7 +32,6 @@ const VerifyProfile = ()=> {
             .catch();
     };
 
-
     if(!showVerify) return <></>;
     return(
         <DefaultButton 

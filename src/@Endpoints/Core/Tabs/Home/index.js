@@ -41,6 +41,38 @@ export const makeVote = (postID, ArtistID, type) => {
         .then(response => response.data);
 };
 
+export const submitVoteApi = async (user_id, polls_id, selected_option) => {
+    try {
+        const body = new FormData();
+        body.append('user_id', user_id);
+        body.append('polls_id', polls_id);
+        body.append('selected_option', selected_option);
+
+        const url = `${BASE_PATH+API_VERSIONING}/profile/submit-vote`;
+        console.log("Submit Vote API URL:", url);
+        console.log("Payload:", user_id, polls_id, selected_option);
+
+        const response = await axios.post(url, body, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+
+        console.log("Submit Vote API Response:", response.data);
+        return response.data;
+    } catch (error) {
+        console.error("Submit Vote API Error:", error);
+        if (error.response) {
+            console.error("Response Data:", error.response.data);
+        } else if (error.request) {
+            console.error("No response received from server.");
+        } else {
+            console.error("Error setting up request.");
+        }
+        throw error;
+    }
+};
+
 export const TrendingDayList = () => {
     
     const url = `${BASE_PATH+API_VERSIONING}/feed/get-vote-data`;
@@ -455,6 +487,17 @@ export const commentLikeDislike = (heart_status,media_id,module_type) => {
         .then(response => response.data);
 };
 
+export const getAllStoriessListAndData = (data) => {
+    const url = `${BASE_PATH + API_VERSIONING}/feed/get-story-all-list-details`;
+    
+    return axios
+        .post(url, data, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+    })
+    .then((response) => response.data);
+};
 
 export const fetchStories = (skip=0,limit=7) => {
     const body =  new FormData();
@@ -473,7 +516,6 @@ export const fetchStories = (skip=0,limit=7) => {
         )
         .then(response => response.data);
 };
-
 
 export const getWinnerList = () => {
     const url = `${BASE_PATH+API_VERSIONING}/home/story-of-week`;
@@ -571,6 +613,4 @@ export const getJobsComments = (media_id,type,skip=0,limit=10) => {
         )
         .then(response => response.data);
 };
-
-
 

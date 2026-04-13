@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
         padding: 20,
         justifyContent: 'center',
 
-
     },
 
     input: {
@@ -130,7 +129,6 @@ const styles = StyleSheet.create({
         //justifyContent: "flex-start",
         textAlign: 'center',
         marginBottom: 40,
-
 
     },
 

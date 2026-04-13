@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState} from 'react';
-import {ScrollView,SafeAreaView,StyleSheet,Text,View,TextInput} from 'react-native';
+import { ScrollView, StyleSheet, Text, View, TextInput } from 'react-native';
 import { GlobalStyles } from '../../../../../../../../@GlobalStyles/index';
 import DefaultHeader from '../../../../../../../../@GlobalComponents/DefaultHeader/index';
 import { moderateScale } from 'react-native-size-matters';
@@ -12,6 +12,7 @@ import CURRENCIES from '@Assets/JsonFiles/ProductsJson/currency.json';
 import Config from '@Config/default';
 import Toast from 'react-native-simple-toast';
 import { addServicePackage, updateServicePackage } from '../../../../../../../../@Endpoints/Core/Tabs/MyAccount';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {COLOR:{DARKGRAY}} = Config;
 
@@ -104,7 +105,7 @@ const AddPackageScreen = ({...props}:AddPackageScreenProps) =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={ EditData ? 'Edit Package' : 'Add Package'} />
             <ScrollView 
                 contentContainerStyle={{padding:moderateScale(10),paddingBottom:moderateScale(100)}} 

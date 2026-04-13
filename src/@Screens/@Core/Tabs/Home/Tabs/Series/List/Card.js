@@ -43,7 +43,6 @@ const Card = ({printData}:any) => {
 
 export default Card;
 
-
 const styles = StyleSheet.create({
     card:{
         marginBottom:moderateScale(10),

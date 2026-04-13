@@ -51,9 +51,6 @@ export const updateService = (body) => {
         .then(response => response.data);
 };
 
-
-
-
 export const deleteService = (course_id) => {
     const body = new FormData();
     body.append('course_id',course_id);

@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useEffect, useState} from 'react';
-import {SafeAreaView,View,StyleSheet,Text,TextInput,ScrollView, Keyboard} from 'react-native';
+import { View, StyleSheet, Text, TextInput, ScrollView, Keyboard } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import DefaultHeader from '../../../@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../@GlobalStyles';
@@ -11,6 +11,7 @@ import DefaultButton from '../../../@GlobalComponents/DefaultButton';
 import Toast from 'react-native-simple-toast';
 import { addUserBankDetails, getUserBankDetails } from '../../../@Endpoints/Auth';
 import ScreenLoader from '../../../@GlobalComponents/ScreenLoader';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ACC_TYPES = [
     {name : 'saving_account', value : 'Saving Account'},
@@ -102,7 +103,7 @@ const BankAccountScreen = () =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Bank Account Details'} />
             {
                 loadDetails  ? <ScreenLoader text={'Fetching bank details'} /> :

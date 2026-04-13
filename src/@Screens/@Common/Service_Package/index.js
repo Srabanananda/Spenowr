@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useEffect,useState} from 'react';
-import {SafeAreaView,Text,View,TouchableOpacity} from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { GlobalStyles } from '../../../@GlobalStyles';
 import DefaultHeader from '../../../@GlobalComponents/DefaultHeader/index';
 import { getServicePackageData } from '../../../@Endpoints/Core/Tabs/MyAccount';
@@ -12,7 +12,7 @@ import { moderateScale } from 'react-native-size-matters';
 import PackageCard from './packageCard';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useIsFocused } from '@react-navigation/native';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type PackageScreenProps = {
     route:{
@@ -55,7 +55,7 @@ const PackageScreen = ({...props}: PackageScreenProps) =>{
 
     if(!loading)
         return(
-            <SafeAreaView style={GlobalStyles.GlobalContainer}>
+            <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
                 <DefaultHeader headerText={'Manage Package'} />
                 <View style={{padding:moderateScale(10)}}>
                     {packages.length ? renderPackages() : <Text style={{alignSelf:'center',marginTop:moderateScale(20),fontSize:moderateScale(12)}}>No Packages added</Text>}

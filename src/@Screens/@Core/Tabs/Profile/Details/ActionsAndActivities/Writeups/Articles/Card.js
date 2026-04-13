@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useEffect,useState} from 'react';
-import {View,Text,StyleSheet,ActivityIndicator, TouchableOpacity, SafeAreaView} from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
 import Config from '@Config/default';
 import { moderateScale, scale } from 'react-native-size-matters';
 import Toast from 'react-native-simple-toast';
@@ -18,6 +18,7 @@ import ScaledImage from '../../../../../../../../@GlobalComponents/ScalableImage
 import { ScrollView } from 'react-native-gesture-handler';
 import SubmitToContest from '../../Artworks/MyArtWork/SubmitToContest';
 import AudioPlayer from '../../../../../../../@Common/MusicPlayer/AudioPlayer';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const { COLOR: { APP_PINK_COLOR,WHITE,APP_THEME_COLOR,SUBNAME }, NEW_IMG_BASE } = Config;
 
@@ -80,7 +81,7 @@ const Card = ({cardData,refreshData,mode,}) =>{
     };
     const renderPreviewForm = () =>{
         return(
-            <SafeAreaView style={styles.reviewModal}>
+            <SafeAreaView edges={['left', 'right']} style={styles.reviewModal}>
                 <ModalHeader headerText={article_title} onPress={()=>setIsActive(false)} />
                 <ScrollView showsVerticalScrollIndicator={false} style={{padding:moderateScale(10)}}>
                     <HTML html={article_description} />
@@ -179,7 +180,6 @@ Card.propTypes = {
     mode:PropTypes.string.isRequired,
     refreshData:PropTypes.func.isRequired,
 };
-
 
 export default Card;
 

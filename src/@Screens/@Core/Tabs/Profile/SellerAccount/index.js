@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React, { useState } from 'react';
-import {SafeAreaView,View,Text,TouchableOpacity} from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import DefaultHeader from '../../../../../@GlobalComponents/DefaultHeader';
 
 import Config from '@Config/default';
@@ -12,6 +12,7 @@ import SellerProductsList from './SellerProducts/ProductList';
 import SellerReceivedOrder from './Orders';
 import { useStore } from 'react-redux';
 import DeletedProductList from './SellerProducts/ProductList/DeletedProductList';
+import { SafeAreaView } from 'react-native-safe-area-context';
 const {COLOR:{APP_PINK_COLOR,DARKGRAY,DARK_BLACK}} = Config;
 
 const tabs = [
@@ -81,7 +82,7 @@ const SellerProfileScreen = ({...props}) =>{
     };
 
     return(
-        <SafeAreaView style={{flex:1}}>
+        <SafeAreaView edges={['left', 'right']} style={{flex:1}}>
             <DefaultHeader headerText={mode === 'PRIVATE' ? 'My Shop' : 'Products'} />
             {
                 mode === 'PRIVATE' ?  renderViewSelection() : renderSelectedTabData()

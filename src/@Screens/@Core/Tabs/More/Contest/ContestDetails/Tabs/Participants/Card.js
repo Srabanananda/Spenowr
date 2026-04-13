@@ -9,6 +9,7 @@ import styles from '../styles';
 import WritingsView from '../../../../../../../../@GlobalComponents/WritingsView';
 import { getFooter } from '../../../../../Home/Tabs/WhatsNew/WhatsNewCard';
 import Config from '@Config/default';
+import FastImage from 'react-native-fast-image';
 
 const {NEW_IMG_BASE} = Config;
 
@@ -108,7 +109,7 @@ export const ParticipantCard = ({participant,index,large=false,contest_type,vote
                 onPress={()=>navigation.navigate(route,routeParams)} 
                 style={large ? styles.productPicHorizontalLarge : styles.productPicHorizontal}
             >
-                <Image 
+                <FastImage 
                     resizeMode={large  ?  'contain' : 'cover'} 
                     source={{uri: NEW_IMG_BASE +imgPath}} 
                     style={{width:null,height:null,flex:1}}

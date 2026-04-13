@@ -2,11 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React, { useEffect, useState } from 'react';
-import {
-    View, SafeAreaView, ScrollView, TextInput, Text,
-    TouchableOpacity, Image, Keyboard,
-    Platform
-} from 'react-native';
+import { View, ScrollView, TextInput, Text, TouchableOpacity, Image, Keyboard, Platform } from 'react-native';
 import DefaultHeader from '../../../../../../../@GlobalComponents/DefaultHeader';
 
 import Config from '@Config/default';
@@ -30,6 +26,7 @@ import { getProductCare } from '../../../../../../../@Endpoints/Core/Tabs/MyAcco
 import countryList from '@Assets/JsonFiles/country.json';
 import { pickImage } from '../../../../../../../@Utils/helperFiles/ImagePicker';
 import { getSubTypeList, getTypeList } from './helper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const categoryJson = PRODUCT_CATEGORIES.product_category.map((each) => {
     const { type: { label, value } } = each;
@@ -105,7 +102,6 @@ const AddSellerProductScreen = ({ ...props }: AddProductProps) => {
     const [shippingFee, setShippingFee] = useState('');
     const [selectedCountry, setSelectedCountry] = useState(countryList[0].value);
     const [zipCode, setZipCode] = useState('');
-
 
     const callApi = () => {
         setLoader(true);
@@ -633,7 +629,7 @@ const AddSellerProductScreen = ({ ...props }: AddProductProps) => {
     };
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: WHITE }}>
+        <SafeAreaView edges={['left', 'right']} style={{ flex: 1, backgroundColor: WHITE }}>
             <DefaultHeader headerText={EditData ? 'Edit Your Product' : 'Add Your Product'} />
             <ScrollView showsVerticalScrollIndicator={false} style={{ paddingBottom: moderateScale(20) }} >
                 <View style={styles.formWrapper}>
@@ -825,7 +821,6 @@ const AddSellerProductScreen = ({ ...props }: AddProductProps) => {
         </SafeAreaView>
     );
 };
-
 
 const mapStateToProps = (state) => {
     return {

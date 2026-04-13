@@ -2,23 +2,25 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useEffect,useState,useRef} from 'react';
-import {SafeAreaView,Text,StyleSheet,View, ActivityIndicator,Alert,Platform} from 'react-native';
+import { Text, StyleSheet, View, ActivityIndicator, Alert, Platform } from 'react-native';
 import { GlobalStyles } from '../../../../@GlobalStyles';
 import DefaultHeader from '../../../../@GlobalComponents/DefaultHeader/index';
 import { generateCashFreeToken } from '../../../../@Utils/helperFiles/Payment';
 import { connect, useDispatch } from 'react-redux';
 import Toast from 'react-native-simple-toast';
 import { initiateSubscriptionPayment, verifySubscriptionPaymentWithServer } from '../../../../@Endpoints/Core/Payments/index';
-import RNPgReactNativeSDK from 'react-native-pg-react-native-sdk';
+import { SafeAreaView } from 'react-native-safe-area-context';
+// import RNPgReactNativeSDK from 'react-native-pg-react-native-sdk';
 import PayModal from '../../../../@GlobalComponents/PayModal/index';
 import * as userActions from '@Redux/actions/userActions';
 import { getUserDetails } from '../../../../@Endpoints/Auth';
 import usePlan from '../../../../@Utils/customHooks/usePlans';
 import Config from '@Config/default';
+import RazorpayCheckout from 'react-native-razorpay';
 
 // const {PAYMENTS:{APPLE_PAY:{OPTIONS,METHOD_DATA}}} = Config;
 
-const {CASHFREE_APPID,CASHFREE_ENV,COLOR:{APP_PINK_COLOR}} = Config;
+const {CASHFREE_APPID,CASHFREE_ENV,COLOR:{APP_PINK_COLOR,ORANGE},RAZORPAY_TEST_ID,RAZORPAY_KEY_ID} = Config;
 
 const SubscriptionPaymentScreen = ({...props}) =>{
     const {
@@ -48,52 +50,6 @@ const SubscriptionPaymentScreen = ({...props}) =>{
         // if(Platform.OS === 'android')
         setGenPayLoad(generatePayLoad());
     },[]);
-
-    // const checkApplePay = () => {
-    //     ApplePaymentRequest.canMakePayments()
-    //         .then(canMakePayments => {
-    //             if(canMakePayments){
-    //                 initiateApplePay();
-    //             }else{
-    //                 Alert.alert('Apple Pay is not available on your device');
-    //                 setLoader(false);
-    //             }
-    //         });
-    // };
-
-    // const initiateApplePay = () => {
-    //     ApplePaymentRequest.show()
-    //         .then(paymentResponse => {
-    //             console.log('paymentResponse',paymentResponse);
-    //         })
-    //         .catch(error => {});
-    // };
-
-    // const DETAILS = {
-    //     id: 'basic-example',
-    //     displayItems: [
-    //         {
-    //             label: 'Movie Ticket',
-    //             amount: { currency: 'USD', value: '15.00' }
-    //         },
-    //         {
-    //             label: 'Grocery',
-    //             amount: { currency: 'USD', value: '5.00' }
-    //         }
-    //     ],
-    //     shippingOptions: [{
-    //         id: 'economy',
-    //         label: 'Economy Shipping',
-    //         amount: { currency: 'USD', value: '0.00' },
-    //         detail: 'Arrives in 3-5 days' // `detail` is specific to React Native Payments
-    //     }],
-    //     total: {
-    //         label: 'Enappd Store',
-    //         amount: { currency: 'USD', value: '20.00' }
-    //     }
-    // };
-
-    // const ApplePaymentRequest = new PR(METHOD_DATA, DETAILS, OPTIONS);
 
     const updateProfile = () =>{
         getUserDetails()
@@ -131,15 +87,19 @@ const SubscriptionPaymentScreen = ({...props}) =>{
         initiateSubscriptionPayment(genPayload)
             .then(res=>{
                 const {data:{payment_list}} = res;
-                handleCashFree(payment_list);
+
+                console.log("=====payment_list=======>",payment_list)
+                handleRazorPay(payment_list);
             })
-            .catch(()=>{
+            .catch((error)=>{
+                console.log("====initiateSubscriptionPayment error=====>",error.response)
                 Toast.show('Oops could not initiate payment');
                 setTimeout(()=>{navigation.goBack();},300);
             });
     };
 
     const handleCashFree = async(cashfree_payload) =>{
+        console.log({cashfree_payload});
         generateCashFreeToken(cashfree_payload)
             .then(res=>{
                 const {cftoken = ''} =res;
@@ -154,19 +114,62 @@ const SubscriptionPaymentScreen = ({...props}) =>{
                 Toast.show('Oops could not initiate Cashfree');
                 setTimeout(()=>{navigation.goBack();},300);
             });
+        
     };
+
+    const handleRazorPay=async(payload)=>{
+        let options = {
+            description: 'Subscription Plan',
+            image: 'https://media.spenowr.com/images/theme/default/Spenow_Logo.png',
+            currency:payload.currency,
+            key:RAZORPAY_KEY_ID,
+            //key:RAZORPAY_TEST_ID,
+            amount: payload.amount,
+            name: 'Spenowr',
+           order_id: payload.id,
+            prefill: {
+                email: email,
+                contact:mobile,
+                name:first_name+" " +last_name
+            },
+            theme: { color: ORANGE }
+        }
+        console.log("====options=======>",options)
+        RazorpayCheckout.open(options).then((data) => {
+        console.log("======RazorpayCheckout=data=====>",data)
+        //    payModalRef.current.dismissModal();
+        setWillVerify(true)
+        setLoader(true); 
+        startPayment('WEB',payload);
+        callServerVerification(payload)
+        }) .catch((error)=>{
+            callServerVerification(payload)
+            console.log("========error=======>",error)
+            Toast.show('Oops could not initiate Razorpay payment');
+            setTimeout(()=>{navigation.goBack();},300);
+        })
+        .finally(()=>{
+           
+            payModalRef.current.dismissModal();
+           setWillVerify(false);
+           setLoader(false);
+        })
+
+    }
 
     function startPayment(mode,processObj) {
         setLoader(true);
         if (mode === 'UPI') {
-            RNPgReactNativeSDK.startPaymentUPI(processObj, CASHFREE_ENV, responseHandler);
+            // RNPgReactNativeSDK.startPaymentUPI(processObj, CASHFREE_ENV, responseHandler);
         } else {
-            RNPgReactNativeSDK.startPaymentWEB(processObj, CASHFREE_ENV, responseHandler);
+            // RNPgReactNativeSDK.startPaymentWEB(processObj, CASHFREE_ENV, responseHandler);
         }
     }
 
     const callServerVerification = (result) =>{
-        verifySubscriptionPaymentWithServer(result.orderId)
+
+        console.log("=====callServerVerification func======>",result.receipt)
+        verifySubscriptionPaymentWithServer(result.receipt)
             .then(res=>{
                 const {data:{status}} = res;
                 if(status === 'Cancelled')setIsVerified(false);
@@ -234,7 +237,7 @@ const SubscriptionPaymentScreen = ({...props}) =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Subscription Payment'} showBackButton={false} >
                 <Text> </Text>
             </DefaultHeader>

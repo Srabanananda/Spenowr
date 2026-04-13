@@ -2,12 +2,13 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React from 'react';
-import { SafeAreaView, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import DefaultHeader from '@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../../../../../@GlobalStyles';
 import WorkExpListing from './WorkExpListing';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Help from './Help';
+import { SafeAreaView } from 'react-native-safe-area-context';
  
  type ExpProps = {
      navigation: Object,
@@ -19,7 +20,7 @@ const MyWorkExperienceScreen = ({ ...props }: ExpProps) => {
     const { navigation, route: { params: { mode } } } = props;
  
     return (
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={mode === 'PRIVATE' ? 'My Work Experience' : 'Work Experience'} >
                 {
                     (mode === 'PRIVATE') && <Help />

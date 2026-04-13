@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState,useEffect} from 'react';
-import {SafeAreaView,ScrollView,Text,View,TextInput,Keyboard,TouchableOpacity} from 'react-native';
+import { ScrollView, Text, View, TextInput, Keyboard, TouchableOpacity } from 'react-native';
 import DefaultHeader from '@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../../../../../@GlobalStyles';
 import { moderateScale } from 'react-native-size-matters';
@@ -16,6 +16,7 @@ import DefaultButton from '../../../../../../../@GlobalComponents/DefaultButton'
 import Toast from 'react-native-simple-toast';
 import moment from 'moment';
 import CheckBox from '@react-native-community/checkbox';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {data:{country,Currency,Accounts}} = GLOBALJSON;
 
@@ -237,7 +238,7 @@ const CreateProject = ({...props}: CreateProjectProps) =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={EditData ? 'Edit Project' : 'Add Project'} />
             <ScrollView 
                 contentContainerStyle={{padding:moderateScale(5),paddingBottom:moderateScale(100)}} 

@@ -10,6 +10,7 @@ import * as homeActions from '@Redux/actions/homeActions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { HOME_FILTERS } from '../../../../../assets/JsonFiles/HomeFilters';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const _ = require('lodash');
 let FILTER_MOCK = _.cloneDeep(HOME_FILTERS);
@@ -35,12 +36,13 @@ const Logout = ({...props}) =>{
         );
     };
 
-    const checkUser = () => {
+    const checkUser = async () => {
         updateFilters(filterData);
         navigation.reset({
             index: 0,
             routes: [{ name: 'AuthStack',params:{logout:true}}]
         });
+        await AsyncStorage.clear()
     };
 
     return(

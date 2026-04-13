@@ -1,11 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, ScrollView, View } from 'react-native';
-import {
-    actions,
-    RichEditor,
-    RichToolbar,
-    defaultActions
-} from 'react-native-pell-rich-editor';
 import Config from '@Config/default';
 import { GlobalStyles } from '../../@GlobalStyles';
 import { moderateScale } from 'react-native-size-matters';
@@ -135,13 +129,11 @@ const EditorScreen = ({ showPreview = true, getContent, setContent = '' }) => {
     );
 };
 
-
 EditorScreen.propTypes = {
     getContent: PropTypes.func.isRequired,
     setContent: PropTypes.string,
     showPreview: PropTypes.bool.isRequired,
 };
-
 
 export default EditorScreen;
 

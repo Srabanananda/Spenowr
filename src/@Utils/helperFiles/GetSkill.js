@@ -2,7 +2,6 @@
  *  Created By @name Sukumar_Abhijeet
  */
 
-
 import ARTNCRAFT from '@Assets/JsonFiles/FilterJsons/productcat_subcat.json';
 import DANCE from '@Assets/JsonFiles/FilterJsons/dancecat_subcat.json';
 import PHOTOGRAPHY from '@Assets/JsonFiles/FilterJsons/photographycat_subcat.json';

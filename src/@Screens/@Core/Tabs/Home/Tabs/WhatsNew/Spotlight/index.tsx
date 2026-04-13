@@ -1,18 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Image, Text, View, TouchableOpacity, ImageBackground } from 'react-native';
 import Config from '@Config/default';
 import { useNavigation } from '@react-navigation/native';
 // import DefaultButton from '../../../../../../../@GlobalComponents/DefaultButton';
 import styles from '../styles';
 import { DEVICE_WIDTH } from '../../../../../../../@Utils/helperFiles/DeviceInfoExtractor';
-import Carousel from 'react-native-snap-carousel';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { scale } from 'react-native-size-matters';
 import ScaledImage from '../../../../../../../@GlobalComponents/ScalableImage';
 import { AppleInc } from '../../../../More/Contest/ContestList/ContestCard';
+import FastImage from 'react-native-fast-image';
 
 const {COLOR: { APP_PINK_COLOR, DARK_BLACK },NEW_IMG_BASE} = Config;
 
 const SpotLight = ({announcements,Stories}:any) => {
+    const [activeIndex, setActiveIndex] = useState(0);
 
     const handleCarouselItem = ({item, index}) => (
         <AnnouncementCard announcement={item} key={index} list={announcements}/>
@@ -20,6 +22,26 @@ const SpotLight = ({announcements,Stories}:any) => {
 
     const handleStoryItem = ({item, index}) => (
         <StoryCard story={item} key={index} list={Stories}/>
+    );
+
+    const renderPagination = (data: any) => (
+        <Pagination
+            dotsLength={data.length}
+            activeDotIndex={activeIndex}
+            containerStyle={{ backgroundColor: 'transparent', paddingVertical: 10 }}
+            dotStyle={{
+                width: 10,
+                height: 10,
+                borderRadius: 5,
+                marginHorizontal: 8,
+                backgroundColor: APP_PINK_COLOR,
+            }}
+            inactiveDotStyle={{
+                backgroundColor: '#00000040',
+            }}
+            inactiveDotOpacity={0.4}
+            inactiveDotScale={0.6}
+        />
     );
 
     if(Stories?.length) return(
@@ -39,7 +61,9 @@ const SpotLight = ({announcements,Stories}:any) => {
                 renderItem={handleStoryItem}
                 sliderHeight={100}
                 sliderWidth={DEVICE_WIDTH}
+                onSnapToItem={(index) => setActiveIndex(index)}
             />
+            {renderPagination(Stories)}
         </View>
     );
     if(!announcements?.length) return<></>;
@@ -61,7 +85,9 @@ const SpotLight = ({announcements,Stories}:any) => {
                 renderItem={handleCarouselItem}
                 sliderHeight={100}
                 sliderWidth={DEVICE_WIDTH}
+                onSnapToItem={(index) => setActiveIndex(index)}
             />
+            {renderPagination(announcements)}
         </View>
     );
 };
@@ -107,7 +133,7 @@ const AnnouncementCard = ({announcement,list}:any) => {
 };
 
 const StoryCard = ({story,list}:any) => {
-    // const navigation = useNavigation();
+    const navigation = useNavigation();
     // const newPayload =  JSON.parse(payload) ?? '';
     // const _handleOnPress = () => {  
     //     navigation.navigate(route,newPayload);
@@ -120,7 +146,8 @@ const StoryCard = ({story,list}:any) => {
         <>
             {list?.length != 1 && 
                  <View /* onPress={_handleOnPress}  */style={styles.storyCard}>
-                    <Image source={{ uri: NEW_IMG_BASE + post_image }} style={styles.scaledImageStyle} resizeMode={'center'}/>
+                    <TouchableOpacity onPress={()=>navigation.navigate('ArtworkDetails',{mediaId:story.post_id,artworkSlug:story.slug_url})}>
+                    <FastImage source={{ uri: NEW_IMG_BASE + post_image }} style={styles.scaledImageStyle} resizeMode={'contain'}/>
                     <View style={styles.SliderTitleParent}>
                         <Text style={[styles.scaledTitle,{color: APP_PINK_COLOR}]}>
                             {'Artist Name: '}
@@ -131,12 +158,14 @@ const StoryCard = ({story,list}:any) => {
                             <Text style={[styles.scaledTitle,{color: DARK_BLACK}]}>{photo_title}</Text>
                         </Text>
                     </View>
+                    </TouchableOpacity>
                 </View>
             || 
                 <View style={{backgroundColor:'#fff'}}>
                     <Text style={{fontWeight: '500',fontSize: 18,padding: 10, textAlign:'center' }}>{'Trending for the Day'}</Text>
                     <View /* onPress={_handleOnPress} */ style={styles.storyCard}>
-                        <Image source={{ uri: NEW_IMG_BASE + post_image }} style={styles.scaledImageStyle} resizeMode={'center'}/>
+                    <TouchableOpacity onPress={()=>navigation.navigate('ArtworkDetails',{mediaId:story.post_id,artworkSlug:story.slug_url})}>
+                        <FastImage source={{ uri: NEW_IMG_BASE + post_image }} style={styles.scaledImageStyle} resizeMode={'contain'}/>
                         <Text style={[styles.scaledTitle,{color: APP_PINK_COLOR}]}>
                             {'Artist Name: '}
                             <Text style={[styles.scaledTitle,{color: DARK_BLACK}]}>{added_by}</Text>
@@ -145,6 +174,7 @@ const StoryCard = ({story,list}:any) => {
                             {'Artwork: '}
                             <Text style={[styles.scaledTitle,{color: DARK_BLACK}]}>{photo_title}</Text>
                         </Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             }

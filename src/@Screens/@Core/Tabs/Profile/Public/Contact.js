@@ -72,7 +72,6 @@ const Contact = ({userObj}:ContactProps) =>{
         }
     };
 
-
     const renderContactForm = () =>{
         return(
             <View style={styles.adminModal}>

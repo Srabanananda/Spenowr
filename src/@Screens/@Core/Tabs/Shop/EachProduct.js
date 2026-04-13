@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import Config from'@Config/default';
 import Capitalize from '../../../../@Utils/helperFiles/Capitalize';
 import { GetCatValue, GetSubCatValue } from '../../../../@Utils/helperFiles/GetCatSubcat';
+import FastImage from 'react-native-fast-image';
 
 const {NEW_IMG_BASE} = Config;
 
@@ -29,10 +30,14 @@ const EachProduct = ({...props}) =>{
     return(
         <TouchableOpacity 
             onPress={()=>navigation.push('ProductDetails',{'productSlug':slug_url})} 
-            style={{opacity:0.9,...containerStyle}} >
+            style={[styles.productCell, { opacity: 0.9 }, containerStyle]} >
             <>
                 <View style={styles.productCardWrapper}>
-                    <ScaledImage source={{ uri: NEW_IMG_BASE + primary_reduced_image }} />
+                    <FastImage
+                        style={styles.productImage}
+                        source={{ uri: NEW_IMG_BASE + primary_reduced_image }}
+                        resizeMode="cover"
+                    />
                 </View>
                 <Text numberOfLines={1} style={styles.titleHead}>{Capitalize(title)}</Text>
                 <View style={styles.catSubcat}>
@@ -54,6 +59,5 @@ EachProduct.propTypes = {
     containerStyle:PropTypes.object,
     product:PropTypes.object.isRequired,
 };
-
 
 export default EachProduct;

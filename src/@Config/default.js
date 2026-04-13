@@ -29,6 +29,8 @@ export default {
 
   CASHFREE_BASE_PATH: "https://api.cashfree.com", //setEnv ? 'https://test.cashfree.com' : 'https://api.cashfree.com',
 
+  CASHFREE_SANDBOX_BASE_PATH: "https://sandbox.cashfree.com", //setEnv ? 'https://test.cashfree.com' : 'https://api.cashfree.com',
+
   NEW_IMG_BASE: "https://media.spenowr.com", //setEnv ? 'https://spnbknd.krescitus.com' : 'https://media.spenowr.com',
 
   CASHFREE_APPID: "4789938881789b1dbe385c44399874", //setEnv ? '148350132124a6b84295715f353841' : '4789938881789b1dbe385c44399874',
@@ -37,11 +39,15 @@ export default {
 
   CASHFREE_ENV: "PROD", //setEnv ? 'TEST' : 'PROD',
 
+  SPENOWR_SECRET: 'spenowr_prod_XRezkKk8JUiX8M',
+
   SPENOWR_AsyncStorageKey: "NEWASYNCKEY",
 
   SPENOWR_IMG_BASE: "https://spenowr.com/",
 
-  CASHFREE_API: "/api/v2/cftoken/order",
+  VERSION_CHECK: '2', // if 1 then check with checkForceUpgrade api and if 2 then check with ForceUpdate function
+
+  CASHFREE_API: "/pg/orders",//"/api/v2/cftoken/order",
 
   DUMMY_IMAGE_URL:
     "https://media.spenowr.com/images/theme/default/dummyimages.jpg",
@@ -58,7 +64,14 @@ export default {
 
   NOTIFICATION_CHANNEL_NAME: "SpenowrNotifications2021",
 
-  API_VERSIONING: "/api/v1",
+  API_VERSIONING: "",
+
+  ExchangeRateApi:'https://api.exchangerate-api.com/v4/latest/INR',
+
+  RAZORPAY_KEY_ID: "rzp_live_8kGV7Cmbz3zuzg",
+  RAZORPAY_LIVE_SECRET_KEY: "pzFq2dSVKCXALkarXZEQlIHU",
+  RAZORPAY_TEST_ID: "rzp_test_XRezkKk8JUiX8M",
+  RAZORPAY_TEST_SECRET_KEY: "7H7LU2FdPWt7OyMMCs8CZUeQ",
 
   USER_AGENT: `${name}/${version} Dalvik/${version} (Unix; U; ${
     Platform.OS === "ios" ? "Ios" : "Android"

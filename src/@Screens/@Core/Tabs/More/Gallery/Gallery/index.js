@@ -97,7 +97,6 @@ const Gallery = ({...props}) =>{
         );    
 };
 
-
 function mapStateToProps(state){
     return{
         photoGraphyList : state.gallery.photoGraphyList,

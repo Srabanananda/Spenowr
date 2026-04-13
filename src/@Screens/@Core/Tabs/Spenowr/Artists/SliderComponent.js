@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
     },
 });
 
-
 SliderComponent.propTypes = {
     artist:PropTypes.bool,
     data:PropTypes.array,

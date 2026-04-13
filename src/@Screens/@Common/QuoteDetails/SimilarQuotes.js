@@ -46,6 +46,7 @@ const SimilarQuotesPoems = ({relatedQuotes=[],listTitle}) =>{
                 keyExtractor={item=>item.id.toString()}
                 legacyImplementation = {true} 
                 renderItem = {renderPages}
+                removeClippedSubviews={true}
                 scrollEventThrottle={16} 
                 showsHorizontalScrollIndicator={false}
                 style={{flex:1,backgroundColor:'#FFF',padding:10}}

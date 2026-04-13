@@ -2,10 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState,useEffect} from 'react';
-import {
-    View,TouchableOpacity,Text,StyleSheet,SafeAreaView,
-    TextInput,ScrollView,Platform, ActivityIndicator, Alert
-} from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet, TextInput, ScrollView, Platform, ActivityIndicator, Alert } from 'react-native';
 import DefaultHeader from '@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '@GlobalStyles';
 import Config from '@Config/default';
@@ -14,7 +11,8 @@ import { useDispatch } from 'react-redux';
 import * as userActions from '@Redux/actions/userActions';
 import { Dropdown } from 'react-native-material-dropdown';
 import DefaultButton from '../../../../../../../../../@GlobalComponents/DefaultButton';
-import DocumentPicker from 'react-native-document-picker';
+import DocumentPicker from '@react-native-documents/picker';
+import { SafeAreaView } from 'react-native-safe-area-context';
 // QUOTES IMPORTS 
 import QuoteImageJSON from '../../../../../../../../../assets/JsonFiles/Quotes/quotes.js';
 import QuoteTypeJSON from '../../../../../../../../../assets/JsonFiles/Quotes/quoteTypes.json';
@@ -462,12 +460,15 @@ const AddWritingsScreen = ({...props}: WritingProps) =>{
         );
     };
 
-
-
     const renderAudioSection = () => {
         const selectAuthor = (value) => {
             setAuthorName(value)
         }
+
+        const isButtonDisabled = (selectedPodCast == "Auto generate using Spenowr AI" &&
+            (selectedLanguage == "English" || selectedLanguage == "Hindi") &&
+            authorName == '');
+
         return(
             <>
                 <Text style={GlobalStyles.inputHeaderName}>LANGUAGE
@@ -529,7 +530,7 @@ const AddWritingsScreen = ({...props}: WritingProps) =>{
                     (selectedPodCast == "Upload my recorded audio") && 
                     <DefaultButton buttonText={'Pick Audio File'} onPress={singleFilePicker} />
                 }
-                <DefaultButton buttonText={EditData ? 'Edit Design' : 'Add Design'} onPress={validatInputs} />
+                <DefaultButton isDeactivated={isButtonDisabled} buttonText={EditData ? 'Edit Design' : 'Add Design'} onPress={validatInputs} />
             </>
         );
     }
@@ -537,7 +538,7 @@ const AddWritingsScreen = ({...props}: WritingProps) =>{
     const setHeader = type => `${type} ${switchToDesign ? 'Design' : 'Content'}`;
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={EditData ? setHeader('Edit') : setHeader('Add')} onPress={getOnBackButtonPress} >
                 <View style={{flexDirection:'row'}}>
                     <TouchableOpacity disabled={loading} onPress={switchToDesign ? handleSave :validatInputs}>

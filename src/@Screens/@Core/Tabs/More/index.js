@@ -2,15 +2,9 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React from 'react';
-import {
-    View,
-    Text,
-    SafeAreaView,
-    ScrollView,
-    TouchableOpacity,
-} from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Platform } from 'react-native';
 
-import { version } from '../../../../../package.json';
+import { version, iOSVersion } from '../../../../../package.json';
 import styles from './styles';
 import { connect } from 'react-redux';
 import NoInternet from '../../../../@GlobalComponents/NoInternet';
@@ -18,10 +12,11 @@ import DefaultHeader from '../../../../@GlobalComponents/DefaultHeader';
 import { moderateScale } from 'react-native-size-matters';
 import Icon  from 'react-native-vector-icons/FontAwesome5';
 import Config from '@Config/default';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {COLOR:{DARKGRAY}} = Config;
 
-const MoreScreen = ({...props}:any) =>{
+const MoreScreen = ({...props}) =>{
 
     const {
         navigation:{navigate},isInternetAvailable,
@@ -30,16 +25,18 @@ const MoreScreen = ({...props}:any) =>{
 
     const arrMenuList =  [
         { title : 'Series' , route : 'Series',icon :'',param:{}},
-        { title : 'Read Stories' , route : 'Home',icon :'',param:{ setTab: 'whats_new', filter: 'story-blogs' }},
-        { title : 'Audio Podcast' , route : 'Home',icon :'',param:{ setTab: 'whats_new', filter: 'story-blogs' }},
+        // { title : 'Read Stories' , route : 'Home',icon :'',param:{ setTab: 'whats_new', filter: 'story-blogs' }},
+        { title : 'Read Stories' , route : 'Series',icon :'',param:{}},
+        { title : 'Audio Podcast' , route : 'AudioPodcast',icon :'',param:{}},
         { title : 'Quotes' , route : 'Home',icon :'',param:{ setTab: 'whats_new', filter: 'quote' }},
         { title : 'Poems' , route : 'Home',icon :'',param:{ setTab: 'whats_new', filter: 'poem' }},
-        { title : 'Did you know facts' , route : '',icon :'',param:{}},
-        { title : 'Donate' , route : 'Donate',icon :'',param:{username: `${first_name} ${last_name}`, useremail: email}},
+        //{ title : 'Did you know facts' , route : '',icon :'',param:{}},
+        // { title : 'Donate' , route : 'Donate',icon :'',param:{username: `${first_name} ${last_name}`, useremail: email}},
         { title : 'Participate in contests'/* 'Contest' */ , route : 'Contest',icon :'',param:{}},
         { title : 'Custom Prints' , route : 'CustomPrints',icon :'',param:{}},
         { title : 'Find Active Projects'/* 'Project List' */ , route : 'Projects',icon :'',param:{}},
         { title : 'My Orders' , route : 'MyOrders',icon :'',param:{}},
+        // { title : 'Influencer Profile' , route : 'InfluencerProfile',icon :'',param:{}},
         { title : 'Apply to Jobs'/* 'Job Opportunities' */ , route : 'Jobs',icon :'',param:{}},
         { title : 'Gallery' , route : 'Gallery',icon :'',param:{}},
         { title : 'Subscriptions' , route : 'Subscription',icon :'',param:{current:subscription_plan,selected:subscription_plan}},
@@ -54,10 +51,13 @@ const MoreScreen = ({...props}:any) =>{
     if (!isInternetAvailable)
         return <NoInternet />;
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView edges={['left', 'right']} style={styles.container}>
             <DefaultHeader headerText={'More Options'} showBackButton={false} />
-            <View style={{paddingHorizontal:moderateScale(20),flex:1}}>
-                <ScrollView /* contentContainerStyle={{flex:1}} */ showsVerticalScrollIndicator={false}>
+            <View style={{ paddingHorizontal: moderateScale(20), flex: 1, minHeight: 0 }}>
+                <ScrollView
+                    style={{ flex: 1 }}
+                    contentContainerStyle={{ flexGrow: 1 }}
+                    showsVerticalScrollIndicator={false}>
                     {
                         arrMenuList.map((item,index)=>(
                             <TouchableOpacity key={index} onPress={()=>{{
@@ -71,7 +71,12 @@ const MoreScreen = ({...props}:any) =>{
                     }
                     <View style={styles.eachRow}>
                         <Text>{'Version'}</Text>
+                        {Platform.OS === 'android' ?
                         <Text style={styles.footerText}>v{version}</Text>
+                    : 
+                    
+                        <Text style={styles.footerText}>v{iOSVersion}</Text>
+                     }   
                     </View>
                 </ScrollView>
             </View>

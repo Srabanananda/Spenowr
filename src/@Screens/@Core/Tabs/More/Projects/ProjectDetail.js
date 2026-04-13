@@ -3,7 +3,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView,View,ScrollView,Text, FlatList } from 'react-native';
+import { View, ScrollView, Text, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import Config from '@Config/default';
 import DefaultHeader from '../../../../../@GlobalComponents/DefaultHeader';
@@ -12,11 +12,9 @@ import ScreenLoader from '../../../../../@GlobalComponents/ScreenLoader';
 import styles from './styles';
 import Jobcard from './Jobcard';
 import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
-import Animated from 'react-native-reanimated';
 import Toast from 'react-native-simple-toast';
-import ScaledImage from '../../../../../@GlobalComponents/ScalableImage';
+import { SafeAreaView } from 'react-native-safe-area-context';
 const { COLOR:{APP_PINK_COLOR,APP_THEME_COLOR,},NEW_IMG_BASE } = Config;
-const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 const ProjectDetail = ({...props}) =>{
 
@@ -56,9 +54,9 @@ const ProjectDetail = ({...props}) =>{
     if(loading)
         return <ScreenLoader text={'Loading Project Details..'} />;
     return(
-        <SafeAreaView style={{flex:1}}>
+        <SafeAreaView edges={['left', 'right']} style={{flex:1}}>
             <DefaultHeader headerText={'Project Detail'} />
-            <ScrollView contentContainerStyle={{padding:moderateScale(10)}} showsVerticalScrollIndicator={false}>
+            {/* <ScrollView contentContainerStyle={{padding:moderateScale(10)}} showsVerticalScrollIndicator={false}> */}
                 <View style={styles.TitleStyle}>
                     <Text style={[styles.titleText,{marginLeft: 5, color: '#FFF'}]}>{'Name : '}{pDetails.title}</Text>
                 </View>
@@ -73,7 +71,7 @@ const ProjectDetail = ({...props}) =>{
                 <View style={[{ paddingVertical: moderateScale(2), paddingHorizontal: moderateScale(5)},styles.TitleStyle]}>
                     <Text style={[styles.titleText,{color: '#FFF'}]}>{'Jobs linked to '}{pDetails.title}</Text>
                 </View>
-                <AnimatedFlatList
+                <FlatList
                     contentContainerStyle={{paddingTop:moderateScale(8)}}
                     data={jobs}
                     onEndReachedThreshold={0.3} 
@@ -82,7 +80,7 @@ const ProjectDetail = ({...props}) =>{
                     showsVerticalScrollIndicator={false}
                     style={{flex:1}}
                 />
-            </ScrollView>
+            {/* </ScrollView> */}
         </SafeAreaView>
     );
 };

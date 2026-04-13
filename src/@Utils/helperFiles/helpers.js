@@ -69,7 +69,6 @@ export const handleCertificateDownload = (certificateUrl) => {
         });
 };
 
-
 var englishRegX = /^[A-Za-z0-9]*$/;
 export const isValidEnglish = (string) => {
     return englishRegX.test(string);
@@ -83,14 +82,15 @@ export const isValidHtml = (string) => {
 
 export const ForceUpdate = () => {
     VersionCheck.needUpdate().then(async res => {
-        console.log(res.isNeeded);    // true
+        console.log(res.isNeeded); 
+           // true
         if (res.isNeeded) {
             console.log('response : ', JSON.stringify(res));
             Alert.alert(
                 "New version available",
-                "Please!, we request you to Upgrade to the Latest version of us",
+                "Hurray! A new version of the app is available. We recommend upgrading the app to the latest version to get new features and stability.",
                 [
-                    { text: "CANCEL", style: "cancel", onPress: ()=>{
+                    { text: "Exit", style: "cancel", onPress: ()=>{
                         BackHandler.exitApp();
                         return false;
                     }},
@@ -109,3 +109,23 @@ export const ForceUpdate = () => {
         }
     });
 }
+
+export const calculatePrice=(arr=[])=>{
+
+    return arr.reduce((total, product) => total + parseInt(product.cart_original_price), 0);
+}
+export const  convertKeysToCamelCase=(obj)=>{
+    if (obj !== null && typeof obj === 'object') {
+      if (Array.isArray(obj)) {
+        return obj.map(item => convertKeysToCamelCase(item));
+      } else {
+        return Object.keys(obj).reduce((acc, key) => {
+          const camelCaseKey = key.replace(/_([a-z])/g, (match, p1) => p1.toUpperCase());
+          acc[camelCaseKey] = convertKeysToCamelCase(obj[key]);
+          return acc;
+        }, {});
+      }
+    } else {
+      return obj;
+    }
+  }

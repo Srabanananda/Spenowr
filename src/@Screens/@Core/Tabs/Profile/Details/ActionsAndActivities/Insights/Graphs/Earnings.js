@@ -26,7 +26,8 @@ const chartConfig = {
     useShadowColorFromDataset: false,
     propsForVerticalLabels:{
         fontSize:moderateScale(9)
-    }
+    },
+    formatYLabel: yValue => parseInt(yValue).toString(),
 };
 
  
@@ -55,6 +56,7 @@ const EarningsGraph = ({...props}) =>{
                 height={250}
                 showValuesOnTopOfBars={true}
                 width={moderateScale(320)}
+                formatYLabel={(yValue) => `${Math.round(yValue)}`}
             />
         </View>
     );

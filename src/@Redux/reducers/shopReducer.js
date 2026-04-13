@@ -44,8 +44,6 @@ const  shopReducer = (state = initialState,action) =>{
         return{...state,cartData:data,cartItemsNumber:data.addtocart.length,cartDataApiCalled:false};
     }  
 
-
-
     case  UPDATE_NUMBER_OF_CART_ITEMS:
         return { ...state,cartItemsNumber:cartItemsNumber};   
 

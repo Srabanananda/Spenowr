@@ -12,14 +12,10 @@ import * as homeActions from '@Redux/actions/homeActions';
 import { moderateScale } from 'react-native-size-matters';
 import ProjectCard from '../../../More/Projects/ProjectCard';
 import PropTypes from 'prop-types';
-import Animated, { useAnimatedScrollHandler } from 'react-native-reanimated';
 import ScreenLoader from '../../../../../../@GlobalComponents/ScreenLoader';
 import { GlobalStyles } from '../../../../../../@GlobalStyles';
 
-
-const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-
-const ProjectList = ({yAxisAnimatedValue,...props}: any) =>{
+const ProjectList = ({...props}: any) =>{
 
     const {
         apiCalled, fetchProjects, forProjectsFeed,
@@ -42,9 +38,7 @@ const ProjectList = ({yAxisAnimatedValue,...props}: any) =>{
         setTimeout(()=>{setRefreshing(false);},500);
     };
 
-    const scrollHandler = useAnimatedScrollHandler((event) => {
-        // yAxisAnimatedValue.value = event.contentOffset.y;
-    });
+   
 
     const renderPages = ({ index,item }) =>{
         if(item?.status !== '1') return <></>;
@@ -54,15 +48,15 @@ const ProjectList = ({yAxisAnimatedValue,...props}: any) =>{
     if(forProjectsFeed.length)
         return(
             <View style={{flex:1,marginTop:moderateScale(5)}}>
-                <AnimatedFlatList
+                <FlatList
                     contentContainerStyle={{paddingTop:moderateScale(8), paddingHorizontal: moderateScale(8)}}
                     data={forProjectsFeed}
                     horizontal={false}
                     initialNumToRender={5}
                     keyExtractor={item=>item.project_id.toString()}
+                    removeClippedSubviews={true}
                     onEndReached={()=>!apiCalled && callApi(null , forProjectsFeed.length)}
                     onEndReachedThreshold={0.3} 
-                    onScroll={scrollHandler}
                     refreshControl={
                         <RefreshControl
                             onRefresh={onRefresh} refreshing={refreshing}

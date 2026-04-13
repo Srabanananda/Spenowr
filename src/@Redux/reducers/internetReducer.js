@@ -6,7 +6,6 @@ import {
     UPDATE_INTERNET_CONNECTIVITY
 } from '../constants/internet.constant';
 
-
 const initialState = {
     isConnected:true
 };

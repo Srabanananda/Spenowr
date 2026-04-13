@@ -7,8 +7,6 @@ import {
 
 import APP_CONSTANT from '../constants/Constant';
 
-
-
 module.exports = StyleSheet.create({
 
     navigationbar: {

@@ -26,7 +26,7 @@ import { HOME_FILTERS } from "../../../../../../assets/JsonFiles/HomeFilters";
 const _ = require("lodash");
 let FILTER_MOCK = _.cloneDeep(HOME_FILTERS);
 
-const Filters = ({ type, filterwith, ...props }) => {
+const Filters = ({ type, filterwith, setFilterTypeData, ...props }) => {
   const {
     fetchWhatsNewFeed,
     fetchMyFollowingFeed,
@@ -54,6 +54,9 @@ const Filters = ({ type, filterwith, ...props }) => {
     const { searchText, appliedModules } = appliedFilters;
     setSearchText(searchText);
     setModules([..._.cloneDeep(appliedModules)]);
+    if (type == 'whatsnew') {
+      setFilterTypeData([..._.cloneDeep(appliedModules)]);
+    }
   };
   /* const FetchFilter = each =>{
         console.log('received Filter obj : ', each);
@@ -119,6 +122,7 @@ const Filters = ({ type, filterwith, ...props }) => {
         type === "following" ? userId : type === "spenowr" ? "1" : ""
       );
       apiData.append("feed_type", values.toString());
+      console.log('values.toString()',values.toString());
 
       if (type === "following") fetchMyFollowingFeed(apiData);
       else if (type === "spenowr") fetchBySpenowrFeed(apiData);
@@ -159,6 +163,9 @@ const Filters = ({ type, filterwith, ...props }) => {
     const index = tempArr.findIndex((x) => x.value === each.value);
     tempArr[index] === obj;
     setModules(tempArr);
+    if (type == 'whatsnew') {
+      setFilterTypeData(tempArr)
+    }
   };
 
   const renderEach = (item, index) => {
@@ -184,14 +191,24 @@ const Filters = ({ type, filterwith, ...props }) => {
           onPress={() => setIsActive(false)}
         />
         <ScrollView>
-          <TextInput
-            autoCapitalize="none"
-            onChangeText={(string) => setSearchText(string)}
-            placeholder="Search here .."
-            placeholderTextColor="#414756"
-            style={styles.textInputBox}
-            value={searchText}
-          />
+        <View style={{position: 'relative',flexDirection: 'row', alignItems: 'center'}}>
+            <TextInput
+              autoCapitalize="none"
+              onChangeText={(string) => setSearchText(string)}
+              placeholder="Search here .."
+              placeholderTextColor="#414756"
+              style={styles.textInputBox}
+              value={searchText}
+            />
+            {searchText ? (
+              <TouchableOpacity
+                onPress={() => setSearchText('')}
+                style={{ position: 'absolute',right: 10}}
+              >
+                <Icon color={"#555555"} name={"times"} size={moderateScale(15)} />
+              </TouchableOpacity>
+            ) : null}
+          </View>
           <Text style={styles.filterHeader}>Select Module</Text>
           <View style={styles.modulesWrapper}>
             {modules.map((item, index) => renderEach(item, index))}

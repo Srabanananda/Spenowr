@@ -3,7 +3,7 @@
  */
 
 import React,{useEffect,useState} from 'react';
-import { FlatList,Text,RefreshControl, SafeAreaView,View, TouchableOpacity } from 'react-native';
+import { FlatList, Text, RefreshControl, View, TouchableOpacity } from 'react-native';
 import { getProjectList, getUserProjectList } from '../../../../../../../@Endpoints/Core/Tabs/More';
 import ScreenLoader from '../../../../../../../@GlobalComponents/ScreenLoader';
 import DefaultHeader from '../../../../../../../@GlobalComponents/DefaultHeader';
@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { GlobalStyles } from '../../../../../../../@GlobalStyles';
 import { useIsFocused } from '@react-navigation/native';
 import Config from '@Config/default';
+import { SafeAreaView } from 'react-native-safe-area-context';
 const {COLOR:{WHITE},NEW_IMG_BASE} = Config;
 import ScaledImage from '../../../../../../../@GlobalComponents/ScalableImage';
 import FallBackUI from '../../../../../../../@GlobalComponents/FallBackUI/index';
@@ -89,7 +90,7 @@ const ProjectList = ({ ...props }) =>{
         return <ScreenLoader text={'Loading Project List..'} />;
 
     return(
-        <SafeAreaView style={{flex:1}}>
+        <SafeAreaView edges={['left', 'right']} style={{flex:1}}>
             <DefaultHeader headerText={'Projects'} />
             {!loading && list.length && <FlatList
                 data={list} 

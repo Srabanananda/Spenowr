@@ -4,7 +4,7 @@
 import React,{useState} from 'react';
 import {View,Text,TouchableOpacity,StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import Image from 'react-native-image-progress';
+import FastImage from 'react-native-fast-image';  
 import Config from '@Config/default';
 import PropTypes from 'prop-types';
 
@@ -43,40 +43,52 @@ const ArtistBox = ({artistData, externalCall, showFollow}) =>{
     const s1 = getSkill(skill1);
     const s2 = getSkill(skill2);
     const s3 = getSkill(skill3);
-    return(
-        <TouchableOpacity
-            disabled={artist_name === 'Spenowr'} onPress={()=>{
-                externalCall?.();
-                navigation.push('PublicProfile',{slug:slgs[0]});
-            }} style={styles.imageWrapper}>
-            <View style={{flexDirection:'row',alignItems:'center'}}>
-                <View style={styles.circle}>
-                    <Image 
-                        source={{ uri: profile_image ? NEW_IMG_BASE+ profile_image :  NEW_IMG_BASE +DEFAULT_PROFILE }} 
-                        style={{width:null,height:null,flex:1}} 
-                    />
-                </View>
-                <View>
-                    {(artist_name!==null) && <Text style={styles.name}>{Capitalize(artist_name)}</Text>}
-                    <View style={{flexDirection:'row'}}>
-                        <Text style={styles.nameTag}>{addedBy === 1 ? 'Creators':s1?s1.type.label:'Others'}</Text>
-                        {s2&&<Text style={{fontSize:moderateScale(10)}}>{', '+s2.type.label}</Text>}
-                        {s3&&<Text style={{fontSize:moderateScale(10)}}>{', '+s3.type.label}</Text>}
-                    </View>
-                </View>
-                
+    const displayNameTag = addedBy === 1 ? 'Creators' : (!s1 && !s2 && !s3) ? 'Spenowr' : '';
+
+    const skills = [
+        s1 ? s1.type.label : null,
+        s2 ? s2.type.label : null,
+        s3 ? s3.type.label : null
+    ].filter(skill => skill).join(', ');
+
+    return (
+    <TouchableOpacity
+        disabled={artist_name === 'Spenowr' || artist_name === 'Spenowr Creation'} // Disable touch for both Spenowr and Spenowr Creation
+        onPress={() => {
+            externalCall?.();
+            navigation.push('PublicProfile', { slug: slgs[0] });
+        }}
+        style={styles.imageWrapper}
+    >
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={styles.circle}>
+                <FastImage 
+                    source={{ uri: profile_image ? NEW_IMG_BASE + profile_image : NEW_IMG_BASE + DEFAULT_PROFILE }} 
+                    style={{ width: null, height: null, flex: 1 }} 
+                />
             </View>
-            {
-                (showFollow && artist_name !== 'Spenowr') ? 
-                    <View>
-                        <TouchableOpacity onPress={checkFollowing}  style={follow ? styles.filled  : styles.outlined}>
-                            <Text style={ follow ? styles.filledText :styles.outlinedText}> {follow ? 'Following' : 'Follow'}</Text>
-                        </TouchableOpacity>
-                    </View>
-                    : null
-            }
-        </TouchableOpacity>
-    );
+            <View>
+                {artist_name && <Text style={styles.name}>{Capitalize(artist_name)}</Text>}
+                <View style={{ flexDirection: 'row' }}>
+                    <Text style={styles.nameTag}>
+                        {displayNameTag}
+                        {displayNameTag && skills && ', '}
+                        {skills}
+                    </Text>
+                </View>
+            </View>
+        </View>
+        {showFollow && artist_name !== 'Spenowr' && artist_name !== 'Spenowr Creation' && (
+            <View>
+                <TouchableOpacity onPress={checkFollowing} style={follow ? styles.filled : styles.outlined}>
+                    <Text style={follow ? styles.filledText : styles.outlinedText}>
+                        {follow ? 'Following' : 'Follow'}
+                    </Text>
+                </TouchableOpacity>
+            </View>
+        )}
+    </TouchableOpacity>
+);
 };
 
 ArtistBox.propTypes = {

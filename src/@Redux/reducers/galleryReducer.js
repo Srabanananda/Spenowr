@@ -6,7 +6,6 @@ import {
     FETCH_PHOTOGRAPHY_LIST_FAILURE,FETCH_PHOTOGRAPHY_LIST_REQUEST,FETCH_PHOTOGRAPHY_LIST_SUCCESS
 } from '../constants/gallery.constant';
 
-
 const initialState = {
     photoGraphyList:[],
     apiCalled:false,

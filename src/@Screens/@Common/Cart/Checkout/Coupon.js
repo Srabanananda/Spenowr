@@ -73,5 +73,4 @@ Coupon.propTypes = {
     refreshData : PropTypes.func.isRequired,
 };
 
-
 export default Coupon;

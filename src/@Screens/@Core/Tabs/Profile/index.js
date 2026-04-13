@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React, { useEffect,useState } from 'react';
-import {SafeAreaView,TouchableOpacity,Text,View, ScrollView,RefreshControl} from 'react-native';
+import { TouchableOpacity, Text, View, ScrollView, RefreshControl } from 'react-native';
 import * as userActions from '@Redux/actions/userActions';
 import { connect } from 'react-redux';
 import NoInternet from '../../../../@GlobalComponents/NoInternet';
@@ -16,6 +16,7 @@ import * as ProfileDataActions from '@Redux/actions/profileActions';
 import * as homeActions from '@Redux/actions/homeActions';
 import VerifyEmailAlert from './Details/VerifyEmailAlert';
 import SubscriptionUpgrade from './Subscription/SubscriptionUpgrade';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ProfileScreen = ({...props}: any) =>{
     const { 
@@ -43,7 +44,10 @@ const ProfileScreen = ({...props}: any) =>{
         const unsubscribe = props.navigation.addListener('focus', () => {
             refreshProfile();
         });
-        return unsubscribe;
+        return () => {
+            if (typeof unsubscribe === 'function') unsubscribe();
+            else unsubscribe?.remove?.();
+        };
     },[]);
 
     const refreshProfile = () =>{
@@ -77,7 +81,7 @@ const ProfileScreen = ({...props}: any) =>{
         return <NoInternet />;
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Profile'} showBackButton={false} >
                 <View style={{flexDirection:'row'}}>
                     <TouchableOpacity onPress={()=>navigate('Referals')}>
@@ -91,18 +95,22 @@ const ProfileScreen = ({...props}: any) =>{
             </DefaultHeader>
             <VerifyEmailAlert />
             <SubscriptionUpgrade />
-            <ScrollView 
-                refreshControl={
-                    <RefreshControl
-                        onRefresh={onRefresh} refreshing={refreshing}
-                        title="Refreshing Profile .."
-                        titleColor={'#000'} />
-                }
-                showsVerticalScrollIndicator={false}>
-                <View style={styles.container}>
-                    <Details profileData={profileDataAPI} userObj={userObj} />
-                </View>
-            </ScrollView>
+            <View style={{ flex: 1, minHeight: 0 }}>
+                <ScrollView
+                    style={{ flex: 1 }}
+                    contentContainerStyle={{ flexGrow: 1 }}
+                    refreshControl={
+                        <RefreshControl
+                            onRefresh={onRefresh} refreshing={refreshing}
+                            title="Refreshing Profile .."
+                            titleColor={'#000'} />
+                    }
+                    showsVerticalScrollIndicator={false}>
+                    <View style={styles.container}>
+                        <Details profileData={profileDataAPI} userObj={userObj} />
+                    </View>
+                </ScrollView>
+            </View>
         </SafeAreaView>
     );
 };

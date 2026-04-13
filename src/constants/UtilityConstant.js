@@ -27,7 +27,6 @@ class Utility extends Component {
         // }
     }
 
-
     storeHasUserLoggeedIn = async () => {
         try {
             await AsyncStorage.setItem(APP_CONSTANT.KEY_CONSTANTS.HAS_USER_LOGEDIN, APP_CONSTANT.STRING_CONSTANT.SUCCESS_STATUS);
@@ -72,7 +71,6 @@ class Utility extends Component {
     tempValueReturn = () => {
         return 'tempvalue';
     }
-
 
 }
 

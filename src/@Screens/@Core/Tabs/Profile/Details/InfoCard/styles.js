@@ -115,11 +115,13 @@ const styles = StyleSheet.create({
     },
     aboutMeText:{
         color:APP_PINK_COLOR,
-        fontWeight:'600'
+        fontWeight:'bold',
+        fontSize:moderateScale(15),
     },
     aboutMeDescription:{
         paddingVertical:moderateScale(10),
-        color:SUBNAME
+        color:SUBNAME,
+        fontSize:moderateScale(14),
     },
     subCatBox:{
         marginLeft:moderateScale(20),
@@ -199,11 +201,10 @@ const styles = StyleSheet.create({
         marginBottom:moderateScale(10)
     },
     badgeStyles : {
-        width:moderateScale(20),
-        height:moderateScale(20),
-        marginRight:moderateScale(25)
+        width:moderateScale(35),
+        height:moderateScale(35),
+        marginRight:moderateScale(7)
     }
 });
-
 
 export default styles;

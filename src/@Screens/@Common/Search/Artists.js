@@ -20,6 +20,7 @@ const ArtistsSearch = ({...props}:screenProps) =>{
                 keyExtractor={item=>item.institute_id.toString()}
                 legacyImplementation = {true}
                 renderItem = {renderArtistCard} 
+                removeClippedSubviews={true}
                 scrollEventThrottle={16}
                 showsVerticalScrollIndicator={false}
                 style={{flex:1}}

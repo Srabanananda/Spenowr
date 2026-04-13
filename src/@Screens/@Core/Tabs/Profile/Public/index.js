@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useEffect,useState} from 'react';
-import {SafeAreaView,ScrollView,View} from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import { getPublicUserData } from '../../../../../@Endpoints/Auth';
 import DefaultHeader from '../../../../../@GlobalComponents/DefaultHeader';
@@ -21,6 +21,7 @@ import FallBackUI from '../../../../../@GlobalComponents/FallBackUI';
 import ErrorBoundary from 'react-native-error-boundary';
 import ArtLovers from '../Details/Accounts/ArtLover';
 import Options from './Options';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const PublicProfileScreen = ({...props}) =>{
     const isFocused = useIsFocused();
@@ -58,17 +59,17 @@ const PublicProfileScreen = ({...props}) =>{
                     }
                     else{
                         navigation.goBack();
-                        Toast.show('Oops, Couldnot Sync Details',Toast.LONG);
+                        Toast.show('Oops, Could not Sync Details',Toast.LONG);
                     }
                 })
                 .catch(()=>{
                     navigation.goBack();
-                    Toast.show('Oops, Couldnot Sync Details',Toast.LONG);
+                    Toast.show('Oops, Could not Sync Details',Toast.LONG);
                 });
         else
         {
             navigation.goBack();
-            Toast.show('Oops, Couldnot Sync Details',Toast.LONG);
+            Toast.show('Oops, Could not Sync Details',Toast.LONG);
         }
     };
 
@@ -90,6 +91,9 @@ const PublicProfileScreen = ({...props}) =>{
         );
     };
    
+console.log('-===================================================');
+    console.log('account_type_id',account_type_id);
+console.log('-===================================================');
 
     const renderData = () =>{
         if(loading)
@@ -111,9 +115,9 @@ const PublicProfileScreen = ({...props}) =>{
             </ScrollView>
         );
     };
-
+console.log();
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Artist Profile'} >
                 {!loading &&  <Options {...optionProps} />}
             </DefaultHeader>

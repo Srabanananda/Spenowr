@@ -52,6 +52,7 @@ const Stories = ({yAxisAnimatedValue, ...props}) =>{
                     horizontal={true}
                     initialNumToRender={5}
                     keyExtractor={item=>item.module_id.toString()}
+                    removeClippedSubviews={true}
                     onEndReached={()=> totalStory-storyOfWeek.length ? fetchUserStories(storyOfWeek.length): null }
                     onEndReachedThreshold={0.3}
                     renderItem = {renderPages}
@@ -79,6 +80,5 @@ function mapDispatchToProps(dispatch){
             dispatch(homeActions.fetchUserStories(skip)),
     };
 }
-
 
 export default connect(mapStateToProps,mapDispatchToProps)(Stories);

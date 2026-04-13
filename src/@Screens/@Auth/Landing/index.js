@@ -2,31 +2,35 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React from 'react';
-import {View, SafeAreaView,StyleSheet, Image,Text } from 'react-native';
+import { View, StyleSheet, Image, Text } from 'react-native';
 import { GlobalStyles } from '../../../@GlobalStyles';
 import Config from '@Config/default';
 import { moderateScale } from 'react-native-size-matters';
 import DefaultButton from '../../../@GlobalComponents/DefaultButton';
 import PropTypes from 'prop-types';
 import { ForceUpdate } from '../../../@Utils/helperFiles/helpers';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-
-const {COLOR:{APP_PINK_COLOR,SUBNAME,APP_THEME_COLOR,WHITE}} = Config;
+const {VERSION_CHECK, COLOR:{APP_PINK_COLOR,SUBNAME,APP_THEME_COLOR,WHITE}} = Config;
 
 const LandingScreen = ({...props}) =>{
     const [isLatest, setLatest]  = React.useState(false)
     const {
         navigation:{navigate}
     } = props;
+
     React.useEffect(() => {
         const unsubscribe = props.navigation.addListener('focus', () => {
-            setLatest(ForceUpdate())
+            // Only call ForceUpdate if VERSION_CHECK is not 2
+            if (VERSION_CHECK !== "2") {
+                setLatest(ForceUpdate());
+            }
         });
         return unsubscribe;
-    }, [props.navigation])
+    }, [props.navigation, VERSION_CHECK]); // Add VERSION_CHECK to dependencies
 
     return(
-        <SafeAreaView style={{...GlobalStyles.GlobalContainer,backgroundColor:WHITE}}>
+        <SafeAreaView edges={['left', 'right']} style={{...GlobalStyles.GlobalContainer,backgroundColor:WHITE}}>
             <View style={styles.container}>
                 <Image resizeMode={'contain'} source={require('../../../assets/images/SpenowrLogoIcon.png')} style={styles.logo} />
                 <Image resizeMode={'contain'} source={require('../../../assets/images/SpenowrTextIcon.png')} style={styles.textIcon} />
@@ -39,8 +43,33 @@ const LandingScreen = ({...props}) =>{
                 <Text style={[styles.appDesc,{paddingTop:moderateScale(5),marginBottom:moderateScale(20)}]}>
                 Spenowr’s vision is to bring in all creative personas and art enthusiasts to one platform where we facilitate them to socialize and grow with name, fame & revenue. 
                 </Text>
-                <DefaultButton buttonStyle={{width:'100%'}} buttonText={'Login'} onPress={()=>isLatest ? ForceUpdate() : navigate('Login')} showLoader={false} />
-                <DefaultButton buttonStyle={styles.createAccount} buttonText={'Create An Account'} onPress={()=>isLatest ? ForceUpdate() : navigate('Register')} showLoader={false} textStyle={{color:APP_PINK_COLOR}} />
+                <DefaultButton 
+                    buttonStyle={{width:'100%'}} 
+                    buttonText={'Login'} 
+                    onPress={() => {
+                    // Only call ForceUpdate if VERSION_CHECK is not 2
+                    if (VERSION_CHECK !== "2" && isLatest) {
+                        ForceUpdate();
+                    } else {
+                        navigate('Login');
+                    }
+                    }} 
+                    showLoader={false} 
+                />
+                <DefaultButton 
+                    buttonStyle={styles.createAccount} 
+                    buttonText={'Create An Account'} 
+                    onPress={() => {
+                        // Only call ForceUpdate if VERSION_CHECK is not 2
+                        if (VERSION_CHECK !== "2" && isLatest) {
+                            ForceUpdate();
+                        } else {
+                            navigate('Register');
+                        }
+                    }}
+                    showLoader={false} 
+                    textStyle={{color:APP_PINK_COLOR}} 
+                />
             </View>
         </SafeAreaView>
     );

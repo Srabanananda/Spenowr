@@ -12,10 +12,12 @@ const {COLOR:{WHITE,APP_PINK_COLOR,DARK_BLACK,LIGHTGREY,SUBNAME,RED,APP_THEME_CO
 const styles = StyleSheet.create({
     cardBox:{
         backgroundColor:WHITE,
-        width:'100%',
+        width:'95%',
         borderColor:LIGHTGREY,
         paddingHorizontal:moderateScale(10),
-        marginBottom:moderateScale(10)
+        marginBottom:moderateScale(10),
+        alignSelf:'center',
+        borderRadius:6
     },
     modulesWrapper:{
         flexDirection:'row',

@@ -5,19 +5,13 @@
  */
 
 import React from 'react';
-import {
-    View,
-    Text,
-    Image,
-    SafeAreaView,
-    StatusBar,
-    TouchableOpacity,
-} from 'react-native';
+import { View, Text, Image, StatusBar, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import APP_CONSTANT from '../../../constants/Constant';
 import SIgnInForm from './SIgnInForm';
 import styles from './styles';
 import { moderateScale } from 'react-native-size-matters';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const LoginScreen =({...props})=> {
 
@@ -33,7 +27,7 @@ const LoginScreen =({...props})=> {
     };
       
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView edges={['left', 'right']} style={styles.container}>
             <StatusBar barStyle="dark-content" />
             <View style={styles.container}>
                     
@@ -57,7 +51,5 @@ const LoginScreen =({...props})=> {
 LoginScreen.propTypes = {
     navigation:PropTypes.object.isRequired,
 };
-
-
 
 export default LoginScreen;

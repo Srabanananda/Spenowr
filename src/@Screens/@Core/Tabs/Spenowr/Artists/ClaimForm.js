@@ -14,7 +14,6 @@ import SelectImage from '../../../../../@GlobalComponents/SelectImage';
 import { BlurView } from '@react-native-community/blur';
 import { pickImage } from '../../../../../@Utils/helperFiles/ImagePicker';
 
-
 const ClaimForm = ({cardData}) =>{
 
     const [isActive, setIsActive] = useState(false);

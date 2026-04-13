@@ -44,8 +44,6 @@ const Card = ({refreshData,cardItem,mode='PRIVATE'}) =>{
             });
     };
 
-
-
     return(
         <View style={styles.cardBox}>
             <TouchableOpacity disabled={true} style={styles.upperCard}>

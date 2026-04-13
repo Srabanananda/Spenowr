@@ -3,7 +3,7 @@
  */
 
 import React, { useState } from 'react';
-import { TouchableOpacity,View,Text,TextInput,ScrollView,SafeAreaView, Platform } from 'react-native';
+import { TouchableOpacity, View, Text, TextInput, ScrollView, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { moderateScale } from 'react-native-size-matters';
 import PropTypes from 'prop-types';
@@ -22,6 +22,7 @@ import MUSICAL from '../../../../../../assets/JsonFiles/FilterJsons/musicalcat_s
 import SINGING from '../../../../../../assets/JsonFiles/FilterJsons/singingcat_subcat.json';
 
 import ModalHeader from '../../../../../../@GlobalComponents/ModalHeader';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const ALLJSONFILTERDATA =  [{
     'category':[
@@ -233,7 +234,7 @@ const Filters = ({...props}) =>{
 
     const renderFilterBox = () =>{
         return(
-            <SafeAreaView style={styles.filterContainer}>
+            <SafeAreaView edges={['left', 'right']} style={styles.filterContainer}>
                 <View style={{margin:Platform.OS === 'ios' ? moderateScale(10) : 0 }}>
                     <ModalHeader headerText={'Apply Filters'} onPress={()=>setIsActive(false)} />
                     <TextInput 

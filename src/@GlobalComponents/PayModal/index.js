@@ -137,7 +137,6 @@ const PayModal = forwardRef((props, ref) =>{
     );
 });
 
-
 PayModal.propTypes = {
     loader:PropTypes.bool.isRequired,
     loaderText:PropTypes.string,

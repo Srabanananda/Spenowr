@@ -2,7 +2,6 @@
  * Create By @name Sukumar_Abhijeet
  */
 
-
 import Config from '@Config/default';
 import axios from 'axios';
 
@@ -143,7 +142,6 @@ export const removeFromContest = (body) => {
         )
         .then(response => response.data);
 };
-
 
 export const sendSellerFormRequest = (body) => {
     const url = `${BASE_PATH + API_VERSIONING}/profile/seller-gst-submit`;
@@ -924,6 +922,48 @@ export const getServicePackageData = course_id => {
         .then(response => response.data);
 };
 
+export const getAudioPlayCountArticle = (article_id, play_count) => {
+    const url = `${BASE_PATH + API_VERSIONING}/article/update-audio-play-count`;
+    const body = new FormData();
+    body.append('article_id', article_id);
+    body.append('play_count', play_count);
+    return axios
+        .post(
+            url,
+            body,
+            {
+                headers: {
+                     'Content-Type': 'multipart/form-data'
+                },
+            }
+        )
+        .then(response => {
+            console.log('response.data audio',response.body); // Add this line for logging
+            return response.data;
+        })
+};
+
+export const getAudioPlayCountSeries = (story_id, play_count) => {
+    const url = `${BASE_PATH + API_VERSIONING}/profile/update-series-story-play-count`;
+    const body = new FormData();
+    body.append('story_id', story_id);
+    body.append('play_count', play_count);
+    return axios
+        .post(
+            url,
+            body,
+            {
+                headers: {
+                     'Content-Type': 'multipart/form-data'
+                },
+            }
+        )
+        .then(response => {
+            console.log('response.data series',response.body); // Add this line for logging
+            return response.data;
+        })
+};
+
 export const deleteServicePackage = package_id => {
     const url = `${BASE_PATH + API_VERSIONING}/profile/delete-package`;
     const body = new FormData();
@@ -973,7 +1013,6 @@ export const editServicePackage = package_id => {
         .then(response => response.data);
 };
 
-
 export const updateServicePackage = data => {
     const url = `${BASE_PATH + API_VERSIONING}/profile/update-service-package`;
     return axios
@@ -1006,7 +1045,6 @@ export const getServiceDetails = course_id => {
         .then(response => response.data);
 };
 
-
 export const addCourseReview = (course_id, author, email, comment, rating, recommended, g_recaptcha_response = '1') => {
     const url = `${BASE_PATH + API_VERSIONING}/courses/add-course-review`;
     const body = new FormData();
@@ -1030,7 +1068,6 @@ export const addCourseReview = (course_id, author, email, comment, rating, recom
         .then(response => response.data);
 };
 
-
 export const getServicePackageReviews = (media_id, skip, limit = 10) => {
     const url = `${BASE_PATH + API_VERSIONING}/courses/service-package-review-list`;
     const body = new FormData();
@@ -1049,14 +1086,4 @@ export const getServicePackageReviews = (media_id, skip, limit = 10) => {
         )
         .then(response => response.data);
 };
-
-
-
-
-
-
-
-
-
-
 

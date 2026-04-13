@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  SafeAreaView,
-  Text,
-  Image,
-  View,
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { Text, Image, View, ScrollView, TextInput, TouchableOpacity } from "react-native";
 import DefaultHeader from "../../../../../../../../@GlobalComponents/DefaultHeader";
 import SimpleToast from "react-native-simple-toast";
 import { addSeries, updateSeries } from "../../../../../../../../@Endpoints/Core/Tabs/MyAccount";
@@ -20,6 +12,7 @@ import { pickImage } from "../../../../../../../../@Utils/helperFiles/ImagePicke
 import { Dropdown } from "react-native-material-dropdown";
 import Toast from "react-native-simple-toast";
 import Config from "@Config/default";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const { NEW_IMG_BASE, DUMMY_IMAGE_URL, DEFAULT_PROFILE } = Config;
 // import MySeriesList from './List/SeriesList';
@@ -104,7 +97,6 @@ const AddSeriesScreen = (props) => {
       });
   };
 
-
   const renderSelectedFile = () => {
     const chooseFile = () => {
       pickImage((res) => {
@@ -137,7 +129,7 @@ const AddSeriesScreen = (props) => {
   if (loader) return <ScreenLoader text={"Fetching Series Form .."} />;
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView edges={['left', 'right']} style={{ flex: 1 }}>
       <DefaultHeader headerText={EditData ? "Edit Series" : "Add Series"} />
       <ScrollView
         contentContainerStyle={{

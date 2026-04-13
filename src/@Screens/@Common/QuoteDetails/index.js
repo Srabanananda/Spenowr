@@ -2,7 +2,7 @@
  *  Created By @name Sukumar_Abhijeet
  */
 import React,{useState,useEffect} from 'react';
-import {SafeAreaView,ScrollView,View} from 'react-native';
+import { ScrollView, View } from 'react-native';
 import DefaultHeader from '../../../@GlobalComponents/DefaultHeader';
 import { GlobalStyles } from '../../../@GlobalStyles';
 import styles from './styles';
@@ -22,6 +22,7 @@ import { isObjectEmpty } from '../../../@Utils/helperFiles/isObjectEmpty';
 import InviteFriendToVote from '../ArtworkDetails/InviteFriendToVote';
 import VoteOptions from '../ArtworkDetails/VoteOptions';
 import MusicPlayer from '../../@Common/MusicPlayer';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const QuotesDetailScreen = ({...props}) =>{
     const isFocused = useIsFocused();
@@ -51,7 +52,7 @@ const QuotesDetailScreen = ({...props}) =>{
                 updateQuoteDetails(data);
             })
             .catch(()=>{
-                Toast.show('Oops Couldnot get Quote Details',Toast.LONG);
+                Toast.show('Oops Could not get Quote Details',Toast.LONG);
                 setTimeout(()=>{navigation.goBack();},300);
             })
             .finally(()=>setLoader(false));
@@ -103,7 +104,7 @@ const QuotesDetailScreen = ({...props}) =>{
     };
 
     return(
-        <SafeAreaView style={GlobalStyles.GlobalContainer}>
+        <SafeAreaView edges={['left', 'right']} style={GlobalStyles.GlobalContainer}>
             <DefaultHeader headerText={'Quote Details'} >
                 {!loader && <InviteFriendToVote details={details} />}
             </DefaultHeader>

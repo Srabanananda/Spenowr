@@ -87,6 +87,8 @@ const ViewChat = ({converstationId, notificationConversationId ,children,handleR
             data.append('application',true);
             addMessageToSupportConversation(data)
                 .then(res=>{
+                    console.log('response of sending message',res);
+                    console.log('converstationId',converstationId);
                     const {data:{messageData=[]}} = res;
                     const dataSet = messageData.map((each)=>{
                         let obj = {};
@@ -138,7 +140,6 @@ const ViewChat = ({converstationId, notificationConversationId ,children,handleR
                 </View>
             );
     };
-
 
     const renderChatBox = () =>{
         return(
