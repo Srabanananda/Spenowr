@@ -16,7 +16,7 @@ linkage = ENV.fetch('USE_FRAMEWORKS', 'static')
 Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
 use_frameworks! :linkage => linkage.to_sym
 
-target 'Spenowrv2' do
+target 'Spenowr' do
   config = use_native_modules!
 
   use_react_native!(
